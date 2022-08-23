@@ -17,12 +17,16 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!auth()->check() || auth()->user()->isAdmin !== 1) {
-            return abort(403);
-        }
-        return $next($request);
+        // if (!auth()->check() || auth()->user()->isAdmin !== 1) {
+        //     return abort(403);
+        // }
+        // return $next($request);
 
-        if (Auth::user() && Auth::user()->isAdmin == 1) {
+        // if (Auth::user() && Auth::user()->isAdmin == 1) {
+        // }
+        if (Auth::user() &&  Auth::user()->isAdmin == 1) {
+            return $next($request);
         }
+        return abort(403);
     }
 }
