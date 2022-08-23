@@ -24,14 +24,14 @@
    <div  id="header-sticky" class="header__bottom header__padding">
       <div class="container">
          <div class="row align-items-center">
-            <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-6 col-6">
+            <div class="col-xxl-1 col-xl-2 col-lg-2 col-md-6 col-6">
                <div class="logo">
                   <a href="{{ url('/') }}">
                      <img src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="logo" width="70px">
                   </a>
                </div>
             </div>
-            <div class="col-xxl-10 col-xl-10 col-lg-10 d-none d-lg-block">
+            <div class="col-xxl-11 col-xl-10 col-lg-10 d-none d-lg-block">
                <div class="main-menu main-menu-5 ml-90">
                   <nav id="mobile-menu">
                      <ul>
