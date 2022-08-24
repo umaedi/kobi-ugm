@@ -47,7 +47,7 @@
             $.each(data, (k, v) => {
                content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">';
                content += '<div class="blog__item-5 mb-30">';
-               content += '<div class="blog__thumb-5 fix w-img">';
+               content += '<div class="blog__thumb-5 fix w-img l-image-cover">';
                content += '<a href=/'+ v.slug +'><img class="lazyload" data-src="{{ asset('storage/thumb') }}/'+ v.image +'">';
                content += '</a>';
                content += '</div>';

@@ -9,6 +9,7 @@ use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Api as Controller;
+use App\Http\Controllers\BaseController;
 
 class StrController extends Controller
 {

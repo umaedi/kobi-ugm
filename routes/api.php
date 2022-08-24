@@ -2,15 +2,30 @@
 
 use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 Route::post('admin/auth/login', [\App\Http\Controllers\Api\Admin\AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
     Route::post('/auth/admin/logout', [\App\Http\Controllers\Api\Admin\AuthController::class, 'logout']);
 });
-Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 
+// Route::group(['middleware' => 'auth:sanctum'], function () {
+//     //Admin method reoursce
+
+// });
+Route::controller(\App\Http\Controllers\Api\Admin\StrController::class)->group(function () {
+    Route::get('/admin/str/', 'index');
+    Route::get('/admin/str/show/{id}', 'strShow');
+    Route::post('/admin/str/update/{id}', 'strUpdate');
+    Route::get('/admin/str/verif', 'strVerif');
+    Route::get('/admin/str/reject', 'strReject');
+    Route::delete('/admin/str/destroy/{id}', 'strDestroy');
+});
+
+Route::middleware(['auth' => 'apiAdmim'])->group(function () {
+    //
+});
 
 Route::resource('/admin/media', App\Http\Controllers\Backend\MediaController::class);
 Route::resource('/admin/posts', App\Http\Controllers\Api\PostController::class);
@@ -24,17 +39,8 @@ Route::get('/admin/posts/draft/{status}', [\App\Http\Controllers\Api\PostControl
 Route::resource('/admin/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
 Route::resource('/admin/naskah', \App\Http\Controllers\Api\NaskahController::class);
 
-//Admin method reoursce
-Route::controller(\App\Http\Controllers\Api\Admin\StrController::class)->group(function () {
-    Route::get('/admin/str/', 'index');
-    Route::get('/admin/str/show/{id}', 'strShow');
-    Route::post('/admin/str/update/{id}', 'strUpdate');
-    Route::get('/admin/str/verif', 'strVerif');
-    Route::get('/admin/str/reject', 'strReject');
-    Route::delete('/admin/str/destroy/{id}', 'strDestroy');
-});
 
-
+Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 Route::resource('/admin/ad-art', \App\Http\Controllers\Api\AdArtController::class);
 Route::get('/user/ad-art', [App\Http\Controllers\Api\AdArtController::class, 'userIndex']);
 Route::resource('/admin/kurikulum', \App\Http\Controllers\Api\KurikulumController::class)->only('index', 'update');
