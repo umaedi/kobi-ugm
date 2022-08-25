@@ -112,7 +112,7 @@
                     if(response.status == 201) {
                         swal({
                             title: "",
-                            text: response.responseJSON.message,
+                            text: "Kategori berhasil dibuat",
                             icon: "success"
                         });
                         table.ajax.reload();
@@ -147,7 +147,7 @@
         function remove(id){
         swal({
         title: "",
-        text: "Delete category ?",
+        text: "Hapus kategori ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -168,7 +168,7 @@
                     }
                 }
                 });
-                swal("Category has ben deleted", {
+                swal("Kategori berhasil dihapus", {
                 icon: "success",
             });
         }

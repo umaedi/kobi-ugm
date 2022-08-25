@@ -1,4 +1,4 @@
-@extends('layouts.frontend.app')
+@extends('layouts.frontend.appv2')
 @push('css')
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.table.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">

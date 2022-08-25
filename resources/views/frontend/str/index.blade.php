@@ -4,12 +4,6 @@
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
     <h3>{{ __('KOBI| Pengajuan STR') }}</h3>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb justify-content-center">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}">{{ __('Beranda') }}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ __('Pengajuan STR') }}</li>
-        </ol>
-    </nav>
     </div>
     @endslot
 @endcomponent

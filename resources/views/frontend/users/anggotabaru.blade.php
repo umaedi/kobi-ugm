@@ -3,13 +3,7 @@
     @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3>Pendaftaran Anggota KOBI</h3>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb justify-content-center">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}">Beranda</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Pendaftaran Anggota KOBI</li>
-        </ol>
-    </nav>
+    <h3>KOBI | Pendaftaran Anggota Baru</h3>
     </div>
     @endslot
     @endcomponent

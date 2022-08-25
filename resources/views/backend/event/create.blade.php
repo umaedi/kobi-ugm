@@ -114,7 +114,7 @@
             if(response.status == 201) {
                 swal({
                     title: "",
-                    text: response.responseJSON.message,
+                    text: 'Kegiatan berhasil dibuat',
                     icon: "success"
                   })
                   .then(() => {

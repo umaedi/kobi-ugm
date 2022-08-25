@@ -5,12 +5,6 @@
         @slot('breadcrumb')
         <div class="page__title-wrapper text-center">
          <h3>KOBI | Upload File Bukti STR</h3>
-          <nav aria-label="breadcrumb">
-             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Upload</li>
-             </ol>
-          </nav>
       </div>
       @endslot
     @endcomponent

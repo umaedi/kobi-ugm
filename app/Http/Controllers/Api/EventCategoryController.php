@@ -107,6 +107,8 @@ class EventCategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $eventCat = EventCategory::findOrfail($id);
+        $eventCat->destroy($id);
+        return $this->sendResponseDelete($eventCat);
     }
 }

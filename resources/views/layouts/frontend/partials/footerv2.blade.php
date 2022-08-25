@@ -18,7 +18,7 @@
                 </div>
              </div>
              <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".5s">
-                <div class="footer__widget mb-50 footer__pl-70">
+                <div class="footer__widget mb-50">
                    <div class="footer__widget-title footer__widget-title-3 mb-25">
                       <h3>{{ __('Ringkasan :') }}</h3>
                    </div>
@@ -34,7 +34,7 @@
                 </div>
              </div>
              <div class="col-xxl-3 col-xl-2 col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".7s">
-                <div class="footer__widget mb-50 footer__pl-90">
+                <div class="footer__widget mb-50">
                    <div class="footer__widget-title footer__widget-title-3 mb-25">
                       <h3>{{ __('Dokumen :') }}</h3>
                    </div>

@@ -14,13 +14,16 @@ class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        return view('frontend.index', [
+            'title' => 'Konsorsium Biologi Indonesia'
+        ]);
     }
 
     public function register()
     {
         return view('frontend.users.register', [
             'provinces' => Province::all(),
+            'title' => 'Pendaftaran Anggota Lama'
 
         ]);
     }
@@ -29,27 +32,43 @@ class FrontendController extends Controller
     {
         return view('frontend.users.anggotabaru', [
             'provinces' => Province::all(),
+            'title' => 'Pendaftaran Anggota Baru'
         ]);
     }
 
     public function anggota()
     {
-        return view('frontend.users.index');
+        return view('frontend.users.index', [
+            'title' => 'Daftar Anggota Aktif'
+        ]);
     }
 
     public function posts()
     {
-        return view('frontend.posts.index');
+        return view('frontend.posts.index', [
+            'title' => 'Semua berita'
+        ]);
     }
 
     public function listPost()
     {
-        return view('frontend.posts.list-post');
+        $posts = Post::latest();
+
+        if (request('search')) {
+            $posts->where('title', 'like', '%' . request('search') . '%');
+        }
+
+        return view('frontend.posts.list-post', [
+            'title' => 'Semua Berita',
+            'posts' => $posts->paginate(2),
+            'categories'    => Category::latest()->get()
+        ]);
     }
 
     public function postCategories(Category $category)
     {
         return view('frontend.posts.categories', [
+            'title' => 'Kategori Berita',
             'posts' => $category->post,
 
         ]);
@@ -58,58 +77,78 @@ class FrontendController extends Controller
     public function show(Post $post)
     {
         return view('frontend.posts.show', [
+            'title' => 'Publikasi',
             'post'  => $post,
         ]);
     }
 
     public function str()
     {
-        return view('frontend.str.index');
+        return view('frontend.str.index', [
+            'title' => 'STR'
+        ]);
     }
 
     public function uploadStr()
     {
-        return view('frontend.str.upload');
+        return view('frontend.str.upload', [
+            'title' => 'Upload'
+        ]);
     }
 
     public function about()
     {
-        return view('frontend.pages.about');
+        return view('frontend.pages.about', [
+            'title' => 'Sejarah'
+        ]);
     }
 
     public function visiMisi()
     {
-        return view('frontend.pages.visi-misi');
+        return view('frontend.pages.visi-misi', [
+            'title' => 'Visi Misi dan Tujuan'
+        ]);
     }
 
     public function strukturOrgnanisasi()
     {
-        return view('frontend.pages.struktur');
+        return view('frontend.pages.struktur', [
+            'title' => 'Struktur Organisasi'
+        ]);
     }
 
     public function publikasi()
     {
-        return view('frontend.pages.publikasi');
+        return view('frontend.pages.publikasi', [
+            'title' => 'Publikasi'
+        ]);
     }
 
     public function naskah()
     {
-        return view('frontend.pages.naskah');
+        return view('frontend.pages.naskah', [
+            'title' => 'Naskah Akademik'
+        ]);
     }
 
     public function laporan()
     {
-        return view('frontend.pages.laporan');
+        return view('frontend.pages.laporan', [
+            'title' => 'Laporan'
+        ]);
     }
 
     public function event()
     {
-        return view('frontend.event.kongres');
+        return view('frontend.event.kongres', [
+            'title' => 'Kegiatan'
+        ]);
     }
 
     public function showEvent(Event $event)
     {
         return view('frontend.event.show', [
+            'title' => 'Kegiatan',
             'post'  => $event,
             'posts' => Event::latest()->limit(6)->get(),
         ]);
@@ -117,18 +156,25 @@ class FrontendController extends Controller
 
     public function eventList()
     {
-        return view('frontend.event.event-list');
+        return view('frontend.event.event-list', [
+            'title' => 'Kegiatan',
+            'posts' => Event::latest()->paginate(),
+            'categories'    => EventCategory::latest()->get()
+        ]);
     }
 
     public function eventCategories(EventCategory $eventCategory)
     {
         return view('frontend.event.categories', [
+            'title' => 'Kategori Kegiatan',
             'posts' => $eventCategory->event,
         ]);
     }
 
     public function kurikulum()
     {
-        return view('frontend.pages.kurikulum');
+        return view('frontend.pages.kurikulum', [
+            'title' => 'Kurikulum'
+        ]);
     }
 }

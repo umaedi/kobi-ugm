@@ -12,7 +12,9 @@ class UserController extends Controller
 {
     public function register()
     {
-        return view('auth.user.register');
+        return view('auth.user.register', [
+            'title' => 'Daftar'
+        ]);
     }
 
     public function store(Request $request)
@@ -29,7 +31,9 @@ class UserController extends Controller
 
     public function login()
     {
-        return view('auth.user.login');
+        return view('auth.user.login', [
+            'title' =>  'Masuk'
+        ]);
     }
 
     public function authenticate(Request $request)
