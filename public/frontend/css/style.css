@@ -7203,7 +7203,9 @@ p {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    width: 830px;
+    float: left;
+    max-width: 280px;
+    max-height: 230px;
     overflow: hidden;
 }
 
@@ -7211,8 +7213,20 @@ p {
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
-    height: 200px;
+    height: 100%;
+    width: 100%;
 
+}
+
+@media (max-width: 575px) {
+    .x-blog__thumb-5 {
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        max-width: 130px;
+        max-height: 130px;
+        overflow: hidden;
+    }
 }
 .blog__meta span {
     text-transform: capitalize;
@@ -7423,6 +7437,31 @@ p {
 @media (max-width: 575px) {
     .postbox__title {
         font-size: 16px;
+    }
+    .postbox__content p {
+        font-size: .875rem;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        text-align: justify;
+    }
+
+    .x-postbox p {
+        font-size: .875rem;
+        margin-top: 25px;
+        margin-bottom: 25px;
+        text-align: justify;
+        margin-left: -157px;
+        margin-top: 50px;
+    }
+
+    .rc__title {
+        font-size: 13px;
+        font-weight: 700;
+        color: #132339;
+        line-height: 1.5;
+    }
+    .x-mb-30 {
+        margin-bottom: -15px;
     }
 }
 .postbox__title a:hover {

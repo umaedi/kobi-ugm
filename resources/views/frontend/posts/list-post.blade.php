@@ -19,7 +19,7 @@
                  <div class="col-xxl-8 col-xl-8 col-lg-8">
                     <div class="blog__wrapper">
                        <div class="postbox__item mb-70 wow fadeInUp" data-wow-delay=".3s">
-                          <div class="postbox__content">
+                          <div class="postbox__content x-postbox">
                             <div class="sidebar__widget mb-60 wow fadeInUp" data-wow-delay=".7s">
                               <div class="sidebar__widget-head">
                                  <h3 class="sidebar__widget-title">Semua Postingan KOBI</h3>
@@ -29,7 +29,7 @@
                                 @foreach ($posts as $post)
                                 <div class="rc__post">
                                   <ul>
-                                     <li class="d-flex mb-30">
+                                     <li class="d-flex mb-30 x-mb-30">
                                         <div class="x-blog__thumb-5 mr-30">
                                            <a href="/{{ $post->slug }}">
                                               <img data-src="{{ asset('storage/thumb/'. $post->image) }}" alt="{{ $post->title }}" class="lazyload">
