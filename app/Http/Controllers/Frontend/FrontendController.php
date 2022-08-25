@@ -60,7 +60,7 @@ class FrontendController extends Controller
 
         return view('frontend.posts.list-post', [
             'title' => 'Semua Berita',
-            'posts' => $posts->paginate(2),
+            'posts' => $posts->paginate(6),
             'categories'    => Category::latest()->get()
         ]);
     }
