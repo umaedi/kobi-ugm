@@ -40,7 +40,7 @@
                                               <span>{{ $post->publish_at }}</span>
                                            </div>
                                            <h3 class="rc__title"><a href="/{{ $post->slug }}">{{ $post->title }}</a></h3>
-                                           <p>Twit pukka blow off nice one cack bubble and squeak that, quaint blimey don't get shirty with me up the kyver bamboozled bobby spiffing, cuppa chap lavatory hunky-dory only a quid.</p>
+                                           <p>{{ $post->excerpt }}</p>
                                         </div>
                                      </li>
                                   </ul>

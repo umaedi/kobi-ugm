@@ -5,12 +5,6 @@
         @slot('breadcrumb')
         <div class="page__title-wrapper text-center">
          <h3>KOBI | Event</h3>
-          <nav aria-label="breadcrumb">
-             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Event</li>
-             </ol>
-          </nav>
       </div>
       @endslot
     @endcomponent

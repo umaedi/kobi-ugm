@@ -67,6 +67,7 @@ class PostController extends Controller
             'user_id'       => $request->user_id,
             'title'         => $request->title,
             'slug'          => Str::slug($request->title),
+            'excerpt'       => Str::limit(strip_tags($request->body)),
             'body'          => $request->body,
             'image'         => $thumb->hashName(),
             'publish_at'    => $request->publish_at,
