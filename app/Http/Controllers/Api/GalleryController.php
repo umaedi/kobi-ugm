@@ -48,7 +48,7 @@ class GalleryController extends Controller
 
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-            $photo->storeAs('public/gallery', $photo->hashName());
+            $photo->storeAs('public/galeri', $photo->hashName());
         }
 
         $savePhoto = Gallery::create([

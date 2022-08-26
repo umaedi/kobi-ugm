@@ -229,7 +229,7 @@
                content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4 wow fadeInUp" data-wow-delay=".3s">';
                content += '<div class="portfolio__item mb-30">';
                content += '<div class="portfolio__thumb w-img">'; 
-               content += '<img data-src="{{ asset('storage/gallery') }}/'+ v.photo +'" class="lazyload">';   
+               content += '<img data-src="{{ asset('storage/galeri') }}/'+ v.photo +'" class="lazyload">';   
                content += '<div class="portfolio__content">';   
                content += '<span>'+ v.title +'</span>';   
                content += '</div>';   
