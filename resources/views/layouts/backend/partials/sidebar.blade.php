@@ -105,6 +105,11 @@
           </div>
       </div>
   </li>
+  <li class="nav-item {{ Request::is('admin/gallery') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.gallery') }}">
+        <i class="fas fa-fw fa-folder"></i>
+        <span>Galeri</span></a>
+  </li>
   <hr class="sidebar-divider">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFor"

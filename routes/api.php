@@ -38,7 +38,7 @@ Route::get('/admin/categories/get', [\App\Http\Controllers\Backend\CategoryContr
 Route::get('/admin/posts/draft/{status}', [\App\Http\Controllers\Api\PostController::class, 'getByStatus']);
 Route::resource('/admin/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
 Route::resource('/admin/naskah', \App\Http\Controllers\Api\NaskahController::class);
-
+Route::resource('/admin/add-images', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
 
 Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 Route::resource('/admin/ad-art', \App\Http\Controllers\Api\AdArtController::class);
@@ -53,6 +53,8 @@ Route::get('/dokumen/{category_id}', [Api\User\DocumentController::class, 'getBy
 Route::get('/laporan', [Api\User\LaporanController::class, 'laporan']);
 Route::get('/getRegencies/{id}', [Api\User\IndoregionController::class, 'kabupaten']);
 Route::get('/user/event/categories', [\App\Http\Controllers\Api\User\EventCategoryController::class, 'index']);
+
+Route::get('/user/images', [Api\User\GalleryController::class, 'index']);
 
 //users method post
 Route::post('/pengajuan-str', [Api\User\StrController::class, 'store']);

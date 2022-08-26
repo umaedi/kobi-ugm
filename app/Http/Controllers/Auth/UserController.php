@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\EventCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -13,7 +14,8 @@ class UserController extends Controller
     public function register()
     {
         return view('auth.user.register', [
-            'title' => 'Daftar'
+            'title' => 'Daftar',
+            'events'    => EventCategory::all()
         ]);
     }
 
@@ -32,7 +34,8 @@ class UserController extends Controller
     public function login()
     {
         return view('auth.user.login', [
-            'title' =>  'Masuk'
+            'title' =>  'Masuk',
+            'events'    => EventCategory::all()
         ]);
     }
 

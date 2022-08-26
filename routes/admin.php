@@ -39,5 +39,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::post('/password/{id}', 'password');
             Route::get('/web/settings', 'settings')->name('settings');
         });
+
+        Route::get('/gallery', [\App\Http\Controllers\Backend\GaleryController::class, 'index'])->name('admin.gallery');
     });
 });

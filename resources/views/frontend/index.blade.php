@@ -135,7 +135,7 @@
              <!-- services area end -->
     
              <!-- blog area start -->
-             <section class="blog__area pt-130 pb-100">
+             <section class="blog__area pt-130">
                 <div class="container">
                    <div class="row">
                       <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-md-10 offset-md-1">
@@ -149,16 +149,37 @@
                      
                    </div>
                    <div class="text-center  wow fadeInUp" data-wow-delay=".3s">
-                     <a href="{{ route('posts.list') }}" class="w-btn w-btn"> Lihat Semua</a>
+                     <a href="{{ route('posts.list') }}" class="w-btn w-btn"> Berita selengkapnya</a>
                   </div>
                 </div>
              </section>
              <!-- blog area end -->
- 
+
+             <section class="portfolio__area x-prtofolio__area pt-50">
+               <div class="container">
+                  <div class="portfolio__menu x-gallery-head d-flex mb-20 wow fadeInUp" data-wow-delay=".5s">
+                     <div class="masonary-menu filter-button-group">
+                        <h4>Galeri Kegiatan</h4>
+                    </div>
+                  </div>
+                  <div class="row grid" id="xImages">
+                     
+                  </div>
+                  <div class="row">
+                     <div class="col-xxl-12 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="portfolio__more mt-30 x-protfolio__more text-center">
+                           <a href="#" class="w-btn w-btn">Galeri selengkapnya</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
 @endsection
 @push('js')
 <script>
-   $.ajax({
+   function getPost()
+   {
+      $.ajax({
       url: BaseUrl+'/api/user/post/postindex',
       method: 'GET',
       processData: false,
@@ -188,7 +209,40 @@
             $('#contentPost').html(content);
          }
       }
-   });
-
+      });
+   }
+   getPost();
+ 
+   function getImage()
+   {
+      $.ajax({
+      url: BaseUrl+'/api/user/images',
+      method: 'GET',
+      processData: false,
+      contentType: false,
+      cache: false,
+      complete: (response) => {
+         if(response.status == 200) {
+            let data = response.responseJSON.data.photos;
+            let content = '';
+            $.each(data, (k, v) => {
+               content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4 wow fadeInUp" data-wow-delay=".3s">';
+               content += '<div class="portfolio__item mb-30">';
+               content += '<div class="portfolio__thumb w-img">'; 
+               content += '<img data-src="{{ asset('storage/gallery') }}/'+ v.photo +'" class="lazyload">';   
+               content += '<div class="portfolio__content">';   
+               content += '<span>'+ v.title +'</span>';   
+               content += '</div>';   
+               content += '</div>';   
+               content += '</div>';   
+               content += '</div>'; 
+            });
+            $('#xImages').html(content);
+         }
+      }
+      });
+   }
+   getImage();
+ 
 </script> 
 @endpush

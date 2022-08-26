@@ -22,7 +22,8 @@
                           <div class="postbox__content x-postbox">
                             <div class="sidebar__widget mb-60 wow fadeInUp" data-wow-delay=".7s">
                               <div class="sidebar__widget-head">
-                                 <h3 class="sidebar__widget-title">Semua Postingan KOBI</h3>
+                                 <h3 class="sidebar__widget-title">Semua Berita</h3>
+                                 <hr>
                               </div>
                               <div class="sidebar__widget-body">
                                 @if ($posts->count())

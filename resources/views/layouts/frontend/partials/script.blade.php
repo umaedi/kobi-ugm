@@ -14,49 +14,25 @@
 <script src="{{ asset('frontend') }}/js/imagesloaded.pkgd.min.js"></script>
 <script src="{{ asset('frontend') }}/js/main.js"></script>
 <script>
-   function getCategories()
+
+    function getAdArt()
     {
         $.ajax({
-            url: BaseUrl+'/api/user/event/categories',
+            url: BaseUrl+'/api/user/ad-art',
             method: 'GET',
             processData: false,
             contentType: false,
             cache: false,
             complete: (response) => {
                 if(response.status == 200) {
-                    let data = response.responseJSON.data.evcat;
-                    let append = '';
-                    $.each(data, (k,v) => {
-                        append +='<li><a href=/event/'+ v.slug +'>'+ v.name +'</a></li>'
-                    });
-                    $('#categories').html(append);
-                    getAdArt();
-                }else {
-                    console.log('gagal');
+                    const data  = response.responseJSON.data.adart;
+                    const adArt = data[0];
+                    $('nav #adArt').attr('href', '{{ asset('storage/dokumen') }}/' + `${adArt.file_dokumen}`);
                 }
             }
         });
-
-        function getAdArt()
-        {
-            $.ajax({
-                url: BaseUrl+'/api/user/ad-art',
-                method: 'GET',
-                processData: false,
-                contentType: false,
-                cache: false,
-                complete: (response) => {
-                    if(response.status == 200) {
-                        const data  = response.responseJSON.data.adart;
-                        const adArt = data[0];
-                        $('nav #adArt').attr('href', '{{ asset('storage/dokumen') }}/' + `${adArt.file_dokumen}`);
-                    }
-                }
-            });
-        }
-
     }
-    getCategories();
+    getAdArt();
     
 </script>
 @stack('js')

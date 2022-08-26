@@ -8,14 +8,14 @@ use App\Models\Event;
 use App\Models\EventCategory;
 use App\Models\Post;
 use App\Models\Province;
-use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     public function index()
     {
         return view('frontend.index', [
-            'title' => 'Konsorsium Biologi Indonesia'
+            'title' => 'Konsorsium Biologi Indonesia',
+            'events'    => EventCategory::all()
         ]);
     }
 
@@ -23,7 +23,8 @@ class FrontendController extends Controller
     {
         return view('frontend.users.register', [
             'provinces' => Province::all(),
-            'title' => 'Pendaftaran Anggota Lama'
+            'title' => 'Pendaftaran Anggota Lama',
+            'events'    => EventCategory::latest()->get()
 
         ]);
     }
@@ -32,21 +33,24 @@ class FrontendController extends Controller
     {
         return view('frontend.users.anggotabaru', [
             'provinces' => Province::all(),
-            'title' => 'Pendaftaran Anggota Baru'
+            'title' => 'Pendaftaran Anggota Baru',
+            'events'    => EventCategory::latest()->get(),
         ]);
     }
 
     public function anggota()
     {
         return view('frontend.users.index', [
-            'title' => 'Daftar Anggota Aktif'
+            'title' => 'Daftar Anggota Aktif',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function posts()
     {
         return view('frontend.posts.index', [
-            'title' => 'Semua berita'
+            'title' => 'Semua berita',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
@@ -61,7 +65,8 @@ class FrontendController extends Controller
         return view('frontend.posts.list-post', [
             'title' => 'Semua Berita',
             'posts' => $posts->paginate(6),
-            'categories'    => Category::latest()->get()
+            'categories'    => Category::latest()->get(),
+            'events'    => EventCategory::latest()->get(),
         ]);
     }
 
@@ -70,6 +75,7 @@ class FrontendController extends Controller
         return view('frontend.posts.categories', [
             'title' => 'Kategori Berita',
             'posts' => $category->post,
+            'events'    => EventCategory::latest()->get(),
 
         ]);
     }
@@ -79,69 +85,79 @@ class FrontendController extends Controller
         return view('frontend.posts.show', [
             'title' => 'Publikasi',
             'post'  => $post,
+            'events'    => EventCategory::latest()->get(),
         ]);
     }
 
     public function str()
     {
         return view('frontend.str.index', [
-            'title' => 'STR'
+            'title' => 'STR',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function uploadStr()
     {
         return view('frontend.str.upload', [
-            'title' => 'Upload'
+            'title' => 'Upload',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function about()
     {
         return view('frontend.pages.about', [
-            'title' => 'Sejarah'
+            'title' => 'Sejarah',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function visiMisi()
     {
         return view('frontend.pages.visi-misi', [
-            'title' => 'Visi Misi dan Tujuan'
+            'title' => 'Visi Misi dan Tujuan',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function strukturOrgnanisasi()
     {
         return view('frontend.pages.struktur', [
-            'title' => 'Struktur Organisasi'
+            'title' => 'Struktur Organisasi',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function publikasi()
     {
         return view('frontend.pages.publikasi', [
-            'title' => 'Publikasi'
+            'title' => 'Publikasi',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function naskah()
     {
         return view('frontend.pages.naskah', [
-            'title' => 'Naskah Akademik'
+            'title' => 'Naskah Akademik',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function laporan()
     {
         return view('frontend.pages.laporan', [
-            'title' => 'Laporan'
+            'title' => 'Laporan',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function event()
     {
         return view('frontend.event.kongres', [
-            'title' => 'Kegiatan'
+            'title' => 'Kegiatan',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
@@ -151,6 +167,7 @@ class FrontendController extends Controller
             'title' => 'Kegiatan',
             'post'  => $event,
             'posts' => Event::latest()->limit(6)->get(),
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
@@ -159,7 +176,8 @@ class FrontendController extends Controller
         return view('frontend.event.event-list', [
             'title' => 'Kegiatan',
             'posts' => Event::latest()->paginate(),
-            'categories'    => EventCategory::latest()->get()
+            'categories'    => EventCategory::latest()->get(),
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
@@ -168,13 +186,15 @@ class FrontendController extends Controller
         return view('frontend.event.categories', [
             'title' => 'Kategori Kegiatan',
             'posts' => $eventCategory->event,
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 
     public function kurikulum()
     {
         return view('frontend.pages.kurikulum', [
-            'title' => 'Kurikulum'
+            'title' => 'Kurikulum',
+            'events'    => EventCategory::latest()->get()
         ]);
     }
 }

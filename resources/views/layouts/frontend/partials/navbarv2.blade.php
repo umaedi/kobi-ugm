@@ -71,8 +71,10 @@
                         <li><a href="{{ route('posts') }}">BERITA/ARTIKEL</a></li>
                         <li class="has-dropdown">
                            <a href="#">KEGIATAN</a>
-                           <ul class="submenu" id="categories">
-                             
+                           <ul class="submenu">
+                              @foreach ($events as $event)
+                              <li><a href="/event/{{ $event->slug }}">{{ $event->name }}</a></li>
+                              @endforeach
                            </ul>
                         </li>
                         <li><a href="#">IBI</a></li>

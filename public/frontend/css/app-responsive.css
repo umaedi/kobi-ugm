@@ -6,4 +6,11 @@
      .footer__widget-content p {
       text-align: center;
      }
+     .x-protfolio__more {
+      margin-top: 1393px;
+   }
+
+   .x-gallery-head {
+      justify-content: center;
+   }
 }

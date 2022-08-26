@@ -6642,6 +6642,7 @@ p {
     height: 460px;
     background: #f4f9fd;
 }
+
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
     .team__slider::after {
         left: -36%;
@@ -8565,6 +8566,15 @@ p {
     visibility: visible;
     opacity: 1;
 }
+
+.x-prtofolio__area {
+    margin-bottom: 50px;
+}
+
+.x-protfolio__more {
+    margin-top: 585px;
+}
+
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
     .portfolio__item:hover .portfolio__content {
         bottom: 20px;
@@ -8616,8 +8626,8 @@ p {
     bottom: 0px;
     left: 30px;
     background: #ffffff;
-    padding: 23px 40px;
-    padding-bottom: 26px;
+    padding: 10px 20px;
+    padding-bottom: 10px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -9663,7 +9673,7 @@ p {
 .sign__social::after {
     position: absolute;
     content: "";
-    left: -55%;
+    left: -50%;
     top: 45%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);

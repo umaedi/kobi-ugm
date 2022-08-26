@@ -25,7 +25,7 @@
             
          </div>
          <div class="text-center  wow fadeInUp" data-wow-delay=".3s">
-            <a href="{{ route('posts.list') }}" class="w-btn w-btn"> Lihat Semua</a>
+            <a href="{{ route('posts.list') }}" class="w-btn w-btn"> Berita selengkapnya</a>
          </div>
         </div>
      </section>
