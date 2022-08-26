@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Event;
 use App\Models\EventCategory;
+use App\Models\Gallery;
 use App\Models\Post;
 use App\Models\Province;
 
@@ -195,6 +196,19 @@ class FrontendController extends Controller
         return view('frontend.pages.kurikulum', [
             'title' => 'Kurikulum',
             'events'    => EventCategory::latest()->get()
+        ]);
+    }
+
+    public function galeri()
+    {
+        $gallery = Gallery::latest();
+        if (request('search')) {
+            $gallery->where('title', 'like', '%' . request('search') . '%');
+        }
+        return view('frontend.pages.galeri', [
+            'title'     => 'Galeri',
+            'events'    => EventCategory::latest()->get(),
+            'galleries' => $gallery->paginate(3)
         ]);
     }
 }

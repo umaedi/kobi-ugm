@@ -21,9 +21,10 @@
                        <div class="postbox__item mb-70 wow fadeInUp" data-wow-delay=".3s">
                           <div class="postbox__content x-postbox">
                             <div class="sidebar__widget mb-60 wow fadeInUp" data-wow-delay=".7s">
-                              <div class="sidebar__widget-head">
-                                 <h3 class="sidebar__widget-title">Semua Berita</h3>
-                                 <hr>
+                              <div class="portfolio__menu d-flex mb-30">
+                                 <div class="masonary-menu filter-button-group">
+                                    <h3>Semua Berita</h3>
+                                </div>
                               </div>
                               <div class="sidebar__widget-body">
                                 @if ($posts->count())

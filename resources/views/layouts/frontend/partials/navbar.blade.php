@@ -27,7 +27,7 @@
             <div class="col-xxl-1 col-xl-2 col-lg-2 col-md-6 col-6">
                <div class="logo">
                   <a href="{{ url('/') }}">
-                     <img src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="logo" width="70px">
+                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="logo" width="70px">
                   </a>
                </div>
             </div>

@@ -8,7 +8,7 @@
                    <div class="footer__widget-title mb-25">
                       <div class="footer__logo">
                          <a href="#">
-                            <img src="{{ asset('frontend') }}/img/logo/kobi-logi-footer.png" alt="logo" width="70">
+                            <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/kobi-logi-footer.png" alt="logo" width="70">
                          </a>
                       </div>
                    </div>

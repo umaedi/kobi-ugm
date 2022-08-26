@@ -10,7 +10,7 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $photos = Gallery::latest()->get();
+        $photos = Gallery::latest()->limit(6)->get();
         $result['photos'] = $photos;
         return $this->sendResponseOk($result);
     }

@@ -7,12 +7,6 @@
         @slot('breadcrumb')
         <div class="page__title-wrapper text-center">
          <h3>KOBI | Berita/Artikel</h3>
-          <nav aria-label="breadcrumb">
-             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="/">Beranda</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Berita/Artikel</li>
-             </ol>
-          </nav>
       </div>
       @endslot
     @endcomponent

@@ -7,10 +7,15 @@
       text-align: center;
      }
      .x-protfolio__more {
-      margin-top: 1393px;
+      margin-top: 1660px;
    }
 
    .x-gallery-head {
       justify-content: center;
+   }
+
+   .x-galeri__button {
+      text-align: center;
+      margin-bottom: 20px;
    }
 }

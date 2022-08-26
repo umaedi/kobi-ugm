@@ -83,7 +83,7 @@
                           <h3 class="services__title-3">
                             <a href="{{ route('str') }}">{{ __('PERSYARATAN') }}</a>
                           </h3>
-                          <p>Baca persayaratn sebelum mendaftar</p>
+                          <p>Baca persayaratan sebelum mendaftar</p>
                         </div>
                       </div>
                     </div>
@@ -104,7 +104,7 @@
                           <h3 class="services__title-3">
                             <a href="{{ route('pendaftaran') }}">{{ __('PENDAFTARAN') }}</a>
                           </h3>
-                          <p>Klik di sini untuk mendaftar Anggota KOBI</p>
+                          <p>Klik di sini untuk mendaftar anggota</p>
                         </div>
                       </div>
                     </div>
@@ -168,7 +168,7 @@
                   <div class="row">
                      <div class="col-xxl-12 wow fadeInUp" data-wow-delay=".3s">
                         <div class="portfolio__more mt-30 x-protfolio__more text-center">
-                           <a href="#" class="w-btn w-btn">Galeri selengkapnya</a>
+                           <a href="{{ route('galeri') }}" class="w-btn w-btn">Galeri selengkapnya</a>
                         </div>
                      </div>
                   </div>

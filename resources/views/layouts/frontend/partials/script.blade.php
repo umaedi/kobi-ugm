@@ -1,7 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" async=""></script>
 <script src="{{ asset('frontend') }}/js/vendor/jquery-3.5.1.min.js"></script>
 <script src="{{ asset('frontend') }}/js/vendor/waypoints.min.js"></script>
-<script src="{{ asset('frontend') }}/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="{{ asset('frontend') }}/js/bootstrap.bundle.min.js"></script> --}}
 <script src="{{ asset('frontend') }}/js/jquery.meanmenu.js"></script>
 <script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
 <script src="{{ asset('frontend') }}/js/jquery.fancybox.min.js"></script>
