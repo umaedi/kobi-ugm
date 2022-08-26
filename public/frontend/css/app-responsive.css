@@ -1,0 +1,9 @@
+@media (max-width: 575px) {
+     .container .x-footer {
+        text-align: center;
+     }
+
+     .footer__widget-content p {
+      text-align: center;
+     }
+}

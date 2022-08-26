@@ -7451,7 +7451,6 @@ p {
         margin-bottom: 25px;
         text-align: justify;
         margin-left: -157px;
-        margin-top: 50px;
     }
 
     .rc__title {
@@ -9876,10 +9875,10 @@ p {
 .footer__widget-content p {
     color: #57556a;
     font-weight: 600;
-    padding-right: 59px;
 }
 .footer__widget-content-3 p {
     color: #9da4ac;
+    text-align: start;
 }
 .footer__link {
     padding-top: 8px;

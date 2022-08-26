@@ -113,7 +113,7 @@
             if(response.status == 201) {
                 swal({
                     title: "",
-                    text: response.responseJSON.message,
+                    text: "Berita berhasil diterbitkan",
                     icon: "success"
                   })
                   .then(() => {

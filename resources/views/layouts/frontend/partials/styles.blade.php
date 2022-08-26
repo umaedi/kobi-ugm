@@ -17,6 +17,7 @@
       <link rel="stylesheet" href="{{ asset('frontend') }}/css/elegantFont.css">
       <link rel="stylesheet" href="{{ asset('frontend') }}/css/default.css">
       <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css">
+      <link rel="stylesheet" href="{{ asset('frontend') }}/css/app-responsive.css">
       <script>
             let BaseUrl = "{{ url('/') }}"
       </script>

@@ -2,7 +2,7 @@
 <footer class="footer__area footer-bg-3 pt-120 p-relative fix">
     <div class="footer__top pb-65">
        <div class="container">
-          <div class="row">
+          <div class="row x-footer">
              <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
                 <div class="footer__widget mb-50">
                    <div class="footer__widget-title mb-25">

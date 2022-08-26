@@ -29,7 +29,7 @@
                                 @foreach ($posts as $post)
                                 <div class="rc__post">
                                   <ul>
-                                     <li class="d-flex mb-30 x-mb-30">
+                                     <li class="d-flex mb-30 x-mb-3">
                                         <div class="x-blog__thumb-5 mr-30">
                                            <a href="/{{ $post->slug }}">
                                               <img data-src="{{ asset('storage/thumb/'. $post->image) }}" alt="{{ $post->title }}" class="lazyload">

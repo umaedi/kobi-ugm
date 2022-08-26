@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $post = Post::with('category')->latest()->limit(6)->get();
+        $post = Post::with('category')->latest()->limit(3)->get();
         $result['posts'] = $post;
         return $this->sendResponseOk($result);
     }
