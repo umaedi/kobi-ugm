@@ -208,7 +208,7 @@ class FrontendController extends Controller
         return view('frontend.pages.galeri', [
             'title'     => 'Galeri',
             'events'    => EventCategory::latest()->get(),
-            'galleries' => $gallery->paginate(3)
+            'galleries' => $gallery->paginate(12)
         ]);
     }
 }
