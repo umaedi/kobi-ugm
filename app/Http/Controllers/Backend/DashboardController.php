@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -76,5 +77,12 @@ class DashboardController extends Controller
     public function eventKategori()
     {
         return view('backend.event-category.index');
+    }
+
+    public function galeri()
+    {
+        return view('backend.galeri.index', [
+            'galleries' => Gallery::latest()->paginate(12)
+        ]);
     }
 }

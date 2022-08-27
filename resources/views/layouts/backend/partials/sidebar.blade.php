@@ -27,12 +27,12 @@
   <li class="nav-item {{ Request::is('admin/post') ? 'active' : '' }}">
     <a class="nav-link" href="/admin/post">
         <i class="fas fa-fw fa-list"></i>
-        <span>List Berita</span></a>
+        <span>Semua Berita</span></a>
   </li>
   <li class="nav-item {{ Request::is('admin/categories') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('categories') }}">
         <i class="fas fa-bookmark"></i>
-        <span>Kategori</span></a>
+        <span>Kategori Berita</span></a>
   </li>
   <li class="nav-item {{ Request::is('admin/posts/draft') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.post.draft') }}">
@@ -43,12 +43,12 @@
   <li class="nav-item {{ Request::is('admin/event/create') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event.create') }}">
         <i class="fas fa-blog"></i>
-        <span>Buat Event</span></a>
+        <span>Berita Event</span></a>
   </li>
   <li class="nav-item {{ Request::is('admin/event') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event') }}">
         <i class="fas fa-fw fa-list"></i>
-        <span>List Event</span></a>
+        <span>Semua Event</span></a>
   </li>
   <li class="nav-item {{ Request::is('admin/event/kategori') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event.kategori') }}">
@@ -83,7 +83,7 @@
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('admin.users') }}">Pendaftaran Anggota</a>
-            <a class="collapse-item" href="{{ route('admin.users-active') }}">Daftar List Anggota</a>
+            <a class="collapse-item" href="{{ route('admin.users-active') }}">Anggota Aktif</a>
         </div>
     </div>
   </li>
@@ -105,11 +105,21 @@
           </div>
       </div>
   </li>
-  <li class="nav-item {{ Request::is('admin/gallery') ? 'active' : '' }}">
-    <a class="nav-link" href="{{ route('admin.gallery') }}">
+  <li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+        aria-expanded="true" aria-controls="collapseSix">
         <i class="fas fa-fw fa-folder"></i>
-        <span>Galeri</span></a>
-  </li>
+        <span>Halaman</span>
+    </a>
+    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="#">Sejarah</a>
+            <a class="collapse-item" href="#">Visi Misi & Tujuan</a>
+            <a class="collapse-item" href="#">Struktur Organisasi</a>
+            <a class="collapse-item" href="{{ route('admin.galeri') }}">Galeri</a>
+        </div>
+    </div>
+</li>
   <hr class="sidebar-divider">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFor"

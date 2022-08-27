@@ -17,6 +17,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/event', 'event')->name('admin.event');
             Route::get('/event/kategori', 'eventKategori')->name('admin.event.kategori');
             Route::get('/event/create', 'createEvenet')->name('admin.event.create');
+            Route::get('/galeri/foto', 'galeri')->name('admin.galeri');
         });
 
         //STR
@@ -39,7 +40,5 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::post('/password/{id}', 'password');
             Route::get('/web/settings', 'settings')->name('settings');
         });
-
-        Route::get('/gallery', [\App\Http\Controllers\Backend\GaleryController::class, 'index'])->name('admin.gallery');
     });
 });

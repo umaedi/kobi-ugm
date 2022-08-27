@@ -38,7 +38,7 @@ Route::get('/admin/categories/get', [\App\Http\Controllers\Backend\CategoryContr
 Route::get('/admin/posts/draft/{status}', [\App\Http\Controllers\Api\PostController::class, 'getByStatus']);
 Route::resource('/admin/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
 Route::resource('/admin/naskah', \App\Http\Controllers\Api\NaskahController::class);
-Route::resource('/admin/add-images', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
+Route::resource('/admin/gallery/photo', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
 
 Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 Route::resource('/admin/ad-art', \App\Http\Controllers\Api\AdArtController::class);

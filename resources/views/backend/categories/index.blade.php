@@ -62,8 +62,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Gagal</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
       </div>

@@ -93,7 +93,6 @@
             event.preventDefault();
 
             const id = $('input[name=idDokumen]').val();
-            console.log(id);
             const form = $(this)[0];
             const data = new FormData(form);
 

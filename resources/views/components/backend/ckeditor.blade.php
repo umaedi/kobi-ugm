@@ -67,6 +67,7 @@
             return new MyUploadAdapter( loader );
         };
     }
+    
     ClassicEditor
         .create( document.querySelector( '#task-textarea' ), {
             extraPlugins: [ SimpleUploadAdapterPlugin ],

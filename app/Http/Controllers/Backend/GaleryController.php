@@ -9,6 +9,6 @@ class GaleryController extends Controller
 {
     public function index()
     {
-        return view('backend.gallery.index');
+        return view('backend.galeri.index');
     }
 }

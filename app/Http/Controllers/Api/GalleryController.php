@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api as Controller;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class GalleryController extends Controller
@@ -92,7 +93,34 @@ class GalleryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dataPhoto = Gallery::findOrfail($id)->first();
+        $validator = Validator::make($request->only('title'), [
+            'title' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
+        }
+
+        if ($request->file('photo') == '') {
+            $dataPhoto->update([
+                'title' => $request->title,
+                'photo' => $dataPhoto->photo
+            ]);
+            return $this->sendResponseUpdate($dataPhoto);
+        }
+
+        if ($request->file('photo') == true) {
+            Storage::disk('local')->delete('public/galeri/' . basename($dataPhoto->photo));
+            $newPhoto = $request->file('photo');
+            $newPhoto->storeAs('public/galeri', $newPhoto->hashName());
+
+            $dataPhoto->update([
+                'title' => $request->title,
+                'photo' => $newPhoto->hashName()
+            ]);
+            return $this->sendResponseUpdate($dataPhoto);
+        }
     }
 
     /**
@@ -103,6 +131,11 @@ class GalleryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $photo = Gallery::findOrfail($id);
+        if ($photo->photo) {
+            Storage::disk('local')->delete('public/galeri/' . basename($photo->photo));
+        }
+        $photo->destroy($id);
+        return $this->sendResponseDelete($photo);
     }
 }
