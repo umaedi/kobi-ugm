@@ -96,7 +96,6 @@ class FounderController extends Controller
         $founder = Founder::findOrfail($id);
         $validator = Validator::make($request->all(), [
             'name'  => 'required|max:255',
-            'position' => 'required'
         ]);
 
         if ($validator->fails()) {
