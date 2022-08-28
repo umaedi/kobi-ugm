@@ -93,7 +93,7 @@
                     <hr>
                     <div class="row justify-content-center">
                         @foreach ($founders as $fo)
-                        <div class="card mr-3" style="width: 18rem;">
+                        <div class="card mr-3 mt-3" style="width: 18rem;">
                             <img class="card-img-top lazyload" data-src="{{ asset('storage/founder/'. $fo->photo) }}">
                             <ul class="list-group list-group-flush text-center">
                               <li class="list-group-item font-weight-bold">{{ $fo->name }}</li>
