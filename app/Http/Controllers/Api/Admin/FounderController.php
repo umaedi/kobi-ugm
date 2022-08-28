@@ -51,7 +51,7 @@ class FounderController extends Controller
 
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-            $photo->storeAs('public/xfound', $photo->hashName());
+            $photo->storeAs('public/founder', $photo->hashName());
         }
 
         $fo = Founder::create([
@@ -111,9 +111,9 @@ class FounderController extends Controller
             ]);
             return $this->sendResponseUpdate($fo);
         } else {
-            Storage::disk('local')->delete('public/xfound', basename($founder->photo));
+            Storage::disk('local')->delete('public/founder', basename($founder->photo));
             $photo = $request->file('photo');
-            $photo->storeAs('public/xfound', $photo->hashName());
+            $photo->storeAs('public/founder', $photo->hashName());
 
             $fo = $founder->update([
                 'name'  => $request->name,
@@ -134,7 +134,7 @@ class FounderController extends Controller
     {
         $fo = Founder::findOrfail($id);
         if ($fo->photo) {
-            Storage::disk('local')->delete('public/xfound' . basename($fo->photo));
+            Storage::disk('local')->delete('public/founder' . basename($fo->photo));
         }
         $fo->destroy($id);
         return $this->sendResponseDelete($fo);
