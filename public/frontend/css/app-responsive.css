@@ -1,3 +1,286 @@
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section-padding {
+       padding-left: 20px;
+       padding-right: 20px;
+   }
+}
+@media (max-width: 575px) {
+   .section-padding {
+       padding-left: 0px;
+       padding-right: 0px;
+   }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .section-padding-2 {
+       padding-left: 20px;
+       padding-right: 20px;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section-padding-2 {
+       padding-left: 0px;
+       padding-right: 0px;
+   }
+}
+@media (max-width: 575px) {
+   .section-padding-2 {
+       padding-left: 0px;
+       padding-right: 0px;
+   }
+}
+.section-padding-3 {
+   padding: 0 30px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+   .section-padding-3 {
+       padding: 0 100px;
+   }
+}
+@media (max-width: 575px) {
+   .section-padding-3 {
+       padding: 0;
+   }
+}
+.section-padding-4 {
+   padding: 0 75px;
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+   .section-padding-4 {
+       padding: 0px;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section-padding-4 {
+       padding: 0px 30px;
+   }
+}
+@media (max-width: 575px) {
+   .section-padding-4 {
+       padding: 0px;
+   }
+}
+@media (max-width: 575px) {
+   .section-padding-p-0 {
+       padding-left: 15px !important;
+       padding-right: 15px !important;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section__title-2 {
+       font-size: 30px;
+   }
+}
+.section__title-3 {
+   color: #0a0030;
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .section__title-3 {
+       font-size: 35px;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section__title-3 {
+       font-size: 29px;
+   }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .section__title-4 {
+       font-size: 43px;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section__title-4 {
+       font-size: 40px;
+   }
+}
+@media (max-width: 575px) {
+   .section__title-4 {
+       font-size: 24px !important;
+   }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+   .section__title-4-p-2 {
+       padding-left: 70px;
+       padding-right: 70px;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section__title-4-p-2 {
+       padding-left: 40px;
+       padding-right: 40px;
+   }
+}
+@media (max-width: 575px) {
+   .section__title-4-p-2 {
+       padding-left: 30px;
+       padding-right: 30px;
+   }
+}
+@media (max-width: 575px) {
+   .section__title {
+       font-size: 27px;
+   }
+}
+.section__title-5 {
+   font-size: 46px;
+   font-weight: 800;
+   line-height: 1.1;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+   .section__title-5 {
+       font-size: 45px;
+   }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .section__title-5 {
+       font-size: 37px;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section__title-5 {
+       font-size: 40px;
+   }
+}
+@media (max-width: 575px) {
+   .section__title-5 {
+       font-size: 28px;
+   }
+}
+.section__title-5-p {
+   padding-left: 40px;
+   padding-right: 40px;
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section__title-5-p {
+       padding-left: 0;
+       padding-right: 0;
+   }
+}
+@media (max-width: 575px) {
+   .section__title-5-p {
+       padding-left: 0;
+       padding-right: 0;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .section__title-wrapper-5-p p {
+       padding-left: 40px;
+       padding-right: 40px;
+   }
+}
+@media (max-width: 575px) {
+   .section__title-wrapper-5-p p {
+       padding-left: 0px;
+       padding-right: 0px;
+   }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .header__padding {
+       padding: 15px 0;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .header__padding {
+       padding: 15px 0;
+   }
+}
+@media (max-width: 575px) {
+   .header__padding {
+       padding: 15px 0;
+   }
+}
+/* main menu css */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+   .main-menu {
+       padding-left: 40px;
+   }
+}
+.main-menu ul li {
+   display: inline-block;
+   position: relative;
+}
+.main-menu ul li:not(:last-child) {
+   margin-right: 35px;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+   .main-menu ul li:not(:last-child) {
+       margin-right: 25px;
+   }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+   .main-menu-2 {
+       padding-left: 30px;
+   }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+   .main-menu-2 ul li:not(:last-child) {
+       margin-right: 19px;
+   }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+   .main-menu-5 {
+       margin-left: -30px;
+   }
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+   .main-menu-5 {
+       margin-left: 0px;
+   }
+}
+.main-menu-5 ul li:not(:last-child) {
+   margin-right: 40px;
+}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+   .main-menu-5 ul li:not(:last-child) {
+       margin-right: 25px;
+   }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .sidebar-toggle-btn {
+       margin-left: 50px;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .sidebar-toggle-btn {
+       margin-left: 30px;
+   }
+}
+@media (max-width: 575px) {
+   .sidebar-toggle-btn {
+       margin-left: 30px;
+   }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .search-form {
+       width: 80%;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .search-form {
+       width: 80%;
+   }
+}
+@media (max-width: 575px) {
+   .search-form {
+       width: 80%;
+   }
+}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+   .search-close {
+       right: 0;
+   }
+}
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+   .search-close {
+       right: 0;
+   }
+}
+@media (max-width: 575px) {
+   .search-close {
+       right: 0;
+   }
+}
 @media (max-width: 575px) {
      .container .x-footer {
         text-align: center;

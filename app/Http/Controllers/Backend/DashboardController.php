@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
+use App\Models\Founder;
 use App\Models\Gallery;
 use Illuminate\Http\Request;
 
@@ -77,6 +79,14 @@ class DashboardController extends Controller
     public function eventKategori()
     {
         return view('backend.event-category.index');
+    }
+
+    public function sejarah()
+    {
+        return view('backend.sejarah.index', [
+            'about' => About::get()->first(),
+            'founders'  => Founder::latest()->get()
+        ]);
     }
 
     public function galeri()

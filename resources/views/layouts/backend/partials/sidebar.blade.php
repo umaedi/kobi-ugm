@@ -113,7 +113,7 @@
     </a>
     <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="#">Sejarah</a>
+            <a class="collapse-item" href="{{ route('admin.sejarah') }}">Sejarah</a>
             <a class="collapse-item" href="#">Visi Misi & Tujuan</a>
             <a class="collapse-item" href="#">Struktur Organisasi</a>
             <a class="collapse-item" href="{{ route('admin.galeri') }}">Galeri</a>

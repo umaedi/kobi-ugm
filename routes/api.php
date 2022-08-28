@@ -40,6 +40,10 @@ Route::resource('/admin/publikasi', \App\Http\Controllers\Api\PublikasiControlle
 Route::resource('/admin/naskah', \App\Http\Controllers\Api\NaskahController::class);
 Route::resource('/admin/gallery/photo', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
 
+Route::prefix('admin')->group(function () {
+    Route::resource('/founder', Api\Admin\FounderController::class);
+});
+
 Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 Route::resource('/admin/ad-art', \App\Http\Controllers\Api\AdArtController::class);
 Route::get('/user/ad-art', [App\Http\Controllers\Api\AdArtController::class, 'userIndex']);
@@ -61,6 +65,13 @@ Route::post('/pengajuan-str', [Api\User\StrController::class, 'store']);
 Route::post('/upload/file-str', [Api\User\StrController::class, 'uploadStr']);
 Route::post('/user/getcategories', [Api\User\CategoryController::class, 'index']);
 
+Route::prefix('user')->group(function () {
+    Route::controller(Api\User\AboutController::class)->group(function () {
+        Route::get('/history', 'sejarah');
+        Route::get('founder', 'founder');
+    });
+});
+
 Route::controller(Api\User\PostController::class)->group(function () {
     Route::get('/user/post/postindex', 'index');
     Route::get('/user/post/postnewsorevent', 'newsOrArticle');
@@ -73,6 +84,10 @@ Route::controller(Api\User\EventController::class)->group(function () {
     Route::get('/user/event/{eventCategory:slug}', 'eventList');
     Route::get('/event/list/allcategories/{eventCategory:slug}', 'eventByCategories');
     Route::get('/user/event/last-event', 'lastEvent');
+});
+
+Route::controller(\App\Http\Controllers\Api\Admin\AboutController::class)->group(function () {
+    Route::post('/admin/sejarah/{id}', 'update');
 });
 
 Route::post('/admin/send/email', [\App\Http\Controllers\Api\EmailController::class, 'index']);
