@@ -52,7 +52,7 @@
                   content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">';
                   content += '<div class="team__item mb-40">';
                   content += '<div class="w-img p-relative mb-20 fix rounded">';
-                  content += '<img class="lazyload" data-src="{{ asset('storage/xfound') }}/'+ v.photo +'">';
+                  content += '<img class="lazyload" data-src="{{ asset('storage/founder') }}/'+ v.photo +'">';
                   content += '</div>';
                   content += '<div class="team__content text-center">';
                   content += ' <h3 class="team__title"><a href="#">'+ v.name +'</a></h3>';
