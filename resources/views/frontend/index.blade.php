@@ -61,7 +61,7 @@
                       <div class="col-xxl-6 offset-xxl-3">
                          <div class="section__title-wrapper section__title-wrapper-5 section__title-wrapper-5-p section__title-white text-center mb-55 wow fadeInUp" data-wow-delay=".3s">
                             <h2 class="section__title-5 mb-25">Layanan Konsorsium Biologi Indonesia</h2>
-                            <p>Silahkan ikuti alur permohonan pendaftaran anggota dibawah ini</p>
+                            <p>Silahkan ikuti alur permohonan pendaftaran anggota dibawah ini:</p>
                          </div>
                       </div>
                    </div>
@@ -141,7 +141,7 @@
                       <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-md-10 offset-md-1">
                          <div class="section__title-wrapper section__title-wrapper-5 text-center mb-55 wow fadeInUp" data-wow-delay=".3s">
                             <h2 class="section__title-5 section__title-5-p mb-15">Baca Berita Atau Artikel KOBI</h2>
-                            <p>Semua berita atau artikel telah telah di verifikasi</p>
+                            <p>Semua berita atau artikel telah di verifikasi</p>
                          </div>
                       </div>
                    </div>

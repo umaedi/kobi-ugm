@@ -452,7 +452,7 @@
                             </ul>
                             <div class="card-body text-center">
                               <button class="btn btn-sm btn-warning btnEdit" data-id="{{ $curriculum->id }}" data-name="{{ $curriculum->name }}" data-department="{{ $curriculum->department }}" data-univ="{{ $curriculum->univ }}" data-ystart="{{ $curriculum->year_start }}" data-yend="{{ $curriculum->year_end }}"  data-toggle="modal" data-target="#CurriculumCoordinator">Edit</button>
-                              <button class="btn btn-sm btn-danger" onclick=" deteleCoor({{ $curriculum->id }})">Hapus</button>
+                              <button class="btn btn-sm btn-danger" onclick=" deleteCurriculumCoor({{ $curriculum->id }})">Hapus</button>
                             </div>
                           </div>
                         @endforeach
@@ -485,7 +485,7 @@
                         </ul>
                         <div class="card-body text-center">
                           <button class="btn btn-sm btn-warning btnEdit" data-id="{{ $hum->id }}" data-name="{{ $hum->name }}" data-position="{{ $hum->position }}" data-univ="{{ $hum->univ }}" data-ystart="{{ $hum->year_start }}" data-yend="{{ $hum->year_end }}"  data-toggle="modal" data-target="#exampleModal">Edit</button>
-                          <button class="btn btn-sm btn-danger" onclick="deteletAdvisor({{ $hum->id }})">Hapus</button>
+                          <button class="btn btn-sm btn-danger" onclick="deteletHumas({{ $hum->id }})">Hapus</button>
                         </div>
                       </div>
                     @endforeach
@@ -831,7 +831,7 @@
                 if(response.status == 201) {
                 swal({
                     title: "",
-                    text: "Koordinator berhasil diperbaharui",
+                    text: "Struktur berhasil diperbaharui",
                     icon: "success"
                   })
                   .then(() => {
@@ -864,7 +864,7 @@
                 if(response.status == 201) {
                 swal({
                     title: "",
-                    text: "Koordinator berhasil diperbaharui",
+                    text: "Struktur berhasil diperbaharui",
                     icon: "success"
                   })
                   .then(() => {
@@ -896,7 +896,7 @@
                 if(response.status == 201) {
                 swal({
                     title: "",
-                    text: "Koordinator berhasil diperbaharui",
+                    text: "Struktur berhasil diperbaharui",
                     icon: "success"
                   })
                   .then(() => {
@@ -914,7 +914,7 @@
     function deteletAdvisor(id){
         swal({
         title: "",
-        text: "Hapus photo penasihat ?",
+        text: "Hapus photo ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -949,7 +949,7 @@
     function deteleCoor(id){
         swal({
         title: "",
-        text: "Hapus photo koordinator ?",
+        text: "Hapus photo ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -958,6 +958,41 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/coordinator/'+id,
+                method: 'DELETE',
+                processData: false,
+                contentType: false,
+                cache: false,
+                complete: (response) => {
+                    if(response.status == 200) {
+                    swal({
+                    title: "",
+                    text: "Photo berhasil dihapus",
+                    icon: "success"
+                    })
+                    .then((value) => {
+                        window.location.replace(BaseUrl+'/admin/struktur-organisasi');
+                    });
+                    }else {
+                        swal("", response.responseJSON.message, "warning");
+                    }
+                }
+                });
+            }
+        });  
+    }
+    
+    function deleteCurriculumCoor(id){
+        swal({
+        title: "",
+        text: "Hapus photo ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: BaseUrl+'/api/admin/curriculum-coordinator/'+id,
                 method: 'DELETE',
                 processData: false,
                 contentType: false,

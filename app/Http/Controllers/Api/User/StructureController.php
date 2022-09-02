@@ -5,17 +5,23 @@ namespace App\Http\Controllers\Api\User;
 use App\Http\Controllers\Api as Controller;
 use App\Models\Adviser;
 use App\Models\DecLetter;
+use App\Models\Structure;
 use Illuminate\Http\Request;
 
 class StructureController extends Controller
 {
-    public function adviser(Request $request)
+    public function getLeader()
     {
-        if ($request->ajax()) {
-            $pns = Adviser::where('status', 1)->get();
-            $result['adviser'] = $pns;
-            return $this->sendResponseOk($result);
-        }
+        $advisor = Structure::where('department_id', 0)->get();
+        $result['advisor'] = $advisor;
+        return $this->sendResponseOk($result);
+    }
+
+    public function getMember()
+    {
+        $advisor = Structure::where('department_id', 2)->get();
+        $result['member'] = $advisor;
+        return $this->sendResponseOk($result);
     }
 
     public function decisionLatter(Request $request)

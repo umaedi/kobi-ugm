@@ -58,7 +58,7 @@
       {
         "render": function ( data, type, row ) {
         return `
-        <a href="/posts/` + row.slug +`" type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
+        <a href="{{ asset('storage/laporan') }}/` + row.file_laporan +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
         ` }
       }
     ]

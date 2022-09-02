@@ -77,11 +77,7 @@ Route::prefix('user')->group(function () {
     });
 
     Route::controller(Api\User\StructureController::class)->group(function () {
-        Route::get('/adviser', 'adviser');
         Route::get('/decision-latter', 'decisionLatter');
-    });
-
-    Route::controller(Api\User\AdvisorController::class)->group(function () {
         Route::get('/advisor/getleader', 'getLeader');
         Route::get('/advisor/getmember', 'getMember');
     });

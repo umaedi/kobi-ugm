@@ -151,6 +151,11 @@ class CurriculumController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $curr = BidCurriculum::findOrfail($id);
+        if ($curr->photo) {
+            Storage::disk('local')->delete('public/structure/' . basename($curr->photo));
+        }
+        $curr->destroy($id);
+        return $this->sendResponseDelete($curr);
     }
 }
