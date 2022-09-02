@@ -7,7 +7,7 @@
 @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3 class="fw-bold">KOBI | Laporan Kegiatan</h3>
+    <h3 class="fw-bold">Laporan Kegiatan</h3>
     @endslot
 @endcomponent
 @component('components.frontend.page_content')
@@ -58,7 +58,7 @@
       {
         "render": function ( data, type, row ) {
         return `
-        <a href="{{ asset('storage/laporan') }}/` + row.file_laporan +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
+        <a href="{{ asset('storage/reports') }}/` + row.file_laporan +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
         ` }
       }
     ]

@@ -41,7 +41,7 @@
                             </div>
                             <p class="promotion__sub wow fadeInUp" data-wow-delay=".5s">Konsorsium Biologi Indonesia</p>
                             <p class=" wow fadeInUp" data-wow-delay=".7s">KOBI merupakan organisasi yang berperan aktif dalam pengembangan pendidikan tinggi biologi dalam penguasaan keanekaragaman hayati dan pemanfaatan sumber daya alam hayati (bioresources) secara optimal dan berkelanjutan bagi kesejahteraan umat manusia.</p>
-                            <a href="{{ route('about') }}" class="w-btn w-btn-blue-5 w-btn-6 w-btn-14 w-btn-1-5 wow fadeInUp" data-wow-delay=".9s">Selengkapnya</a>
+                            <a href="{{ route('about') }}" class="w-btn w-btn w-btn-6 w-btn-14 w-btn-1-5 wow fadeInUp" data-wow-delay=".9s">Selengkapnya</a>
                          </div>
                       </div>
                       <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6">

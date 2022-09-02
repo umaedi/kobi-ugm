@@ -54,7 +54,7 @@ class LaporanController extends Controller
         }
 
         $file_laporan = $request->file('file_laporan');
-        $file_laporan->storeAs('public/laporan', $file_laporan->hashName());
+        $file_laporan->storeAs('public/reports', $file_laporan->hashName());
 
         $laporan = Laporan::create([
             'nama_kegiatan'  => $request->nama_kegiatan,
@@ -115,9 +115,9 @@ class LaporanController extends Controller
             ]);
             return $this->sendResponseUpdate($laporan);
         } else {
-            Storage::disk('local')->delete('public/laporan/' . basename($laporan->file_dokumen));
+            Storage::disk('local')->delete('public/reports/' . basename($laporan->file_dokumen));
             $file_laporan = $request->file('file_laporan');
-            $file_laporan->storeAs('public/publikasi', $file_laporan->hashName());
+            $file_laporan->storeAs('public/reports', $file_laporan->hashName());
             $laporan = Laporan::where('id', $laporan->id)->update([
                 'nama_kegiatan'  => $request->nama_kegiatan,
                 'slug'          => Str::slug($request->nama_kegiatan),

@@ -105,7 +105,7 @@
                 {
                     "render": function ( data, type, row ) {
                     return `
-                    <a href="{{ asset('storage/laporan') }}/` + row.file_laporan +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
+                    <a href="{{ asset('storage/reports') }}/` + row.file_laporan +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
                     <button id="edit" data-id="`+ row.id +`" data-nama_dokumen="`+ row.nama_kegiatan +`" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
                     <button id="delete" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
                     ` }
