@@ -19,10 +19,6 @@
     {
         $.ajax({
             url: BaseUrl+'/api/user/ad-art',
-            method: 'GET',
-            processData: false,
-            contentType: false,
-            cache: false,
             complete: (response) => {
                 if(response.status == 200) {
                     const data  = response.responseJSON.data.adart;

@@ -13,12 +13,14 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/naskah-akademik', 'naskah')->name('admin.naskah');
             Route::get('/ad-art', 'adArt')->name('admin.ad-art');
             Route::get('/kurikulum', 'kurikulum')->name('admin.kurikulum');
+            Route::get('/kurikulum/{id}', 'editKurikulum');
             Route::get('/laporan', 'laporan')->name('admin.laporan');
             Route::get('/event', 'event')->name('admin.event');
             Route::get('/event/kategori', 'eventKategori')->name('admin.event.kategori');
             Route::get('/event/create', 'createEvenet')->name('admin.event.create');
             Route::get('/sejarah', 'sejarah')->name('admin.sejarah');
             Route::get('/galeri/foto', 'galeri')->name('admin.galeri');
+            Route::get('/struktur-organisasi', 'struktur')->name('admin.struktur');
         });
 
         //STR

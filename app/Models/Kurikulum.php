@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Kurikulum extends Model
 {
     use HasFactory;
-    protected $fillable = ['nama_dokumen', 'file_dokumen', 'publish_at'];
+    protected $guarded = ['id'];
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])
-            ->translatedFormat('l, d F Y');
+        return Carbon::parse($this->attributes['publish_at'])
+            ->translatedFormat('d F Y');
     }
 }

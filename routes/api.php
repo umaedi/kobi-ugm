@@ -42,12 +42,17 @@ Route::resource('/admin/gallery/photo', \App\Http\Controllers\Api\GalleryControl
 
 Route::prefix('admin')->group(function () {
     Route::resource('/founder', Api\Admin\FounderController::class);
+    Route::resource('/structure', Api\Admin\StructureController::class);
+    Route::resource('/coordinator', Api\Admin\CoordinatorController::class);
+    Route::resource('/advisor', Api\Admin\AdvisorController::class);
+    Route::resource('/curriculum-coordinator', Api\Admin\CurriculumController::class);
+    Route::resource('/declatter', Api\Admin\DecLatterController::class);
 });
 
 Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 Route::resource('/admin/ad-art', \App\Http\Controllers\Api\AdArtController::class);
 Route::get('/user/ad-art', [App\Http\Controllers\Api\AdArtController::class, 'userIndex']);
-Route::resource('/admin/kurikulum', \App\Http\Controllers\Api\KurikulumController::class)->only('index', 'update');
+Route::resource('/admin/kurikulum', \App\Http\Controllers\Api\KurikulumController::class);
 Route::resource('/admin/laporan', \App\Http\Controllers\Api\LaporanController::class);
 Route::resource('/admin/event', \App\Http\Controllers\Api\EventController::class);
 Route::resource('/admin/event/categories/evx', \App\Http\Controllers\Api\EventCategoryController::class);
@@ -69,6 +74,16 @@ Route::prefix('user')->group(function () {
     Route::controller(Api\User\AboutController::class)->group(function () {
         Route::get('/history', 'sejarah');
         Route::get('founder', 'founder');
+    });
+
+    Route::controller(Api\User\StructureController::class)->group(function () {
+        Route::get('/adviser', 'adviser');
+        Route::get('/decision-latter', 'decisionLatter');
+    });
+
+    Route::controller(Api\User\AdvisorController::class)->group(function () {
+        Route::get('/advisor/getleader', 'getLeader');
+        Route::get('/advisor/getmember', 'getMember');
     });
 });
 

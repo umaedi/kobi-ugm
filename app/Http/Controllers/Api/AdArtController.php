@@ -87,7 +87,6 @@ class AdArtController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_dokumen'  => 'required',
             'file_dokumen'  => 'file|mimes:pdf,docx|max:2048',
-            'publish_at'    => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -99,18 +98,18 @@ class AdArtController extends Controller
                 'nama_dokumen'  => $request->nama_dokumen,
                 'slug'          => Str::slug($request->nama_dokumen),
                 'file_dokumen'  => $adArt->file_dokumen,
-                'publish_at'    => $request->publish_at
+                'publish_at'    => $request->publish_at ? $request->publish_at : $adArt->file_dokumen,
             ]);
             return $this->sendResponseUpdate($adArt);
         } else {
-            Storage::disk('local')->delete('public/dokumen/' . basename($adArt->file_dokumen));
+            Storage::disk('local')->delete('public/ad-art/' . basename($adArt->file_dokumen));
             $file_dokumen = $request->file('file_dokumen');
-            $file_dokumen->storeAs('public/dokumen', $file_dokumen->hashName());
+            $file_dokumen->storeAs('public/ad-art', $file_dokumen->hashName());
             $adArt = AdArt::where('id', $adArt->id)->update([
                 'nama_dokumen'  => $request->nama_dokumen,
                 'slug'          => Str::slug($request->nama_dokumen),
                 'file_dokumen'  => $file_dokumen->hashName(),
-                'publish_at'    => $request->publish_at
+                'publish_at'    => $request->publish_at ? $request->publish_at : $adArt->file_dokumen,
             ]);
             return $this->sendResponseUpdate($adArt);
         }

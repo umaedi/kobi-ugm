@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Http\Controllers\Api as Controller;
-use App\Models\Founder;
+use App\Models\Adviser;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class FounderController extends Controller
+class AdviserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,7 @@ class FounderController extends Controller
      */
     public function index()
     {
-        $founder = Founder::latest()->get();
-        $result['founder'] = $founder;
-        return $this->sendResponseOk($result);
+        //
     }
 
     /**
@@ -41,8 +39,10 @@ class FounderController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name'  => 'required|max:255',
-            'photo' => 'required|file|mimes:jpg,jpeg,png|max:2048'
+            'name'      => 'required|max:255',
+            'year_start'    => 'required',
+            'year_end'    => 'required',
+            'photo'     => 'required|mimes:jpg,jpeg,png|file|max:2048'
         ]);
 
         if ($validator->fails()) {
@@ -51,15 +51,22 @@ class FounderController extends Controller
 
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-            $photo->storeAs('public/founder', $photo->hashName());
+            $photo->storeAs('public/xstruktur', $photo->hashName());
         }
 
-        $fo = Founder::create([
-            'name'  => $request->name,
-            'position' => $request->position,
-            'photo' => $photo->hashName()
+        $adviser = Adviser::create([
+            'name'      => $request->name,
+            'position'  => $request->position,
+            'univ'      => $request->univ,
+            'year_start'    => $request->year_start,
+            'year_end'      => $request->year_end,
+            'photo'     => $photo->hashName(),
+            'status'    => $request->status,
         ]);
-        return $this->sendResponseCreate($fo);
+
+        if ($adviser) {
+            return $this->sendResponseCreate($adviser);
+        }
     }
 
     /**
@@ -93,9 +100,11 @@ class FounderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $founder = Founder::findOrfail($id);
+        $dataAdviser = Adviser::findOrfail($id);
         $validator = Validator::make($request->all(), [
-            'name'  => 'required|max:255',
+            'name'          => 'required|max:255',
+            'year_start'    => 'required',
+            'year_end'      => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -103,23 +112,35 @@ class FounderController extends Controller
         }
 
         if ($request->file('photo') == '') {
-            $fo = $founder->update([
-                'name'  => $request->name,
-                'position' => $request->position,
-                'photo' => $founder->photo
+            $dataAdviser->update([
+                'name'      => $request->name,
+                'position'  => $request->position,
+                'univ'      => $request->univ,
+                'year_start'    => $request->year_start,
+                'year_end'      => $request->year_end,
+                'photo'     => $dataAdviser->photo,
+                'status'    => $request->status,
             ]);
-            return $this->sendResponseUpdate($fo);
-        } else {
-            Storage::disk('local')->delete('public/founder/' . basename($founder->photo));
-            $photo = $request->file('photo');
-            $photo->storeAs('public/founder', $photo->hashName());
 
-            $fo = $founder->update([
-                'name'  => $request->name,
-                'position' => $request->position,
-                'photo' => $photo->hashName()
+            return $this->sendResponseUpdate($dataAdviser);
+        } else {
+            Storage::disk('local')->delete('public/xstruktur/' . basename($dataAdviser->photo));
+            $photo = $request->file('photo');
+            $photo->storeAs('public/xstruktur', $photo->hashName());
+
+            $dataAdviser->update([
+                'name'      => $request->name,
+                'position'  => $request->position,
+                'univ'      => $request->univ,
+                'year_start'    => $request->year_start,
+                'year_end'      => $request->year_end,
+                'photo'     => $photo->hashName(),
+                'status'    => $request->status,
             ]);
-            return $this->sendResponseUpdate($fo);
+
+            if ($dataAdviser) {
+                return $this->sendResponseUpdate($dataAdviser);
+            }
         }
     }
 
@@ -131,11 +152,6 @@ class FounderController extends Controller
      */
     public function destroy($id)
     {
-        $fo = Founder::findOrfail($id);
-        if ($fo->photo) {
-            Storage::disk('local')->delete('public/founder/' . basename($fo->photo));
-        }
-        $fo->destroy($id);
-        return $this->sendResponseDelete($fo);
+        //
     }
 }

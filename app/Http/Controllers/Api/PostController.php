@@ -129,25 +129,6 @@ class PostController extends Controller
             ]);
             return $this->sendResponseUpdate($post);
         }
-
-        if ($request->file('image')) {
-            Storage::disk('local')->delete('public/thumb/' . $post->image);
-        } else {
-            $thumb = $request->file('image');
-            $thumb->storeAs('public/thumb', $thumb->hashName());
-            $post->update([
-                'title'         => $request->title,
-                'slug'          => Str::slug($request->title),
-                'category_id'   => $request->category_id,
-                'body'          => $request->body,
-                'image'         => $thumb->hashName(),
-                'publish_at'    => Carbon::now(),
-                'status'        => $request->status
-            ]);
-        }
-
-        $result['post'] = $post;
-        return $this->sendResponseCreate($request);
     }
 
     public function destroy($id)

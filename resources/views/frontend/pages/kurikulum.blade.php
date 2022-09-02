@@ -16,20 +16,11 @@
                  <div class="blog__wrapper">
                     <div class="postbox__item">
                         <div class="postbox__thumb w-img wow fadeInUp" data-wow-delay=".3s">
-                            <img src="{{ asset('storage/thumb') }}/" alt="">
-                         </div>
-                         <div class="postbox__content wow fadeInUp" data-wow-delay=".5s">
-                            <div class="postbox__meta mb-20">
-                               <span><a href="#"> <i class="icon_tag_alt"></i> Kurikulum</a></span>
-                               <span><a href="#"> <i class="fal fa-user"></i> Admin</a></span>
-                            </div>
+                            <img src="{{ asset('storage/thumb/'. $kurikulum->image) }}" alt="">
                          </div>
                        <div class="postbox__content wow fadeInUp" data-wow-delay=".5s">
-                           <h3 class="postbox__title">Kurikulum KOBI</h3>
-                           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                           <div class="postbox__img w-img mt-50">
-                              <img class="lazyload" data-src="assets/img/blog/blog-big-2.jpg" alt="">
-                           </div>
+                           <h3 class="postbox__title">{{ $kurikulum->title }}</h3>
+                           <p>{!! $kurikulum->body !!}</p>
                        </div>
 
                        <div class="postbox__share d-flex justify-content-between align-items-center mb-75 wow fadeInUp" data-wow-delay=".9s">

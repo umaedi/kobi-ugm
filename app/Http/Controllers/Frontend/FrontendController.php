@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Event;
 use App\Models\EventCategory;
 use App\Models\Gallery;
+use App\Models\Kurikulum;
 use App\Models\Post;
 use App\Models\Province;
 
@@ -195,6 +196,7 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.kurikulum', [
             'title' => 'Kurikulum',
+            'kurikulum' => Kurikulum::where('status', 1)->latest()->first(),
             'events'    => EventCategory::latest()->get()
         ]);
     }

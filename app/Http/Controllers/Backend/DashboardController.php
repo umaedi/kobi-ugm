@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use App\Models\About;
+use App\Models\Adviser;
+use App\Models\Advisor;
 use App\Models\Founder;
 use App\Models\Gallery;
+use App\Models\Structur;
+use App\Models\Struktur;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\BidCurriculum;
+use App\Models\Coordinator;
+use App\Models\DecLetter;
+use App\Models\Kurikulum;
+use App\Models\Structure;
 
 class DashboardController extends Controller
 {
@@ -61,6 +70,14 @@ class DashboardController extends Controller
         return view('backend.kurikulum.index');
     }
 
+    public function editKurikulum($id)
+    {
+        $dokKurikulum = Kurikulum::findOrfail($id)->first();
+        return view('backend.kurikulum.edit', [
+            'kurikulum' => $dokKurikulum
+        ]);
+    }
+
     public function laporan()
     {
         return view('backend.laporan.index');
@@ -86,6 +103,22 @@ class DashboardController extends Controller
         return view('backend.sejarah.index', [
             'about' => About::get()->first(),
             'founders'  => Founder::latest()->get()
+        ]);
+    }
+
+    public function struktur()
+    {
+        return view('backend.struktur.index', [
+            'decLatter'         => DecLetter::where('status', 1)->first(),
+            'AdvisorLead'       => Structure::where('department_id', 0)->get(),
+            'members'           => Structure::where('department_id', 3)->get(),
+            'structuresLead'    => Structure::where('department_id', 1)->get(),
+            'sekretaris'        => Structure::where('department_id', 4)->get(),
+            'bendahara'         => Structure::where('department_id', 5)->get(),
+            'iDbagian'          => Coordinator::where('status', 1)->get(),
+            'curriculums'       => BidCurriculum::where('status', 1)->get(),
+            'humas'             => Structure::where('department_id', 8)->get(),
+
         ]);
     }
 

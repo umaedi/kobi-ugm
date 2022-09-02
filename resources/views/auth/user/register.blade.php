@@ -65,6 +65,18 @@
                             @enderror
                          </div>
                       </div>
+                      <div class="sign__input-wrapper mt-25">
+                         <h5>Konfirmasi password</h5>
+                         <div class="sign__input">
+                            <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" placeholder="Password" name="password_confirmation" required>
+                            <i class="fal fa-lock"></i>
+                            @error('password_confirmation')
+                            <div class="invalid-feedback">
+                              {{ $message }}
+                            </div>
+                            @enderror
+                         </div>
+                      </div>
                       <button class="w-btn w-btn-11 w-100 mt-3"> <span></span> Daftar</button>
                       <div class="sign__new text-center mt-20">
                          Sudah punya akun ? <a href="{{ route('login') }}" style="color: blue">login</a>

@@ -3,170 +3,56 @@
     @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3>KOBI | Struktur Organisasi </h3>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb justify-content-center">
-            <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Struktur Organisasi KOBI</li>
-        </ol>
-    </nav>
+    <h3>{{  __('KOBI | Struktur Organisasi') }}</h3>
     </div>
     @endslot
     @endcomponent
 
     @component('components.frontend.page_content')
     @slot('page_content')
-        <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
-            <div class="text-center section__title-wrapper section__title-wrapper-4 mb-65 wow fadeInUp" data-wow-delay=".3s">
+        <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 mt-3">
+            <div class="text-center section__title-wrapper section__title-wrapper-4 mb-50 wow fadeInUp" data-wow-delay=".3s">
                 <h2>Dewan Penasihat dan Struktur Organisasi KOBI</h2>
-                <p>Ditetapkan berdasarkan Surat Keputusan Ketua Konsorsium Biologi Indonesia (KOBI) Nomor: 49/KOBI/2020 tentang Pengangkatan Dewan Penasihat dan Pengurus Konsorsium Biologi Indonesia (KOBI) Periode Tahun 2020-2022.</p>
+                <p id="decLatter" class="text-center"></p>
             </div>
         </div>
+        <div class="row justify-content-center portfolio__menu wow fadeInUp mb-50" data-wow-delay=".2s">
+         <div class="col-md-4 ">
+            <div class="sidebar__search">
+               <select class="form-control" id="exampleFormControlSelect1">
+               <option>Tampilkan berdasarkan tahun</option>
+               <option>2020</option>
+               <option>2021</option>
+               <option>2022</option>
+               </select>
+            </div>
+         </div>
+         <div class="col-md-2 x-galeri__button">
+            <button class="w-btn w-btn">Tampilkan</button>
+         </div>
+      </div>
         <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
                 <h2>Pendiri KOBI <span class="text-primary">(Konsorium Biologi Indonesia)</span></h2>
             </div>    
         </div>
-        <div class="row justify-content-center">
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-1.jpg" alt="">
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#">Prof. Drs. Sutiman Bambang Sumitro, SU., D.Sc</a></h3>
-                     <span class="team__position">Biologi UGM</span>
-                  </div>
-               </div>
-            </div>
+        <div class="row justify-content-center" id="founder-content">
+            
          </div>
-         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+        <div class="row justify-content-center">
+         <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
+            <h2>Dewan Penasihat KOBI <span class="text-primary">(Konsorium Biologi Indonesia)</span></h2>
         </div>
-        <div class="row justify-content-center">
-         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-            <div class="team__item mb-40">
-               <div class="w-img p-relative mb-20 fix rounded">
-                  <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-4.jpg" alt="">
-               </div>
-               <div class="team__content text-center">
-                  <h3 class="team__title"><a href="#">Dr. Hadi Suwono, M.Si.</a></h3>
-               </div>
-            </div>
-         </div>
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-2.jpeg" alt="">
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#">Dr. Dra. Retno Peni Sancayaningsih, M.Sc.</a></h3>
-                     <span class="team__position">Biologi UGM</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-3.jpg" alt="">
-
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#">Drs. Adi Pancoro,  M.Sc., Ph.D.</a></h3>
-                     <span class="team__position">Biologi SITH ITB</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".9s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-5.jpg" alt="">
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#">Rodiyati Azrianingsih, S.Si.,M.Sc.,Ph.D</a></h3>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
-            <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
-                <h2>Dewan Penasihat KOBI <span class="text-primary">(Konsorium Biologi Indonesia)</span></h2>
-            </div>    
-        </div>
-        <div class="row justify-content-center">
-         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-            <div class="team__item mb-40">
-               <div class="w-img p-relative mb-20 fix rounded">
-                  <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-6.jpg" alt="">
-               </div>
-               <div class="team__content text-center">
-                  <span class="team__position">Ketua</span>
-                  <h3 class="team__title"><a href="#">Prof. Dr. Suwarno Hadisusanto</a></h3>
-                  <span class="team__position">UGM</span>
-               </div>
-            </div>
+         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" id="advisor-content" data-wow-delay=".3s">
+            
          </div>
       </div>
       <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
          <span class="section__pre-title blue">Anggota</span>
       </div>
-        <div class="row justify-content-center">
-         <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".1s">
-            <div class="team__item mb-40">
-               <div class="w-img p-relative mb-20 fix rounded">
-                  <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-1.jpg" alt="">
-               </div>
-               <div class="team__content text-center">
-                  <h3 class="team__title"><a href="#">Prof. Dr. Sutiman Bambang Sumitro</a></h3>
-                  <span class="team__position">UB</span>
-               </div>
-            </div>
-         </div>
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-3.jpg" alt="">
-
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#">Drs. Adi Pancoro,  M.Sc., Ph.D.</a></h3>
-                     <span class="team__position">Biologi SITH ITB</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-7.jpg" alt="">
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#">Prof. Dr. Bambang Irawan </a></h3>
-                     <span class="team__position">UNAIR</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".7s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-8.jpg" alt="">
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#">Prof. Dr. Ocky Karna Radjasa</a></h3>
-                     <span class="team__position">UNDIP, Anggota Kehormatan</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".9s">
-               <div class="team__item mb-40">
-                  <div class="w-img p-relative mb-20 fix rounded">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/pengurus/kobi-9.jpg" alt="">
-                  </div>
-                  <div class="team__content text-center">
-                     <h3 class="team__title"><a href="#"> Prof. Dr. Intan Ahmad, M.Sc.</a></h3>
-                     <span class="team__position">ITB, Anggota Kehormatan</span>
-                  </div>
-               </div>
-            </div>
-         </div>
+      <div class="row justify-content-center" id="member-content">
+         
+      </div>
          <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
                 <h2>Struktur Organisasi KOBI <span class="text-primary">(Konsorium Biologi Indonesia)</span></h2>
@@ -453,3 +339,106 @@
     @endslot
     @endcomponent
 @endsection
+@push('js')
+    <script>
+      function getDecisionLatter()
+      {
+         $.ajax({
+            url: BaseUrl+'/api/user/decision-latter',
+            complete: (response) => {
+               if(response.status == 200) {
+                  let data = response.responseJSON.data.dec_latter;
+                  $('#decLatter').html(data.body);
+                  getFounder()
+               }
+            }
+         });
+      }
+      getDecisionLatter();
+
+         function getFounder(){
+         $.ajax({
+            url: BaseUrl+'/api/user/founder',
+            complete: (response) => {
+               if(response.status == 200) {
+                  let data = response.responseJSON.data.founder;
+                  let content = '';
+                  $.each(data, (k, v) => {
+                     content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">';
+                     content += '<div class="team__item mb-40">';
+                     content += '<div class="w-img p-relative mb-20 fix rounded">';
+                     content += '<img class="lazyload" data-src="{{ asset('storage/founder') }}/'+ v.photo +'">';
+                     content += '</div>';
+                     content += '<div class="team__content text-center">';
+                     content += ' <h3 class="team__title"><a href="#">'+ v.name +'</a></h3>';
+                     content += '<span class="team__position">'+ v.position +'</span>';
+                     content += '</div>';
+                     content += '</div>';
+                     content += '</div>';
+                  });
+                  $('#founder-content').html(content);
+                  getAdvisor();
+               }
+            }
+         });
+      }
+
+      function getAdvisor()
+      {
+         $.ajax({
+            url: BaseUrl+'/api/user/advisor/getleader',
+            complete: (response) => {
+               if(response.status == 200) {
+                  let data = response.responseJSON.data.advisor;
+                  console.log(data);
+                  let content = '';
+                  $.each(data, (k, v) => {
+                     content += '<div class="team__item mb-40">';
+                     content += '<div class="w-img p-relative mb-20 fix rounded">';
+                     content += '<img class="lazyload" data-src="{{ asset('storage/xstruktur') }}/'+ v.photo +'">';
+                     content += '</div>';
+                     content += '<div class="team__content text-center">';
+                     content += '<span class="team__position">Ketua</span>';
+                     content += '<h3 class="team__title"><a href="#">'+ v.name +'</a></h3>';
+                     content += '<span class="team__position">'+ v.univ +'</span>'
+                     content += '</div>';
+                     content += '</div>';
+                  });
+                  $('#advisor-content').html(content);
+                  getMemberAdsvisor();
+               }
+            }
+         });
+      }
+
+      function getMemberAdsvisor()
+      {
+         $.ajax({
+            url: BaseUrl+'/api/user/advisor/getmember',
+            complete: (response) => {
+               if(response.status == 200) {
+                  let data = response.responseJSON.data.member;
+                  console.log(data);
+                  let content = '';
+                  $.each(data, (k, v) => {
+                     content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay=".1s">';
+                     content += '<div class="team__item mb-40">';
+                     content += '<div class="w-img p-relative mb-20 fix rounded">';
+                     content += '<img class="lazyload" data-src="{{ asset('storage/xstruktur') }}/'+ v.photo +'">';
+                     content += '</div>';
+                     content += '<div class="team__content text-center">';
+                     // content += '<span class="team__position">Ketua</span>';
+                     content += '<h3 class="team__title"><a href="#">'+ v.name +'</a></h3>';
+                     content += '<span class="team__position">'+ v.univ +'</span>'
+                     content += '</div>';
+                     content += '</div>';
+                     content += '</div>';
+                  });
+                  $('#member-content').html(content);
+               }
+            }
+         });
+      }
+      
+    </script>
+@endpush
