@@ -150,7 +150,7 @@
                 <div class="row justify-content-center">
                     @foreach ($AdvisorLead as $AdLead)
                     <div class="card mr-3 mt-3" style="width: 18rem;">
-                        <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $AdLead->photo) }}">
+                        <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $AdLead->photo) }}">
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item">Ketua</li>
                           <li class="list-group-item font-weight-bold">{{ $AdLead->name }}</li>
@@ -166,7 +166,7 @@
                 <div class="row justify-content-center">
                     @foreach ($members as $member)
                     <div class="card mr-3 mt-3" style="width: 18rem;">
-                        <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $member->photo) }}">
+                        <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $member->photo) }}">
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item">Anggota</li>
                           <li class="list-group-item font-weight-bold">{{ $member->name }}</li>
@@ -199,7 +199,7 @@
                 <div class="row justify-content-center">
                     @foreach ($structuresLead as $strLead)
                     <div class="card mr-3 mt-3" style="width: 18rem;">
-                        <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $strLead->photo) }}">
+                        <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $strLead->photo) }}">
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item">{{ $strLead->position ? $strLead->position : '-' }}</li>
                           <li class="list-group-item font-weight-bold">{{ $strLead->name }}</li>
@@ -231,7 +231,7 @@
                 <div class="row justify-content-center">
                     @foreach ($sekretaris as $sek)
                     <div class="card mr-3 mt-3" style="width: 18rem;">
-                        <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $sek->photo) }}">
+                        <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $sek->photo) }}">
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item">{{ $sek->position ? $sek->position : '-' }}</li>
                           <li class="list-group-item font-weight-bold">{{ $sek->name }}</li>
@@ -263,7 +263,7 @@
                 <div class="row justify-content-center">
                     @foreach ($bendahara as $bend)
                     <div class="card mr-3 mt-3" style="width: 18rem;">
-                        <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $bend->photo) }}">
+                        <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $bend->photo) }}">
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item">{{ $bend->position ? $bend->position : '-' }}</li>
                           <li class="list-group-item font-weight-bold">{{ $bend->name }}</li>
@@ -353,7 +353,7 @@
                 <div class="row justify-content-center">
                     @foreach ($iDbagian as $bagian)
                     <div class="card mr-3 mt-3" style="width: 18rem;">
-                        <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $bagian->photo) }}">
+                        <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $bagian->photo) }}">
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item">{{ $bagian->department }}</li>
                           <li class="list-group-item font-weight-bold">{{ $bagian->name }}</li>
@@ -444,7 +444,7 @@
                     <div class="row justify-content-center">
                         @foreach ($curriculums as $curriculum)
                         <div class="card mr-3 mt-3" style="width: 18rem;">
-                            <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $curriculum->photo) }}">
+                            <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $curriculum->photo) }}">
                             <ul class="list-group list-group-flush text-center">
                                 <li class="list-group-item">{{ $curriculum->department }}</li>
                               <li class="list-group-item font-weight-bold">{{ $curriculum->name }}</li>
@@ -477,7 +477,7 @@
                 <div class="row justify-content-center">
                     @foreach ($humas as $hum)
                     <div class="card mr-3 mt-3" style="width: 18rem;">
-                        <img class="card-img-top lazyload" data-src="{{ asset('storage/xstruktur/'. $hum->photo) }}">
+                        <img class="card-img-top lazyload" data-src="{{ asset('storage/structure/'. $hum->photo) }}">
                         <ul class="list-group list-group-flush text-center">
                             <li class="list-group-item">{{ $hum->position ? $hum->position : '-' }}</li>
                           <li class="list-group-item font-weight-bold">{{ $hum->name }}</li>

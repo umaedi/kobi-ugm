@@ -53,7 +53,7 @@ class StructureController extends Controller
 
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-            $photo->storeAs('public/xstruktur', $photo->hashName());
+            $photo->storeAs('public/structure', $photo->hashName());
         }
 
         $advisor = Structure::create([
@@ -127,9 +127,9 @@ class StructureController extends Controller
 
             return $this->sendResponseUpdate($dataAdvisor);
         } else {
-            Storage::disk('local')->delete('public/xstruktur/' . basename($dataAdvisor->photo));
+            Storage::disk('local')->delete('public/structure/' . basename($dataAdvisor->photo));
             $photo = $request->file('photo');
-            $photo->storeAs('public/xstruktur', $photo->hashName());
+            $photo->storeAs('public/structure', $photo->hashName());
 
             $dataAdvisor->update([
                 'name'              => $request->name,
@@ -157,7 +157,7 @@ class StructureController extends Controller
     {
         $structure = Structure::findOrfail($id);
         if ($structure->photo) {
-            Storage::disk('local')->delete('public/xstruktur/' . basename($structure->photo));
+            Storage::disk('local')->delete('public/structure/' . basename($structure->photo));
         }
         $structure->destroy($id);
         return $this->sendResponseDelete($structure);

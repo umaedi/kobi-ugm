@@ -52,7 +52,7 @@ class CurriculumController extends Controller
 
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-            $photo->storeAs('public/xstruktur', $photo->hashName());
+            $photo->storeAs('public/structure', $photo->hashName());
         }
 
         $advisor = BidCurriculum::create([
@@ -124,9 +124,9 @@ class CurriculumController extends Controller
 
             return $this->sendResponseUpdate($dataAdvisor);
         } else {
-            Storage::disk('local')->delete('public/xstruktur/' . basename($dataAdvisor->photo));
+            Storage::disk('local')->delete('public/structure/' . basename($dataAdvisor->photo));
             $photo = $request->file('photo');
-            $photo->storeAs('public/xstruktur', $photo->hashName());
+            $photo->storeAs('public/structure', $photo->hashName());
 
             $dataAdvisor->update([
                 'name'      => $request->name,

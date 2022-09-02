@@ -51,7 +51,7 @@ class CoordinatorController extends Controller
 
         if ($request->file('photo')) {
             $photo = $request->file('photo');
-            $photo->storeAs('public/xstruktur', $photo->hashName());
+            $photo->storeAs('public/structure', $photo->hashName());
         }
 
         $advisor = Coordinator::create([
@@ -124,9 +124,9 @@ class CoordinatorController extends Controller
 
             return $this->sendResponseUpdate($dataAdvisor);
         } else {
-            Storage::disk('local')->delete('public/xstruktur/' . basename($dataAdvisor->photo));
+            Storage::disk('local')->delete('public/structure/' . basename($dataAdvisor->photo));
             $photo = $request->file('photo');
-            $photo->storeAs('public/xstruktur', $photo->hashName());
+            $photo->storeAs('public/structure', $photo->hashName());
 
             $dataAdvisor->update([
                 'name'      => $request->name,
@@ -154,7 +154,7 @@ class CoordinatorController extends Controller
     {
         $structure = Coordinator::findOrfail($id);
         if ($structure->photo) {
-            Storage::disk('local')->delete('public/xstruktur/' . basename($structure->photo));
+            Storage::disk('local')->delete('public/structure/' . basename($structure->photo));
         }
         $structure->destroy($id);
         return $this->sendResponseDelete($structure);

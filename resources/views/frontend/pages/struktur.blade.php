@@ -395,7 +395,7 @@
                   $.each(data, (k, v) => {
                      content += '<div class="team__item mb-40">';
                      content += '<div class="w-img p-relative mb-20 fix rounded">';
-                     content += '<img class="lazyload" data-src="{{ asset('storage/xstruktur') }}/'+ v.photo +'">';
+                     content += '<img class="lazyload" data-src="{{ asset('storage/structure') }}/'+ v.photo +'">';
                      content += '</div>';
                      content += '<div class="team__content text-center">';
                      content += '<span class="team__position">Ketua</span>';
@@ -424,7 +424,7 @@
                      content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay=".1s">';
                      content += '<div class="team__item mb-40">';
                      content += '<div class="w-img p-relative mb-20 fix rounded">';
-                     content += '<img class="lazyload" data-src="{{ asset('storage/xstruktur') }}/'+ v.photo +'">';
+                     content += '<img class="lazyload" data-src="{{ asset('storage/structure') }}/'+ v.photo +'">';
                      content += '</div>';
                      content += '<div class="team__content text-center">';
                      // content += '<span class="team__position">Ketua</span>';
