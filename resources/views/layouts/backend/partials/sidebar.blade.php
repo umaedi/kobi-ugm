@@ -43,17 +43,17 @@
   <li class="nav-item {{ Request::is('admin/event/create') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event.create') }}">
         <i class="fas fa-blog"></i>
-        <span>Berita Event</span></a>
+        <span>Berita Kegiatan</span></a>
   </li>
   <li class="nav-item {{ Request::is('admin/event') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event') }}">
         <i class="fas fa-fw fa-list"></i>
-        <span>Semua Event</span></a>
+        <span>Semua Kegiatan</span></a>
   </li>
   <li class="nav-item {{ Request::is('admin/event/kategori') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event.kategori') }}">
         <i class="fas fa-bookmark"></i>
-        <span>Kategori Event</span></a>
+        <span>Kategori Kegiatan</span></a>
   </li>
   <hr class="sidebar-divider">
   <div class="sidebar-heading">
@@ -92,7 +92,7 @@
   <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThere"
           aria-expanded="true" aria-controls="collapseThere">
-          <i class="fas fa-fw fa-folder"></i>
+          <i class="fas fw fa-file"></i>
           <span>Dokumen</span>
       </a>
       <div id="collapseThere" class="collapse" aria-labelledby="headingThere" data-parent="#accordionSidebar">
@@ -105,10 +105,33 @@
           </div>
       </div>
   </li>
+  <hr class="sidebar-divider">
+  <div class="sidebar-heading">
+      Web
+  </div>
+  <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsenNine"
+          aria-expanded="true" aria-controls="collapsenNine">
+          <i class="fas fa-sitemap"></i>
+          <span>Struktur Organiasi</span>
+      </a>
+      <div id="collapsenNine" class="collapse" aria-labelledby="headingnNine" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+              <a class="collapse-item" href="{{ route('admin.surat') }}">Surat keputusan</a>
+              <a class="collapse-item" href="{{ route('admin.penasihat') }}">Dewan penasihat</a>
+              <a class="collapse-item" href="{{ route('admin.ketua') }}">Ketua dan wakil ketua</a>
+              <a class="collapse-item" href="{{ route('admin.sekretaris') }}">Sekretaris</a>
+              <a class="collapse-item" href="{{ route('admin.bendahara') }}">Bendahara</a>
+              <a class="collapse-item" href="{{ route('admin.wilayah') }}">Koordinator wilayah</a>
+              <a class="collapse-item" href="{{ route('admin.kurikulum') }}">Bidang Kurikulum</a>
+              <a class="collapse-item" href="{{ route('admin.humas') }}">HUMAS</a>
+          </div>
+      </div>
+  </li>
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
         aria-expanded="true" aria-controls="collapseSix">
-        <i class="fas fa-fw fa-folder"></i>
+        <i class="fas fa-folder"></i>
         <span>Halaman</span>
     </a>
     <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">

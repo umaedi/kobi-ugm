@@ -12,6 +12,7 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/publikasi', 'publikasi')->name('publikasi');
     Route::get('/naskah-akademik', 'naskah')->name('naskah-akademik');
     Route::get('/laporan-kegiatan', 'laporan')->name('laporan');
+    Route::get('/persyaratan', 'persyaratan')->name('persyaratan');
     Route::get('/pendaftaran-anggota', 'register')->name('pendaftaran');
     Route::get('/pendaftaran-anggota/baru', 'newMember')->name('pendaftaran-anggota-baru');
     Route::get('/list-anggota', 'anggota')->name('list-anggota');

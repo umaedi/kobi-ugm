@@ -81,7 +81,7 @@
                         </div>
                         <div class="services__content-3">
                           <h3 class="services__title-3">
-                            <a href="{{ route('str') }}">{{ __('PERSYARATAN') }}</a>
+                            <a href="{{ route('persyaratan') }}">{{ __('PERSYARATAN') }}</a>
                           </h3>
                           <p>Baca persayaratan sebelum mendaftar</p>
                         </div>

@@ -7,7 +7,7 @@
 @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3 class="fw-bold">KOBI | Naskah Akademik</h3>
+    <h3 class="fw-bold">Naskah Akademik</h3>
     @endslot
 @endcomponent
 @component('components.frontend.page_content')

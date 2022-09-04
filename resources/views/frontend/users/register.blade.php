@@ -3,7 +3,7 @@
     @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3>KOBI | Pendaftaran Anggota Lama</h3>
+    <h3>Pendaftaran Anggota Lama</h3>
     </div>
     @endslot
     @endcomponent
@@ -20,7 +20,7 @@
           </div>
         <div>
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h6 class="border-bottom pb-2 mb-0">Silahkan mengisi formulir dibawah ini :</h6>
+                <h6 class="border-bottom pb-2 mb-3">Untuk anggota lama silahkan mengisi formulir dibawah ini. Anggota baru klik <a href="{{ route('pendaftaran-anggota-baru') }}" class="btn btn-sm bg-success" style="color: #fff">disini</a></h6>
                 <form id="store">
                   @csrf
                   <div class="row">

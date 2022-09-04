@@ -43,9 +43,13 @@
                 </div>
                 <input id="password" type="password" class="form-control api-password" name="password" required autocomplete="current-password">
               </div>
-              <div class="form-group ">
+              <div class="form-group btn-login">
                 <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
               </div>
+              <button class="btn btn-primary btn-spinner" type="button" disabled style="display: none">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                <span class="sr-only">Loading...</span>
+                Login...</button>
             </form>
           </div>
         </div>
@@ -67,6 +71,10 @@
   <script src="{{ asset('backend') }}/js/stisla.js"></script>
   <script>
     $('#formAdminLogin').submit(function(event) {
+
+      $('.btn-login').attr('style', 'display: none');
+      $('button.btn-spinner').removeAttr('style', 'display: none');
+
       event.preventDefault();
       let form = $(this)[0];
       let data = new FormData(form);

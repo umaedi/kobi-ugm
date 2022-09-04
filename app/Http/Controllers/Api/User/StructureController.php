@@ -3,27 +3,18 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Api as Controller;
-use App\Models\Adviser;
+use App\Models\Advisor;
+use App\Models\BidCurriculum;
+use App\Models\Coorregion;
 use App\Models\DecLetter;
-use App\Models\Structure;
+use App\Models\Leader;
+use App\Models\Relationship;
+use App\Models\Secretary;
+use App\Models\Treasurer;
 use Illuminate\Http\Request;
 
 class StructureController extends Controller
 {
-    public function getLeader()
-    {
-        $advisor = Structure::where('department_id', 0)->get();
-        $result['advisor'] = $advisor;
-        return $this->sendResponseOk($result);
-    }
-
-    public function getMember()
-    {
-        $advisor = Structure::where('department_id', 2)->get();
-        $result['member'] = $advisor;
-        return $this->sendResponseOk($result);
-    }
-
     public function decisionLatter(Request $request)
     {
         if ($request->ajax()) {
@@ -31,5 +22,87 @@ class StructureController extends Controller
             $result['dec_latter'] = $decLatter;
             return $this->sendResponseOk($result);
         }
+    }
+
+    public function getAdvisor(Request $request)
+    {
+        $dataAdvisor = Advisor::where('status', 1)->get();
+        if (request('search')) {
+            $dataAdvisor = Advisor::where('year_start', 'like', '%' . request('search') . '%')->get();
+        }
+
+        $advisor = $dataAdvisor;
+        $result['advisor'] = $advisor;
+        return $this->sendResponseOk($result);
+    }
+
+    public function getChairman()
+    {
+        $dataChairman = Leader::where('status', 1)->get();
+        if (request('search')) {
+            $dataChairman = Leader::where('year_start', 'like', '%' . request('search') . '%')->get();
+        }
+
+        $chairman = $dataChairman;
+        $result['chairman'] = $chairman;
+        return $this->sendResponseOk($result);
+    }
+
+    public function getSecretaries()
+    {
+        $dataSec = Secretary::where('status', 1)->get();
+        if (request('search')) {
+            $dataSec = Secretary::where('year_start', 'like', '%' . request('search') . '%')->get();
+        }
+        $sec = $dataSec;
+        $result['secretaries'] = $sec;
+        return $this->sendResponseOk($result);
+    }
+
+    public function getTeasurer()
+    {
+        $dataTea = Treasurer::where('status', 1)->get();
+        if (request('search')) {
+            $dataTea = Treasurer::where('year_start', 'like', '%' . request('search') . '%')->get();
+        }
+
+        $tea = $dataTea;
+        $result['treasurer'] = $tea;
+        return $this->sendResponseOk($result);
+    }
+
+    public function getCoorregion()
+    {
+        $dataRegion = Coorregion::where('status', 1)->get();
+        if (request('search')) {
+            $dataRegion = Coorregion::where('year_start', 'like', '%' . request('search') . '%')->get();
+        }
+
+        $coorregion = $dataRegion;
+        $result['coorregion'] = $coorregion;
+        return $this->sendResponseOk($result);
+    }
+
+    public function getCurriculum()
+    {
+        $dataCurr = BidCurriculum::where('status', 1)->get();
+        if (request('search')) {
+            $dataCurr = BidCurriculum::where('year_start', 'like', '%' . request('search') . '%')->get();
+        }
+
+        $curr = $dataCurr;
+        $result['curriculum'] = $curr;
+        return $this->sendResponseOk($result);
+    }
+
+    public function getRelationship()
+    {
+        $dataRela = Relationship::where('status', 1)->get();
+        if (request('search')) {
+            $dataRela = BidCurriculum::where('year_start', 'like', '%' . request('search') . '%')->get();
+        }
+        $rela = $dataRela;
+        $result['relationship'] = $rela;
+        return $this->sendResponseOk($result);
     }
 }

@@ -109,7 +109,7 @@ class DashboardController extends Controller
     public function struktur()
     {
         return view('backend.struktur.index', [
-            'decLatter'         => DecLetter::where('status', 1)->first(),
+
             'AdvisorLead'       => Structure::where('department_id', 0)->get(),
             'members'           => Structure::where('department_id', 3)->get(),
             'structuresLead'    => Structure::where('department_id', 1)->get(),

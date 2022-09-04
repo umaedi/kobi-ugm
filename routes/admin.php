@@ -22,6 +22,16 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/galeri/foto', 'galeri')->name('admin.galeri');
             Route::get('/struktur-organisasi', 'struktur')->name('admin.struktur');
         });
+        Route::controller(\App\Http\Controllers\Backend\StrukturController::class)->group(function () {
+            Route::get('/organisasi/surat-keputusan', 'suratKeputusan')->name('admin.surat');
+            Route::get('/organisasi/dewan-penasihat', 'dewanPenasiaht')->name('admin.penasihat');
+            Route::get('/organisasi/ketua-wakil', 'ketuaWakil')->name('admin.ketua');
+            Route::get('/organisasi/sekretaris', 'sekretaris')->name('admin.sekretaris');
+            Route::get('/organisasi/bendahara', 'bendahara')->name('admin.bendahara');
+            Route::get('/organisasi/koordinator-wilayah', 'koorWlayah')->name('admin.wilayah');
+            Route::get('/organisasi/koordinator-bidang-kurikulum', 'koorKurikulum')->name('admin.kurikulum');
+            Route::get('/organisasi/humas', 'humas')->name('admin.humas');
+        });
 
         //STR
         Route::controller(\App\Http\Controllers\Backend\StrController::class)->group(function () {

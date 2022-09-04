@@ -48,6 +48,14 @@ class FrontendController extends Controller
         ]);
     }
 
+    public function persyaratan()
+    {
+        return view('frontend.pages.persyaratan', [
+            'title' => 'Pendaftaran Anggota Baru',
+            'events'    => EventCategory::latest()->get(),
+        ]);
+    }
+
     public function posts()
     {
         return view('frontend.posts.index', [

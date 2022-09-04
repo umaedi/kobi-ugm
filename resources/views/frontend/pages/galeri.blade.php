@@ -3,7 +3,7 @@
     @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3 class="fw-bold">KOBI | Galeri</h3>
+    <h3 class="fw-bold">Galeri</h3>
     @endslot
     @endcomponent
     <section class="portfolio__area pb-100 pt-100">

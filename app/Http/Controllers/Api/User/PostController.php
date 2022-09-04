@@ -12,14 +12,14 @@ class PostController extends Controller
 
     public function index()
     {
-        $post = Post::with('category')->latest()->limit(3)->get();
+        $post = Post::with('category')->orderBy('publish_at', 'DESC')->limit(3)->get();
         $result['posts'] = $post;
         return $this->sendResponseOk($result);
     }
 
     public function newsOrArticle()
     {
-        $post = Post::with('category')->latest()->limit(6)->get();
+        $post = Post::with('category')->orderBy('publish_at', 'DESC')->limit(6)->get();
         $result['posts'] = $post;
         return $this->sendResponseOk($result);
     }
@@ -34,7 +34,7 @@ class PostController extends Controller
 
     public function lastPost()
     {
-        $lastpost = Post::latest()->limit(4)->get();
+        $lastpost = Post::orderBy('publish_at', 'DESC')->limit(4)->get();
         $result['lastpost'] = $lastpost;
         return $this->sendResponseOk($result);
     }

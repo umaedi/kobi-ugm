@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Api\Admin;
 
-use App\Models\Advisor;
+use App\Models\Coorregion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api as Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class AdvisorController extends Controller
+class CoorregionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -54,7 +54,7 @@ class AdvisorController extends Controller
             $photo->storeAs('public/structure', $photo->hashName());
         }
 
-        $advisor = Advisor::create([
+        $structure = Coorregion::create([
             'name'          => $request->name,
             'department'    => $request->department,
             'univ'          => $request->univ,
@@ -64,8 +64,8 @@ class AdvisorController extends Controller
             'status'        => $request->status,
         ]);
 
-        if ($advisor) {
-            return $this->sendResponseCreate($advisor);
+        if ($structure) {
+            return $this->sendResponseCreate($structure);
         }
     }
 
@@ -100,7 +100,7 @@ class AdvisorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dataAdvisor = Advisor::findOrfail($id);
+        $dataStructure = Coorregion::findOrfail($id);
         $validator = Validator::make($request->all(), [
             'name'          => 'required|max:255',
             'year_start'    => 'required',
@@ -112,23 +112,23 @@ class AdvisorController extends Controller
         }
 
         if ($request->file('photo') == '') {
-            $dataAdvisor->update([
+            $dataStructure->update([
                 'name'              => $request->name,
                 'department'        => $request->department,
                 'univ'              => $request->univ,
                 'year_start'        => $request->year_start,
                 'year_end'          => $request->year_end,
-                'photo'             => $dataAdvisor->photo,
+                'photo'             => $dataStructure->photo,
                 'status'            => $request->status,
             ]);
 
-            return $this->sendResponseUpdate($dataAdvisor);
+            return $this->sendResponseUpdate($dataStructure);
         } else {
-            Storage::disk('local')->delete('public/structure/' . basename($dataAdvisor->photo));
+            Storage::disk('local')->delete('public/structure/' . basename($dataStructure->photo));
             $photo = $request->file('photo');
             $photo->storeAs('public/structure', $photo->hashName());
 
-            $dataAdvisor->update([
+            $dataStructure->update([
                 'name'          => $request->name,
                 'department'    => $request->department,
                 'univ'          => $request->univ,
@@ -138,8 +138,8 @@ class AdvisorController extends Controller
                 'status'        => $request->status,
             ]);
 
-            if ($dataAdvisor) {
-                return $this->sendResponseUpdate($dataAdvisor);
+            if ($dataStructure) {
+                return $this->sendResponseUpdate($dataStructure);
             }
         }
     }
@@ -152,12 +152,12 @@ class AdvisorController extends Controller
      */
     public function destroy($id)
     {
-        $dataAdvisor = Advisor::findOrfail($id);
-        if ($dataAdvisor->photo) {
-            Storage::disk('local')->delete('public/structure/' . basename($dataAdvisor->photo));
+        $dataStructure = Coorregion::findOrfail($id);
+        if ($dataStructure->photo) {
+            Storage::disk('local')->delete('public/structure/' . basename($dataStructure->photo));
         }
 
-        $dataAdvisor->destroy($id);
-        return $this->sendResponseDelete($dataAdvisor);
+        $dataStructure->destroy($id);
+        return $this->sendResponseDelete($dataStructure);
     }
 }

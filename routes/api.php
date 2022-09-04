@@ -45,6 +45,11 @@ Route::prefix('admin')->group(function () {
     Route::resource('/structure', Api\Admin\StructureController::class);
     Route::resource('/coordinator', Api\Admin\CoordinatorController::class);
     Route::resource('/advisor', Api\Admin\AdvisorController::class);
+    Route::resource('/leader', Api\Admin\LeaderController::class);
+    Route::resource('/secretary', Api\Admin\SecretaryController::class);
+    Route::resource('/treasurer', Api\Admin\TreasurerController::class);
+    Route::resource('/coor-region', Api\Admin\CoorregionController::class);
+    Route::resource('/relationship', Api\Admin\RelationController::class);
     Route::resource('/curriculum-coordinator', Api\Admin\CurriculumController::class);
     Route::resource('/declatter', Api\Admin\DecLatterController::class);
 });
@@ -78,8 +83,13 @@ Route::prefix('user')->group(function () {
 
     Route::controller(Api\User\StructureController::class)->group(function () {
         Route::get('/decision-latter', 'decisionLatter');
-        Route::get('/advisor/getleader', 'getLeader');
-        Route::get('/advisor/getmember', 'getMember');
+        Route::get('/advisor/getadvisor', 'getAdvisor')->name('user.leader');
+        Route::get('/chairman', 'getChairman');
+        Route::get('/secretaries', 'getSecretaries');
+        Route::get('/treasurer', 'getTeasurer');
+        Route::get('/coorregion', 'getCoorregion');
+        Route::get('/curriculum', 'getCurriculum');
+        Route::get('/relationship', 'getRelationship');
     });
 });
 
