@@ -46,8 +46,7 @@ class KurikulumController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title'         => 'required',
-            'body'          => 'required',
-            'image'         => 'image|file|max:4096',
+            'file_kurikulum'          => 'required',
             'status'        => 'required',
             'publish_at'    => 'required'
         ]);
@@ -56,15 +55,14 @@ class KurikulumController extends Controller
             return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
         }
 
-        $thumb = $request->file('image');
-        $thumb->storeAs('public/thumb', $thumb->hashName());
+        if ($request->file('file_kurikulum')) {
+            $file = $request->file('file_kurikulum');
+            $file->storeAs('public/kurik', $file->hashName());
+        }
 
         $post = Kurikulum::create([
-            'user_id'       => $request->user_id,
             'title'         => $request->title,
-            'slug'          => Str::slug($request->title),
-            'body'          => $request->body,
-            'image'         => $thumb->hashName(),
+            'file_kurikulum'    => $file->hashName(),
             'publish_at'    => $request->publish_at,
             'status'        => $request->status
         ]);
@@ -105,9 +103,7 @@ class KurikulumController extends Controller
     {
         $dokKurikulum = Kurikulum::findOrfail($id);
         $validator = Validator::make($request->all(), [
-            'title'         => 'required|unique:posts,title,' . $dokKurikulum->id,
-            'body'          => 'required',
-            'image'         => 'image|file|max:4096',
+            'title'         => 'required|unique:kurikulums,title,' . $dokKurikulum->id,
             'status'        => 'required',
         ]);
 
@@ -115,26 +111,22 @@ class KurikulumController extends Controller
             return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
         }
 
-        if ($request->file('image') == '') {
+        if ($request->file('file_kurikulum') == '') {
             $dokKurikulum->update([
                 'title'         => $request->title,
-                'slug'          => Str::slug($request->title),
-                'body'          => $request->body,
-                'image'         => $dokKurikulum->image,
+                'file_kurikulum' => $dokKurikulum->file_kurikulum,
                 'publish_at'    => $request->publish_at ? $request->publish_at : $dokKurikulum->publish_at,
                 'status'        => $request->status
             ]);
             return $this->sendResponseUpdate($dokKurikulum);
         } else {
-            Storage::disk('local')->delete('public/thumb/' . basename($dokKurikulum->image));
-            $thumb = $request->file('image');
-            $thumb->storeAs('public/thumb', $thumb->hashName());
+            Storage::disk('local')->delete('public/kurik/' . basename($dokKurikulum->image));
+            $fileKurikulum = $request->file('file_kurikulum');
+            $fileKurikulum->storeAs('public/kurik', $fileKurikulum->hashName());
 
             $dokKurikulum->update([
                 'title'         => $request->title,
-                'slug'          => Str::slug($request->title),
-                'body'          => $request->body,
-                'image'         => $thumb->hashName(),
+                'file_kurikulum' => $fileKurikulum->hashName(),
                 'publish_at'    => $request->publish_at ? $request->publish_at : $dokKurikulum->publish_at,
                 'status'        => $request->status
             ]);
@@ -151,7 +143,7 @@ class KurikulumController extends Controller
     public function destroy($id)
     {
         $dokKurikulum = Kurikulum::findOrfail($id);
-        Storage::disk('local')->delete('public/thumb/' . basename($dokKurikulum->file_dokumen));
+        Storage::disk('local')->delete('public/kurik/' . basename($dokKurikulum->file_dokumen));
         $dokKurikulum->destroy($id);
         return $this->sendResponseDelete($dokKurikulum);
     }

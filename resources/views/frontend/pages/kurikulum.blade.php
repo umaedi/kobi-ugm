@@ -1,51 +1,88 @@
-@extends('layouts.frontend.app')
+@extends('layouts.frontend.appv2')
+@push('css')
+<link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.table.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+@endpush
 @section('content')
-    <main>
-        @component('components.frontend.breadcrumb')
-        @slot('breadcrumb')
-        <div class="page__title-wrapper text-center">
-         <h3>Kurikulum</h3>
-      </div>
-      @endslot
-    @endcomponent
-
-    <section class="blog__area pt-120 pb-120">
-        <div class="container">
-           <div class="row justify-content-center">
-              <div class="col-xxl-8 col-xl-8 col-lg-8">
-                 <div class="blog__wrapper">
-                    <div class="postbox__item">
-                        <div class="postbox__thumb w-img wow fadeInUp" data-wow-delay=".3s">
-                            <img src="{{ asset('storage/thumb/'. $kurikulum->image) }}" alt="">
-                         </div>
-                       <div class="postbox__content wow fadeInUp" data-wow-delay=".5s">
-                           <h3 class="postbox__title">{{ $kurikulum->title }}</h3>
-                           <p>{!! $kurikulum->body !!}</p>
-                       </div>
-
-                       <div class="postbox__share d-flex justify-content-between align-items-center mb-75 wow fadeInUp" data-wow-delay=".9s">
-                          <h3>Bagikan :</h3>
-                          <ul>
-                             <li><a href="https://www.facebook.com/sharer.php?u={{ url('') }}/post/show/"><i class="fab fa-facebook-f"></i></a></li>
-                             <li><a href="https://twitter.com/intent/tweet?text={{ url('') }}/post/show/"><i class="fab fa-twitter"></i></a></li>
-                             <li><a href="https://api.whatsapp.com/send?phone=&amp;text={{ url('') }}/post/show/"><i class="fab fa-whatsapp"></i></a></li>
-                          </ul>
-                       </div>
-                       <div class="postbox__author grey-bg-13 d-sm-flex mb-65 wow fadeInUp" data-wow-delay="1.2s">
-                          <div class="postbox__author-thumb mr-20">
-                             <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="">
-                          </div>
-                          <div class="postbox__author-content">
-                             <h4>Admin</h4>
-                             <span>Tentang Penulis</span>
-                             <p>Menuntut ilmu adalah taqwa. Menyampaikan ilmu adalah ibadah. Mengulang-ulang ilmu adalah zikir. Mencari ilmu adalah jihad. - Abu Hamid Al Ghazali</p>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
+@component('components.frontend.breadcrumb')
+    @slot('breadcrumb')
+    <div class="page__title-wrapper text-center">
+    <h3 class="fw-bold">Kurikulum</h3>
+    @endslot
+@endcomponent
+@component('components.frontend.page_content')
+@slot('page_content')
+<section class="blog__area">
+  <div class="container">
+    <div class="row">
+      <div class="d-flex align-items-center p-3 my-1 text-white bg-success rounded shadow-sm">
+        <div class="lh-1">
+          <h1 class="h6 mb-0 text-white lh-1">Kurikulum Konsorsium Biologi Indonesia</h1>
         </div>
-     </section>
-    </main>
+        <div class="lh-1 ms-auto">
+          <a href="{{ url('/') }}" class="text-decoration-none"><h1 class="h6 mb-0 text-white lh-1 ">Kembali</h1></a>
+        </div>
+    </div>
+    <div>
+      <div class="my-3 p-3 bg-body rounded shadow-sm">
+        <div class="table-responsive">
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th class="text-center">No</th>
+                      <th class="text-center">Nama Kurikulum</th>
+                      <th class="text-center">Tanggl Unggah</th>
+                      <th class="text-center">Aksi</th>
+                  </tr>
+              </thead>
+              <tbody>
+  
+              </tbody>
+          </table>
+        </div>
+      </div>
+  </div>
+    </div>
+  </div>
+</section>
+
+
+@endslot
+@endcomponent
 @endsection
+@push('js')
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+<script>
+  let table = $("#dataTable").DataTable({
+    processing: true,
+    serverSide: true,
+    responsive: true,
+    ajax: BaseUrl+'/api/user/kurikulum',
+    columns: [
+      {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
+      {data: 'title', name: 'title'},
+      {data: 'publish_at', name: 'publish_at'},
+      {
+        "render": function ( data, type, row ) {
+        return `
+        @auth
+        <div class="text-center">
+        <a href="/storage/kurik/` + row.file_kurikulum +`" type="button" class="btn btn-sm btn-success" target="_blank"><i class="fas fa-eye text-white"></i></a>
+        </div>
+        @else
+        <div class="text-center">
+          <a href="{{ route('login') }}" type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
+        </div>
+        @endauth
+        ` }
+      }
+    ]
+  });
+  setInterval(() => {
+      table.ajax.reload();
+  }, 30000);
+
+  // $('#dataTable_filter label ').html('')
+</script>
+@endpush

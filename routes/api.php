@@ -52,6 +52,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/relationship', Api\Admin\RelationController::class);
     Route::resource('/curriculum-coordinator', Api\Admin\CurriculumController::class);
     Route::resource('/declatter', Api\Admin\DecLatterController::class);
+    Route::resource('visi-misi', Api\Admin\VisiController::class)->only('update');
 });
 
 Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
@@ -79,7 +80,9 @@ Route::prefix('user')->group(function () {
     Route::controller(Api\User\AboutController::class)->group(function () {
         Route::get('/history', 'sejarah');
         Route::get('founder', 'founder');
+        Route::get('/vision-msion', 'visionMision');
     });
+    Route::get('/kurikulum', [Api\User\KurikulumController::class, 'getKurikulum']);
 
     Route::controller(Api\User\StructureController::class)->group(function () {
         Route::get('/decision-latter', 'decisionLatter');

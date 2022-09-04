@@ -19,6 +19,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/event/kategori', 'eventKategori')->name('admin.event.kategori');
             Route::get('/event/create', 'createEvenet')->name('admin.event.create');
             Route::get('/sejarah', 'sejarah')->name('admin.sejarah');
+            Route::get('/visi-misi', 'VisiMisi')->name('admin.visiMisi');
             Route::get('/galeri/foto', 'galeri')->name('admin.galeri');
             Route::get('/struktur-organisasi', 'struktur')->name('admin.struktur');
         });
@@ -29,7 +30,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/organisasi/sekretaris', 'sekretaris')->name('admin.sekretaris');
             Route::get('/organisasi/bendahara', 'bendahara')->name('admin.bendahara');
             Route::get('/organisasi/koordinator-wilayah', 'koorWlayah')->name('admin.wilayah');
-            Route::get('/organisasi/koordinator-bidang-kurikulum', 'koorKurikulum')->name('admin.kurikulum');
+            Route::get('/organisasi/koordinator-bidang-kurikulum', 'koorKurikulum')->name('admin.bid-kurikulum');
             Route::get('/organisasi/humas', 'humas')->name('admin.humas');
         });
 

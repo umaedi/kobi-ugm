@@ -6,6 +6,7 @@ use App\Http\Controllers\Api as Controller;
 use App\Models\About;
 use App\Models\Founder;
 use App\Models\Pendiri;
+use App\Models\VisiMisi;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -26,5 +27,12 @@ class AboutController extends Controller
             $result['founder'] = $fo;
             return $this->sendResponseOk($result);
         }
+    }
+
+    public function visionMision()
+    {
+        $visi = VisiMisi::latest()->first();
+        $result['vision'] = $visi;
+        return $this->sendResponseOk($result);
     }
 }

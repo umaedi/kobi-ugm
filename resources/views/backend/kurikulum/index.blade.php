@@ -1,10 +1,5 @@
 @extends('layouts.backend.app')
 @push('css')
-<style>
-    .ck-editor__editable_inline {
-        min-height: 300px;
-    }
-</style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 @endpush
 @section('content')
@@ -13,180 +8,243 @@
         <div class="card-header py-3">
               <h3 class="h5 mb-0 text-gray-800 d-inline">Kurikulum</h3>
         </div>
-        <form id="formPost">
         <div class="card-body">
-            <div class="row">
-                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                <div class="col-lg-8">
+            <form id="formPublikasi">
+                <div class="row">
+                  <div class="col-md-6">
                     <div class="form-group">
-                        <label for="title">Judul</label>
-                        <input type="text" class="form-control @error('title') ? is-invalid @enderror" id="title" name="title" value="{{ old('title') }}">
-                        @error('title')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <input name="title" type="text" class="form-control" placeholder="Nama kurikulum">
                     </div>
-                </div>
-                <div class="col-lg-4">
+                  </div>
+                  <div class="col-md-6">
                     <div class="form-group">
-                        <label for="title">Thumbnail</label>
-                        <input type="file" class="form-control @error('image') ? is-invalid @enderror" name="image">
-                        @error('image')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                      </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="form-group">
-                        <input type="date" class="form-control" name="publish_at">
-                        <small id="passwordHelpBlock" class="form-text text-muted">
-                            Dibuat pada
-                        </small>
+                        <input name="file_kurikulum" type="file" class="form-control">
                     </div>
-                    <hr>
-                </div>
-                <div class="col-lg-6">
+                  </div>
+                  <div class="col-md-6">
                     <div class="form-group">
-                        <select class="form-control @error('status') ? is-invalid @enderror" id="exampleFormControlSelect1" name="status">
-                                <option value="1">Publish</option>
-                                <option value="0">Draft</option>
+                        <label for="">Pilih tanggal</label>
+                        <input name="publish_at" type="date" class="form-control">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Pilih status</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="status">
+                          <option value="1">Publish</option>
+                          <option value="0">Draft</option>
                         </select>
-                        <small id="passwordHelpBlock" class="form-text text-muted">
-                            Status
-                        </small>
-                    </div>
-                    <hr>
+                      </div>
+                  </div>
+                  <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary">Tambah</button>
+                  </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="body">Konten</label>
-                <textarea class="form-control" name="body" rows="5" id="task-textarea"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary"><i class="fas fa-globe"></i> Publish</button>
+            </form>
         </div>
-    </form>
     </div>
     @component('components.backend.card-table')
-    @slot('header')
-      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Kurikulum</h3>
-    @endslot
-    @slot('dropdown')
-      <div class="dropdown-header">Dropdown Header:</div>
-      <button class="dropdown-item" onclick="reloadDataTable()">Muat ulang table</button>
-      <div class="dropdown-divider"></div>
-    @endslot
-    @slot('thead')
-      <tr>
-        <th>No</th>
-        <th>Judul</th>
-        <th>Dibuat pada</th>
-        <th>Aksi</th>
-      </tr>
-    @endslot
-    @slot('tbody')
-    
-    @endslot      
-  @endcomponent
+        @slot('header')
+        <h3 class="h5 mb-0 text-gray-800 d-inline">List Kurikulum</h3>
+        @endslot
+        @slot('dropdown')
+        <div class="dropdown-header">Dropdown Header:</div>
+        <button onclick="reload()" class="dropdown-item">Muat ulang table</button>
+        <div class="dropdown-divider"></div>
+      @endslot
+        @slot('thead')
+        <tr>
+            <th>No</th>
+            <th>Nama Kurikulum</th>
+            <th>Tanggal Unggah</th>
+            <th>Aksi</th>
+          </tr>
+        @endslot
+        @slot('tbody')
+
+        @endslot
+    @endcomponent
 </div>
 @endsection
+@push('modal')
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Laporan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="formUpdatePublikasi">
+        @method('PUT')
+        <div class="modal-body">
+                <input type="hidden" name="idPublikasi">
+                <div class="form-group">
+                    <label for="">Nama kurikulum</label>
+                    <input type="text" name="title" class="form-control" id="namaDokuemn">
+                </div>
+                <div class="form-group">
+                    <label for="">File kurikulum</label>
+                    <input type="file" name="file_kurikulum" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="">Tanggal</label>
+                    <input type="date" name="publish_at" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Pilih status</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="status">
+                      <option value="1">Publish</option>
+                      <option value="0">Draft</option>
+                    </select>
+                  </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-success">Perbaharui</button>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+@endpush
 @push('js')
-@include('components.backend.ckeditor')
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script src="{{ asset('backend') }}/js/sweet_alert.min.js"></script>
-<script>
-        $('#formPost').submit(function(event) {
-        event.preventDefault();
-        let from = $(this)[0];
-        let data = new FormData(from);
+    <script>
+        let table = $('#dataTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: BaseUrl+'/api/admin/kurikulum',
+            columns: [
+                {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
+                {data: 'title', name: 'title'},
+                {data: 'publish_at', name: 'publish_at'},
+                {
+                    "render": function ( data, type, row ) {
+                    return `
+                    <a href="{{ asset('storage/kurik') }}/` + row.file_kurikulum +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
+                    <button id="edit" data-id="`+ row.id +`" data-nama_dokumen="`+ row.title +`" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
+                    <button id="delete" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
+                    ` }
+                }
+            ]
+        });
 
-        $.ajax({
-        url: BaseUrl+'/api/admin/kurikulum',
-        data: data,
-        method: 'POST',
-        processData: false,
-        contentType: false,
-        cache: false,
-        complete: (response) => {
-            if(response.status == 201) {
-                swal({
-                    title: "",
-                    text: "Kurikulum berhasil diterbitkan",
-                    icon: "success"
-                  })
-                  .then(() => {
-                    window.location.replace(BaseUrl+'/admin/kurikulum');
-                  });
-            }else {
-                swal("", response.responseJSON.message, "warning");
-            }
+        $('#formPublikasi').submit(function (event) {
+            event.preventDefault();
+            
+            let form = $(this)[0];
+            let data = new FormData(form);
+
+            $.ajax({
+                url: BaseUrl+'/api/admin/kurikulum',
+                data: data,
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                cache: false,
+                complete: function (response) {
+                    if(response.status == 201) {
+                        swal({
+                            title: "",
+                            text: response.responseJSON.message,
+                            icon: "success"
+                        });
+                        table.ajax.reload();
+                        $('input').val('');
+                    }else {
+                        swal("", response.responseJSON.message, "warning");
+                    }
+                }
+            });
+        });
+        
+        $('#dataTable tbody').on('click', '#edit', function() {
+            let nama_dokumen = $(this).data('nama_dokumen');
+            let id = $(this).data('id');
+            $('input[id=namaDokuemn]').val(nama_dokumen);
+            $('input[name=idPublikasi]').val(id);
+        });
+        
+        $('#formUpdatePublikasi').submit(function (event) {
+            event.preventDefault();
+            $('#exampleModal').modal('hide');
+
+            const id = $('input[name=idPublikasi]').val();
+            const form = $(this)[0];
+            const data = new FormData(form);
+
+            $.ajax({
+                url: BaseUrl+'/api/admin/kurikulum/'+id,
+                data: data,
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                cache: false,
+                complete: (response) => {
+                    if(response.status == 201) {
+                        swal({
+                            title: "",
+                            text: "Kurikulum berhasil diperbaharui",
+                            icon: "success"
+                        });
+                        table.ajax.reload();
+                        $('input').val('');
+                    }else {
+                        swal("", response.responseJSON.message, "warning");
+                    }
+                }
+            });
+        });
+
+        $('#dataTable tbody').on('click', '#delete', function() {
+            let id = $(this).data('id');
+            remove(id);
+        });
+
+        function remove(id){
+        swal({
+        title: "",
+        text: "Hapus kurikulum ?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: BaseUrl+'/api/admin/kurikulum/'+id,
+                method: 'DELETE',
+                processData: false,
+                contentType: false,
+                cache: false,
+                complete: (response) => {
+                    if(response.status == 200) {
+                        swal("Kurikulum berhasil dihapus", {
+                        icon: "success",
+                        });
+                        table.ajax.reload();
+                    }else {
+                        console.log('gagal');
+                    }
+                }
+                });
+                
         }
-    });
-    });
-</script>
-<script>
-    let table = $("#dataTable").DataTable({
-      processing: true,
-      serverSide: true,
-      ajax: BaseUrl+'/api/admin/kurikulum',
-      columns: [
-        {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
-        {data: 'title', name: 'title'},
-        {data: 'publish_at', name: 'publish_at'},
-        {
-          "render": function ( data, type, row ) {
-          return `
-          <a href="/` + row.slug +`" type="button" target='_blank' class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
-          <a href="kurikulum/` + row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
-          <button id="delete" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
-          ` }
-        }
-      ]
-    });
-    $('#dataTable tbody').on('click', '#delete', function(){
-      let id = $(this).data('id');
-      remove(id);
-    }); 
-    function remove(id) {
-      swal({
-          title: "",
-          text: "Hapus kurikulum?",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
-          })
-          .then((willDelete) => {
-          if (willDelete) {
-              $.ajax({
-                  url: BaseUrl+'/api/admin/kurikulum/'+id,
-                  method: 'DELETE',
-                  processData: false,
-                  contentType: false,
-                  cache: false,
-                  complete: (response) => {
-                      if(response.status == 200) {
-                          table.ajax.reload();
-                      }else {
-                          console.log(response.responseJSON.message);
-                      }
-                  }
-                  });
-                  swal("Kurikulum berhasil dihapus", {
-                  icon: "success",
-              });
-          }
-      });
+        });  
     }
-  
-    function reloadDataTable(){
-      table.ajax.reload();
+
+    function reload(){
+        table.ajax.reload(null, false);
     }
-  
+
     setInterval(() => {
         table.ajax.reload();
     }, 30000);
-  </script>
+    </script>
 @endpush

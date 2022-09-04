@@ -16,12 +16,20 @@ use App\Models\Coordinator;
 use App\Models\DecLetter;
 use App\Models\Kurikulum;
 use App\Models\Structure;
+use App\Models\VisiMisi;
 
 class DashboardController extends Controller
 {
     public function index()
     {
         return view('backend.dashboard');
+    }
+
+    public function visiMisi()
+    {
+        return view('backend.visi-misi.visiMisi', [
+            'visi'     => VisiMisi::latest()->first()
+        ]);
     }
 
     public function users()

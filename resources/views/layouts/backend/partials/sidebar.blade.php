@@ -123,7 +123,7 @@
               <a class="collapse-item" href="{{ route('admin.sekretaris') }}">Sekretaris</a>
               <a class="collapse-item" href="{{ route('admin.bendahara') }}">Bendahara</a>
               <a class="collapse-item" href="{{ route('admin.wilayah') }}">Koordinator wilayah</a>
-              <a class="collapse-item" href="{{ route('admin.kurikulum') }}">Bidang Kurikulum</a>
+              <a class="collapse-item" href="{{ route('admin.bid-kurikulum') }}">Bidang Kurikulum</a>
               <a class="collapse-item" href="{{ route('admin.humas') }}">HUMAS</a>
           </div>
       </div>
@@ -137,7 +137,7 @@
     <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('admin.sejarah') }}">Sejarah</a>
-            <a class="collapse-item" href="#">Visi Misi & Tujuan</a>
+            <a class="collapse-item" href="{{ route('admin.visiMisi') }}">Visi Misi & Tujuan</a>
             <a class="collapse-item" href="{{ route('admin.struktur') }}">Struktur Organisasi</a>
             <a class="collapse-item" href="{{ route('admin.galeri') }}">Galeri</a>
         </div>
