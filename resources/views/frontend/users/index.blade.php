@@ -27,10 +27,10 @@
             <thead>
                 <tr>
                     <th>No</th>
+                    <th>No Anggota</th>
+                    <th>Program Studi</th>
+                    <th>Fakultas</th>
                     <th>Universitas</th>
-                    <th>Kaprodi</th>
-                    <th>Jurusan</th>
-                    <th>Email Kaprodi</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,10 +54,10 @@
     ajax: BaseUrl+'/api/list-anggota',
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
-      {data: 'nama_univ', name: 'nama_univ'},
-      {data: 'nama_kajur', name: 'nama_kajur'},
+      {data: 'user_id', name: 'user_id'},
       {data: 'nama_jurusan', name: 'nama_jurusan'},
-      {data: 'email_kaprodi', name: 'email_kaprodi'},
+      {data: 'nama_fakultas', name: 'nama_fakultas'},
+      {data: 'nama_univ', name: 'nama_univ'},
     ]
   });
   setInterval(() => {

@@ -118,7 +118,7 @@ class FrontendController extends Controller
     public function about()
     {
         return view('frontend.pages.about', [
-            'title' => 'Sejarah',
+            'title'     => 'Sejarah',
             'events'    => EventCategory::latest()->get()
         ]);
     }
@@ -126,7 +126,7 @@ class FrontendController extends Controller
     public function visiMisi()
     {
         return view('frontend.pages.visi-misi', [
-            'title' => 'Visi Misi dan Tujuan',
+            'title'     => 'Visi Misi dan Tujuan',
             'events'    => EventCategory::latest()->get()
         ]);
     }
