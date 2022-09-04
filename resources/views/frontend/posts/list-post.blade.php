@@ -6,7 +6,7 @@
     @component('components.frontend.breadcrumb')
         @slot('breadcrumb')
         <div class="page__title-wrapper text-center">
-         <h3>KOBI | Berita/Artikel</h3>
+         <h3>Berita/Artikel</h3>
       </div>
       @endslot
     @endcomponent

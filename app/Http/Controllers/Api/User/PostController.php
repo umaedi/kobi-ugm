@@ -27,7 +27,7 @@ class PostController extends Controller
     public function postList(Request $request)
     {
         if ($request->ajax()) {
-            $posts = Post::with('category')->latest()->get();
+            $posts = Post::with('category')->orderBy('publish_at', 'DESC')->get();
             return DataTables::of($posts)->make(true);
         }
     }

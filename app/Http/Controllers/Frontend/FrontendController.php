@@ -66,7 +66,7 @@ class FrontendController extends Controller
 
     public function listPost()
     {
-        $posts = Post::latest();
+        $posts = Post::orderBy('publish_at', 'DESC');
 
         if (request('search')) {
             $posts->where('title', 'like', '%' . request('search') . '%');
