@@ -57,7 +57,7 @@ class KurikulumController extends Controller
 
         if ($request->file('file_kurikulum')) {
             $file = $request->file('file_kurikulum');
-            $file->storeAs('public/kurik', $file->hashName());
+            $file->storeAs('public/kurikulum', $file->hashName());
         }
 
         $post = Kurikulum::create([
@@ -120,9 +120,9 @@ class KurikulumController extends Controller
             ]);
             return $this->sendResponseUpdate($dokKurikulum);
         } else {
-            Storage::disk('local')->delete('public/kurik/' . basename($dokKurikulum->image));
+            Storage::disk('local')->delete('public/kurikulum/' . basename($dokKurikulum->image));
             $fileKurikulum = $request->file('file_kurikulum');
-            $fileKurikulum->storeAs('public/kurik', $fileKurikulum->hashName());
+            $fileKurikulum->storeAs('public/kurikulum', $fileKurikulum->hashName());
 
             $dokKurikulum->update([
                 'title'         => $request->title,
@@ -143,7 +143,7 @@ class KurikulumController extends Controller
     public function destroy($id)
     {
         $dokKurikulum = Kurikulum::findOrfail($id);
-        Storage::disk('local')->delete('public/kurik/' . basename($dokKurikulum->file_dokumen));
+        Storage::disk('local')->delete('public/kurikulum/' . basename($dokKurikulum->file_dokumen));
         $dokKurikulum->destroy($id);
         return $this->sendResponseDelete($dokKurikulum);
     }
