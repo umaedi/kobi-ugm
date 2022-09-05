@@ -24,7 +24,7 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <thead>
+          <thead>
                 <tr>
                     <th>No</th>
                     <th>No Anggota</th>
@@ -38,7 +38,7 @@
             </tbody>
         </table>
     </div>
-      </div>
+    </div>
 </div>
 @endslot
 @endcomponent
@@ -47,11 +47,14 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script>
+
+function getDataUsers(search) {
+
   let table = $("#dataTable").DataTable({
     processing: true,
     serverSide: true,
     responsive: true,
-    ajax: BaseUrl+'/api/list-anggota',
+    ajax: BaseUrl+'/api/list-anggota';,
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
       {data: 'user_id', name: 'user_id'},
@@ -60,10 +63,12 @@
       {data: 'nama_univ', name: 'nama_univ'},
     ]
   });
+}
+getDataUsers();
+  
   setInterval(() => {
       table.ajax.reload();
   }, 30000);
 
-  // $('#dataTable_filter label ').html('')
 </script>
 @endpush

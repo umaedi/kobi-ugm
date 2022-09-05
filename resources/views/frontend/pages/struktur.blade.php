@@ -33,7 +33,7 @@
       </div>
         <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
-                <h2>Pendiri KOBI (Konsorium Biologi Indonesia)</h2>
+                <h2>Pendiri KOBI</h2>
             </div>    
         </div>
         <div class="row justify-content-center" id="founder-content">
@@ -41,7 +41,7 @@
         </div>
         <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
-                <h2>Dewan Penasihat KOBI (Konsorium Biologi Indonesia)</h2>
+                <h2>Dewan Penasihat KOBI</h2>
             </div>    
         </div>
         <div class="row justify-content-center" id="advisor-content">
@@ -49,7 +49,7 @@
         </div>
          <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
-                <h2>Struktur Organisasi KOBI (Konsorium Biologi Indonesia)</h2>
+                <h2>Struktur Organisasi KOBI</h2>
                 <h4>Ketua dan Wakil Ketua</h4>
             </div>    
         </div>
@@ -58,7 +58,7 @@
         </div>
          <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
-                <h2>Sekretaris KOBI (Konsorium Biologi Indonesia)</h2>
+                <h2>Sekretaris KOBI</h2>
             </div>    
         </div>
         <div class="row justify-content-center" id="secretary-content">
@@ -66,7 +66,7 @@
         </div>
          <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
-                <h2>Bendahara KOBI (Konsorium Biologi Indonesia)</h2>
+                <h2>Bendahara KOBI</h2>
             </div>    
         </div>
         <div class="row justify-content-center" id="treasurer-content">
