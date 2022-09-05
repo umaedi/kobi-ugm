@@ -54,7 +54,7 @@ function getDataUsers(search) {
     processing: true,
     serverSide: true,
     responsive: true,
-    ajax: BaseUrl+'/api/list-anggota';,
+    ajax: BaseUrl+'/api/list-anggota',
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
       {data: 'user_id', name: 'user_id'},
