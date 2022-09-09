@@ -14,9 +14,6 @@
             <div class="lh-1">
               <h1 class="h6 mb-0 text-white lh-1">{{ __('Formulir Pendaftaran Anggota KOBI') }}</h1>
             </div>
-            <div class="lh-1 ms-auto">
-              <a href="{{ url('/') }}" class="text-decoration-none"><h1 class="h6 mb-0 text-white lh-1 ">{{ __('Kembali') }}</h1></a>
-            </div>
           </div>
         <div>
             <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -105,7 +102,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="formFile" class="form-label">{{ __('Unggah Bukti Pembayaran | Lihat No Rekening') }}</label>
+                        <label for="formFile" class="form-label">{{ __('Unggah Bukti Pembayaran') }}</label>
                         <input name="bukti_pembayaran" class="form-control" type="file" id="formFile">
                         <small id="passwordHelpBlock" class="form-text">
                           <span><a href="{{ route('persyaratan') }}">Lihat no rekening dibagian persyaratan</a></span> 

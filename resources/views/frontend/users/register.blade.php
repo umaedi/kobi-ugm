@@ -14,9 +14,6 @@
             <div class="lh-1">
               <h1 class="h6 mb-0 text-white lh-1">{{ __('Formulir Pendaftaran Anggota KOBI') }}</h1>
             </div>
-            <div class="lh-1 ms-auto">
-              <a href="{{ url('/') }}" class="text-decoration-none"><h1 class="h6 mb-0 text-white lh-1 ">{{ __('Kembali') }}</h1></a>
-            </div>
           </div>
         <div>
             <div class="my-3 p-3 bg-body rounded shadow-sm">
