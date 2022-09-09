@@ -4,7 +4,7 @@
         @component('components.frontend.breadcrumb')
         @slot('breadcrumb')
         <div class="page__title-wrapper text-center">
-         <h3>KOBI | Upload File Bukti STR</h3>
+         <h3>Upload File Bukti STR</h3>
       </div>
       @endslot
     @endcomponent

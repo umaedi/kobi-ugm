@@ -28,7 +28,7 @@
                      </select>
                   </div>
             </div>
-         <div class="col-md-2 x-galeri__button">
+         <div class="col-md-2 x-galeri__button mt-3">
             <button type="submit" class="w-btn w-btn" onclick="getKeyword()">Tampilkan</button>
          </div>
       </div>

@@ -1,11 +1,11 @@
 @extends('layouts.frontend.app')
 @section('content')
     @component('components.frontend.breadcrumb')
-      @slot('breadcrumb')
-      <div class="page__title-wrapper text-center">
-      <h3>{{ __('Pendaftaran Anggota Baru') }}</h3>
-      </div>
-      @endslot
+    @slot('breadcrumb')
+    <div class="page__title-wrapper text-center">
+    <h3>{{ __('Pendaftaran Anggota Lama') }}</h3>
+    </div>
+    @endslot
     @endcomponent
 
     @component('components.frontend.page_content')
@@ -20,7 +20,7 @@
           </div>
         <div>
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h6 class="border-bottom pb-2 mb-0">{{ __('Mohon isi formulir dibawah ini') }}</h6>
+                <h6 class="border-bottom pb-2 mb-3">{{ __('Mohon isi formulir dibawah ini') }}</h6>
                 <form id="store">
                   @csrf
                   <div class="row">
@@ -32,18 +32,36 @@
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="email" class="form-label mt-3">{{ __('Email Pendaftar') }}</label>
-                        <input name="email_user" type="email" class="form-control" id="email">
+                        <label for="kaprodi" class="form-label mt-3">{{ __('Nama Fakultas') }}</label>
+                        <input name="nama_fakultas" type="text" class="form-control" id="kaprodi">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="jurusan" class="form-label mt-3">{{ __('Nama Fakultas') }}</label>
-                        <input name="nama_fakultas" type="text" class="form-control" id="jurusan">
+                        <label for="jurusan" class="form-label mt-3">{{ __('Nama Program Studi/Jurusan') }}</label>
+                        <input name="nama_jurusan" type="text" class="form-control" id="jurusan">
                       </div>
                     </div>
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label for="email" class="form-label mt-3">{{ __('Email Ketua Program Studi/Jurusan') }}</label>
+                        <input name="email_kaprodi" type="email" class="form-control" id="email">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label for="email" class="form-label mt-3">{{ __('Email Pendaftar') }}</label>
+                        <input name="email_user" type="email" class="form-control" id="email">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="alamat" class="form-label">{{ __('Alamat Pengiriman Sertifikat') }}</label>
+                    <textarea name="alamat" class="form-control" id="alamat" rows="5" name="alamat"></textarea>
+                  </div>
+                  <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="provinsi" class="form-label mt-3">{{ __('Provinsi') }}</label>
@@ -57,12 +75,6 @@
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="email" class="form-label mt-3">{{ __('Nama Prodi/Jurusan') }}</label>
-                        <input name="nama_jurusan" type="text" class="form-control" id="email">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="mb-3">
                         <label for="kota" class="form-label mt-3">{{ __('Kabupaten/Kota') }}</label>
                         <select name="kabupaten" class="form-control" id="kabupaten">
                           <option>{{ __('Pilih Kabupaten') }}</option>
@@ -71,42 +83,34 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6 mt-3">
-                      <label for="alamat" class="form-label">{{ __('Email Kaprodi/Jurusan') }}</label>
-                      <input name="email_kaprodi" type="text" class="form-control" id="jurusan">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="name" class="form-label mt-3">{{ __('Nomor Telepon Program Studi/Jurusan') }}</label>
+                        <input name="no_tlp" type="text" class="form-control phone-number">
+                      </div>
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="pos" class="form-label mt-3">{{ __('Kode Pos') }}</label>
-                        <input name="kode_pos" type="number" class="form-control" id="pos">
-                      </div>
+                            <label for="pos" class="form-label mt-3">{{ __('Kode Pos') }}</label>
+                            <input name="kode_pos" type="number" class="form-control" id="pos">
+                          </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="name" class="form-label mt-3">{{ ('Nomor Telpon Prodi/jurusan') }}</label>
-                        <input name="no_tlp" type="text" class="form-control phone-number">
+                        <label for="name" class="form-label mt-3">{{ __('Nomor WhatsApp/Narahubung') }}</label>
+                        <input name="no_wa" type="text" class="form-control phone-number">
                       </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="mb-3">
-                          <label for="name" class="form-label mt-3">{{ __('Unggah bukti pembayaran') }}</label>
-                          <input name="bukti_pembayaran" type="file" class="form-control phone-number">
-                          <small id="passwordHelpBlock" class="form-text">
-                            <span><a href="{{ route('persyaratan') }}">Lihat bagian persyaratan</a></span> 
-                          </small>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                          <label for="name" class="form-label mt-3">{{ __('Nomor WhatsApp/Narahubung') }}</label>
-                          <input name="no_wa" type="text" class="form-control phone-number">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="name" class="form-label mt-3">{{ __('Alamat Pengiriman Sertifikat') }}</label>
-                      <textarea name="alamat" type="text" class="form-control phone-number" rows="3"></textarea>
+                      <div class="mb-3">
+                        <label for="formFile" class="form-label">{{ __('Unggah Bukti Pembayaran | Lihat No Rekening') }}</label>
+                        <input name="bukti_pembayaran" class="form-control" type="file" id="formFile">
+                        <small id="passwordHelpBlock" class="form-text">
+                          <span><a href="{{ route('persyaratan') }}">Lihat no rekening dibagian persyaratan</a></span> 
+                        </small>
+                      </div>
                     </div>
                   </div>
                   <button id="btnSend" type="submit" class="w-btn w-btn">{{ __('Daftar') }}</button>
@@ -177,6 +181,8 @@
                     window.location.replace('/notifikasi/pendaftaran');
                   });
                 }else {
+                  $('#btnSend').removeAttr('style', 'display: none');
+                  $('#btnSending').attr('style', 'display: none');
                   swal({
                     title: "",
                     text: response.responseJSON.message,

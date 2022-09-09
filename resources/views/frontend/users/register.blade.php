@@ -32,22 +32,28 @@
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="kaprodi" class="form-label mt-3">{{ __('Nama Ketua Program Studi/Ketua Jurusan ') }}</label>
-                        <input name="nama_kajur" type="text" class="form-control" id="kaprodi">
+                        <label for="kaprodi" class="form-label mt-3">{{ __('Nama Fakultas') }}</label>
+                        <input name="nama_fakultas" type="text" class="form-control" id="kaprodi">
                       </div>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="jurusan" class="form-label mt-3">{{ __('Nama Prodi/Jursan') }}</label>
+                        <label for="jurusan" class="form-label mt-3">{{ __('Nama Program Studi/Jurusan') }}</label>
                         <input name="nama_jurusan" type="text" class="form-control" id="jurusan">
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                       <div class="mb-3">
                         <label for="email" class="form-label mt-3">{{ __('Email Ketua Program Studi/Jurusan') }}</label>
                         <input name="email_kaprodi" type="email" class="form-control" id="email">
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label for="email" class="form-label mt-3">{{ __('Email Pendaftar') }}</label>
+                        <input name="email_user" type="email" class="form-control" id="email">
                       </div>
                     </div>
                   </div>
@@ -113,7 +119,7 @@
                       </div>
                     </div>
                   </div>
-                  <button id="btnSend" type="submit" class="w-btn w-btn my-3">{{ __('Daftar') }}</button>
+                  <button id="btnSend" type="submit" class="w-btn w-btn">{{ __('Daftar') }}</button>
                 </form>
                 <button id="btnSending" class="w-btn w-btn" type="button" disabled style="display: none">Ajukan...
                   <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -174,13 +180,15 @@
 
                   swal({
                     title: "",
-                    text: response.responseJSON.message,
+                    text: "Pendaftaran Berhasil",
                     icon: "success"
                   })
                   .then(() => {
-                    window.location.replace('/list-anggota');
+                    window.location.replace('/notifikasi/pendaftaran');
                   });
                 }else {
+                  $('#btnSend').removeAttr('style', 'display: none');
+                  $('#btnSending').attr('style', 'display: none');
                   swal({
                     title: "",
                     text: response.responseJSON.message,
