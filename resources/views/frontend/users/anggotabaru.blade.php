@@ -91,8 +91,11 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="name" class="form-label mt-3">{{ __('Alamat Pengiriman Sertifikat') }}</label>
-                            <textarea name="alamat" type="text" class="form-control phone-number"></textarea>
+                          <label for="name" class="form-label mt-3">{{ __('Unggah bukti pembayaran') }}</label>
+                          <input name="bukti_pembayaran" type="file" class="form-control phone-number">
+                          <small id="passwordHelpBlock" class="form-text">
+                            <span><a href="{{ route('persyaratan') }}">Lihat bagian persyaratan</a></span> 
+                          </small>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -102,11 +105,8 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                          <label for="name" class="form-label mt-3">{{ __('Unggah bukti pembayaran') }}</label>
-                          <input name="bukti_pembayaran" type="file" class="form-control phone-number">
-                          <small id="passwordHelpBlock" class="form-text">
-                            <span><a href="{{ route('persyaratan') }}">Lihat bagian persyaratan</a></span> 
-                          </small>
+                      <label for="name" class="form-label mt-3">{{ __('Alamat Pengiriman Sertifikat') }}</label>
+                      <textarea name="alamat" type="text" class="form-control phone-number" rows="3"></textarea>
                     </div>
                   </div>
                   <button id="btnSend" type="submit" class="w-btn w-btn">{{ __('Daftar') }}</button>
