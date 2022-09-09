@@ -221,4 +221,12 @@ class FrontendController extends Controller
             'galleries' => $gallery->paginate(12)
         ]);
     }
+
+    public function notifikasi()
+    {
+        return view('frontend.pages.notifikasi', [
+            'title'     => 'Notifikasi',
+            'events'    => EventCategory::latest()->get(),
+        ]);
+    }
 }

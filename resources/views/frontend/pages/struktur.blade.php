@@ -16,14 +16,15 @@
                 <p id="decLatter" class="text-center"></p>
             </div>
         </div>
-        <div class="row justify-content-center portfolio__menu wow fadeInUp mb-50" data-wow-delay=".2s">
-            <div class="col-md-4 ">
+        <div class="row portfolio__menu wow fadeInUp mb-50" data-wow-delay=".2s">
+            <div class="col-md-5 ">
                   <div class="sidebar__search">
+                     <?php $start = date('Y'); $end = 2019 ?>
                      <select class="form-control" name="search">
                      <option selected value="{{ date('Y') }}">Tampilkan berdasarkan tahun</option>
-                     <option value="2020">2020</option>
-                     <option value="2021">2021</option>
-                     <option value="2022">2022</option>
+                     <?php for($i=$end; $i<=$start; $i++) { ?>
+                        <option value="<?php echo $i; ?>"> <?php echo ucwords($i); ?> </option>
+                     <?php } ?>
                      </select>
                   </div>
             </div>

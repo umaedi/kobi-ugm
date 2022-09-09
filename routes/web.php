@@ -29,6 +29,7 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/kurikulum/kobi', 'kurikulum')->name('kurikulum');
     Route::get('/ad-art', 'adArt')->name('ad-art')->name('adart');
     Route::get('/galeri/foto', 'galeri')->name('galeri');
+    Route::get('/notifikasi/pendaftaran', 'notifikasi')->name('notifikasi');
 });
 
 Route::controller(\App\Http\Controllers\Auth\AuthController::class)->group(function () {

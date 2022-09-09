@@ -28,7 +28,8 @@ class UnivController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nama_univ'     => 'required',
-            'nama_kajur'    => 'required',
+            'nama_fakultas' => 'required',
+            'email_user'    => 'required',
             'nama_jurusan'  => 'required',
             'email_kaprodi' => 'required',
             'alamat'        => 'required',
@@ -37,7 +38,8 @@ class UnivController extends Controller
             'no_tlp'        => 'required',
             'no_wa'         => 'required',
             'kode_pos'      => 'required',
-            'bukti_pembayaran' => 'required',
+            'bukti_pembayaran' => 'required|file|max:2048|mimes:jpg,jpeg,png,pdf',
+
         ]);
 
         if ($validator->fails()) {
@@ -49,8 +51,10 @@ class UnivController extends Controller
 
         $univ = Universitas::create([
             'nama_univ'     => $request->nama_univ,
-            'user_id'       => '1',
-            'nama_kajur'    => $request->nama_kajur,
+            'nama_fakultas' => $request->nama_fakultas,
+            'thn_anggota'   => date('Y'),
+            'user_id'       => $request->user_id,
+            'email_user'    => $request->email_user,
             'nama_jurusan'  => $request->nama_jurusan,
             'email_kaprodi' => $request->email_kaprodi,
             'alamat'        => $request->alamat,
@@ -59,7 +63,6 @@ class UnivController extends Controller
             'no_tlp'        => $request->no_tlp,
             'no_wa'         => $request->no_wa,
             'kode_pos'      => $request->kode_pos,
-            'no_anggota'      => $request->no_anggota,
             'bukti_pembayaran' => $struk->hashName()
         ]);
 

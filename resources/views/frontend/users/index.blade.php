@@ -31,6 +31,7 @@
                     <th>Program Studi</th>
                     <th>Fakultas</th>
                     <th>Universitas</th>
+                    <th>Anggota</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,12 +49,13 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script>
 
-function getDataUsers(search) {
-
   let table = $("#dataTable").DataTable({
     processing: true,
     serverSide: true,
     responsive: true,
+    language: {
+    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
+    },
     ajax: BaseUrl+'/api/list-anggota',
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
@@ -61,10 +63,9 @@ function getDataUsers(search) {
       {data: 'nama_jurusan', name: 'nama_jurusan'},
       {data: 'nama_fakultas', name: 'nama_fakultas'},
       {data: 'nama_univ', name: 'nama_univ'},
-    ]
+      {data: 'thn_anggota', name: 'thn_anggota'},
+    ],
   });
-}
-getDataUsers();
   
   setInterval(() => {
       table.ajax.reload();

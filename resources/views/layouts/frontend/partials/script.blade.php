@@ -23,7 +23,7 @@
                 if(response.status == 200) {
                     const data  = response.responseJSON.data.adart;
                     const adArt = data[0];
-                    $('nav #adArt').attr('href', '{{ asset('storage/dokumen') }}/' + `${adArt.file_dokumen}`);
+                    $('nav #adArt').attr('href', '{{ asset('storage/ad-art') }}/' + `${adArt.file_dokumen}`);
                 }
             }
         });
