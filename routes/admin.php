@@ -7,6 +7,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::controller(\App\Http\Controllers\Backend\DashboardController::class)->group(function () {
             Route::get('/dashboard', 'index');
             Route::get('/users', 'users')->name('admin.users');
+            Route::get('/anggota/detail/{id}', 'userEdit');
             Route::get('/users/active', 'usersActive')->name('admin.users-active');
             Route::get('/categories', 'categories')->name('categories');
             Route::get('/publikasi', 'publikasi')->name('admin.publikasi');

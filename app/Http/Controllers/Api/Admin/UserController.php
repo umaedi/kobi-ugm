@@ -13,7 +13,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = Universitas::where('verifikasi', 0)->latest()->get();
+            $users = Universitas::where('status', 0)->latest()->get();
             return DataTables::of($users)->make(true);
         }
     }
@@ -21,7 +21,7 @@ class UserController extends Controller
     public function userActive(Request $request)
     {
         if ($request->ajax()) {
-            $users = Universitas::where('verifikasi', 1)->latest()->get();
+            $users = Universitas::where('status', 1)->latest()->get();
             return DataTables::of($users)->make(true);
         }
     }

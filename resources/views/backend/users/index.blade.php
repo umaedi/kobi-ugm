@@ -47,7 +47,7 @@
       {
         "render": function ( data, type, row ) {
         return `
-        <button id="edit" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
+        <a href="/admin/anggota/detail/`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
         ` }
       }
     ]

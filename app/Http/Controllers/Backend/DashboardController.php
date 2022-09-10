@@ -16,6 +16,7 @@ use App\Models\Coordinator;
 use App\Models\DecLetter;
 use App\Models\Kurikulum;
 use App\Models\Structure;
+use App\Models\Universitas;
 use App\Models\VisiMisi;
 
 class DashboardController extends Controller
@@ -35,6 +36,14 @@ class DashboardController extends Controller
     public function users()
     {
         return view('backend.users.index');
+    }
+
+    public function userEdit($id)
+    {
+        $anggota = Universitas::findOrfail($id);
+        return view('backend.users.edit', [
+            'anggota' => $anggota
+        ]);
     }
 
     public function usersActive()

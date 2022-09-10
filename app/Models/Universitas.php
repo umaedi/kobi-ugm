@@ -21,4 +21,14 @@ class Universitas extends Model
         return Carbon::parse($this->attributes['created_at'])
             ->translatedFormat('l, d F Y');
     }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function regency()
+    {
+        return $this->belongsTo(Regency::class);
+    }
 }

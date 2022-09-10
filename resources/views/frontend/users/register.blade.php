@@ -24,13 +24,13 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="univ" class="form-label mt-3">{{ __('Nama Universitas') }}</label>
-                        <input name="nama_univ" type="text" class="form-control" id="univ">
+                        <input name="nama_univ" type="text" class="form-control" id="univ" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="kaprodi" class="form-label mt-3">{{ __('Nama Fakultas') }}</label>
-                        <input name="nama_fakultas" type="text" class="form-control" id="kaprodi">
+                        <input name="nama_fakultas" type="text" class="form-control" id="kaprodi" required>
                       </div>
                     </div>
                   </div>
@@ -38,31 +38,31 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="jurusan" class="form-label mt-3">{{ __('Nama Program Studi/Jurusan') }}</label>
-                        <input name="nama_jurusan" type="text" class="form-control" id="jurusan">
+                        <input name="nama_jurusan" type="text" class="form-control" id="jurusan" required>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="mb-3">
                         <label for="email" class="form-label mt-3">{{ __('Email Ketua Program Studi/Jurusan') }}</label>
-                        <input name="email_kaprodi" type="email" class="form-control" id="email">
+                        <input name="email_kaprodi" type="email" class="form-control" id="email" required>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="mb-3">
                         <label for="email" class="form-label mt-3">{{ __('Email Pendaftar') }}</label>
-                        <input name="email_user" type="email" class="form-control" id="email">
+                        <input name="email_user" type="email" class="form-control" id="email" required>
                       </div>
                     </div>
                   </div>
                   <div class="mb-3">
                     <label for="alamat" class="form-label">{{ __('Alamat Pengiriman Sertifikat') }}</label>
-                    <textarea name="alamat" class="form-control" id="alamat" rows="5" name="alamat"></textarea>
+                    <textarea name="alamat" class="form-control" id="alamat" rows="5" name="alamat" required></textarea>
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="provinsi" class="form-label mt-3">{{ __('Provinsi') }}</label>
-                        <select name="provinsi" class="form-control" id="province">
+                        <select name="province_id" class="form-control" id="province" required>
                           <option>{{ __('Pilih Provinsi') }}</option>
                           @foreach ($provinces as $prov)
                           <option value="{{ $prov->id }}">{{ $prov->name }}</option>
@@ -73,7 +73,7 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="kota" class="form-label mt-3">{{ __('Kabupaten/Kota') }}</label>
-                        <select name="kabupaten" class="form-control" id="kabupaten">
+                        <select name="regency_id" class="form-control" id="kabupaten" required>
                           <option>{{ __('Pilih Kabupaten') }}</option>
                         </select>
                       </div>
@@ -83,19 +83,19 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor Telepon Program Studi/Jurusan') }}</label>
-                        <input name="no_tlp" type="text" class="form-control phone-number">
+                        <input name="no_tlp" type="text" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor WhatsApp/Narahubung') }}</label>
-                        <input name="no_wa" type="text" class="form-control phone-number">
+                        <input name="no_wa" type="text" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="mb-3">
                         <label for="pos" class="form-label mt-3">{{ __('Kode Pos') }}</label>
-                        <input name="kode_pos" type="number" class="form-control" id="pos">
+                        <input name="kode_pos" type="number" class="form-control" id="pos" required>
                       </div>
                     </div>
                   </div>
@@ -103,13 +103,13 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="provinsi" class="form-label">{{ __('Nomor Anggota') }}</label>
-                        <input name="no_anggota" type="text" class="form-control text-uppercase" id="provinsi">
+                        <input name="no_anggota" type="text" class="form-control text-uppercase" id="provinsi" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="formFile" class="form-label">{{ __('Unggah Bukti Pembayaran') }}</label>
-                        <input name="bukti_pembayaran" class="form-control" type="file" id="formFile">
+                        <input name="bukti_pembayaran" class="form-control" type="file" id="formFile" required>
                         <small id="passwordHelpBlock" class="form-text">
                           <span><a href="{{ route('persyaratan') }}">Lihat bagian persyaratan</a></span> 
                         </small>
@@ -146,7 +146,7 @@
                 let append = '';
                 $.each(data, (k, v) => {
                   append +=' <option value='+ v.id +'>'+ v.name +'</option>';
-                  $('select[name=kabupaten]').html(append);
+                  $('select[name=regency_id]').html(append);
                 });
               }
             }

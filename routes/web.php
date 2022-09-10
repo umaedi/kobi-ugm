@@ -13,8 +13,8 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/naskah-akademik', 'naskah')->name('naskah-akademik');
     Route::get('/laporan-kegiatan', 'laporan')->name('laporan');
     Route::get('/persyaratan', 'persyaratan')->name('persyaratan');
-    Route::get('/pendaftaran-anggota', 'register')->name('pendaftaran');
-    Route::get('/pendaftaran-anggota/baru', 'newMember')->name('pendaftaran-anggota-baru');
+    Route::get('/pendaftaran/anggota-lama', 'register')->name('pendaftaran');
+    Route::get('/pendaftaran/anggota-baru', 'newMember')->name('pendaftaran-anggota-baru');
     Route::get('/list-anggota', 'anggota')->name('list-anggota');
     Route::get('/posts', 'posts')->name('posts');
     Route::get('/{post:slug}', 'show')->name('show');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api as Controller;
 use App\Models\Universitas;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -14,7 +15,7 @@ class UnivController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $universitas = Universitas::where('verifikasi', 1)->latest()->get();
+            $universitas = Universitas::where('status', 1)->latest()->get();
             return DataTables::of($universitas)->make(true);
         }
     }
@@ -33,8 +34,8 @@ class UnivController extends Controller
             'nama_jurusan'  => 'required',
             'email_kaprodi' => 'required',
             'alamat'        => 'required',
-            'provinsi'      => 'required',
-            'kabupaten'     => 'required',
+            'province_id'   => 'required',
+            'regency_id'    => 'required',
             'no_tlp'        => 'required',
             'no_wa'         => 'required',
             'kode_pos'      => 'required',
@@ -58,8 +59,8 @@ class UnivController extends Controller
             'nama_jurusan'  => $request->nama_jurusan,
             'email_kaprodi' => $request->email_kaprodi,
             'alamat'        => $request->alamat,
-            'provinsi'      => $request->provinsi,
-            'kabupaten'     => $request->kabupaten,
+            'province_id'   => $request->province_id,
+            'regency_id'    => $request->regency_id,
             'no_tlp'        => $request->no_tlp,
             'no_wa'         => $request->no_wa,
             'kode_pos'      => $request->kode_pos,
@@ -81,7 +82,30 @@ class UnivController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        //create user_id
+        $data = DB::table('universitas')->select('user_id')->orderBy('updated_at', 'DESC')->first();
+        $userId = $data->user_id;
+        $userId = substr($userId, -3);
+
+        $no_anggota = $userId;
+        if ($no_anggota <= $userId) {
+            $no_anggota++;
+        }
+
+        $year = substr(date('Y'), -2);
+
+        $user_id = 'KOBI-S1' . '-' . $year . '-' . +0 . $no_anggota;
+        return $this->sendResponseError(json_encode($user_id));
+
+        $universitas = Universitas::findOrfail($id);
+        if ($request->pesan == "") {
+            $universitas->where('id', $id)->update([
+                'status'    => $request->status,
+                'user_id'   => $user_id
+            ]);
+        }
+
+        return $this->sendResponseUpdate($universitas);
     }
 
     public function destroy($id)
