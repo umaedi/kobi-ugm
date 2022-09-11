@@ -78,7 +78,7 @@ class UnivController extends Controller
 
 
         $struk = $request->file('bukti_pembayaran');
-        $struk->storeAs('public/struk', $struk->hashName());
+        $struk->storeAs('public/strukpembayaran', $struk->hashName());
 
         $univ = Universitas::create([
             'nama_univ'     => $request->nama_univ,
@@ -146,7 +146,7 @@ class UnivController extends Controller
     {
         $user = Universitas::findOrfail($id);
         if ($user->bukti_pembayaran) {
-            Storage::disk('local')->delete('public/struk/' . basename($user->bukti_pembayaran));
+            Storage::disk('local')->delete('public/strukpembayaran/' . basename($user->bukti_pembayaran));
             $user->destroy($id);
         }
         return $this->sendResponseDelete($user);

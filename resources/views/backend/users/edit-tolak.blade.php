@@ -82,7 +82,7 @@
                 <div class="col-md-6">
                   <div class="mt-3">
                     <label for="formFile" class="form-label">{{ __('Lihat Bukti Pembayaran') }}</label>
-                    <a href="{{ asset('storage/struk/' . $anggota->bukti_pembayaran) }}" class="btn btn-sm btn-success form-control my-colorpicker1" target="_blank">lihat</a>
+                    <a href="{{ asset('storage/strukpembayaran/' . $anggota->bukti_pembayaran) }}" class="btn btn-sm btn-success form-control my-colorpicker1" target="_blank">lihat</a>
                   </div>
                 </div>
               </div>

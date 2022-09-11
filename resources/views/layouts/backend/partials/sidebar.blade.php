@@ -2,7 +2,7 @@
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/dashboard">
-      <div class="sidebar-brand-text">KONSORIUM BIOLOGI INDONESIA</div>
+      <div class="sidebar-brand-text">KONSORSIUM BIOLOGI INDONESIA</div>
   </a>
 
   <!-- Divider -->
