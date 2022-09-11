@@ -21,6 +21,7 @@
                 <form id="store">
                   @csrf
                   <div class="row">
+                    <input type="hidden" name="status" value="1">
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="univ" class="form-label mt-3">{{ __('Nama Universitas') }}</label>
@@ -35,10 +36,20 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="mb-3">
                         <label for="jurusan" class="form-label mt-3">{{ __('Nama Program Studi/Jurusan') }}</label>
                         <input name="nama_jurusan" type="text" class="form-control" id="jurusan" required>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="mb-3">
+                        <label for="jurusan" class="form-label mt-3">{{ __('Jenjang Studi') }}</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="jenjang_studi">
+                          <option>S1</option>
+                          <option>S2</option>
+                          <option>S3</option>
+                        </select>
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -102,8 +113,8 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="provinsi" class="form-label">{{ __('Nomor Anggota') }}</label>
-                        <input name="no_anggota" type="text" class="form-control text-uppercase" id="provinsi" required>
+                        <label for="no_anggota" class="form-label">{{ __('Nomor Anggota') }}</label>
+                        <input name="no_anggota" type="text" class="form-control text-uppercase" id="no_anggota" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -181,7 +192,7 @@
                     icon: "success"
                   })
                   .then(() => {
-                    window.location.replace('/notifikasi/pendaftaran');
+                    window.location.replace('/list-anggota');
                   });
                 }else {
                   $('#btnSend').removeAttr('style', 'display: none');

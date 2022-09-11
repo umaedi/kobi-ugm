@@ -7,7 +7,7 @@
 
   @component('components.backend.card-table')
     @slot('header')
-      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">List Anggota Aktif</h3>
+      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">List Anggota Ditolak</h3>
     @endslot
     @slot('dropdown')
       <div class="dropdown-header">Dropdown Header:</div>
@@ -38,7 +38,7 @@
   let table = $("#dataTable").DataTable({
     processing: true,
     serverSide: true,
-    ajax: BaseUrl+'/api/admin/users/active',
+    ajax: BaseUrl+'/api/admin/users/reject',
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
       {data: 'nama_univ', name: 'nama_univ'},
@@ -47,7 +47,7 @@
       {
         "render": function ( data, type, row ) {
         return `
-        <a href="/admin/anggota/aktif/detail/`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
+        <a href="/admin/anggota/ditolak/detail/`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
         ` }
       }
     ]
@@ -59,7 +59,7 @@
   function remove(id) {
     swal({
         title: "",
-        text: "Delete post ?",
+        text: "Hapus Anggota ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -67,7 +67,7 @@
         .then((willDelete) => {
         if (willDelete) {
             $.ajax({
-                url: BaseUrl+'/api/admin/posts/'+id,
+                url: BaseUrl+'/api/lis-anggota/'+id,
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
@@ -80,7 +80,7 @@
                     }
                 }
                 });
-                swal("Post has ben deleted", {
+                swal("Anggota berhasil dihapus", {
                 icon: "success",
             });
         }

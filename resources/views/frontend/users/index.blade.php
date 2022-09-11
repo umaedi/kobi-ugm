@@ -59,7 +59,7 @@
     ajax: BaseUrl+'/api/list-anggota',
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
-      {data: 'user_id', name: 'user_id'},
+      {data: 'no_anggota', name: 'no_anggota'},
       {data: 'nama_jurusan', name: 'nama_jurusan'},
       {data: 'nama_fakultas', name: 'nama_fakultas'},
       {data: 'nama_univ', name: 'nama_univ'},

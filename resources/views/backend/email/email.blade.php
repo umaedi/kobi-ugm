@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>KOBI INDONESIA</title>
+    <title>Konsorsium Biologi Indonesia</title>
 </head>
 <body>
-    <h3>KOBI INDONESIA</h3>
+    <h3>KOBI (Konsorsium Biologi Indonesia)</h3>
     <p>{!! $pesan['pesan'] !!}</p>
 </body>
 </html>

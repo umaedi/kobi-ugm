@@ -32,8 +32,11 @@ Route::resource('/admin/posts', App\Http\Controllers\Api\PostController::class);
 Route::resource('/admin/categories', \App\Http\Controllers\Api\CategoryController::class);
 
 //Api Admin
-Route::get('/admin/users', [\App\Http\Controllers\Api\Admin\UserController::class, 'index'])->name('admin.users');
-Route::get('/admin/users/active', [\App\Http\Controllers\Api\Admin\UserController::class, 'userActive'])->name('admin.userActive');
+Route::controller(\App\Http\Controllers\Api\Admin\UserController::class)->group(function () {
+    Route::get('/admin/users', 'index')->name('admin.users');
+    Route::get('/admin/users/active', 'userActive')->name('admin.userActive');
+    Route::get('/admin/users/reject', 'userReject')->name('admin.userReject');
+});
 Route::get('/admin/categories/get', [\App\Http\Controllers\Backend\CategoryController::class, 'index']);
 Route::get('/admin/posts/draft/{status}', [\App\Http\Controllers\Api\PostController::class, 'getByStatus']);
 Route::resource('/admin/publikasi', \App\Http\Controllers\Api\PublikasiController::class);

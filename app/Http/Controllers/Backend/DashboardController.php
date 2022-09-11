@@ -38,6 +38,14 @@ class DashboardController extends Controller
         return view('backend.users.index');
     }
 
+    public function newUserDetail($id)
+    {
+        $anggota = Universitas::findOrfail($id);
+        return view('backend.users.edit', [
+            'anggota' => $anggota
+        ]);
+    }
+
     public function userEdit($id)
     {
         $anggota = Universitas::findOrfail($id);
@@ -49,6 +57,19 @@ class DashboardController extends Controller
     public function usersActive()
     {
         return view('backend.users.active');
+    }
+
+    public function usersNonActive()
+    {
+        return view('backend.users.nonActive');
+    }
+
+    public function usersNonActiveEdit($id)
+    {
+        $anggota = Universitas::findOrfail($id);
+        return view('backend.users.edit-tolak', [
+            'anggota' => $anggota
+        ]);
     }
 
     public function media()

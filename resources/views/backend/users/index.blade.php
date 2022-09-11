@@ -7,7 +7,7 @@
 
   @component('components.backend.card-table')
     @slot('header')
-      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Data Master Anggota</h3>
+      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">List Pengajuan Anggota Baru</h3>
     @endslot
     @slot('dropdown')
       <div class="dropdown-header">Dropdown Header:</div>
@@ -47,7 +47,7 @@
       {
         "render": function ( data, type, row ) {
         return `
-        <a href="/admin/anggota/detail/`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
+        <a href="/admin/anggota/baru/detail/`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
         ` }
       }
     ]

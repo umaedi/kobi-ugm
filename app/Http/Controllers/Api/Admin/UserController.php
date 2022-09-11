@@ -25,4 +25,12 @@ class UserController extends Controller
             return DataTables::of($users)->make(true);
         }
     }
+
+    public function userReject(Request $request)
+    {
+        if ($request->ajax()) {
+            $users = Universitas::where('status', 2)->latest()->get();
+            return DataTables::of($users)->make(true);
+        }
+    }
 }

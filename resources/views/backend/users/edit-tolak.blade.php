@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Detail Anggota</h3>
+            <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Detail Anggota Yang Ditolak</h3>
         </div>
         <div class="card-body">
             <div class="row">
@@ -179,7 +179,7 @@
             
               swal({
                   title: "",
-                  text: "Anggota baru dikonfirmasi",
+                  text: response.responseJSON.message,
                   icon: "success"
                 })
                 .then(() => {
@@ -265,7 +265,7 @@
                 icon: "success",
             })
             .then(() => {
-                window.location.replace(BaseUrl+'/admin/anggota/aktif');
+                window.location.replace(BaseUrl+'/admin/anggota/ditolak');
             });
         }
     });
