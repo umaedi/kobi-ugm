@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserExporController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,8 @@ Route::controller(\App\Http\Controllers\Auth\AuthController::class)->group(funct
     Route::get('/admin/login', 'login')->middleware('guest');
     Route::post('/auth/admin/login', 'authenticate')->name('admin.login');
 });
+
+Route::post('/export/data', [UserExporController::class, 'export'])->name('export.excel');
 
 Route::controller(\App\Http\Controllers\Auth\UserController::class)->group(function () {
     Route::get('/user/register', 'register')->name('user.register');
