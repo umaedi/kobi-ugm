@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 //user
 Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->group(function () {
     Route::get('/', 'index');
-    Route::get('/sejarah-kobi', 'about')->name('about');
+    Route::get('/p/sejarah-kobi', 'about')->name('about');
     Route::get('visi-misi', 'visiMisi')->name('visi-misi');
     Route::get('/struktur-orgnanisasi', 'strukturOrgnanisasi')->name('struktur-orgnanisasi');
     Route::get('/publikasi', 'publikasi')->name('publikasi');
@@ -17,7 +17,7 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/pendaftaran/anggota-lama', 'register')->name('pendaftaran');
     Route::get('/pendaftaran/anggota-baru', 'newMember')->name('pendaftaran-anggota-baru');
     Route::get('/list-anggota', 'anggota')->name('list-anggota');
-    Route::get('/posts', 'posts')->name('posts');
+    Route::get('/berita', 'posts')->name('posts');
     Route::get('/{post:slug}', 'show')->name('show');
     Route::get('/posts/category/{category:slug}', 'postCategories');
     Route::get('/posts/list', 'listPost')->name('posts.list');
