@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/galeri/foto', 'galeri')->name('admin.galeri');
             Route::get('/struktur-organisasi', 'struktur')->name('admin.struktur');
         });
+        Route::post('/export/data', [UserExporController::class, 'export'])->name('export.excel');
         Route::controller(\App\Http\Controllers\Backend\StrukturController::class)->group(function () {
             Route::get('/organisasi/surat-keputusan', 'suratKeputusan')->name('admin.surat');
             Route::get('/organisasi/dewan-penasihat', 'dewanPenasiaht')->name('admin.penasihat');

@@ -17,20 +17,7 @@
             </div>
         </div>
         <div class="row portfolio__menu wow fadeInUp mb-50" data-wow-delay=".2s">
-            <div class="col-md-5 ">
-                  <div class="sidebar__search">
-                     <?php $start = date('Y'); $end = 2019 ?>
-                     <select class="form-control" name="search">
-                     <option selected value="{{ date('Y') }}">Tampilkan berdasarkan tahun</option>
-                     <?php for($i=$end; $i<=$start; $i++) { ?>
-                        <option value="<?php echo $i; ?>"> <?php echo ucwords($i); ?> </option>
-                     <?php } ?>
-                     </select>
-                  </div>
-            </div>
-         <div class="col-md-2 x-galeri__button mt-3">
-            <button type="submit" class="w-btn w-btn" onclick="getKeyword()">Tampilkan</button>
-         </div>
+            
       </div>
         <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
@@ -43,9 +30,26 @@
         <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="text-center section__title-wrapper section__title-wrapper-4 mb-40 wow fadeInUp" data-wow-delay=".3s">
                 <h2>Dewan Penasihat KOBI</h2>
-            </div>    
+            </div>
         </div>
-        <div class="row justify-content-center" id="advisor-content">
+        <div class="row justify-content-center">
+         <div class="col-md-4">
+            <div class="sidebar__search">
+               <?php $start = date('Y'); $end = 2019 ?>
+               <select class="form-control" name="search">
+               <option selected value="{{ date('Y') }}">Tampilkan berdasarkan tahun</option>
+               <?php for($i=$end; $i<=$start; $i++) { ?>
+                  <option value="<?php echo $i; ?>"> <?php echo ucwords($i); ?> </option>
+               <?php } ?>
+               </select>
+            </div>
+      </div>
+      <div class="col-md-2">
+         <button type="submit" class="w-btn w-btn" onclick="getKeyword()">Tampilkan</button>
+      </div>
+         </div>
+        </div>
+        <div class="row justify-content-center mt-50" id="advisor-content">
             
         </div>
          <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">

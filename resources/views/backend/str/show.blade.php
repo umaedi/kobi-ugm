@@ -100,7 +100,7 @@
             <div class="modal-body">
                 <input type="hidden" name="status" value="2">
                 <div class="form-group">
-                    <textarea type="text" name="pesan" class="form-control" id="namaDokuemn"></textarea>
+                    <textarea type="text" name="pesan" class="form-control" id="namaDokuemn" rows="10"></textarea>
                 </div>
             </div>
             <div class="modal-footer">

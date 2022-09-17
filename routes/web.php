@@ -38,7 +38,7 @@ Route::controller(\App\Http\Controllers\Auth\AuthController::class)->group(funct
     Route::post('/auth/admin/login', 'authenticate')->name('admin.login');
 });
 
-Route::post('/export/data', [UserExporController::class, 'export'])->name('export.excel');
+
 
 Route::controller(\App\Http\Controllers\Auth\UserController::class)->group(function () {
     Route::get('/user/register', 'register')->name('user.register');

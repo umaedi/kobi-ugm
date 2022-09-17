@@ -24,7 +24,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Made with Copyright &copy; KOBI {{ date('Y') }}</span>
+                        <span>Copyright &copy; {{ date('Y') }} KOBI.  All Right Reserved. Developed by <a href="https://api.whatsapp.com/send?phone=62895358279544" target="_blank">Last Pictures</a></span>
                     </div>
                 </div>
             </footer>

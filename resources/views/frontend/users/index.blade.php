@@ -17,15 +17,20 @@
       <h1 class="h6 mb-0 text-white lh-1" id="table-head">Daftar Anggota Aktif KOBI Tahun {{ date('Y') }}</h1>
     </div>
 </div>
-<div class="my-3 p-3 bg-body rounded shadow-sm">
-  <select class="form-control" id="show-data-by-year" name="filter-data" onchange="filterData(`${this.value}`)">
-    <option value="{{ date('Y') }}">Tampilkan data berdasarkan tahun</option>
-      <?php $start = date('Y'); $end = 2019 ?>
-      <?php for($i = $end; $i <= $start; $i++) { ?> 
-        <option value="{{ $i }}">{{ $i }}</option>
-      <?php } ?>
-  </select>
+<div class="row">
+  <div class="col-md-4 ml-auto">
+    <div class="my-3 p-3 bg-body rounded shadow-sm">
+      <select class="form-control" id="show-data-by-year" name="filter-data" onchange="filterData(`${this.value}`)">
+        <option value="{{ date('Y') }}">Tampilkan data berdasarkan tahun</option>
+          <?php $start = date('Y'); $end = 2019 ?>
+          <?php for($i = $end; $i <= $start; $i++) { ?> 
+            <option value="{{ $i }}">{{ $i }}</option>
+          <?php } ?>
+      </select>
+    </div>
+  </div>
 </div>
+
 <div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="table-responsive">
