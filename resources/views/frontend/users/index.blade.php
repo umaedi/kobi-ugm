@@ -18,17 +18,22 @@
     </div>
 </div>
 <div class="row">
-  <div class="col-md-4 ml-auto">
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-      <select class="form-control" id="show-data-by-year" name="filter-data" onchange="filterData(`${this.value}`)">
-        <option value="{{ date('Y') }}">Tampilkan data berdasarkan tahun</option>
+  <div class="row justify-content-center mt-30">
+    <div class="col-md-4">
+       <div class="sidebar__search">
           <?php $start = date('Y'); $end = 2019 ?>
-          <?php for($i = $end; $i <= $start; $i++) { ?> 
-            <option value="{{ $i }}">{{ $i }}</option>
+          <select class="form-control" name="filter-data">
+          <option selected value="{{ date('Y') }}">Tampilkan berdasarkan tahun</option>
+          <?php for($i=$end; $i<=$start; $i++) { ?>
+             <option value="{{ $i }}"> <?php echo ucwords($i); ?> </option>
           <?php } ?>
-      </select>
+          </select>
+       </div>
     </div>
-  </div>
+    <div class="col-md-2 x-tampil-data">
+       <button type="submit" class="w-btn w-btn" onclick="filterData()">Tampilkan</button>
+    </div>
+ </div>
 </div>
 
 <div>
@@ -82,9 +87,10 @@
     ],
   });
   
-  function filterData(value){
+  function filterData(){
     table.ajax.reload(false, null);
-    $('#table-head').html('Daftar Anggota Aktif KOBI Tahun '+ value);
+    let year = $('select[name=filter-data]').val();
+    $('#table-head').html('Daftar Anggota Aktif KOBI Tahun ' + year);
   }
 
   setInterval(() => {
