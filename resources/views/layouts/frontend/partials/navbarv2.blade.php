@@ -4,8 +4,8 @@
          <div class="row">
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                <div class="header__info text-center text-sm-start">
-                  <a href="kobi.biologi@gmail.com"> <i class="icon_mail"></i> <span >kobi.biologi@gmail.com</span></a>
-                  <a href="tel:+124-547-689"> <i class="icon_phone w-phone"></i> +6285741492045</a>
+                  <a href="mailto:kobi.biologi@gmail.com"> <i class="icon_mail"></i> <span >kobi.biologi@gmail.com</span></a>
+                  <a href="https://api.whatsapp.com/send?phone=6285600997890" target="_blank"> <i class="icon_phone w-phone"></i> +6285600997890</a>
                </div>
             </div>
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">

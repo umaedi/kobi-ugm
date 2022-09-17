@@ -17,13 +17,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="exampleFormControlSelect1">Tampilkan berdasarkan tahun</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>--Pilih tahun--</option>
-                      <?php $start = date('Y'); $end = 2019 ?>
-                      <?php for($i = $end; $i <= $start; $i++) { ?> 
-                        <option value="{{ $i }}">{{ $i }}</option>
-                      <?php } ?>
+                    <label for="show-data-by-year">Tampilkan berdasarkan tahun</label>
+                    <select class="form-control" id="show-data-by-year" name="filter-data" onchange="filterData()">
+                      <option value="{{ date('Y') }}">--Pilih tahun--</option>
+                        <?php $start = date('Y'); $end = 2019 ?>
+                        <?php for($i = $end; $i <= $start; $i++) { ?> 
+                          <option value="{{ $i }}">{{ $i }}</option>
+                        <?php } ?>
                     </select>
                   </div>
             </div>
@@ -63,9 +63,10 @@
     @slot('thead')
       <tr>
         <th>No</th>
-        <th>Nama Univ</th>
-        <th>Nama Jurusan</th>
-        <th>Email Kaprodi</th>
+        <th>Nomor Anggota</th>
+        <th>Universitas</th>
+        <th>Fakultas</th>
+        <th>Jurusan</th>
         <th>Action</th>
       </tr>
     @endslot
@@ -81,15 +82,22 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-  let table = $("#dataTable").DataTable({
+    let table = $("#dataTable").DataTable({
     processing: true,
     serverSide: true,
-    ajax: BaseUrl+'/api/admin/users/active',
+    ajax: {
+      url: BaseUrl+'/api/admin/users/active',
+      method: 'POST',
+      data: (data) => {
+        data.tahun = $('select[name=filter-data]').val();
+      }
+    }, 
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
+      {data: 'no_anggota', name: 'no_anggota'},
       {data: 'nama_univ', name: 'nama_univ'},
+      {data: 'nama_fakultas', name: 'nama_fakultas'},
       {data: 'nama_jurusan', name: 'nama_jurusan'},
-      {data: 'email_kaprodi', name: 'email_kaprodi'},
       {
         "render": function ( data, type, row ) {
         return `
@@ -97,10 +105,11 @@
         ` }
       }
     ]
-  });
+    });
+  
 
-  function reloadDataTable(){
-    table.ajax.reload();
+  function filterData(){
+    table.ajax.reload(false, null);
   }
 
   setInterval(() => {

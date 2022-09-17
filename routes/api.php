@@ -34,7 +34,7 @@ Route::resource('/admin/categories', \App\Http\Controllers\Api\CategoryControlle
 //Api Admin
 Route::controller(\App\Http\Controllers\Api\Admin\UserController::class)->group(function () {
     Route::get('/admin/users', 'index')->name('admin.users');
-    Route::get('/admin/users/active', 'userActive')->name('admin.userActive');
+    Route::post('/admin/users/active', 'userActive')->name('admin.userActive');
     Route::get('/admin/users/reject', 'userReject')->name('admin.userReject');
 });
 Route::get('/admin/categories/get', [\App\Http\Controllers\Backend\CategoryController::class, 'index']);
@@ -66,7 +66,10 @@ Route::resource('/admin/laporan', \App\Http\Controllers\Api\LaporanController::c
 Route::resource('/admin/event', \App\Http\Controllers\Api\EventController::class);
 Route::resource('/admin/event/categories/evx', \App\Http\Controllers\Api\EventCategoryController::class);
 
-//users method get
+//users
+Route::prefix('user')->group(function () {
+    Route::post('/list/active', [Api\User\UnivController::class, 'users']);
+});
 Route::get('/dokumen/{category_id}', [Api\User\DocumentController::class, 'getByCategory']);
 Route::get('/laporan', [Api\User\LaporanController::class, 'laporan']);
 Route::get('/getRegencies/{id}', [Api\User\IndoregionController::class, 'kabupaten']);
