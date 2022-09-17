@@ -32,7 +32,7 @@
               @csrf
                   <div class="form-group">
                       <label for="exampleFormControlSelect1">Export data</label>
-                      <select class="form-control" id="exampleFormControlSelect1" name="data">
+                      <select class="form-control" id="exampleFormControlSelect1" name="year">
                         <option>--Pilih tahun--</option>
                         <?php $start = date('Y'); $end = 2019 ?>
                         <?php for($i = $end; $i <= $start; $i++) { ?> 
