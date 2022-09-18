@@ -33,7 +33,7 @@
     </div>
     <div class="col-md-2">
       <select type="text" class="form-control" name="length-data">
-          <option value="10">Jumlah data</option>
+          <option value="1000">Jumlah data</option>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="30">30</option>
