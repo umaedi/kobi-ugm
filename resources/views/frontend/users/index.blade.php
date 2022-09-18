@@ -17,24 +17,40 @@
       <h1 class="h6 mb-0 text-white lh-1" id="table-head">Daftar Anggota Aktif KOBI Tahun {{ date('Y') }}</h1>
     </div>
 </div>
-<div class="row">
-  <div class="row justify-content-center mt-30">
-    <div class="col-md-4">
-       <div class="sidebar__search">
+
+  <div class="row mt-50">
+    <div class="col-md-2">
           <?php $start = date('Y'); $end = 2019 ?>
           <select class="form-control" name="filter-data">
-          <option selected value="{{ date('Y') }}">Tampilkan berdasarkan tahun</option>
+          <option selected value="{{ date('Y') }}">Pilih tahun</option>
           <?php for($i=$end; $i<=$start; $i++) { ?>
              <option value="{{ $i }}"> <?php echo ucwords($i); ?> </option>
           <?php } ?>
           </select>
-       </div>
     </div>
     <div class="col-md-2 x-tampil-data">
        <button type="submit" class="w-btn w-btn" onclick="filterData()">Tampilkan</button>
     </div>
+    <div class="col-md-2">
+      <select type="text" class="form-control" name="length-data">
+          <option value="10">Jumlah data</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+      </select>
+    </div>
+    <div class="col-md-2 x-tampil-data">
+      <button type="submit" class="w-btn w-btn" onclick="filterData()">Tampilkan</button>
+   </div>
+    <div id="dataTable_filter" class="col-md-2 dataTables_filter" >
+      <input type="search" name="search" class="form-control" placeholder="Cari no anggota" aria-controls="dataTable">
+    </div>
+    <div class="col-md-2 x-tampil-data">
+      <button type="submit" class="w-btn w-btn" onclick="filterData()">Cari anggota</button>
+   </div>
  </div>
-</div>
 
 <div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -68,6 +84,8 @@
     processing: true,
     serverSide: true,
     responsive: true,
+    searching: false,
+    lengthChange: false,
     language: {
     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
     },
@@ -76,6 +94,8 @@
         method: 'POST',
         data: (data) => {
         data.tahun = $('select[name=filter-data]').val();
+        data.lengt = $('select[name=length-data]').val();
+        data.search = $('input[name=search]').val();
       }
     },
     columns: [

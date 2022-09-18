@@ -16,9 +16,6 @@
     <div class="lh-1">
       <h1 class="h6 mb-0 text-white lh-1">Naskah Akademik Konsorium Biologi Indonesia</h1>
     </div>
-    <div class="lh-1 ms-auto">
-      <a href="{{ url('/') }}" class="text-decoration-none"><h1 class="h6 mb-0 text-white lh-1 ">Kembali</h1></a>
-    </div>
   </div>
 <div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -51,6 +48,9 @@
     serverSide: true,
     responsive: true,
     ajax: BaseUrl+'/api/admin/naskah',
+    language: {
+    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
+    },
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
       {data: 'nama_dokumen', name: 'nama_dokumen'},
