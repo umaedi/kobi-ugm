@@ -108,7 +108,7 @@
   });
   
   function filterData(){
-    table.ajax.reload(false, null);
+    table.ajax.reload(false, true);
     let year = $('select[name=filter-data]').val();
     $('#table-head').html('Daftar Anggota Aktif KOBI Tahun ' + year);
   }
