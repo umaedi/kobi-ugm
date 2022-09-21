@@ -69,7 +69,10 @@ Route::resource('/admin/event/categories/evx', \App\Http\Controllers\Api\EventCa
 //users
 Route::prefix('user')->group(function () {
     Route::post('/list/active', [Api\User\UnivController::class, 'users']);
+    Route::post('/photos', [Api\User\GalleryController::class, 'index']);
 });
+
+
 Route::get('/dokumen/{category_id}', [Api\User\DocumentController::class, 'getByCategory']);
 Route::get('/laporan', [Api\User\LaporanController::class, 'laporan']);
 Route::get('/getRegencies/{id}', [Api\User\IndoregionController::class, 'kabupaten']);

@@ -46,3 +46,14 @@
         </div>
      </section>
 @endsection
+@push('js')
+    <script>
+        function getPhotos(){
+            $.ajax({
+                url: BaseUrl+'/api/user/photos',
+                method: 'POST',
+                data
+            });
+        }
+    </script>
+@endpush

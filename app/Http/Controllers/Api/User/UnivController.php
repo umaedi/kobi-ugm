@@ -18,33 +18,29 @@ class UnivController extends Controller
             $limit = 10;
         };
 
+        $search = $request->search;
+        if ($search) {
+            $data     = Universitas::where('no_anggota', 'like', '%' . $request->search . '%')
+                ->orWhere('nama_univ', 'like', '%' . $request->search . '%')
+                ->orWhere('nama_fakultas', 'like', '%' . $request->search . '%')
+                ->orWhere('nama_jurusan', 'like', '%' . $request->search . '%')
+                ->latest()->paginate();
+            return  $this->sendResponseOk($data);
+        };
+
         $year = $request->year;
         if ($year) {
             $year = $request->year;
         } else {
-            $year = date('Y');
+            $data = Universitas::where('status', 1)
+                ->latest()->paginate($limit);
+            return  $this->sendResponseOk($data);
         }
 
-        $sort         = $request->input('sort');
-        if ($sort == '') {
-            $sort = 'ASC';
-        };
-        $columns    = "id";
-
-        $search = $request->search;
-        if ($search) {
-            $q = $request->search;
-        } else {
-            $q = '';
-        }
-
-        $data     = Universitas::orderBy($columns, $sort)
-            ->where('thn_anggota', $year)
-            ->where('no_anggota', 'like', '%' . $q . '%')
-            ->paginate($limit);
+        $data = Universitas::where('thn_anggota', $year)
+            ->latest()->paginate($limit);
 
         if ((!empty($data)) and ($data->count() != 0)) {
-
             $result = $data;
         } else {
             $message     = 'Your request couldn`t be found';

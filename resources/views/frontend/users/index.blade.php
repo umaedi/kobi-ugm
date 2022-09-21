@@ -15,7 +15,7 @@
 </div>
   <div class="row mt-50">
     <div class="col-md-2">
-          <?php $start = date('Y'); $end = 2019 ?>
+          <?php $start = date('Y'); $end = 2016?>
           <select class="form-control" name="year">
           <option selected value="{{ date('Y') }}">Pilih tahun</option>
           <?php for($i=$end; $i<=$start; $i++) { ?>
@@ -38,7 +38,7 @@
       <button type="submit" class="w-btn w-btn" onclick="getLength()">Tampilkan</button>
    </div>
     <div id="dataTable_filter" class="col-md-2 dataTables_filter" >
-      <input type="search" name="search" class="form-control" placeholder="Cari no anggota" aria-controls="dataTable">
+      <input type="search" name="search" class="form-control" placeholder="Cari anggota disini" aria-controls="dataTable">
     </div>
     <div class="col-md-2 x-tampil-data">
       <button type="submit" class="w-btn w-btn" onclick="searchData()">Cari</button>
@@ -62,16 +62,8 @@
               
             </tbody>
           </table>
-          <div class="container">
-            <div class="row justify-content-center" id="btnMore">
-              <div class="col-md-3">
-                  <button class="w-btn w-btn btn-send" id="loadMore" onclick="loadMore()" data-value="">Lihat lebih banyak</button>
-                  <button class="w-btn w-btn" disabled type="button" id="btnSending" style="display: none">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Proses...
-                  </button>
-              </div>
-            </div>
+          <div id="btnMore">
+            
           </div>
       </div>
     </div>
@@ -85,7 +77,7 @@
     page: '1',
     render: $('select[name=render]').val(),
     year: $('select[name=filter-year]').val(),
-    search: ''
+    // search: ''
   };
   function getUsers(data){
     $.ajax({
@@ -96,7 +88,6 @@
           if(response.status == 200) {
             let data = response.responseJSON.data.data;
             let no = parseInt(response.responseJSON.data.current_page) * parseInt(response.responseJSON.data.per_page) - response.responseJSON.data.per_page;
-            console.log(no);
             let content = '';
             $.each(data, (k, v) => {
               no++;
@@ -114,9 +105,31 @@
             $('#loadMore').data('value', response.responseJSON.data.current_page);
             $('#loadMore').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
+            $('#btnMore').html(`
+            <div class="d-flex">
+              <div class="lh-1 ms-auto">
+                <div class="col-md-12 my-2">
+                  <button class="w-btn w-btn btn-send" id="loadMore" onclick="loadMore()" data-value="">Lihat lebih banyak</button>
+                  <button class="w-btn w-btn" disabled type="button" id="btnSending" style="display: none">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Proses...
+                  </button>
+                </div>
+              </div>
+            </div>
+            `);
           }else {
             $('#content-users').attr('style', 'display: none');
-            $('#btnMore').attr('style', 'display: none');
+            $('#btnMore').html(`
+            <div class="container mt-3">
+              <div class="row justify-content-center">
+                <div class="col text-center">
+                  <h6>Semua data sudah ditampilkan</h6>
+                  <button class="w-btn w-btn mt-2" onclick="filterYear()">Refresh tabel</button>
+                </div>
+              </div>
+            </div>
+            `);
           }
         }
     });
@@ -124,11 +137,13 @@
   getUsers(data);
 
   function loadMore(){
+    $('#content-users').html('');
     $('button.btn-send').attr('style', 'display: none');
     $('#btnSending').removeAttr('style', 'display: none');
     var page = parseInt($('#loadMore').data('value')) + 1;
     var data = {
       page: page,
+      year: $('select[name=year]').val(),
       render: $('select[name=render]').val()
     }
     getUsers(data);
@@ -148,7 +163,6 @@
   function getLength() {
     $('#btnMore').removeClass('d-none');
     $('#content-users').html('');
-    $('#loadMore').data('value', 50);
     var render = $('select[name=render]').val();
     var data = {
       render: render,
