@@ -38,7 +38,7 @@
       <button type="submit" class="w-btn w-btn" onclick="getLength()">Tampilkan</button>
    </div>
     <div id="dataTable_filter" class="col-md-2 dataTables_filter" >
-      <input type="search" name="search" class="form-control" placeholder="Cari anggota" aria-controls="dataTable">
+      <input type="search" name="search" class="form-control" placeholder="Cari no anggota" aria-controls="dataTable">
     </div>
     <div class="col-md-2 x-tampil-data">
       <button type="submit" class="w-btn w-btn" onclick="searchData()">Cari</button>

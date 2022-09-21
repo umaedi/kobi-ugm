@@ -40,10 +40,7 @@ class UnivController extends Controller
 
         $data     = Universitas::orderBy($columns, $sort)
             ->where('thn_anggota', $year)
-            ->where('no_anggota', 'like', '%' . $request->search . '%')
-            ->orWhere('nama_univ', 'like', '%' . $request->search . '%')
-            ->orWhere('nama_fakultas', 'like', '%' . $request->search . '%')
-            ->orWhere('nama_jurusan', 'like', '%' . $request->search . '%')
+            ->where('no_anggota', 'like', '%' . $q . '%')
             ->paginate($limit);
 
         if ((!empty($data)) and ($data->count() != 0)) {
