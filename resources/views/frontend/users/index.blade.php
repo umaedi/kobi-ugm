@@ -1,8 +1,4 @@
 @extends('layouts.frontend.appv2')
-@push('css')
-<link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.table.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-@endpush
 @section('content')
 @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
@@ -17,11 +13,10 @@
       <h1 class="h6 mb-0 text-white lh-1" id="table-head">Daftar Anggota Aktif KOBI Tahun {{ date('Y') }}</h1>
     </div>
 </div>
-
   <div class="row mt-50">
     <div class="col-md-2">
           <?php $start = date('Y'); $end = 2019 ?>
-          <select class="form-control" name="filter-data">
+          <select class="form-control" name="year">
           <option selected value="{{ date('Y') }}">Pilih tahun</option>
           <?php for($i=$end; $i<=$start; $i++) { ?>
              <option value="{{ $i }}"> <?php echo ucwords($i); ?> </option>
@@ -29,93 +24,146 @@
           </select>
     </div>
     <div class="col-md-2 x-tampil-data">
-       <button type="submit" class="w-btn w-btn" onclick="filterData()">Tampilkan</button>
+       <button type="submit" class="w-btn w-btn" onclick="filterYear()">Tampilkan</button>
     </div>
     <div class="col-md-2">
-      <select type="text" class="form-control" name="length-data">
-          <option value="1000">Jumlah data</option>
+      <select type="text" class="form-control" name="render">
+          <option value="10">Jumlah data</option>
           <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
           <option value="50">50</option>
           <option value="100">100</option>
       </select>
     </div>
     <div class="col-md-2 x-tampil-data">
-      <button type="submit" class="w-btn w-btn" onclick="filterData()">Tampilkan</button>
+      <button type="submit" class="w-btn w-btn" onclick="getLength()">Tampilkan</button>
    </div>
     <div id="dataTable_filter" class="col-md-2 dataTables_filter" >
-      <input type="search" name="search" class="form-control" placeholder="Cari no anggota" aria-controls="dataTable">
+      <input type="search" name="search" class="form-control" placeholder="Cari anggota" aria-controls="dataTable">
     </div>
     <div class="col-md-2 x-tampil-data">
-      <button type="submit" class="w-btn w-btn" onclick="filterData()">Cari anggota</button>
+      <button type="submit" class="w-btn w-btn" onclick="searchData()">Cari</button>
    </div>
  </div>
 
 <div>
     <div class="my-3 p-3 bg-body rounded shadow-sm">
       <div class="table-responsive">
-        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-          <thead>
-                <tr>
-                    <th>No</th>
-                    <th>No Anggota</th>
-                    <th>Universitas</th>
-                    <th>Fakultas</th>
-                    <th>Program Studi</th>
-                </tr>
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th scope="col">No</th>
+                <th scope="col">No Anggota</th>
+                <th scope="col">Universitas</th>
+                <th scope="col">Fakultas</th>
+                <th scope="col">Program Studi</th>
+              </tr>
             </thead>
-            <tbody>
-
+            <tbody id="content-users">
+              
             </tbody>
-        </table>
-    </div>
+          </table>
+          <div class="container">
+            <div class="row justify-content-center" id="btnMore">
+              <div class="col-md-3">
+                  <button class="w-btn w-btn btn-send" id="loadMore" onclick="loadMore()" data-value="">Lihat lebih banyak</button>
+                  <button class="w-btn w-btn" disabled type="button" id="btnSending" style="display: none">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Proses...
+                  </button>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
 </div>
 @endslot
 @endcomponent
 @endsection
 @push('js')
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script>
-
-  let table = $("#dataTable").DataTable({
-    processing: true,
-    serverSide: true,
-    responsive: true,
-    searching: false,
-    lengthChange: false,
-    language: {
-    url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
-    },
-    ajax: {
-        url:  BaseUrl+'/api/user/list/active',
+  let data = {
+    page: '1',
+    render: $('select[name=render]').val(),
+    year: $('select[name=filter-year]').val(),
+    search: ''
+  };
+  function getUsers(data){
+    $.ajax({
+        url: BaseUrl+'/api/user/list/active',
+        data: data,
         method: 'POST',
-        data: (data) => {
-        data.tahun = $('select[name=filter-data]').val();
-        data.lengt = $('select[name=length-data]').val();
-        data.search = $('input[name=search]').val();
-      }
-    },
-    columns: [
-      {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
-      {data: 'no_anggota', name: 'no_anggota'},
-      {data: 'nama_univ', name: 'nama_univ'},
-      {data: 'nama_fakultas', name: 'nama_fakultas'},
-      {data: 'nama_jurusan', name: 'nama_jurusan'},
-    ],
-  });
-  
-  function filterData(){
-    table.ajax.reload(true, false);
-    let year = $('select[name=filter-data]').val();
-    $('#table-head').html('Daftar Anggota Aktif KOBI Tahun ' + year);
+        complete: (response) => {
+          if(response.status == 200) {
+            let data = response.responseJSON.data.data;
+            let no = parseInt(response.responseJSON.data.current_page) * parseInt(response.responseJSON.data.per_page) - response.responseJSON.data.per_page;
+            console.log(no);
+            let content = '';
+            $.each(data, (k, v) => {
+              no++;
+              content += '<tr>';
+              content += '<th>'+ no +'</th>';
+              content += '<td>'+ v.no_anggota +'</td>';
+              content += '<td>'+ v.nama_univ +'</td>';
+              content += '<td>'+ v.nama_fakultas +'</td>';
+              content += '<td>'+ v.nama_jurusan +'</td>';
+              content += '</tr>';
+            });
+            $('#content-users').removeAttr('style', 'display: none');
+            $('#btnMore').removeAttr('style', 'display: none');
+            $('#content-users').append(content);
+            $('#loadMore').data('value', response.responseJSON.data.current_page);
+            $('#loadMore').removeAttr('style', 'display: none');
+            $('#btnSending').attr('style', 'display: none');
+          }else {
+            $('#content-users').attr('style', 'display: none');
+            $('#btnMore').attr('style', 'display: none');
+          }
+        }
+    });
+  }
+  getUsers(data);
+
+  function loadMore(){
+    $('button.btn-send').attr('style', 'display: none');
+    $('#btnSending').removeAttr('style', 'display: none');
+    var page = parseInt($('#loadMore').data('value')) + 1;
+    var data = {
+      page: page,
+      render: $('select[name=render]').val()
+    }
+    getUsers(data);
   }
 
-  setInterval(() => {
-      table.ajax.reload();
-  }, 30000);
+  function filterYear(){
+    $('#btnMore').removeClass('d-none');
+    $('#content-users').html('');
+    var year = $('select[name=year]').val();
+    $('#table-head').html('Daftar Anggota Aktif KOBI Tahun ' + year);
+    var data = {
+      year: year
+    }
+    getUsers(data);
+  }
 
+  function getLength() {
+    $('#btnMore').removeClass('d-none');
+    $('#content-users').html('');
+    $('#loadMore').data('value', 50);
+    var render = $('select[name=render]').val();
+    var data = {
+      render: render,
+    }
+    getUsers(data);
+  }
+
+  function searchData(){
+    let keyword = $('input[name=search]').val();
+    $('#content-users').html('');
+    $('#btnMore').addClass('d-none');
+    var data = {
+      search: keyword,
+    }
+    getUsers(data);
+  }
 </script>
 @endpush
