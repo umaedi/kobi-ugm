@@ -63,7 +63,17 @@
             </tbody>
           </table>
           <div id="btnMore">
-            
+            <div class="d-flex">
+              <div class="lh-1 ms-auto">
+                <div class="col-md-12 my-2">
+                  <button class="w-btn w-btn btn-send" id="loadMore" onclick="loadMore()" data-value="">Lihat lebih banyak</button>
+                  <button class="w-btn w-btn" disabled type="button" id="btnSending" style="display: none">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Proses...
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
     </div>
@@ -105,19 +115,6 @@
             $('#loadMore').data('value', response.responseJSON.data.current_page);
             $('#loadMore').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
-            $('#btnMore').html(`
-            <div class="d-flex">
-              <div class="lh-1 ms-auto">
-                <div class="col-md-12 my-2">
-                  <button class="w-btn w-btn btn-send" id="loadMore" onclick="loadMore()" data-value="">Lihat lebih banyak</button>
-                  <button class="w-btn w-btn" disabled type="button" id="btnSending" style="display: none">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Proses...
-                  </button>
-                </div>
-              </div>
-            </div>
-            `);
           }else {
             $('#content-users').attr('style', 'display: none');
             $('#btnMore').html(`
@@ -125,7 +122,7 @@
               <div class="row justify-content-center">
                 <div class="col text-center">
                   <h6>Semua data sudah ditampilkan</h6>
-                  <button class="w-btn w-btn mt-2" onclick="filterYear()">Refresh tabel</button>
+                  <button class="w-btn w-btn mt-2" onclick="reloadPage()">Refresh Halaman</button>
                 </div>
               </div>
             </div>
@@ -137,7 +134,6 @@
   getUsers(data);
 
   function loadMore(){
-    $('#content-users').html('');
     $('button.btn-send').attr('style', 'display: none');
     $('#btnSending').removeAttr('style', 'display: none');
     var page = parseInt($('#loadMore').data('value')) + 1;
@@ -178,6 +174,10 @@
       search: keyword,
     }
     getUsers(data);
+  }
+
+  function reloadPage(){
+    location.reload();
   }
 </script>
 @endpush
