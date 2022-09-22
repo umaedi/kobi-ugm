@@ -18,9 +18,8 @@
         <div class="row">
             <div class="col-md-10">
                 <div class="form-group">
-                    <label for="show-data-by-year">Pilih kategori data</label>
                     <select class="form-control" id="show-data-by-year" name="status">
-                      <option>--Pilih kategori data--</option>
+                      <option value="1">--Pilih kategori data--</option>
                         <option value="1">Data STR diterima</option>
                         <option value="2">Data STR ditolak</option>
                     </select>
@@ -28,7 +27,6 @@
             </div>
             <div class="col-md-2">
                 <div class="form-group">
-                  <label for="">Aksi</label>
                   <button type="submit" class="btn btn-primary form-control">Export</button>
                 </div>
             </div>
