@@ -17,7 +17,7 @@
     <div class="row">
       <div class="d-flex align-items-center p-3 my-1 text-white bg-success rounded shadow-sm">
         <div class="lh-1">
-          <h1 class="h6 mb-0 text-white lh-1">Publikasi Konsorsium Biologi Indonesia</h1>
+          <h1 class="h6 mb-0 text-white lh-1">Publikasi</h1>
         </div>
     </div>
     <div>

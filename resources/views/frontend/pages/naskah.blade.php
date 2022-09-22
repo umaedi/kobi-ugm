@@ -14,7 +14,7 @@
 @slot('page_content')
 <div class="d-flex align-items-center p-3 my-1 text-white bg-success rounded shadow-sm">
     <div class="lh-1">
-      <h1 class="h6 mb-0 text-white lh-1">Naskah Akademik Konsorium Biologi Indonesia</h1>
+      <h1 class="h6 mb-0 text-white lh-1">Naskah Akademik</h1>
     </div>
   </div>
 <div>

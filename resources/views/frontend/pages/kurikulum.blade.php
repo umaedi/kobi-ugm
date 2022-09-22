@@ -68,7 +68,7 @@
         return `
         @auth
         <div class="text-center">
-        <a href="/storage/kurik/` + row.file_kurikulum +`" type="button" class="btn btn-sm btn-success" target="_blank"><i class="fas fa-eye text-white"></i></a>
+        <a href="/storage/kurikulum/` + row.file_kurikulum +`" type="button" class="btn btn-sm btn-success" target="_blank"><i class="fas fa-eye text-white"></i></a>
         </div>
         @else
         <div class="text-center">

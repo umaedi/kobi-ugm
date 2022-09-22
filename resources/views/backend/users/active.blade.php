@@ -33,7 +33,7 @@
                   <div class="form-group">
                       <label for="exampleFormControlSelect1">Export data</label>
                       <select class="form-control" id="exampleFormControlSelect1" name="year">
-                        <option>--Pilih tahun--</option>
+                        <option value="{{ date('Y') }}">--Pilih tahun--</option>
                         <?php $start = date('Y'); $end = 2016 ?>
                         <?php for($i = $end; $i <= $start; $i++) { ?> 
                           <option value="{{ $i }}">{{ $i }}</option>

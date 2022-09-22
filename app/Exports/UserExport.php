@@ -15,7 +15,7 @@ class UserExport implements FromQuery
 
     public function query()
     {
-        return Universitas::query()->select('no_anggota', 'nama_univ', 'nama_fakultas', 'nama_jurusan')
+        return Universitas::query()->select('no_anggota', 'nama_univ', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')
             ->where('thn_anggota', $this->thn_anggota)
             ->where('status', 1);
     }
