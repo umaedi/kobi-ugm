@@ -8,7 +8,7 @@
     <div class="card-header py-3">
         <div class="col-sm-12">
             <div class="d-sm-flex align-items-center justify-content-between">
-                <h3 class="h5 mb-0 text-gray-800 d-inline">Filter dan Export data</h3>
+                <h3 class="h5 mb-0 text-gray-800 d-inline">Filter dan Export data STR</h3>
             </div>
         </div>
     </div>
@@ -21,8 +21,8 @@
                     <label for="show-data-by-year">Pilih kategori data</label>
                     <select class="form-control" id="show-data-by-year" name="status">
                       <option>--Pilih kategori data--</option>
-                        <option value="1">Data anggota aktif</option>
-                        <option value="2">Data anggota ditolak</option>
+                        <option value="1">Data STR diterima</option>
+                        <option value="2">Data STR ditolak</option>
                     </select>
                   </div>
             </div>
