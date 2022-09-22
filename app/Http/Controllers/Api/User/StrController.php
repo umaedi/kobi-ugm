@@ -21,9 +21,9 @@ class StrController extends Controller
             'no_hp'         => 'required',
             'email'         => 'required',
             'nama_perusahaan'   => 'required',
-            'ijazah'        => 'required',
-            'surat_permohonan'  => 'required',
-            'surat_pengantar'   => 'required',
+            'ijazah'        => 'required|mimes:pdf|max:3072',
+            'surat_permohonan'  => 'required|mimes:pdf|max:3072',
+            'surat_pengantar'   => 'required|mimes:pdf|max:3072',
         ]);
 
         if ($validator->fails()) {
@@ -57,7 +57,8 @@ class StrController extends Controller
         ]);
 
         $pesan = [
-            'pesan' => 'Terimakasih sudah mengajukan STR. <br> Apabila lolos verifikasi akan diajukan ke Ketua Kobi.'
+            'pesan' => '<p>Terimakasih sudah mengajukan STR.</p> 
+            <p> Apabila lolos verifikasi akan diajukan ke Ketua Kobi.'
         ];
 
         Mail::to($request->email)->send(new SendMail($pesan));

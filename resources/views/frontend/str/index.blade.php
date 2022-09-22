@@ -3,7 +3,7 @@
 @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3>{{ __('KOBI| Pengajuan STR') }}</h3>
+    <h3>{{ __('Pengajuan STR') }}</h3>
     </div>
     @endslot
 @endcomponent
@@ -109,9 +109,11 @@
                     icon: "success"
                   })
                   .then(() => {
-                    window.location.replace(BaseUrl+'/');
+                    window.location.replace(BaseUrl+'/persyaratan');
                   });
             }else {
+              $('#btnSend').removeAttr('style', 'display: none');
+              $('#btnSending').attr('style', 'display: none');
                 swal("", response.responseJSON.message, "warning");
             }
         }

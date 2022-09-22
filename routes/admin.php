@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserExporController;
 
 Route::group(['middleware' => ['auth', 'admin']], function () {
     Route::prefix('admin')->group(function () {
@@ -27,7 +28,11 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/galeri/foto', 'galeri')->name('admin.galeri');
             Route::get('/struktur-organisasi', 'struktur')->name('admin.struktur');
         });
-        Route::post('/export/data', [UserExporController::class, 'export'])->name('export.excel');
+        Route::controller(\App\Http\Controllers\UserExporController::class)->group(function () {
+            Route::post('/export/data/user/', 'exportUser')->name('export.excel');
+            Route::post('/export/data/str', 'dataStr')->name('export.str');
+        });
+
         Route::controller(\App\Http\Controllers\Backend\StrukturController::class)->group(function () {
             Route::get('/organisasi/surat-keputusan', 'suratKeputusan')->name('admin.surat');
             Route::get('/organisasi/dewan-penasihat', 'dewanPenasiaht')->name('admin.penasihat');

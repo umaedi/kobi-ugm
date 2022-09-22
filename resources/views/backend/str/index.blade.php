@@ -4,7 +4,38 @@
 @endpush
 @section('content')
 <div class="container-fluid">
-
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="col-sm-12">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <h3 class="h5 mb-0 text-gray-800 d-inline">Filter dan Export data</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+      <form action="{{ route('export.str') }}" method="POST">
+        @csrf
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    <label for="show-data-by-year">Pilih kategori data</label>
+                    <select class="form-control" id="show-data-by-year" name="status">
+                      <option>--Pilih kategori data--</option>
+                        <option value="1">Data anggota aktif</option>
+                        <option value="2">Data anggota ditolak</option>
+                    </select>
+                  </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                  <label for="">Aksi</label>
+                  <button type="submit" class="btn btn-primary form-control">Export</button>
+                </div>
+            </div>
+        </div>
+      </form>
+    </div>
+</div>
   @component('components.backend.card-table')
     @slot('header')
       <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Pengajuan STR Baru</h3>

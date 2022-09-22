@@ -83,6 +83,5 @@
       table.ajax.reload();
   }, 30000);
 
-  // $('#dataTable_filter label ').html('')
 </script>
 @endpush

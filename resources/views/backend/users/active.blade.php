@@ -20,7 +20,7 @@
                     <label for="show-data-by-year">Tampilkan berdasarkan tahun</label>
                     <select class="form-control" id="show-data-by-year" name="filter-data" onchange="filterData()">
                       <option value="{{ date('Y') }}">--Pilih tahun--</option>
-                        <?php $start = date('Y'); $end = 2019 ?>
+                        <?php $start = date('Y'); $end = 2016 ?>
                         <?php for($i = $end; $i <= $start; $i++) { ?> 
                           <option value="{{ $i }}">{{ $i }}</option>
                         <?php } ?>
@@ -34,7 +34,7 @@
                       <label for="exampleFormControlSelect1">Export data</label>
                       <select class="form-control" id="exampleFormControlSelect1" name="year">
                         <option>--Pilih tahun--</option>
-                        <?php $start = date('Y'); $end = 2019 ?>
+                        <?php $start = date('Y'); $end = 2016 ?>
                         <?php for($i = $end; $i <= $start; $i++) { ?> 
                           <option value="{{ $i }}">{{ $i }}</option>
                         <?php } ?>

@@ -94,7 +94,7 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor Telepon Program Studi/Jurusan') }}</label>
-                        <input name="no_tlp" type="text" class="form-control phone-number" required>
+                        <input name="no_tlp" type="number" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -108,7 +108,7 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor WhatsApp/Narahubung') }}</label>
-                        <input name="no_wa" type="text" class="form-control phone-number" required>
+                        <input name="no_wa" type="number" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -134,8 +134,7 @@
 @endsection
 @push('js')
 <script src="{{ asset('backend') }}/js/sweet_alert.min.js"></script>
-<script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js></script>
-    <script>
+  <script>
         $('#province').change(() => {
           let id_province = $('#province').val();
           $.ajax({
@@ -200,8 +199,6 @@
               }
             });
         });
-
-        Inputmask({ "mask": "+62-9999-9999-9999"}).mask(document.querySelectorAll("input.phone-number"));
     </script>
 @endpush
 

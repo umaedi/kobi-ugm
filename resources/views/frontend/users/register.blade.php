@@ -94,13 +94,13 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor Telepon Program Studi/Jurusan') }}</label>
-                        <input name="no_tlp" type="text" class="form-control phone-number" required>
+                        <input name="no_tlp" type="number" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor WhatsApp/Narahubung') }}</label>
-                        <input name="no_wa" type="text" class="form-control phone-number" required>
+                        <input name="no_wa" type="number" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-2">
@@ -206,7 +206,5 @@
               }
             });
         });
-
-        Inputmask({ "mask": "+62-9999-9999-9999"}).mask(document.querySelectorAll("input.phone-number"));
     </script>
 @endpush
