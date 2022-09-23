@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\EventCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Universitas;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -22,13 +23,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'      => 'required|string|max:255',
-            'email'     => 'required|email|unique:users',
-            'password'  => 'required|string|confirmed|min:6'
+            'nama_jurusan'  => 'required|string|max:255',
+            'no_anggota'    => 'required|string|max:255|unique:users',
+            'email'         => 'required|email|unique:users',
+            'password'      => 'required|string|confirmed|min:6'
         ]);
+
+        $no_anggota = Universitas::where('no_anggota', $request->no_anggota)->first();
+        if ($no_anggota == null || $no_anggota->status != 1) {
+            return back()->with('msg', 'No anggota salah atau belum aktif');
+        }
+
         $validated['password'] = Hash::make($validated['password']);
         User::create($validated);
-        return redirect('/user/login');
+        return redirect('/user/login')->with('success', 'Selamat akun Anda berhasil dibuat. Silahkan login');
     }
 
     public function login()
@@ -42,15 +50,20 @@ class UserController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'email'     => 'required',
+            'no_anggota'     => 'required',
             'password'  => 'required',
         ]);
+
+        $active = Universitas::where('no_anggota', $request->no_anggota)->first();
+        if ($active->status != 1) {
+            return back()->with('active', 'Anda belum terdaftar sebagai anggota aktif !');
+        }
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
-        return back()->with('msg', 'Login gagal !');
+        return back()->with('active', 'No anggota atau password Anda salah !');
     }
 
     public function destroy(Request $request)

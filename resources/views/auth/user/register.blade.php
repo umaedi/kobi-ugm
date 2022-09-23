@@ -17,24 +17,45 @@
              </div>
           </div>
        </div>
+       @if (session()->has('msg'))
+       <div class="row justify-content-center">
+         <div class="col-md-5">
+               <div class="alert alert-danger" role="alert">
+                  {{ session('msg') }}
+               </div>
+         </div>
+       </div>
+       @endif
        <div class="row">
           <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
              <div class="sign__wrapper white-bg">
-                <div class="sign__header mb-20">
+                {{-- <div class="sign__header mb-20">
                    <div class="sign__in text-center">
-                      <a href="{{ url('/auth/redirect/google') }}" class="sign__social text-start mb-15"><i class="fab fa-google"></i>Daftar dengan akun Google</a>
+                      <a href="{{ url('/auth/redirect/google') }}" class="sign__social text-start mb-15"><i class="fab fa-google"></i>Buat daftar dengan akun Google</a>
                       <p>Atau</p>
                    </div>
-                </div>
+                </div> --}}
                 <div class="sign__form">
                    <form action="{{ route('user.store') }}" method="POST">
                     @csrf
                       <div class="sign__input-wrapper mb-25">
-                         <h5>Nama Anda</h5>
+                         <h5>Nama Jurusan</h5>
                          <div class="sign__input">
                             <i class="fa fa-user"></i>
-                            <input class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Nama" name="name" value="{{ old('name') }}" required>
-                            @error('name')
+                            <input class="form-control @error('nama_jurusan') is-invalid @enderror" type="text" placeholder="Nama jurusan" name="nama_jurusan" value="{{ old('nama_jurusan') }}" required>
+                            @error('nama_jurusan')
+                            <div class="invalid-feedback">
+                              {{ $message }}
+                            </div>
+                            @enderror
+                         </div>
+                      </div>
+                      <div class="sign__input-wrapper mb-25">
+                         <h5>No Anggota</h5>
+                         <div class="sign__input">
+                            <input class="form-control @error('no_angota') is-invalid @enderror" type="text" placeholder="No anggota" name="no_anggota" value="{{ old('no_angota') }}" required>
+                            <i class="fa fa-user"></i>
+                            @error('no_angota')
                             <div class="invalid-feedback">
                               {{ $message }}
                             </div>

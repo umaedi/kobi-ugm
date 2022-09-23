@@ -17,23 +17,39 @@
              </div>
           </div>
        </div>
+       <div class="row justify-content-center">
+          @if (session()->has('active'))
+            <div class="col-md-5">
+               <div class="alert alert-danger" role="alert">
+                  {{ session('active') }}
+               </div>
+            </div>
+         @endif
+         @if (session()->has('success'))
+         <div class="col-md-5">
+            <div class="alert alert-success" role="alert">
+               {{ session('success') }}
+            </div>
+         </div>
+         @endif
+       </div>
        <div class="row">
           <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3 col-lg-8 offset-lg-2">
              <div class="sign__wrapper white-bg">
-                <div class="sign__header mb-20">
+                {{-- <div class="sign__header mb-20">
                    <div class="sign__in text-center">
                       <a href="{{ url('/auth/redirect/google') }}" class="sign__social text-start mb-15"><i class="fab fa-google"></i>{{ __('Masuk dengan akun Google') }}</a>
                       <p>{{ __('Atau') }}</p>
                    </div>
-                </div>
+                </div> --}}
                 <div class="sign__form">
                    <form action="{{ route('authenticate') }}" method="POST">
                     @csrf
                       <div class="sign__input-wrapper mb-25">
-                         <h5>{{ __('Email Anda') }}</h5>
+                         <h5>{{ __('No Anggota') }}</h5>
                          <div class="sign__input">
-                            <input type="text" placeholder="e-mail" name="email" required>
-                            <i class="fal fa-envelope"></i>
+                            <input type="text" placeholder="No Anggota" name="no_anggota" required>
+                            <i class="fal fa-lock"></i>
                          </div>
                       </div>
                       <div class="sign__input-wrapper mb-10">
