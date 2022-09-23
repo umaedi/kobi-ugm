@@ -10,15 +10,19 @@ class GalleryController extends Controller
 {
     public function index(Request $request)
     {
-        $photos = Gallery::latest()->limit(6)->get();
-        $result['photos'] = $photos;
-        return $this->sendResponseOk($result);
-        // $galeri = Gallery::paginate(12);
 
-        // if ($request->q) {
-        //     $galeri->where('title', 'like', '%' . $request->q . '%');
-        // };
-        // $result['photos'] = $galeri;
-        // return $this->sendResponseOk($result);
+        $galeri = Gallery::latest()->paginate(6);
+        return $this->sendResponseOk($galeri);
+    }
+
+    public function galeri(Request $request)
+    {
+        $galeri = Gallery::latest()->paginate(12);
+
+        if ($request->search) {
+            $galeri = Gallery::where('title', 'like', '%' . $request->search . '%')->paginate();
+        };
+
+        return $this->sendResponseOk($galeri);
     }
 }

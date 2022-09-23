@@ -69,7 +69,10 @@ Route::resource('/admin/event/categories/evx', \App\Http\Controllers\Api\EventCa
 //users
 Route::prefix('user')->group(function () {
     Route::post('/list/active', [Api\User\UnivController::class, 'users']);
-    Route::post('/photos', [Api\User\GalleryController::class, 'index']);
+    Route::controller(Api\User\GalleryController::class)->group(function () {
+        Route::post('/images', 'index');
+        Route::post('/galleries', 'galeri');
+    });
 });
 
 
@@ -78,7 +81,6 @@ Route::get('/laporan', [Api\User\LaporanController::class, 'laporan']);
 Route::get('/getRegencies/{id}', [Api\User\IndoregionController::class, 'kabupaten']);
 Route::get('/user/event/categories', [\App\Http\Controllers\Api\User\EventCategoryController::class, 'index']);
 
-Route::get('/user/images', [Api\User\GalleryController::class, 'index']);
 
 //users method post
 Route::post('/pengajuan-str', [Api\User\StrController::class, 'store']);

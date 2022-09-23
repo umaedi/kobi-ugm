@@ -75,6 +75,7 @@
                               @foreach ($events as $event)
                               <li><a href="/event/{{ $event->slug }}">{{ $event->name }}</a></li>
                               @endforeach
+                              <li><a href="{{ route('galeri') }}">Galeri</a></li>
                            </ul>
                         </li>
                         <li><a href="#">IBI</a></li>

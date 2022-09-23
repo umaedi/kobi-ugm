@@ -52,10 +52,10 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">No Anggota</th>
                 <th scope="col">Universitas</th>
                 <th scope="col">Fakultas</th>
                 <th scope="col">Program Studi</th>
+                <th scope="col">Tahun Keanggotaan</th>
               </tr>
             </thead>
             <tbody id="content-users">
@@ -103,10 +103,10 @@
               no++;
               content += '<tr>';
               content += '<th>'+ no +'</th>';
-              content += '<td>'+ v.no_anggota +'</td>';
               content += '<td>'+ v.nama_univ +'</td>';
               content += '<td>'+ v.nama_fakultas +'</td>';
               content += '<td>'+ v.nama_jurusan +'</td>';
+              content += '<td class="text-center">'+ v.thn_anggota +'</td>';
               content += '</tr>';
             });
             $('#content-users').removeAttr('style', 'display: none');

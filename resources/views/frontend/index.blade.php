@@ -155,19 +155,19 @@
              </section>
              <!-- blog area end -->
 
-             <section class="portfolio__area x-prtofolio__area pt-50">
+             <section class="portfolio__area pb-50 pt-40">
                <div class="container">
                   <div class="portfolio__menu x-gallery-head d-flex mb-20 wow fadeInUp" data-wow-delay=".5s">
                      <div class="masonary-menu filter-button-group">
                         <h4>Galeri Kegiatan</h4>
                     </div>
                   </div>
-                  <div class="row grid" id="xImages">
+                  <div class="row" id="xImages">
                      
                   </div>
-                  <div class="row">
+                  <div class="row" id="btnMore">
                      <div class="col-xxl-12 wow fadeInUp" data-wow-delay=".3s">
-                        <div class="portfolio__more mt-30 x-protfolio__more text-center">
+                        <div class="portfolio__more mt-30 text-center">
                            <a href="{{ route('galeri') }}" class="w-btn w-btn">Galeri selengkapnya</a>
                         </div>
                      </div>
@@ -213,17 +213,21 @@
    }
    getPost();
  
+   let data = {
+      search : ''
+   };
    function getImage()
    {
       $.ajax({
       url: BaseUrl+'/api/user/images',
-      method: 'GET',
-      processData: false,
-      contentType: false,
-      cache: false,
+      method: 'POST',
+      data: data,
       complete: (response) => {
          if(response.status == 200) {
-            let data = response.responseJSON.data.photos;
+            let data = response.responseJSON.data.data;
+            if(data.length < 6) {
+               $('#btnMore').addClass('d-none');
+            }
             let content = '';
             $.each(data, (k, v) => {
                content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4 wow fadeInUp" data-wow-delay=".3s">';

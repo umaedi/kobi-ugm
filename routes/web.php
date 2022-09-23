@@ -29,7 +29,7 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/event/show/{event:slug}', 'showEvent');
     Route::get('/kurikulum/kobi', 'kurikulum')->name('kurikulum');
     Route::get('/ad-art', 'adArt')->name('ad-art')->name('adart');
-    Route::get('/galeri/foto', 'galeri')->name('galeri');
+    Route::get('/galeri/kegiatan', 'galeri')->name('galeri');
     Route::get('/notifikasi/{slug}', 'notifikasi')->name('notifikasi');
 });
 
