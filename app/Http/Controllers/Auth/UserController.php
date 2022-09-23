@@ -55,7 +55,7 @@ class UserController extends Controller
         ]);
 
         $active = Universitas::where('no_anggota', $request->no_anggota)->first();
-        if ($active->status != 1) {
+        if ($active == null || $active->status != 1) {
             return back()->with('active', 'Anda belum terdaftar sebagai anggota aktif !');
         }
 

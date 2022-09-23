@@ -39,7 +39,7 @@
                    <form action="{{ route('user.store') }}" method="POST">
                     @csrf
                       <div class="sign__input-wrapper mb-25">
-                         <h5>Nama Jurusan</h5>
+                         <h5>Nama Program Studi</h5>
                          <div class="sign__input">
                             <i class="fa fa-user"></i>
                             <input class="form-control @error('nama_jurusan') is-invalid @enderror" type="text" placeholder="Nama jurusan" name="nama_jurusan" value="{{ old('nama_jurusan') }}" required>
