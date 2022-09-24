@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api as Controller;
+use App\Mail\EmailStr;
 
 class StrController extends Controller
 {
@@ -56,12 +57,12 @@ class StrController extends Controller
             'status'            => '0'
         ]);
 
-        $pesan = [
-            'pesan' => '<p>Terimakasih sudah mengajukan STR.</p> 
-            <p> Apabila lolos verifikasi akan diajukan ke Ketua Kobi.'
+        $data = [
+            'name'  => $request->nama
         ];
 
-        Mail::to($request->email)->send(new SendMail($pesan));
+
+        Mail::to($request->email)->send(new EmailStr($data));
 
         $result['str'] = $str;
         return $this->sendResponseCreate($result);

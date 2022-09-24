@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api as Controller;
+use App\Models\User;
 
 class UnivController extends Controller
 {
@@ -76,7 +77,6 @@ class UnivController extends Controller
             }
         }
 
-
         $struk = $request->file('bukti_pembayaran');
         $struk->storeAs('public/strukpembayaran', $struk->hashName());
 
@@ -126,6 +126,13 @@ class UnivController extends Controller
                 'pesan'     => $request->pesan
             ]);
         }
+
+        User::create([
+            'no_anggota'    => $universitas->no_anggota,
+            'nama_jurusan'  => $request->nama_jurusan,
+            'email'         => $universitas->email_user,
+            'password'      => mt_rand(1, 9),
+        ]);
 
         $noAnggota = $universitas->no_anggota;
         $pesan = [

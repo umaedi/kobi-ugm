@@ -31,7 +31,7 @@ class UserController extends Controller
 
         $no_anggota = Universitas::where('no_anggota', $request->no_anggota)->first();
         if ($no_anggota == null || $no_anggota->status != 1) {
-            return back()->with('msg', 'No anggota salah atau belum aktif');
+            return back()->with('msg', 'No anggota tidak ditemukan atau belum aktif');
         }
 
         $validated['password'] = Hash::make($validated['password']);
