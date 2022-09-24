@@ -22,7 +22,8 @@
                 </div>
         </div>
         <div class="my-3 p-3 bg-body rounded shadow-sm text-center">
-            <p class="text-center">Termikasih telah mendaftar menjadi bagian dari KOBI. Selanjutnya Admin akan mengirimkan no anggota pada email yang telah Anda daftarkan</p>
+          <img class="lazyload" data-src="{{ asset('frontend') }}/img/notif/notif.png" alt="" width="50%">
+            <p class="text-center mt-3">Termikasih telah mendaftar menjadi bagian dari KOBI. Selanjutnya Admin akan mengirimkan no anggota pada email yang telah Anda daftarkan</p>
             <a href="{{ url('/') }}" class="w-btn w-btn">Kembali</a>
         </div>
     </div>
