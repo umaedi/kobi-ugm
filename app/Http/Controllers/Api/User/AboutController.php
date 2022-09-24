@@ -14,7 +14,7 @@ class AboutController extends Controller
     public function sejarah(Request $request)
     {
         if ($request->ajax()) {
-            $about = About::where('status', 1)->get()->first();
+            $about = About::select('title', 'body')->where('status', 1)->get()->first();
             $result['about'] = $about;
             return $this->sendResponseOk($result);
         }
@@ -23,7 +23,7 @@ class AboutController extends Controller
     public function founder(Request $request)
     {
         if ($request->ajax()) {
-            $fo = Founder::latest()->get();
+            $fo = Founder::select('name', 'photo', 'position')->latest()->get();
             $result['founder'] = $fo;
             return $this->sendResponseOk($result);
         }
@@ -31,7 +31,7 @@ class AboutController extends Controller
 
     public function visionMision()
     {
-        $visi = VisiMisi::latest()->first();
+        $visi = VisiMisi::select('title', 'body')->latest()->first();
         $result['vision'] = $visi;
         return $this->sendResponseOk($result);
     }

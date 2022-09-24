@@ -18,7 +18,7 @@ class StructureController extends Controller
     public function decisionLatter(Request $request)
     {
         if ($request->ajax()) {
-            $decLatter = DecLetter::latest()->first();
+            $decLatter = DecLetter::select('title', 'body')->latest()->first();
             $result['dec_latter'] = $decLatter;
             return $this->sendResponseOk($result);
         }
@@ -26,7 +26,7 @@ class StructureController extends Controller
 
     public function getAdvisor(Request $request)
     {
-        $dataAdvisor = Advisor::where('status', 1)->get();
+        $dataAdvisor = Advisor::select('name', 'department', 'photo')->where('status', 1)->get();
         if (request('search')) {
             $dataAdvisor = Advisor::where('year_start', 'like', '%' . request('search') . '%')->get();
         }
@@ -38,7 +38,7 @@ class StructureController extends Controller
 
     public function getChairman()
     {
-        $dataChairman = Leader::where('status', 1)->get();
+        $dataChairman = Leader::select('name', 'department', 'univ', 'photo', 'year_start')->where('status', 1)->get();
         if (request('search')) {
             $dataChairman = Leader::where('year_start', 'like', '%' . request('search') . '%')->get();
         }
@@ -50,7 +50,7 @@ class StructureController extends Controller
 
     public function getSecretaries()
     {
-        $dataSec = Secretary::where('status', 1)->get();
+        $dataSec = Secretary::select('name', 'photo', 'department', 'univ', 'year_start')->where('status', 1)->get();
         if (request('search')) {
             $dataSec = Secretary::where('year_start', 'like', '%' . request('search') . '%')->get();
         }
@@ -63,7 +63,7 @@ class StructureController extends Controller
     {
         $dataTea = Treasurer::where('status', 1)->get();
         if (request('search')) {
-            $dataTea = Treasurer::where('year_start', 'like', '%' . request('search') . '%')->get();
+            $dataTea = Treasurer::select('name', 'department', 'univ', 'photo', 'year_start')->where('year_start', 'like', '%' . request('search') . '%')->get();
         }
 
         $tea = $dataTea;
@@ -75,7 +75,7 @@ class StructureController extends Controller
     {
         $dataRegion = Coorregion::where('status', 1)->get();
         if (request('search')) {
-            $dataRegion = Coorregion::where('year_start', 'like', '%' . request('search') . '%')->get();
+            $dataRegion = Coorregion::select('name', 'department', 'univ', 'photo', 'year_start')->where('year_start', 'like', '%' . request('search') . '%')->get();
         }
 
         $coorregion = $dataRegion;
@@ -99,7 +99,7 @@ class StructureController extends Controller
     {
         $dataRela = Relationship::where('status', 1)->get();
         if (request('search')) {
-            $dataRela = BidCurriculum::where('year_start', 'like', '%' . request('search') . '%')->get();
+            $dataRela = BidCurriculum::select('name', 'department', 'univ', 'photo', 'year_start')->where('year_start', 'like', '%' . request('search') . '%')->get();
         }
         $rela = $dataRela;
         $result['relationship'] = $rela;

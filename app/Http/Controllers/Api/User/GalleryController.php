@@ -11,13 +11,13 @@ class GalleryController extends Controller
     public function index(Request $request)
     {
 
-        $galeri = Gallery::latest()->paginate(6);
+        $galeri = Gallery::select('title', 'photo')->latest()->paginate(6);
         return $this->sendResponseOk($galeri);
     }
 
     public function galeri(Request $request)
     {
-        $galeri = Gallery::latest()->paginate(12);
+        $galeri = Gallery::select('title', 'photo')->latest()->paginate(12);
 
         if ($request->search) {
             $galeri = Gallery::where('title', 'like', '%' . $request->search . '%')->paginate();

@@ -20,7 +20,7 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/berita', 'posts')->name('posts');
     Route::get('/{post:slug}', 'show')->name('show');
     Route::get('/posts/category/{category:slug}', 'postCategories');
-    Route::get('/posts/list', 'listPost')->name('posts.list');
+    Route::get('/semua-berita/kobi', 'listPost')->name('posts.list');
     Route::get('/permohonan/pengajuan-str', 'str')->name('str');
     Route::get('/permohonan/upload-str', 'uploadStr')->name('upload.str');
     Route::get('/event/{eventCategory:slug}', 'event')->name('event');

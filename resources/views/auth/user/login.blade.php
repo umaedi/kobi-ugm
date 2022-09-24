@@ -46,9 +46,9 @@
                    <form action="{{ route('authenticate') }}" method="POST">
                     @csrf
                       <div class="sign__input-wrapper mb-25">
-                         <h5>{{ __('No Anggota') }}</h5>
+                         <h5>{{ __('Nomor Anggota') }}</h5>
                          <div class="sign__input">
-                            <input type="text" placeholder="No Anggota" name="no_anggota" required>
+                            <input type="text" placeholder="Nomor Anggota" name="no_anggota" required>
                             <i class="fal fa-lock"></i>
                          </div>
                       </div>

@@ -46,7 +46,7 @@
                       </div>
                       <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6">
                          <div class=" promotion__thumb w-img wow fadeInRight" data-wow-delay="1.2s">
-                            <img class="lazyload" data-src="{{ asset('frontend') }}/img/promotion/home-5/ketua-umum-kobi.jpg" alt="">
+                            <img class="lazyload" data-src="{{ asset('frontend') }}/img/promotion/home-5/ketua-umum-kobi.jpeg" alt="">
                          </div>
                       </div>
                    </div>
@@ -181,10 +181,7 @@
    {
       $.ajax({
       url: BaseUrl+'/api/user/post/postindex',
-      method: 'GET',
-      processData: false,
-      contentType: false,
-      cache: false,
+      method: 'POST',
       complete: (response) => {
          if(response.status == 200) {
             let data = response.responseJSON.data.posts;
@@ -198,7 +195,7 @@
                content += '</div>';
                content += '<div class="blog__content-5">';
                content += '<div class="blog__meta-5">';
-               content += '<span class="date">'+ v.publish_at +'</span>';
+               content += '<span class="date">'+ v.created_at +'</span>';
                content += '<span class="tag"><a href="/posts/category/'+ v.category.slug +'">'+  v.category.name +'</a></span>';
                content += '</div>';
                content += ' <h3 class="blog__title-5"><a href="/'+  v.slug +'">'+ v.title +'</a></h3>';
@@ -213,19 +210,16 @@
    }
    getPost();
  
-   let data = {
-      search : ''
-   };
    function getImage()
    {
       $.ajax({
       url: BaseUrl+'/api/user/images',
       method: 'POST',
-      data: data,
+      data: '',
       complete: (response) => {
          if(response.status == 200) {
             let data = response.responseJSON.data.data;
-            if(data.length < 6) {
+            if(data < 6) {
                $('#btnMore').addClass('d-none');
             }
             let content = '';

@@ -20,7 +20,7 @@ class UnivController extends Controller
 
         $search = $request->search;
         if ($search) {
-            $data     = Universitas::where('no_anggota', 'like', '%' . $request->search . '%')
+            $data     = Universitas::select('nama_univ', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('no_anggota', 'like', '%' . $request->search . '%')
                 ->orWhere('nama_univ', 'like', '%' . $request->search . '%')
                 ->orWhere('nama_fakultas', 'like', '%' . $request->search . '%')
                 ->orWhere('nama_jurusan', 'like', '%' . $request->search . '%')
@@ -32,12 +32,12 @@ class UnivController extends Controller
         if ($year) {
             $year = $request->year;
         } else {
-            $data = Universitas::where('status', 1)
+            $data = Universitas::select('nama_univ', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('status', 1)
                 ->latest()->paginate($limit);
             return  $this->sendResponseOk($data);
         }
 
-        $data = Universitas::where('thn_anggota', $year)
+        $data = Universitas::select('nama_univ', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('thn_anggota', $year)
             ->latest()->paginate($limit);
 
         if ((!empty($data)) and ($data->count() != 0)) {

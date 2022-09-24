@@ -39,11 +39,11 @@
                    <form action="{{ route('user.store') }}" method="POST">
                     @csrf
                       <div class="sign__input-wrapper mb-25">
-                         <h5>Nama Program Studi</h5>
+                         <h5>Nama</h5>
                          <div class="sign__input">
                             <i class="fa fa-user"></i>
-                            <input class="form-control @error('nama_jurusan') is-invalid @enderror" type="text" placeholder="Nama jurusan" name="nama_jurusan" value="{{ old('nama_jurusan') }}" required>
-                            @error('nama_jurusan')
+                            <input class="form-control @error('name') is-invalid @enderror" type="text" placeholder="Nama" name="name" value="{{ old('name') }}" required>
+                            @error('name')
                             <div class="invalid-feedback">
                               {{ $message }}
                             </div>
@@ -51,9 +51,9 @@
                          </div>
                       </div>
                       <div class="sign__input-wrapper mb-25">
-                         <h5>No Anggota</h5>
+                         <h5>Nomor Anggota</h5>
                          <div class="sign__input">
-                            <input class="form-control @error('no_angota') is-invalid @enderror" type="text" placeholder="No anggota" name="no_anggota" value="{{ old('no_angota') }}" required>
+                            <input class="form-control @error('no_angota') is-invalid @enderror" type="text" placeholder="Nomor anggota" name="no_anggota" value="{{ old('no_angota') }}" required>
                             <i class="fa fa-user"></i>
                             @error('no_angota')
                             <div class="invalid-feedback">
@@ -65,7 +65,7 @@
                       <div class="sign__input-wrapper mb-25">
                          <h5>Email Anda</h5>
                          <div class="sign__input">
-                            <input class="form-control @error('email') is-invalid @enderror" type="email" placeholder="e-mail" name="email" value="{{ old('email') }}" required>
+                            <input class="form-control @error('email') is-invalid @enderror" type="email" placeholder="E-mail" name="email" value="{{ old('email') }}" required>
                             <i class="fal fa-envelope"></i>
                             @error('email')
                             <div class="invalid-feedback">

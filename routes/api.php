@@ -108,7 +108,7 @@ Route::prefix('user')->group(function () {
 });
 
 Route::controller(Api\User\PostController::class)->group(function () {
-    Route::get('/user/post/postindex', 'index');
+    Route::post('/user/post/postindex', 'index');
     Route::get('/user/post/postnewsorevent', 'newsOrArticle');
     Route::get('/user/post/list', 'postList');
     Route::get('/user/last-post', 'lastpost');
