@@ -53,7 +53,7 @@
                       <div class="sign__input-wrapper mb-25">
                          <h5>Nomor Anggota</h5>
                          <div class="sign__input">
-                            <input class="form-control @error('no_angota') is-invalid @enderror" type="text" placeholder="Nomor anggota" name="no_anggota" value="{{ old('no_angota') }}" required>
+                            <input class="form-control @error('no_angota') is-invalid @enderror" type="text" placeholder="Nomor Anggota" name="no_anggota" value="{{ old('no_angota') }}" required>
                             <i class="fa fa-user"></i>
                             @error('no_angota')
                             <div class="invalid-feedback">
@@ -63,9 +63,9 @@
                          </div>
                       </div>
                       <div class="sign__input-wrapper mb-25">
-                         <h5>Email Anda</h5>
+                         <h5>Alamat E-Mail</h5>
                          <div class="sign__input">
-                            <input class="form-control @error('email') is-invalid @enderror" type="email" placeholder="E-mail" name="email" value="{{ old('email') }}" required>
+                            <input class="form-control @error('email') is-invalid @enderror" type="email" placeholder="Alamat E-mail" name="email" value="{{ old('email') }}" required>
                             <i class="fal fa-envelope"></i>
                             @error('email')
                             <div class="invalid-feedback">
@@ -87,9 +87,9 @@
                          </div>
                       </div>
                       <div class="sign__input-wrapper mt-25">
-                         <h5>Konfirmasi password</h5>
+                         <h5>Konfirmasi Password</h5>
                          <div class="sign__input">
-                            <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" placeholder="Password" name="password_confirmation" required>
+                            <input class="form-control @error('password_confirmation') is-invalid @enderror" type="password" placeholder="Konfirmasi Password" name="password_confirmation" required>
                             <i class="fal fa-lock"></i>
                             @error('password_confirmation')
                             <div class="invalid-feedback">
