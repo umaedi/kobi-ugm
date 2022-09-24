@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Api as Controller;
 use App\Http\Controllers\BaseController;
+use App\Mail\KonfirmasiStr;
+use App\Mail\TolakStr;
 
 class StrController extends Controller
 {
@@ -46,18 +48,19 @@ class StrController extends Controller
         ]);
 
         if ($request->pesan == '') {
-            $pesan = [
-                'pesan'  => 'Pengajuan STR Anda telah kami terima.'
+            $data = [
+                'name'      => $str->nama,
             ];
-            Mail::to($str->email)->send(new SendMail($pesan));
+            Mail::to($str->email)->send(new KonfirmasiStr($data));
             return $this->sendResponseUpdate($strUpdate);
         }
 
-        $pesan = [
-            'pesan'  => $request->pesan
+        $data = [
+            'name'      => $str->nama,
+            'message'   => $request->pesan
         ];
 
-        Mail::to($str->email)->send(new SendMail($pesan));
+        Mail::to($str->email)->send(new TolakStr($data));
         return $this->sendResponseUpdate($strUpdate);
     }
 

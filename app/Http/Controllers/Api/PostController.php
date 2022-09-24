@@ -71,6 +71,7 @@ class PostController extends Controller
             'body'          => $request->body,
             'image'         => $thumb->hashName(),
             'publish_at'    => $request->publish_at,
+            'created_at'    => $request->publish_at,
             'status'        => $request->status
         ]);
 

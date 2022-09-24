@@ -26,7 +26,7 @@
                      </div>
                      <div class="blog__content-5">
                         <div class="blog__meta-5">
-                           <span class="date">{{ $post->publish_at }}</span>
+                           <span class="date">{{ $post->created_at }}</span>
                            <span class="tag"><a href="/{{ $post->slug }}">{{ $post->category->name }}</a></span>
                         </div>
                         <h3 class="blog__title-5"><a href="/{{ $post->slug }}">{{ $post->title }}</a></h3>

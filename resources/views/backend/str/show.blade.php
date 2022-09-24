@@ -141,13 +141,15 @@
             
               swal({
                   title: "",
-                  text: response.responseJSON.message,
+                  text: "Pengajuan STR Diterima",
                   icon: "success"
                 })
                 .then(() => {
                   window.location.replace(BaseUrl+'/admin/str/verif');
                 });
           }else {
+              $('#btnSend').removeAttr('style', 'display: none');
+              $('#btnSending').attr('style', 'display: none');
               swal("", response.responseJSON.message, "warning");
           }
       }
@@ -180,13 +182,15 @@
 
               swal({
                   title: "",
-                  text: response.responseJSON.message,
+                  text: "Pengajuan STR Ditolak",
                   icon: "success"
                 })
                 .then(() => {
                   window.location.replace(BaseUrl+'/admin/str/reject');
                 });
           }else {
+              $('#btnSendRjt').removeAttr('style', 'display: none');
+              $('#btnSendingRjt').attr('style', 'display: none');
               swal("", response.responseJSON.message, "warning");
           }
       }
@@ -199,7 +203,7 @@
 
       swal({
         title: "",
-        text: "Delete STR ?",
+        text: "Hapus STR ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -214,12 +218,13 @@
                 cache: false,
                 complete: (response) => {
                     if(response.status == 200) {
+                      table.ajax.reload();
                     }else {
                         console.log('gagal');
                     }
                 }
                 });
-                swal("You request has ben deleted", {
+                swal("Pengajuan STR Dihapus", {
                 icon: "success",
             })
             .then(() => {

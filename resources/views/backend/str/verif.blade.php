@@ -60,7 +60,7 @@
   function remove(id) {
     swal({
         title: "",
-        text: "Delete STR ?",
+        text: "Hapus Pengajuan STR ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -68,7 +68,7 @@
         .then((willDelete) => {
         if (willDelete) {
             $.ajax({
-                url: BaseUrl+'/api/admin/str/verif/'+id,
+                url: BaseUrl+'/api/admin/str/destroy/'+id,
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
@@ -81,7 +81,7 @@
                     }
                 }
                 });
-                swal("You request has ben deleted", {
+                swal("Pengajuan STR Berhasil Dihapus", {
                 icon: "success",
             });
         }

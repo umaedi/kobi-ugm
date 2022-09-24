@@ -91,7 +91,7 @@
                   content += '</div>';
                   content += '<div class="rc__content">';
                   content += '<div class="rc__meta">';
-                  content += '<span>'+ v.publish_at +'</span>';
+                  content += '<span>'+ v.created_at +'</span>';
                   content += ' </div>';
                   content += '<h3 class="rc__title"><a href=/'+  v.slug +'>'+ v.title +'</a></h3>';
                   content += '</div>';
