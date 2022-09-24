@@ -29,6 +29,8 @@ class EmailStr extends Mailable
      */
     public function build()
     {
-        return $this->from('kobi.biologi@gmail.com')->view('backend.email.str');
+        return $this->from('kobi.biologi@gmail.com')
+            ->subject('Informasi Pengajuan STR')
+            ->view('backend.email.str');
     }
 }

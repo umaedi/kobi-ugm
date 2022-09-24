@@ -127,25 +127,32 @@ class UnivController extends Controller
             ]);
         }
 
-        User::create([
-            'no_anggota'    => $universitas->no_anggota,
-            'nama_jurusan'  => $request->nama_jurusan,
-            'email'         => $universitas->email_user,
-            'password'      => mt_rand(1, 9),
-        ]);
+        $password = $this->generatePassword();
+
+        $data_user = User::where('email', $universitas->email_user)->first();
+        if ($data_user == null) {
+            User::create([
+                'no_anggota'    => $universitas->no_anggota,
+                'name'          => $request->nama_jurusan,
+                'email'         => $universitas->email_user,
+                'password'      => bcrypt($password)
+            ]);
+        } else {
+            User::where('email', $data_user->email)->update([
+                'no_anggota'    => $universitas->no_anggota,
+                'name'          => $request->nama_jurusan,
+                'email'         => $universitas->email_user,
+                'password'      => bcrypt($password)
+            ]);
+        }
 
         $noAnggota = $universitas->no_anggota;
-        $pesan = [
-            'pesan' => '<p>Terimakasih sudah mendaftar untuk menjadi bagian dari KOBI.</p> 
-            <p> Berikut no anggota Anda ' . $noAnggota . '</p>
-            Selamat bergabung dan salam hangat dari kami <br>
-            <br>
-            <h4>Salam hormat</h4>
-            <p>Admin KOBI</p>'
+        $data = [
+            'noAnggota' => $noAnggota,
+            'password'  => $password
         ];
 
-        $emailAnggota = $universitas->email_user;
-        Mail::to($emailAnggota)->send(new SendMail($pesan));
+        Mail::to($universitas->email_user)->send(new SendMail($data));
         return $this->sendResponseUpdate($universitas);
     }
 
@@ -157,5 +164,20 @@ class UnivController extends Controller
             $user->destroy($id);
         }
         return $this->sendResponseDelete($user);
+    }
+
+    private function generatePassword()
+    {
+        $number = random_int(
+            min: 000_000,
+            max: 999_999,
+        );
+
+        return str_pad(
+            string: strval($number),
+            length: 6,
+            pad_string: '0',
+            pad_type: STR_PAD_LEFT,
+        );
     }
 }

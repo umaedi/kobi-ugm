@@ -10,16 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $pesan;
+    public $data;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($pesan)
+    public function __construct($data)
     {
-        $this->pesan = $pesan;
+        $this->data = $data;
     }
 
     /**
@@ -29,6 +29,8 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('kobi.biologi@gmail.com')->view('backend.email.email');
+        return $this->from('kobi.biologi@gmail.com')
+            ->subject('Informasi Keanggotaan')
+            ->view('backend.email.email');
     }
 }
