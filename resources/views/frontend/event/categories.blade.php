@@ -31,7 +31,7 @@
    let pathname = window.location.pathname.split('/').pop();
    console.log(pathname);
    $.ajax({
-      url: BaseUrl+'/api/event/list/allcategories/' + pathname,
+      url: BaseUrl+'/api/user/event/list/allcategories/' + pathname,
       method: 'GET',
       processData: false,
       contentType: false,

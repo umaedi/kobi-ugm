@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="date" class="form-control" name="publish_at">
+                                        <input type="date" class="form-control" name="publish_at" value="{{ date('Y-m-d') }}">
                                         <small id="passwordHelpBlock" class="form-text text-muted">
                                             Dibuat pada
                                         </small>

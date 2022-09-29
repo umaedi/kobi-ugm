@@ -66,21 +66,38 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 });
 
-
-
-Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
-Route::get('/user/ad-art', [App\Http\Controllers\Api\AdArtController::class, 'userIndex']);
-
-
-//users
 Route::prefix('user')->group(function () {
     Route::post('/list/active', [Api\User\UnivController::class, 'users']);
     Route::controller(Api\User\GalleryController::class)->group(function () {
         Route::post('/images', 'index');
         Route::post('/galleries', 'galeri');
+        Route::get('/ad-art', [App\Http\Controllers\Api\AdArtController::class, 'userIndex']);
+    });
+
+    Route::controller(Api\User\PostController::class)->group(function () {
+        Route::post('/post/postindex', 'index');
+        Route::get('/post/postnewsorevent', 'newsOrArticle');
+        Route::get('/post/list', 'postList');
+        Route::get('/last-post', 'lastpost');
+    });
+
+    Route::controller(Api\User\AboutController::class)->group(function () {
+        Route::get('/history', 'sejarah');
+        Route::get('founder', 'founder');
+        Route::get('/vision-msion', 'visionMision');
+    });
+
+    Route::controller(Api\User\EventController::class)->group(function () {
+        Route::get('/event/list', 'index');
+        Route::get('/event/{eventCategory:slug}', 'eventList');
+        Route::get('/event/list/allcategories/{eventCategory:slug}', 'eventByCategories');
+        Route::get('/event/last-event', 'lastEvent');
     });
 });
 
+
+
+Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 
 Route::get('/dokumen/{category_id}', [Api\User\DocumentController::class, 'getByCategory']);
 Route::get('/laporan', [Api\User\LaporanController::class, 'laporan']);
@@ -94,11 +111,7 @@ Route::post('/upload/file-str', [Api\User\StrController::class, 'uploadStr']);
 Route::post('/user/getcategories', [Api\User\CategoryController::class, 'index']);
 
 Route::prefix('user')->group(function () {
-    Route::controller(Api\User\AboutController::class)->group(function () {
-        Route::get('/history', 'sejarah');
-        Route::get('founder', 'founder');
-        Route::get('/vision-msion', 'visionMision');
-    });
+
     Route::get('/kurikulum', [Api\User\KurikulumController::class, 'getKurikulum']);
 
     Route::controller(Api\User\StructureController::class)->group(function () {
@@ -113,19 +126,9 @@ Route::prefix('user')->group(function () {
     });
 });
 
-Route::controller(Api\User\PostController::class)->group(function () {
-    Route::post('/user/post/postindex', 'index');
-    Route::get('/user/post/postnewsorevent', 'newsOrArticle');
-    Route::get('/user/post/list', 'postList');
-    Route::get('/user/last-post', 'lastpost');
-});
 
-Route::controller(Api\User\EventController::class)->group(function () {
-    Route::get('/user/event/list', 'index');
-    Route::get('/user/event/{eventCategory:slug}', 'eventList');
-    Route::get('/event/list/allcategories/{eventCategory:slug}', 'eventByCategories');
-    Route::get('/user/event/last-event', 'lastEvent');
-});
+
+
 
 Route::post('/user/str/send-mail', function (Request $request) {
     $data = [

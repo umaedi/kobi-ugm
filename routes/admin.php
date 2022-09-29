@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/kegiatan', 'event')->name('admin.event');
             Route::get('/event/kategori', 'eventKategori')->name('admin.event.kategori');
             Route::get('/event/create', 'createEvenet')->name('admin.event.create');
+            Route::get('/event/edit/{id}', 'eventEdit');
             Route::get('/sejarah', 'sejarah')->name('admin.sejarah');
             Route::get('/visi-misi', 'VisiMisi')->name('admin.visiMisi');
             Route::get('/galeri/foto', 'galeri')->name('admin.galeri');

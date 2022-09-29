@@ -44,6 +44,7 @@
         function getGalleries(data){
             $.ajax({
                 url: BaseUrl+'/api/user/galleries',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'POST',
                 data: data,
                 complete: (response) => {

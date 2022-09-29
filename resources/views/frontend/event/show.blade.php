@@ -75,9 +75,6 @@
          $.ajax({
          url: BaseUrl+'/api/user/event/last-event',
          method: 'GET',
-         processData: false,
-         contentType: false,
-         cache: false,
          complete: (response) => {
             if(response.status == 200) {
                let data = response.responseJSON.data.lastevent;

@@ -43,9 +43,9 @@
   <li class="nav-item {{ Request::is('admin/event/create') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event.create') }}">
         <i class="fas fa-blog"></i>
-        <span>Berita Kegiatan</span></a>
+        <span>Buat Berita Kegiatan</span></a>
   </li>
-  <li class="nav-item {{ Request::is('admin/event') ? 'active' : '' }}">
+  <li class="nav-item {{ Request::is('admin/kegiatan') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('admin.event') }}">
         <i class="fas fa-fw fa-list"></i>
         <span>Semua Kegiatan</span></a>

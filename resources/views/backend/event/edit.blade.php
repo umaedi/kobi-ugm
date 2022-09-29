@@ -14,21 +14,21 @@
             <div class="card-header">
                 <div class="col-sm-12">
                     <div class="d-sm-flex align-items-center justify-content-between">
-                        <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Buat Berita Kegiatan</h3>
+                        <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Edit Berita Kegiatan</h3>
                     </div>
                 </div>
             </div>
             <!-- Card Body -->
             <div class="card-body">
                 <form id="formPost">
-                   @csrf
+                   @method('PUT')
                         <div class="card-body">
                             <div class="row">
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <div class="col-lg-8">
                                     <div class="form-group">
                                         <label for="title">Judul</label>
-                                        <input type="text" class="form-control @error('title') ? is-invalid @enderror" id="title" name="title" value="{{ old('title') }}">
+                                        <input type="text" class="form-control @error('title') ? is-invalid @enderror" id="title" name="title" value="{{ $event->title }}">
                                         @error('title')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
-                                        <input type="date" class="form-control" name="publish_at" value="{{ date('Y-m-d') }}">
+                                        <input type="date" class="form-control" name="publish_at">
                                         <small id="passwordHelpBlock" class="form-text text-muted">
                                             Dibuat pada
                                         </small>
@@ -82,9 +82,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="body">Konten</label>
-                                <textarea class="form-control" name="body" rows="5" id="task-textarea"></textarea>
+                                <textarea class="form-control" name="body" rows="5" id="task-textarea">{{ $event->body }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-globe"></i> Publish</button>
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-globe"></i> Perbaharui</button>
                         </div>
                 </form>
             </div>
@@ -104,7 +104,7 @@
         let data = new FormData(from);
 
         $.ajax({
-        url: BaseUrl+'/api/admin/event',
+        url: BaseUrl+'/api/admin/event/{{ $event->id }}',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: data,
         method: 'POST',
@@ -115,7 +115,7 @@
             if(response.status == 201) {
                 swal({
                     title: "",
-                    text: 'Kegiatan berhasil dibuat',
+                    text: 'Kegiatan berhasil di edit',
                     icon: "success"
                   })
                   .then(() => {

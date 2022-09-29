@@ -6,11 +6,8 @@ use App\Models\Str;
 use App\Models\Struk;
 use App\Mail\SendMail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api as Controller;
-use App\Jobs\EmailstrJob;
-use App\Mail\EmailStr;
 
 class StrController extends Controller
 {
@@ -57,13 +54,6 @@ class StrController extends Controller
             'surat_pengantar'   => $surat_pengantar->hashName(),
             'status'            => '0'
         ]);
-
-        // $data = [
-        //     'name'  => $request->nama,
-        //     'email' => $request->email
-        // ];
-
-        // Mail::to($request->email)->send(new EmailStr($data));
 
         $result['str'] = $str;
         return $this->sendResponseCreate($result);

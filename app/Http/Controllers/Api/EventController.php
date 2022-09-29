@@ -105,7 +105,45 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::findOrfail($id);
+        $validator = Validator::make($request->all(), [
+            'title'         => 'required',
+            'event_category_id'      => 'required',
+            'body'          => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
+        }
+
+        if ($request->file('image') == '') {
+            $post = Event::where('id', $id)->update([
+                'event_category_id'      => $request->event_category_id,
+                'user_id'       => $request->user_id,
+                'title'         => $request->title,
+                'slug'          => Str::slug($request->title),
+                'body'          => $request->body,
+                'image'         => $event->image,
+                'publish_at'    => $request->publish_at ? $request->publish_at : $event->publish_at,
+                'status'        => $request->status
+            ]);
+            return $this->sendResponseUpdate($post);
+        } else {
+            $thumb = $request->file('image');
+            $thumb->storeAs('public/thumb', $thumb->hashName());
+
+            $post = Event::where('id', $id)->update([
+                'event_category_id'      => $request->event_category_id,
+                'user_id'       => $request->user_id,
+                'title'         => $request->title,
+                'slug'          => Str::slug($request->title),
+                'body'          => $request->body,
+                'image'         => $thumb->hashName(),
+                'publish_at'    => $request->publish_at ? $request->publish_at : $event->publish_at,
+                'status'        => $request->status
+            ]);
+            return $this->sendResponseUpdate($post);
+        }
     }
 
     /**

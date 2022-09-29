@@ -174,7 +174,7 @@ class FrontendController extends Controller
     public function showEvent(Event $event)
     {
         return view('frontend.event.show', [
-            'title' => 'Kegiatan',
+            'title' => $event->title,
             'post'  => $event,
             'posts' => Event::latest()->limit(6)->get(),
             'events'    => EventCategory::latest()->get()

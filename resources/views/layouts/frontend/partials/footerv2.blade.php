@@ -13,7 +13,7 @@
                       </div>
                    </div>
                    <div class="footer__widget-content footer__widget-content-3">
-                      <p>{{ __('Hadir untuk berkontribusi membangun negeri.') }}</p>
+                      <p>{{ __('Organisasi pengembangan pendidikan tinggi program studi biologi di Indonesia') }}</p>
                    </div>
                 </div>
              </div>

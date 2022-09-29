@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Models\BidCurriculum;
 use App\Models\Coordinator;
 use App\Models\DecLetter;
+use App\Models\Event;
 use App\Models\Kurikulum;
 use App\Models\Structure;
 use App\Models\Universitas;
@@ -129,6 +130,13 @@ class DashboardController extends Controller
     public function createEvenet()
     {
         return view('backend.event.create');
+    }
+
+    public function eventEdit($id)
+    {
+        return view('backend.event.edit', [
+            'event' => Event::findOrfail($id),
+        ]);
     }
 
     public function eventKategori()
