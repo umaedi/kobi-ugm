@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta name="x-csrf-token" content="{{ csrf_token() }}">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   @include('layouts.backend.partials.styles')
 </head>
 

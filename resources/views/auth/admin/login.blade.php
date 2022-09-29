@@ -102,9 +102,9 @@
         document.getElementById('emailWeb').value = email;
         document.getElementById('passwordWeb').value = password;
         document.getElementById('formSubmit').submit();
-        // $('#formSubmit').submit();
       }
     });
+    
   </script>
 </body>
 

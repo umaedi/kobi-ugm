@@ -74,7 +74,7 @@
                                 <label for="body">Konten</label>
                                 <textarea class="form-control" name="body" rows="5" id="task-textarea">{!! $post->body !!}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-globe"></i> Publish</button>
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-globe"></i> Perbaharui</button>
                         </div>
                 </form>
             </div>
@@ -94,6 +94,7 @@
 
         $.ajax({
         url: BaseUrl+'/api/admin/posts/{{ $post->slug }}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: data,
         method: 'POST',
         processData: false,
@@ -103,7 +104,7 @@
             if(response.status == 201) {
                 swal({
                     title: "",
-                    text: response.responseJSON.message,
+                    text: "Berita berhasil diperbaharui",
                     icon: "success"
                   })
                   .then(() => {

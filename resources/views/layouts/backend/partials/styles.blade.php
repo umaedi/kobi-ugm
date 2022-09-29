@@ -13,7 +13,7 @@
     <link href="{{ asset('backend') }}/css/sb-admin-2.min.css" rel="stylesheet">
     <script src="{{ asset('backend') }}/vendor/jquery/jquery.min.js"></script>
     <script>
-        function getToken() {
+       function getToken() {
 			var name = 'access_tokenku';
 		  let matches = document.cookie.match(new RegExp(
 			"(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"

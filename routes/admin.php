@@ -20,7 +20,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/kurikulum', 'kurikulum')->name('admin.kurikulum');
             Route::get('/kurikulum/{id}', 'editKurikulum');
             Route::get('/laporan', 'laporan')->name('admin.laporan');
-            Route::get('/event', 'event')->name('admin.event');
+            Route::get('/kegiatan', 'event')->name('admin.event');
             Route::get('/event/kategori', 'eventKategori')->name('admin.event.kategori');
             Route::get('/event/create', 'createEvenet')->name('admin.event.create');
             Route::get('/sejarah', 'sejarah')->name('admin.sejarah');

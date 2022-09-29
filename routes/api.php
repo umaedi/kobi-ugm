@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api;
+use App\Mail\EmailStr;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 Route::post('admin/auth/login', [\App\Http\Controllers\Api\Admin\AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -10,61 +12,65 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::post('/auth/admin/logout', [\App\Http\Controllers\Api\Admin\AuthController::class, 'logout']);
 });
 
-// Route::group(['middleware' => 'auth:sanctum'], function () {
-//     //Admin method reoursce
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::controller(\App\Http\Controllers\Api\Admin\StrController::class)->group(function () {
+            Route::get('/str', 'index');
+            Route::get('/str/show/{id}', 'strShow');
+            Route::post('/str/update/{id}', 'strUpdate');
+            Route::get('/str/verif', 'strVerif');
+            Route::get('/str/reject', 'strReject');
+            Route::delete('/str/destroy/{id}', 'strDestroy');
+        });
+        Route::resource('/posts', App\Http\Controllers\Api\PostController::class);
+        Route::resource('/categories', \App\Http\Controllers\Api\CategoryController::class);
 
-// });
-Route::controller(\App\Http\Controllers\Api\Admin\StrController::class)->group(function () {
-    Route::get('/admin/str/', 'index');
-    Route::get('/admin/str/show/{id}', 'strShow');
-    Route::post('/admin/str/update/{id}', 'strUpdate');
-    Route::get('/admin/str/verif', 'strVerif');
-    Route::get('/admin/str/reject', 'strReject');
-    Route::delete('/admin/str/destroy/{id}', 'strDestroy');
+        Route::controller(\App\Http\Controllers\Api\Admin\UserController::class)->group(function () {
+            Route::get('/users', 'index')->name('admin.users');
+            Route::post('/users/active', 'userActive')->name('admin.userActive');
+            Route::get('/users/reject', 'userReject')->name('admin.userReject');
+        });
+
+        Route::get('/categories/get', [\App\Http\Controllers\Backend\CategoryController::class, 'index']);
+        Route::get('/posts/draft/{status}', [\App\Http\Controllers\Api\PostController::class, 'getByStatus']);
+        Route::resource('/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
+        Route::resource('/naskah', \App\Http\Controllers\Api\NaskahController::class);
+        Route::resource('/gallery/photo', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
+
+        Route::resource('/founder', Api\Admin\FounderController::class);
+        Route::resource('/structure', Api\Admin\StructureController::class);
+        Route::resource('/coordinator', Api\Admin\CoordinatorController::class);
+        Route::resource('/advisor', Api\Admin\AdvisorController::class);
+        Route::resource('/leader', Api\Admin\LeaderController::class);
+        Route::resource('/secretary', Api\Admin\SecretaryController::class);
+        Route::resource('/treasurer', Api\Admin\TreasurerController::class);
+        Route::resource('/coor-region', Api\Admin\CoorregionController::class);
+        Route::resource('/relationship', Api\Admin\RelationController::class);
+        Route::resource('/curriculum-coordinator', Api\Admin\CurriculumController::class);
+        Route::resource('/declatter', Api\Admin\DecLatterController::class);
+        Route::resource('visi-misi', Api\Admin\VisiController::class)->only('update');
+
+        Route::resource('/kurikulum', \App\Http\Controllers\Api\KurikulumController::class);
+        Route::resource('/laporan', \App\Http\Controllers\Api\LaporanController::class);
+        Route::resource('/event', \App\Http\Controllers\Api\EventController::class);
+        Route::resource('/event/categories/evx', \App\Http\Controllers\Api\EventCategoryController::class);
+
+        Route::resource('/ad-art', \App\Http\Controllers\Api\AdArtController::class);
+
+        Route::post('/send/email', [\App\Http\Controllers\Api\EmailController::class, 'index']);
+
+        Route::controller(\App\Http\Controllers\Api\Admin\AboutController::class)->group(function () {
+            Route::post('/sejarah/{id}', 'update');
+        });
+        Route::resource('/admin/media', App\Http\Controllers\Backend\MediaController::class);
+    });
 });
 
-Route::middleware(['auth' => 'apiAdmim'])->group(function () {
-    //
-});
 
-Route::resource('/admin/media', App\Http\Controllers\Backend\MediaController::class);
-Route::resource('/admin/posts', App\Http\Controllers\Api\PostController::class);
-Route::resource('/admin/categories', \App\Http\Controllers\Api\CategoryController::class);
-
-//Api Admin
-Route::controller(\App\Http\Controllers\Api\Admin\UserController::class)->group(function () {
-    Route::get('/admin/users', 'index')->name('admin.users');
-    Route::post('/admin/users/active', 'userActive')->name('admin.userActive');
-    Route::get('/admin/users/reject', 'userReject')->name('admin.userReject');
-});
-Route::get('/admin/categories/get', [\App\Http\Controllers\Backend\CategoryController::class, 'index']);
-Route::get('/admin/posts/draft/{status}', [\App\Http\Controllers\Api\PostController::class, 'getByStatus']);
-Route::resource('/admin/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
-Route::resource('/admin/naskah', \App\Http\Controllers\Api\NaskahController::class);
-Route::resource('/admin/gallery/photo', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
-
-Route::prefix('admin')->group(function () {
-    Route::resource('/founder', Api\Admin\FounderController::class);
-    Route::resource('/structure', Api\Admin\StructureController::class);
-    Route::resource('/coordinator', Api\Admin\CoordinatorController::class);
-    Route::resource('/advisor', Api\Admin\AdvisorController::class);
-    Route::resource('/leader', Api\Admin\LeaderController::class);
-    Route::resource('/secretary', Api\Admin\SecretaryController::class);
-    Route::resource('/treasurer', Api\Admin\TreasurerController::class);
-    Route::resource('/coor-region', Api\Admin\CoorregionController::class);
-    Route::resource('/relationship', Api\Admin\RelationController::class);
-    Route::resource('/curriculum-coordinator', Api\Admin\CurriculumController::class);
-    Route::resource('/declatter', Api\Admin\DecLatterController::class);
-    Route::resource('visi-misi', Api\Admin\VisiController::class)->only('update');
-});
 
 Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
-Route::resource('/admin/ad-art', \App\Http\Controllers\Api\AdArtController::class);
 Route::get('/user/ad-art', [App\Http\Controllers\Api\AdArtController::class, 'userIndex']);
-Route::resource('/admin/kurikulum', \App\Http\Controllers\Api\KurikulumController::class);
-Route::resource('/admin/laporan', \App\Http\Controllers\Api\LaporanController::class);
-Route::resource('/admin/event', \App\Http\Controllers\Api\EventController::class);
-Route::resource('/admin/event/categories/evx', \App\Http\Controllers\Api\EventCategoryController::class);
+
 
 //users
 Route::prefix('user')->group(function () {
@@ -121,8 +127,10 @@ Route::controller(Api\User\EventController::class)->group(function () {
     Route::get('/user/event/last-event', 'lastEvent');
 });
 
-Route::controller(\App\Http\Controllers\Api\Admin\AboutController::class)->group(function () {
-    Route::post('/admin/sejarah/{id}', 'update');
+Route::post('/user/str/send-mail', function (Request $request) {
+    $data = [
+        'name'  => $request->name,
+        'email' => $request->email,
+    ];
+    Mail::to($request->email)->send(new EmailStr($data));
 });
-
-Route::post('/admin/send/email', [\App\Http\Controllers\Api\EmailController::class, 'index']);

@@ -105,6 +105,7 @@
 
         $.ajax({
         url: BaseUrl+'/api/admin/event',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: data,
         method: 'POST',
         processData: false,

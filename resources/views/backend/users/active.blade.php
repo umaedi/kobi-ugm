@@ -88,6 +88,7 @@
     ajax: {
       url: BaseUrl+'/api/admin/users/active',
       method: 'POST',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: (data) => {
         data.tahun = $('select[name=filter-data]').val();
       }

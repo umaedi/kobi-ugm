@@ -20,7 +20,7 @@
         <th>Judul</th>
         <th>Kategori</th>
         <th>Dibuat pada</th>
-        <th>Action</th>
+        <th>Aksi</th>
       </tr>
     @endslot
     @slot('tbody')
@@ -70,6 +70,8 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/posts/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: '',
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
@@ -82,7 +84,7 @@
                     }
                 }
                 });
-                swal("Post has ben deleted", {
+                swal("Berita berhasil dihapus", {
                 icon: "success",
             });
         }

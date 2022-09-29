@@ -61,7 +61,7 @@
   function remove(id) {
     swal({
         title: "",
-        text: "Hapus post ?",
+        text: "Hapus ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -71,6 +71,7 @@
             $.ajax({
                 url: BaseUrl+'/api/admin/posts/'+id,
                 method: 'DELETE',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 processData: false,
                 contentType: false,
                 cache: false,
@@ -82,7 +83,7 @@
                     }
                 }
                 });
-                swal("Post berhasil dihapus", {
+                swal("Berita berhasil dihapus", {
                 icon: "success",
             });
         }

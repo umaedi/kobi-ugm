@@ -3,6 +3,7 @@
       <title>{{ $title }}</title>
       <meta name="description" content="{{ $title }}">
       <meta name="keyword" content="{{ $title }}">
+      <meta name="google-site-verification" content="YzTMJZdAUrsdONG2VH_YaDNKZ_PvBkTl2nj-jnIbYpA" />
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- Place favicon.ico in the root directory -->
       <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend') }}/img/favicon.png">

@@ -99,13 +99,14 @@
         cache: false,
         complete: function(response){
           if(response.status == 201) {
-
+            let data = response.responseJSON.data.str;
+            sendMail(data);
             $('#btnSend').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
             
                 swal({
                     title: "",
-                    text: 'Terimakasih. Pengajuan STR Anda telah terkirim. Silahkan cek email Anda',
+                    text: 'Pengajuan STR Anda telah terkirim. Silahkan cek email Anda',
                     icon: "success"
                   })
                   .then(() => {
@@ -118,6 +119,19 @@
             }
         }
       });
+
+      function sendMail(data)
+      {
+          $.ajax({
+              url: BaseUrl+'/api/user/str/send-mail',
+              data: {name: data.nama, email: data.email},
+              headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+              method: 'POST',
+              complete: (response) => {
+                console.log('Email terkirim ke '+ data.email);
+              }
+          });
+      }
   });
 
 </script>

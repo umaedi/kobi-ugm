@@ -20,7 +20,7 @@
         <th>Judul</th>
         <th>Kategori</th>
         <th>Dibuat pada</th>
-        <th>Action</th>
+        <th>Aksi</th>
       </tr>
     @endslot
     @slot('tbody')

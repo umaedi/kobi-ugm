@@ -94,6 +94,7 @@
         url: BaseUrl+'/api/user/list/active',
         data: data,
         method: 'POST',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         complete: (response) => {
           if(response.status == 200) {
             let data = response.responseJSON.data.data;

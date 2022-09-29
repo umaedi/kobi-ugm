@@ -93,7 +93,7 @@ class FrontendController extends Controller
     public function show(Post $post)
     {
         return view('frontend.posts.show', [
-            'title' => 'Publikasi',
+            'title' => $post->title,
             'post'  => $post,
             'events'    => EventCategory::latest()->get(),
         ]);

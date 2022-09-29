@@ -128,6 +128,7 @@
 
       $.ajax({
       url: BaseUrl+'/api/admin/str/update/{{ $str->id }}',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: data,
       method: 'POST',
       processData: false,
@@ -169,6 +170,7 @@
 
       $.ajax({
       url: BaseUrl+'/api/admin/str/update/{{ $str->id }}',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: data,
       method: 'POST',
       processData: false,
@@ -212,6 +214,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/str/destroy/{{ $str->id }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,

@@ -181,7 +181,9 @@
    {
       $.ajax({
       url: BaseUrl+'/api/user/post/postindex',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       method: 'POST',
+      data: '',
       complete: (response) => {
          if(response.status == 200) {
             let data = response.responseJSON.data.posts;
@@ -214,6 +216,7 @@
    {
       $.ajax({
       url: BaseUrl+'/api/user/images',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       method: 'POST',
       data: '',
       complete: (response) => {
