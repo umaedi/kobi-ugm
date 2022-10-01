@@ -138,7 +138,7 @@
             <div class="modal-body">
                 <input type="hidden" name="status" value="2">
                 <div class="form-group">
-                    <textarea type="text" name="pesan" class="form-control" id="namaDokuemn"></textarea>
+                    <textarea type="text" name="pesan" class="form-control" id="namaDokuemn" rows="10"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -166,6 +166,7 @@
 
       $.ajax({
       url: BaseUrl+'/api/list-anggota/{{ $anggota->id }}',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: data,
       method: 'POST',
       processData: false,
@@ -207,6 +208,7 @@
 
       $.ajax({
       url: BaseUrl+'/api/list-anggota/{{ $anggota->id }}',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: data,
       method: 'POST',
       processData: false,
@@ -250,6 +252,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/list-anggota/{{ $anggota->id }}',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,

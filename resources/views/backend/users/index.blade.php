@@ -68,6 +68,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/posts/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
