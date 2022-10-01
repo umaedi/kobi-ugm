@@ -373,7 +373,6 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td>
-                                            <h3>Hallo {{ $data['name'] }}</h3>
                                             <p>
                                                 {!! $data['message'] !!}
                                             </p>

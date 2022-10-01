@@ -12,6 +12,7 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api as Controller;
 use App\Jobs\KonfirmasistrJob;
+use App\Mail\TolakEmail;
 use App\Models\User;
 
 class UnivController extends Controller
@@ -126,6 +127,13 @@ class UnivController extends Controller
                 'status'    => $request->status,
                 'pesan'     => $request->pesan
             ]);
+
+            // $data = [
+            //     'message'  => $request->pesan,
+            // ];
+
+            // Mail::to($universitas->email_user)->send(new TolakEmail($data));
+            return $this->sendResponseUpdate($universitas);
         }
 
         $password = $this->generatePassword();
@@ -152,8 +160,6 @@ class UnivController extends Controller
             'noAnggota' => $noAnggota,
             'password'  => $password
         ];
-
-        // dispatch(new KonfirmasistrJob($data));
 
         Mail::to($universitas->email_user)->send(new SendMail($data));
         return $this->sendResponseUpdate($universitas);

@@ -133,10 +133,6 @@ Route::prefix('user')->group(function () {
     });
 });
 
-
-
-
-
 Route::post('/user/str/send-mail', function (Request $request) {
     $data = [
         'name'  => $request->name,

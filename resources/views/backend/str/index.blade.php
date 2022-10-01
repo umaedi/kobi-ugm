@@ -89,7 +89,7 @@
   function remove(id) {
     swal({
         title: "",
-        text: "Delete STR ?",
+        text: "Hapus STR ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -97,7 +97,7 @@
         .then((willDelete) => {
         if (willDelete) {
             $.ajax({
-                url: BaseUrl+'/api/admin/str/'+id,
+                url: BaseUrl+'/api/admin/str/destroy/'+id,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
@@ -111,7 +111,7 @@
                     }
                 }
                 });
-                swal("You request has ben deleted", {
+                swal("STR berhasil dihapus", {
                 icon: "success",
             });
         }
