@@ -36,6 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::resource('/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
         Route::post('/doc/publication', [Api\Admin\PublikasiController::class, 'index']);
         Route::resource('/naskah', \App\Http\Controllers\Api\NaskahController::class);
+        Route::post('/doc/script', [Api\Admin\NaskahController::class, 'index']);
         Route::resource('/gallery/photo', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
 
         Route::resource('/founder', Api\Admin\FounderController::class);

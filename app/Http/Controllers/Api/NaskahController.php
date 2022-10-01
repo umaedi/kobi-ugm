@@ -56,7 +56,7 @@ class NaskahController extends Controller
 
         if ($request->file('file_dokumen')) {
             $file_dokumen = $request->file('file_dokumen');
-            $file_dokumen->storeAs('public/naskah', $file_dokumen->hashName());
+            $file_dokumen->storeAs('public/09663cfd', $file_dokumen->hashName());
         }
 
         $publikasi = Naskah::create([
@@ -117,9 +117,9 @@ class NaskahController extends Controller
             ]);
             return $this->sendResponseUpdate($naskah);
         } else {
-            Storage::disk('local')->delete('public/naskah/' . basename($naskah->file_dokumen));
+            Storage::disk('local')->delete('public/09663cfd/' . basename($naskah->file_dokumen));
             $file_dokumen = $request->file('file_dokumen');
-            $file_dokumen->storeAs('public/naskah', $file_dokumen->hashName());
+            $file_dokumen->storeAs('public/09663cfd', $file_dokumen->hashName());
 
             $naskah = Naskah::where('id', $naskah->id)->update([
                 'nama_dokumen'  => $request->nama_dokumen,
@@ -141,7 +141,7 @@ class NaskahController extends Controller
     {
         $naskah = Naskah::findOrfail($id);
         if ($naskah->file_dokumen) {
-            Storage::disk('local')->delete('public/naskah/' . basename($naskah->file_dokumen));
+            Storage::disk('local')->delete('public/09663cfd/' . basename($naskah->file_dokumen));
         }
         $naskah->destroy($id);
         return $this->sendResponseOk($naskah);
