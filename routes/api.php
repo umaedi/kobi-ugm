@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/categories/get', [\App\Http\Controllers\Backend\CategoryController::class, 'index']);
         Route::get('/posts/draft/{status}', [\App\Http\Controllers\Api\PostController::class, 'getByStatus']);
         Route::resource('/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
+        Route::post('/doc/publication', [Api\Admin\PublikasiController::class, 'index']);
         Route::resource('/naskah', \App\Http\Controllers\Api\NaskahController::class);
         Route::resource('/gallery/photo', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
 
@@ -68,6 +69,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::prefix('user')->group(function () {
     Route::post('/list/active', [Api\User\UnivController::class, 'users']);
+    Route::controller(Api\User\DocumentController::class)->group(function () {
+        Route::post('/doc/publication', 'publication');
+        Route::post('/doc/script', 'script');
+    });
+
     Route::controller(Api\User\GalleryController::class)->group(function () {
         Route::post('/images', 'index');
         Route::post('/galleries', 'galeri');

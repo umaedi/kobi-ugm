@@ -48,6 +48,7 @@
     serverSide: true,
     responsive: true,
     ajax: BaseUrl+'/api/admin/naskah',
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
     language: {
     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
     },

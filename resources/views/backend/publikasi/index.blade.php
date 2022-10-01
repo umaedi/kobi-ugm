@@ -23,7 +23,7 @@
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                        <input name="publish_at" type="date" class="form-control">
+                        <input name="publish_at" type="date" class="form-control" value="{{ date('Y-m-d') }}">
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -99,7 +99,11 @@
         let table = $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: BaseUrl+'/api/admin/publikasi',
+            ajax: {
+                url: BaseUrl+'/api/admin/doc/publication',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'POST'
+            },
             columns: [
                 {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
                 {data: 'nama_dokumen', name: 'nama_dokumen'},
@@ -107,7 +111,7 @@
                 {
                     "render": function ( data, type, row ) {
                     return `
-                    <a href="{{ asset('storage/documents') }}/` + row.file_dokumen +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
+                    <a href="{{ asset('storage/b33e9554') }}/` + row.file_dokumen +`" target='_blank' type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
                     <button id="edit" data-id="`+ row.id +`" data-nama_dokumen="`+ row.nama_dokumen +`" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
                     <button id="delete" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
                     ` }
@@ -123,6 +127,7 @@
 
             $.ajax({
                 url: BaseUrl+'/api/admin/publikasi',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -132,7 +137,7 @@
                     if(response.status == 201) {
                         swal({
                             title: "",
-                            text: response.responseJSON.message,
+                            text: "Publikasi berhasil ditambah",
                             icon: "success"
                         });
                         table.ajax.reload();
@@ -161,6 +166,7 @@
 
             $.ajax({
                 url: BaseUrl+'/api/admin/publikasi/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -170,10 +176,10 @@
                     if(response.status == 201) {
                         swal({
                             title: "",
-                            text: response.responseJSON.message,
+                            text: "Publikasi berhasil diperbaharui",
                             icon: "success"
                         });
-                        table.ajax.reload();
+                        location.replace('/admin/publikasi');
                         $('input').val('');
                     }else {
                         swal("", response.responseJSON.message, "warning");
@@ -190,7 +196,7 @@
         function remove(id){
         swal({
         title: "",
-        text: "Delete category ?",
+        text: "Hapus publikasi ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -199,6 +205,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/publikasi/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,

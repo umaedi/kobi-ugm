@@ -13,35 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PublikasiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
-    {
-        if ($request->ajax()) {
-            $publikasi = Publikasi::latest()->get();
-            return DataTables::of($publikasi)->make(true);
-        }
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -55,7 +27,7 @@ class PublikasiController extends Controller
         }
 
         $file_dokumen = $request->file('file_dokumen');
-        $file_dokumen->storeAs('public/publikasi', $file_dokumen->hashName());
+        $file_dokumen->storeAs('public/b33e9554', $file_dokumen->hashName());
 
         $publikasi = Publikasi::create([
             'nama_dokumen'  => $request->nama_dokumen,
@@ -66,35 +38,6 @@ class PublikasiController extends Controller
         return $this->sendResponseCreate($publikasi);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Publikasi $publikasi)
     {
         $validator = Validator::make($request->all(), [
@@ -115,9 +58,9 @@ class PublikasiController extends Controller
             ]);
             return $this->sendResponseUpdate($publikasi);
         } else {
-            Storage::disk('local')->delete('public/publikasi/' . basename($publikasi->file_dokumen));
+            Storage::disk('local')->delete('public/b33e9554/' . basename($publikasi->file_dokumen));
             $file_dokumen = $request->file('file_dokumen');
-            $file_dokumen->storeAs('public/publikasi', $file_dokumen->hashName());
+            $file_dokumen->storeAs('public/b33e9554', $file_dokumen->hashName());
             $publikasi = Publikasi::where('id', $publikasi->id)->update([
                 'nama_dokumen'  => $request->nama_dokumen,
                 'slug'          => Str::slug($request->nama_dokumen),
@@ -128,17 +71,11 @@ class PublikasiController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $publikasi = Publikasi::findOrfail($id);
         if ($publikasi->file_dokumen) {
-            Storage::disk('local')->delete('public/publikasi/' . basename($publikasi->file_dokumen));
+            Storage::disk('local')->delete('public/b33e9554/' . basename($publikasi->file_dokumen));
         }
         $publikasi->destroy($id);
         return $this->sendResponseOk($publikasi);

@@ -3,22 +3,19 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Api as Controller;
+use App\Models\Publikasi;
 use Illuminate\Http\Request;
 use App\Repositories\DocumentRepository;
+use Yajra\DataTables\Contracts\DataTable;
+use Yajra\DataTables\Facades\DataTables;
 
 class DocumentController extends Controller
 {
-    private $documentRepository;
-    public function __construct(DocumentRepository $documentRepository)
-    {
-        $this->documentRepository = $documentRepository;
-    }
-
-    public function getByCategory(Request $request, $category_id)
+    public function publication(Request $request)
     {
         if ($request->ajax()) {
-            $documents = $this->documentRepository->getByCategory($category_id);
-            return $documents;
+            $publication = Publikasi::all();
+            return DataTables::of($publication)->make(true);
         }
     }
 }

@@ -55,7 +55,11 @@
     processing: true,
     serverSide: true,
     responsive: true,
-    ajax: BaseUrl+'/api/admin/publikasi',
+    ajax: {
+      url: BaseUrl+'/api/user/doc/publication',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      method: 'POST',
+    },
     language: {
     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
     },
@@ -68,7 +72,7 @@
         return `
         @auth
         <div class="text-center">
-        <a href="/storage/publikasi/` + row.file_dokumen +`" type="button" class="btn btn-sm btn-success" target="_blank"><i class="fas fa-eye text-white"></i></a>
+        <a href="/storage/b33e9554/` + row.file_dokumen +`" type="button" class="btn btn-sm btn-success" target="_blank"><i class="fas fa-eye text-white"></i></a>
         </div>
         @else
         <div class="text-center">
