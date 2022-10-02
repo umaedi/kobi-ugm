@@ -60,7 +60,8 @@ class LaporanController extends Controller
             'nama_kegiatan'  => $request->nama_kegiatan,
             'slug'          => Str::slug($request->nama_kegiatan),
             'file_laporan'  => $file_laporan->hashName(),
-            'tgl_kegiatan'    => $request->tgl_kegiatan
+            'tgl_kegiatan'    => $request->tgl_kegiatan,
+            'created_at'    => $request->tgl_kegiatan
         ]);
         return $this->sendResponseCreate($laporan);
     }
@@ -99,7 +100,6 @@ class LaporanController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_kegiatan'  => 'required|unique:laporans,nama_kegiatan,' . $laporan->id,
             'file_laporan'  => 'file|mimes:pdf,docx|max:2048',
-            'tgl_kegiatan'  => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -111,7 +111,8 @@ class LaporanController extends Controller
                 'nama_kegiatan'  => $request->nama_kegiatan,
                 'slug'          => Str::slug($request->nama_kegiatan),
                 'file_laporan'  => $laporan->file_laporan,
-                'tgl_kegiatan'  => $request->tgl_kegiatan
+                'tgl_kegiatan'  => $request->tgl_kegiatan ? $request->tgl_kegiatan : $laporan->tgl_kegiatan,
+                'created_at'  => $request->tgl_kegiatan ? $request->tgl_kegiatan : $laporan->tgl_kegiatan,
             ]);
             return $this->sendResponseUpdate($laporan);
         } else {
@@ -122,20 +123,19 @@ class LaporanController extends Controller
                 'nama_kegiatan'  => $request->nama_kegiatan,
                 'slug'          => Str::slug($request->nama_kegiatan),
                 'file_laporan'  => $file_laporan->hashName(),
-                'tgl_kegiatan'    => $request->tgl_kegiatan
+                'tgl_kegiatan'  => $request->tgl_kegiatan ? $request->tgl_kegiatan : $laporan->tgl_kegiatan,
+                'created_at'  => $request->tgl_kegiatan ? $request->tgl_kegiatan : $laporan->tgl_kegiatan,
             ]);
             return $this->sendResponseUpdate($laporan);
         }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $laporan = Laporan::findOrfail($id);
+        if ($laporan->file_laporan) {
+            Storage::disk('local')->delete('public/reports/' . basename($laporan->file_laporan));
+        }
+        $laporan->destroy($id);
+        return $this->sendResponseDelete($laporan);
     }
 }

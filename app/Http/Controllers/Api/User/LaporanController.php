@@ -12,7 +12,7 @@ class LaporanController extends Controller
     public function laporan(Request $request)
     {
         if ($request->ajax()) {
-            $laporan = Laporan::all();
+            $laporan = Laporan::select('nama_kegiatan', 'created_at', 'file_laporan')->latest()->get();
             return DataTables::of($laporan)->make(true);
         }
     }

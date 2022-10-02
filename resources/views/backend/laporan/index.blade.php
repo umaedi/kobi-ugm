@@ -23,7 +23,7 @@
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
-                        <input name="tgl_kegiatan" type="date" class="form-control">
+                        <input name="tgl_kegiatan" type="date" class="form-control" value="{{ date('Y-m-d') }}">
                     </div>
                   </div>
                   <div class="col-md-2">
@@ -121,6 +121,7 @@
 
             $.ajax({
                 url: BaseUrl+'/api/admin/laporan',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -130,7 +131,7 @@
                     if(response.status == 201) {
                         swal({
                             title: "",
-                            text: response.responseJSON.message,
+                            text: "Laporan kegiatan berhasil ditambahkan",
                             icon: "success"
                         });
                         table.ajax.reload();
@@ -159,6 +160,7 @@
 
             $.ajax({
                 url: BaseUrl+'/api/admin/laporan/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -168,7 +170,7 @@
                     if(response.status == 201) {
                         swal({
                             title: "",
-                            text: response.responseJSON.message,
+                            text: "Laporan kegiatan diperbaharui",
                             icon: "success"
                         });
                         table.ajax.reload();
@@ -188,7 +190,7 @@
         function remove(id){
         swal({
         title: "",
-        text: "Delete category ?",
+        text: "Hapus laporan kegiatan ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -196,7 +198,8 @@
         .then((willDelete) => {
         if (willDelete) {
             $.ajax({
-                url: BaseUrl+'/api/admin/publikasi/'+id,
+                url: BaseUrl+'/api/admin/laporan/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
@@ -209,7 +212,7 @@
                     }
                 }
                 });
-                swal("Publikasi berhasil dihapus", {
+                swal("Laporan kegiatan berhasil dihapus", {
                 icon: "success",
             });
         }

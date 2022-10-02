@@ -112,6 +112,7 @@ Route::prefix('user')->group(function () {
     Route::controller(Api\User\DocumentController::class)->group(function () {
         Route::post('/doc/publication', 'publication');
         Route::post('/doc/script', 'script');
+        Route::post('/laporan', [Api\User\LaporanController::class, 'laporan']);
     });
 
     Route::controller(Api\User\GalleryController::class)->group(function () {
@@ -146,7 +147,7 @@ Route::prefix('user')->group(function () {
 Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
 
 Route::get('/dokumen/{category_id}', [Api\User\DocumentController::class, 'getByCategory']);
-Route::get('/laporan', [Api\User\LaporanController::class, 'laporan']);
+
 Route::get('/getRegencies/{id}', [Api\User\IndoregionController::class, 'kabupaten']);
 Route::get('/user/event/categories', [\App\Http\Controllers\Api\User\EventCategoryController::class, 'index']);
 

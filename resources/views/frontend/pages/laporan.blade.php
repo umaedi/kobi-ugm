@@ -47,14 +47,18 @@
     processing: true,
     serverSide: true,
     responsive: true,
-    ajax: BaseUrl+'/api/laporan',
+    ajax: {
+      url: BaseUrl+'/api/user/laporan',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      method: 'POST',
+    },
     language: {
     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
     },
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
       {data: 'nama_kegiatan', name: 'nama_kegiatan'},
-      {data: 'tgl_kegiatan', name: 'tgl_kegiatan'},
+      {data: 'created_at', name: 'created_at'},
       {
         "render": function ( data, type, row ) {
         return `
