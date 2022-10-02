@@ -174,7 +174,6 @@
       cache: false,
       complete: (response) => {
           if(response.status == 201) {
-
             $('#btnSend').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
             
@@ -216,7 +215,7 @@
       cache: false,
       complete: (response) => {
           if(response.status == 201) {
-
+            sendEmail(response.responseJSON.data);
             $('#btnSendRjt').removeAttr('style', 'display: none');
             $('#btnSendingRjt').attr('style', 'display: none');
 
@@ -235,6 +234,21 @@
           }
       }
     });
+
+    function sendEmail(data) {
+      $.ajax({
+        url: BaseUrl+'/api/admin/sendmail/recjct-user',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {email: data.email, message: data.message},
+        method: 'POST',
+        complete: (res) => {
+          if(res.status == 200) {
+            console.log('Email terkirim ke '+data.email);
+          }
+        }
+      });
+    }
+
   });
 
   //delete STR

@@ -1,10 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api;
 use App\Mail\EmailStr;
-use Illuminate\Support\Facades\Route;
+use App\Mail\SendMail;
+use App\Mail\TolakStr;
+use App\Mail\TolakEmail;
+use App\Mail\KonfirmasiStr;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 
 Route::post('admin/auth/login', [\App\Http\Controllers\Api\Admin\AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -65,6 +69,41 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('/sejarah/{id}', 'update');
         });
         Route::resource('/admin/media', App\Http\Controllers\Backend\MediaController::class);
+
+        //handle sendMail
+        Route::post('/sendmail/verif-user', function (Request $request) {
+            $data = [
+                'noAnggota'   => $request->noAnggota,
+                'password'    => $request->password
+            ];
+
+            Mail::to($request->email)->send(new SendMail($data));
+        });
+
+        Route::post('/sendmail/recjct-user', function (Request $request) {
+            $data = [
+                'message'   => $request->message,
+            ];
+
+            Mail::to($request->email)->send(new TolakEmail($data));
+        });
+
+        //STR
+        Route::post('/sendmail/str/verif', function (Request $request) {
+            $data = [
+                'name'  => $request->name,
+                'message' => $request->message,
+            ];
+            Mail::to($request->email)->send(new KonfirmasiStr($data));
+        });
+
+        Route::post('/sendmail/str/reject', function (Request $request) {
+            $data = [
+                'name'  => $request->name,
+                'message' => $request->message,
+            ];
+            Mail::to($request->email)->send(new TolakStr($data));
+        });
     });
 });
 

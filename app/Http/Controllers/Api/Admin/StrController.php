@@ -3,15 +3,11 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Models\Str;
-use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Api as Controller;
-use App\Http\Controllers\BaseController;
-use App\Mail\KonfirmasiStr;
-use App\Mail\TolakStr;
+
 
 class StrController extends Controller
 {
@@ -49,19 +45,20 @@ class StrController extends Controller
 
         if ($request->pesan == '') {
             $data = [
-                'name'      => $str->nama,
+                'email' => $str->email,
+                'name'  => $str->nama,
             ];
-            Mail::to($str->email)->send(new KonfirmasiStr($data));
-            return $this->sendResponseUpdate($strUpdate);
+
+            return $this->sendResponseUpdate($data);
+        } else {
+            $data = [
+                'email'     => $str->email,
+                'name'      => $str->nama,
+                'message'   => $request->pesan
+            ];
+
+            return $this->sendResponseUpdate($data);
         }
-
-        $data = [
-            'name'      => $str->nama,
-            'message'   => $request->pesan
-        ];
-
-        Mail::to($str->email)->send(new TolakStr($data));
-        return $this->sendResponseUpdate($strUpdate);
     }
 
     public function strDestroy($id)

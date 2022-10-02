@@ -128,12 +128,12 @@ class UnivController extends Controller
                 'pesan'     => $request->pesan
             ]);
 
-            // $data = [
-            //     'message'  => $request->pesan,
-            // ];
+            $data = [
+                'email'    => $universitas->email_user,
+                'message'  => $request->pesan,
+            ];
 
-            // Mail::to($universitas->email_user)->send(new TolakEmail($data));
-            return $this->sendResponseUpdate($universitas);
+            return $this->sendResponseUpdate($data);
         }
 
         $password = $this->generatePassword();
@@ -153,16 +153,24 @@ class UnivController extends Controller
                 'email'         => $universitas->email_user,
                 'password'      => bcrypt($password)
             ]);
+
+            $noAnggota = $universitas->no_anggota;
+            $data = [
+                'email'     => $data_user->email,
+                'noAnggota' => $noAnggota,
+                'password'  => $password
+            ];
+            return $this->sendResponseUpdate($data);
         }
 
         $noAnggota = $universitas->no_anggota;
         $data = [
+            'email'     => $universitas->email_user,
             'noAnggota' => $noAnggota,
             'password'  => $password
         ];
 
-        Mail::to($universitas->email_user)->send(new SendMail($data));
-        return $this->sendResponseUpdate($universitas);
+        return $this->sendResponseUpdate($data);
     }
 
     public function destroy($id)

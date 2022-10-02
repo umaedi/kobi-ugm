@@ -136,7 +136,7 @@
       cache: false,
       complete: (response) => {
           if(response.status == 201) {
-
+            sendMail(response.responseJSON.data);
             $('#btnSend').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
             
@@ -155,6 +155,20 @@
           }
       }
     });
+    function sendMail(data) {
+      $.ajax({
+          url: BaseUrl+'/api/admin/sendmail/str/verif',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          data: {email: data.email, name: data.name},
+          method: 'POST',
+          complete: (res) => {
+            if(res.status == 200) {
+              console.log('Email terkirim ke '+data.email);
+            }
+          }
+          
+      });
+    }
   });
 
   //rejct STR
@@ -178,7 +192,7 @@
       cache: false,
       complete: (response) => {
           if(response.status == 201) {
-
+            sendMail(response.responseJSON.data);
             $('#btnSendRjt').removeAttr('style', 'display: none');
             $('#btnSendingRjt').attr('style', 'display: none');
 
@@ -197,6 +211,22 @@
           }
       }
     });
+
+    function sendMail(data) {
+      $.ajax({
+          url: BaseUrl+'/api/admin/sendmail/str/reject',
+          headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+          data: {email: data.email, name: data.name, message: data.message},
+          method: 'POST',
+          complete: (res) => {
+            if(res.status == 200) {
+              console.log('Email terkirim ke '+data.email);
+            }
+          }
+          
+      });
+    }
+
   });
 
   //delete STR
