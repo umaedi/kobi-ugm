@@ -12,7 +12,7 @@ class KurikulumController extends Controller
     public function getKurikulum(Request $request)
     {
         if ($request->ajax()) {
-            $kurr = Kurikulum::where('status', 1)->latest()->get();
+            $kurr = Kurikulum::select('title', 'file_kurikulum', 'created_at', 'publish_at')->where('status', 1)->latest()->get();
             return DataTables::of($kurr)->make(true);
         }
     }

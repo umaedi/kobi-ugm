@@ -113,6 +113,7 @@ Route::prefix('user')->group(function () {
         Route::post('/doc/publication', 'publication');
         Route::post('/doc/script', 'script');
         Route::post('/laporan', [Api\User\LaporanController::class, 'laporan']);
+        Route::post('/kurikulum', [Api\User\KurikulumController::class, 'getKurikulum']);
     });
 
     Route::controller(Api\User\GalleryController::class)->group(function () {
@@ -123,9 +124,9 @@ Route::prefix('user')->group(function () {
 
     Route::controller(Api\User\PostController::class)->group(function () {
         Route::post('/post/postindex', 'index');
-        Route::get('/post/postnewsorevent', 'newsOrArticle');
+        Route::post('/post/postnewsorevent', 'newsOrArticle');
         Route::get('/post/list', 'postList');
-        Route::get('/last-post', 'lastpost');
+        Route::post('/last-post', 'lastpost');
     });
 
     Route::controller(Api\User\AboutController::class)->group(function () {
@@ -159,7 +160,7 @@ Route::post('/user/getcategories', [Api\User\CategoryController::class, 'index']
 
 Route::prefix('user')->group(function () {
 
-    Route::get('/kurikulum', [Api\User\KurikulumController::class, 'getKurikulum']);
+
 
     Route::controller(Api\User\StructureController::class)->group(function () {
         Route::get('/decision-latter', 'decisionLatter');

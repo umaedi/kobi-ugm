@@ -34,7 +34,7 @@ class PostController extends Controller
 
     public function lastPost()
     {
-        $lastpost = Post::orderBy('publish_at', 'DESC')->limit(4)->get();
+        $lastpost = Post::select('title', 'image', 'created_at', 'slug')->orderBy('publish_at', 'DESC')->limit(4)->get();
         $result['lastpost'] = $lastpost;
         return $this->sendResponseOk($result);
     }

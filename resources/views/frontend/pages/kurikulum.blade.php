@@ -55,14 +55,18 @@
     processing: true,
     serverSide: true,
     responsive: true,
-    ajax: BaseUrl+'/api/user/kurikulum',
+    ajax: {
+      url: BaseUrl+'/api/user/kurikulum',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      method: 'POST'
+    }, 
     language: {
     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
     },
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
       {data: 'title', name: 'title'},
-      {data: 'publish_at', name: 'publish_at'},
+      {data: 'created_at', name: 'created_at'},
       {
         "render": function ( data, type, row ) {
         return `

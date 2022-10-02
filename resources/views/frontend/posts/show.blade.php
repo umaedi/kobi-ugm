@@ -72,10 +72,8 @@
     <script>
       $.ajax({
          url: BaseUrl+'/api/user/last-post',
-         method: 'GET',
-         processData: false,
-         contentType: false,
-         cache: false,
+         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+         method: 'POST',
          complete: (response) => {
             if(response.status == 200) {
                let data = response.responseJSON.data.lastpost;

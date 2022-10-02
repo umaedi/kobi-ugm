@@ -30,10 +30,8 @@
 <script>
    $.ajax({
       url: BaseUrl+'/api/user/post/postnewsorevent',
-      method: 'GET',
-      processData: false,
-      contentType: false,
-      cache: false,
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      method: 'POST',
       complete: (response) => {
          if(response.status == 200) {
             let data = response.responseJSON.data.posts;
@@ -47,7 +45,7 @@
                content += '</div>';
                content += '<div class="blog__content-5">';
                content += '<div class="blog__meta-5">';
-               content += '<span class="date">'+ v.publish_at +'</span>';
+               content += '<span class="date">'+ v.created_at +'</span>';
                content += '<span class="tag"><a href="/posts/category/'+ v.category.slug +'">'+  v.category.name +'</a></span>';
                content += '</div>';
                content += ' <h3 class="blog__title-5"><a href="/'+  v.slug +'">'+ v.title +'</a></h3>';
