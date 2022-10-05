@@ -20,9 +20,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('body');
-            $table->string('image')->nullable(true);
-            $table->boolean('status');
-            $table->date('publish_at')->nullable(true);
+            $table->text('excerpt');
+            $table->string('thumbnail')->nullable(true);
+            $table->boolean('status')->default(null);
             $table->timestamps();
         });
     }

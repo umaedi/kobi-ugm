@@ -44,25 +44,21 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->only('category'), [
-            'category'  => 'required',
+        $validator = Validator::make($request->only('name'), [
+            'name'  => 'required|unique:categories',
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors());
+            return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
         }
 
-        $name = $request->category;
-        $category = Category::create([
+        $name = $request->name;
+        $name = Category::create([
             'name'  => $name,
             'slug'  => Str::slug($name)
         ]);
-        if ($category) {
-            return response()->json([
-                'success'   => true,
-                'message'   => 'success',
-                'category'  => $category
-            ], 201);
+        if ($name) {
+            return $this->sendResponseCreate($name);
         }
     }
 
@@ -95,9 +91,28 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $cat = Category::findOrFail($request->id);
+        $validator = Validator::make($request->only('name'), [
+            'name'  => 'required|unique:categories',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors());
+        }
+
+        $name = $request->name;
+        $cat->where('id', $request->id)->update([
+            'name'  => $name,
+            'slug'  => Str::slug($name)
+        ]);
+
+        if ($cat) {
+            return $this->sendResponseUpdate($cat);
+        } else {
+            return $this->sendResponseError($cat);
+        }
     }
 
     /**

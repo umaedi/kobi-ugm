@@ -126,12 +126,11 @@
         }
     });
     });
-</script>
 
-<script>
     $.ajax({
         url: BaseUrl+'/api/admin/categories',
-        method: 'GET',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        method: 'POST',
         processData: false,
         contentType: false,
         cache: false,
@@ -148,5 +147,6 @@
             }
         }
     });
+    
 </script>
 @endpush

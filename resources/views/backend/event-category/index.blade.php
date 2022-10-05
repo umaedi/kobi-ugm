@@ -56,15 +56,16 @@
           </button>
         </div>
         <form id="updateCategory">
-        <div class="modal-body">
+            <div class="modal-body">
+                <input type="hidden" name="id">
                 <div class="form-group">
-                    <input type="text" name="category-update" class="form-control" id="category">
+                    <input type="text" name="name" class="form-control category-name" id="category">
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancle</button>
-                <button type="submit" class="btn btn-primary">Update</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Gagal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
         </form>
       </div>
     </div>
@@ -78,7 +79,11 @@
         let table = $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: BaseUrl+'/api/admin/event/categories/evx',
+            ajax: {
+                url: BaseUrl+'/api/admin/event/categories/evx',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'POST',
+            },
             columns: [
                 {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
                 {data: 'name', name: 'name'},
@@ -87,9 +92,8 @@
                 {
                     "render": function ( data, type, row ) {
                     return `
-                    <a href="/event/category/` + row.slug +`" type="button" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
+                    <a href="/event/category/` + row.slug +`" type="button" target="_blank" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
                     <button id="edit" data-id="`+ row.id +`" data-category="`+ row.name +`" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
-                    <button id="delete" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
                     ` }
                 }
             ]
@@ -102,7 +106,8 @@
             let data = new FormData(form);
 
             $.ajax({
-                url: BaseUrl+'/api/admin/event/categories/evx',
+                url: BaseUrl+'/api/admin/event/categories/store',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -130,7 +135,9 @@
         
         $('#dataTable tbody').on('click', '#edit', function() {
             let category = $(this).data('category');
-            $('input[name=category-update]').val(category);
+            let id = $(this).data('id');
+            $('input[name=id]').val(id);
+            $('input[name=name]').val(category);
         });
 
         $('#updateCategory').submit(function(event) {
@@ -139,42 +146,31 @@
             table.ajax.reload();
         });
 
-        $('#dataTable tbody').on('click', '#delete', function() {
-            let id = $(this).data('id');
-            remove(id);
-        });
+        $('#updateCategory').submit(function(e) {
+            e.preventDefault();
 
-        function remove(id){
-        swal({
-        title: "",
-        text: "Hapus kategori ?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-        .then((willDelete) => {
-        if (willDelete) {
+            let form = $(this)[0];
+            let data = new FormData(form);
+
             $.ajax({
-                url: BaseUrl+'/api/admin/event/categories/evx/'+id,
-                method: 'DELETE',
+                url: BaseUrl+'/api/admin/event/categories/update',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'POST',
+                data: data,
                 processData: false,
                 contentType: false,
                 cache: false,
                 complete: (response) => {
-                    if(response.status == 200) {
+                    if(response.status == 201) {
+                        swal("", "Kategori berhasil diperbaharui", "success");
                         table.ajax.reload();
+                        $('input[name=category]').val('');
                     }else {
-                        console.log('gagal');
+                        swal("", response.responseJSON.message, "warning");
                     }
                 }
-                });
-                swal("Kategori berhasil dihapus", {
-                icon: "success",
             });
-        }
-        });  
-    }
-
+        });
     function reload(){
         table.ajax.reload(null, false);
     }

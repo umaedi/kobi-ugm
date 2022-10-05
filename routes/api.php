@@ -27,7 +27,11 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/str/destroy/{id}', 'strDestroy');
         });
         Route::resource('/posts', App\Http\Controllers\Api\PostController::class);
-        Route::resource('/categories', \App\Http\Controllers\Api\CategoryController::class);
+        Route::controller(\App\Http\Controllers\Api\CategoryController::class)->group(function () {
+            Route::post('/categories', 'index');
+            Route::post('/categories/store', 'store');
+            Route::post('categories/update', 'update');
+        });
 
         Route::controller(\App\Http\Controllers\Api\Admin\UserController::class)->group(function () {
             Route::get('/users', 'index')->name('admin.users');
@@ -59,7 +63,11 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::resource('/kurikulum', \App\Http\Controllers\Api\KurikulumController::class);
         Route::resource('/laporan', \App\Http\Controllers\Api\LaporanController::class);
         Route::resource('/event', \App\Http\Controllers\Api\EventController::class);
-        Route::resource('/event/categories/evx', \App\Http\Controllers\Api\EventCategoryController::class);
+        Route::controller(\App\Http\Controllers\Api\EventCategoryController::class)->group(function () {
+            Route::post('/event/categories/evx', 'index');
+            Route::post('/event/categories/store', 'store');
+            Route::post('/event/categories/update', 'update');
+        });
 
         Route::resource('/ad-art', \App\Http\Controllers\Api\AdArtController::class);
 

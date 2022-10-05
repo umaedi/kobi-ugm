@@ -12,7 +12,7 @@
             <form id="formCategory">
                 <div class="row">
                     <div class="col-md-10">
-                        <input type="text" name="category" class="form-control">
+                        <input type="text" name="name" class="form-control">
                     </div>
                     <div class="col-md-2">
                         <button type="submit" class="btn-update btn btn-primary">Tambah</button>
@@ -56,15 +56,16 @@
           </button>
         </div>
         <form id="updateCategory">
-        <div class="modal-body">
+            <div class="modal-body">
+                <input type="hidden" name="id">
                 <div class="form-group">
-                    <input type="text" name="category-update" class="form-control" id="category">
+                    <input type="text" name="name" class="form-control category-name" id="category">
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Gagal</button>
-                <button type="submit" class="btn btn-primary">Simpan</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Gagal</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
         </form>
       </div>
     </div>
@@ -78,7 +79,11 @@
         let table = $('#dataTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: BaseUrl+'/api/admin/categories',
+            ajax: {
+                url: BaseUrl+'/api/admin/categories',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'POST'
+            },
             columns: [
                 {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
                 {data: 'name', name: 'name'},
@@ -89,7 +94,6 @@
                     return `
                     <a href="/posts/category/` + row.slug +`" type="button" target="_blank" class="btn btn-sm btn-success"><i class="fas fa-eye text-white"></i></a>
                     <button id="edit" data-id="`+ row.id +`" data-category="`+ row.name +`" data-toggle="modal" data-target="#exampleModal" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></button>
-                    <button id="delete" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
                     ` }
                 }
             ]
@@ -102,7 +106,8 @@
             let data = new FormData(form);
 
             $.ajax({
-                url: BaseUrl+'/api/admin/categories',
+                url: BaseUrl+'/api/admin/categories/store',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -110,11 +115,11 @@
                 cache: false,
                 complete: function (response) {
                     if(response.status == 201) {
-                        swal("", "Catgeory has ben created", "success");
+                        swal("", "Kategori berhasil dibuat", "success");
                         table.ajax.reload();
                         $('input[name=category]').val('');
                     }else {
-                        console.log('gagal');
+                        swal("", response.responseJSON.message, "warning");
                     }
                 }
             });
@@ -122,7 +127,9 @@
         
         $('#dataTable tbody').on('click', '#edit', function() {
             let category = $(this).data('category');
-            $('input[name=category-update]').val(category);
+            let id = $(this).data('id');
+            $('input[name=id]').val(id);
+            $('input.category-name').val(category);
         });
 
         $('#updateCategory').submit(function(event) {
@@ -136,10 +143,36 @@
             remove(id);
         });
 
+        $('#updateCategory').submit(function(e) {
+            e.preventDefault();
+
+            let form = $(this)[0];
+            let data = new FormData(form);
+
+            $.ajax({
+                url: BaseUrl+'/api/admin/categories/update',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'POST',
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                complete: (response) => {
+                    if(response.status == 201) {
+                        swal("", "Kategori berhasil diperbaharui", "success");
+                        table.ajax.reload();
+                        $('input[name=category]').val('');
+                    }else {
+                        swal("", response.responseJSON.message, "warning");
+                    }
+                }
+            });
+        });
+
         function remove(id){
         swal({
         title: "",
-        text: "Delete category ?",
+        text: "Hapus kategori ?",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -148,6 +181,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/categories/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
@@ -156,11 +190,11 @@
                     if(response.status == 200) {
                         table.ajax.reload();
                     }else {
-                        console.log('gagal');
+                        swal("", response.responseJSON.message, "warning");
                     }
                 }
                 });
-                swal("Category has ben deleted", {
+                swal("Kategori berhasil dihapus", {
                 icon: "success",
             });
         }
