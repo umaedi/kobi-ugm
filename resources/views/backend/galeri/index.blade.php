@@ -89,6 +89,7 @@
 
             $.ajax({
                 url: BaseUrl+'/api/admin/gallery/photo',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -129,6 +130,7 @@
 
             $.ajax({
                 url: BaseUrl+'/api/admin/gallery/photo/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
                 method: 'POST',
                 processData: false,
@@ -164,6 +166,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/gallery/photo/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
