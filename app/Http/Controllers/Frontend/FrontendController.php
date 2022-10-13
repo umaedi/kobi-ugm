@@ -10,11 +10,13 @@ use App\Models\Gallery;
 use App\Models\Kurikulum;
 use App\Models\Post;
 use App\Models\Province;
+use Illuminate\Support\Facades\Request;
 
 class FrontendController extends Controller
 {
     public function index()
     {
+
         return view('frontend.index', [
             'title' => 'Konsorsium Biologi Indonesia',
             'events'    => EventCategory::all()
@@ -92,6 +94,7 @@ class FrontendController extends Controller
 
     public function show(Post $post)
     {
+        $post->increment('viewer');
         return view('frontend.posts.show', [
             'title' => $post->title,
             'post'  => $post,

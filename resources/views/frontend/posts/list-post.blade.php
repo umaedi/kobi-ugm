@@ -116,7 +116,7 @@
 @push('js')
 <script>
   $.ajax({
-     url: BaseUrl+'/api/user/last-post',
+     url: BaseUrl+'/api/user/populer-post',
      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
      method: 'POST',
      complete: (response) => {

@@ -135,6 +135,7 @@ Route::prefix('user')->group(function () {
         Route::post('/post/postnewsorevent', 'newsOrArticle');
         Route::get('/post/list', 'postList');
         Route::post('/last-post', 'lastpost');
+        Route::post('/populer-post', 'postPopuler');
     });
 
     Route::controller(Api\User\AboutController::class)->group(function () {

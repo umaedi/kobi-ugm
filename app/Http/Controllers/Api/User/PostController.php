@@ -38,4 +38,11 @@ class PostController extends Controller
         $result['lastpost'] = $lastpost;
         return $this->sendResponseOk($result);
     }
+
+    public function postPopuler()
+    {
+        $lastpost = Post::select('title', 'image', 'created_at', 'slug',)->orderBy('viewer', 'DESC')->limit(4)->get();
+        $result['lastpost'] = $lastpost;
+        return $this->sendResponseOk($result);
+    }
 }
