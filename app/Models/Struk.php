@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Struk extends Model
 {
     use HasFactory;
-    protected $fillable = ['email', 'struk'];
+    protected $fillable = ['email', 'struk', 'date'];
 }

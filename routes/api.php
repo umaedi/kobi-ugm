@@ -25,6 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/str/verif', 'strVerif');
             Route::get('/str/reject', 'strReject');
             Route::delete('/str/destroy/{id}', 'strDestroy');
+            Route::get('/struk', 'struk');
+            Route::delete('/struk/destroy/{id}', 'strukDestroy');
         });
         Route::resource('/posts', App\Http\Controllers\Api\PostController::class);
         Route::controller(\App\Http\Controllers\Api\CategoryController::class)->group(function () {

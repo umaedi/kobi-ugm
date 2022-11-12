@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Api\User;
 
 use App\Models\Str;
 use App\Models\Struk;
-use App\Mail\SendMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api as Controller;
@@ -72,11 +71,14 @@ class StrController extends Controller
 
         if ($request->file('struk')) {
             $struk = $request->file('struk');
-            $struk->storeAs('public/struk', $struk->hashName());
+            $struk->storeAs('public/strukpembayaran', $struk->hashName());
         }
+
+        $time = time();
         $struk = Struk::create([
             'email'     => $request->email,
-            'struk'     => $struk->hashName()
+            'struk'     => $struk->hashName(),
+            'date'      => date("Y-m-d H:i:s O", $time)
         ]);
 
         $result['struk'] = $struk;

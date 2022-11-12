@@ -55,7 +55,8 @@
                 <th scope="col">Universitas</th>
                 <th scope="col">Fakultas</th>
                 <th scope="col">Program Studi</th>
-                <th scope="col">Tahun Keanggotaan</th>
+                <th scope="col">Jenjang Studi</th>
+                <th scope="col">Tahun</th>
               </tr>
             </thead>
             <tbody id="content-users">
@@ -107,6 +108,7 @@
               content += '<td>'+ v.nama_univ +'</td>';
               content += '<td>'+ v.nama_fakultas +'</td>';
               content += '<td>'+ v.nama_jurusan +'</td>';
+              content += '<td class="text-center">'+ v.jenjang +'</td>';
               content += '<td class="text-center">'+ v.thn_anggota +'</td>';
               content += '</tr>';
             });
@@ -161,8 +163,10 @@
     $('#btnMore').removeClass('d-none');
     $('#content-users').html('');
     var render = $('select[name=render]').val();
+    var year = $('select[name=year]').val();
     var data = {
       render: render,
+      year: year,
     }
     getUsers(data);
   }

@@ -35,4 +35,9 @@ class StrController extends Controller
     {
         return view('backend.str.reject');
     }
+
+    public function struk()
+    {
+        return view('backend.str.struk');
+    }
 }

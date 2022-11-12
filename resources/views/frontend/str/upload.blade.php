@@ -65,6 +65,7 @@
 
          $.ajax({
             url: BaseUrl+'/api/upload/file-str',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'POST',
             data: data,
             processData: false,

@@ -39,6 +39,7 @@
     processing: true,
     serverSide: true,
     ajax: BaseUrl+'/api/admin/users',
+    headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
       {data: 'nama_univ', name: 'nama_univ'},

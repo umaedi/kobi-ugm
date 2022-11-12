@@ -1,435 +1,267 @@
-<!doctype html>
-<html>
+<?php
+defined('BASEPATH') or exit('No direct script access allowed');
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Email Pemebritahuan Keanggotaan</title>
-    <style>
-        /* -------------------------------------
-          GLOBAL RESETS
-      ------------------------------------- */
+class Auth extends CI_Controller
+{
 
-        /*All the styling goes here*/
-
-        img {
-            border: none;
-            -ms-interpolation-mode: bicubic;
-            max-width: 100%;
-        }
-
-        body {
-            background-color: #f6f6f6;
-            font-family: sans-serif;
-            -webkit-font-smoothing: antialiased;
-            font-size: 14px;
-            line-height: 1.4;
-            margin: 0;
-            padding: 0;
-            -ms-text-size-adjust: 100%;
-            -webkit-text-size-adjust: 100%;
-        }
-
-        table {
-            border-collapse: separate;
-            mso-table-lspace: 0pt;
-            mso-table-rspace: 0pt;
-            width: 100%;
-        }
-
-        table td {
-            font-family: sans-serif;
-            font-size: 14px;
-            vertical-align: top;
-        }
-
-        /* -------------------------------------
-          BODY & CONTAINER
-      ------------------------------------- */
-
-        .body {
-            background-color: #f6f6f6;
-            width: 100%;
-        }
-
-        /* Set a max-width, and make it display as block so it will automatically stretch to that width, but will also shrink down on a phone or something */
-        .container {
-            display: block;
-            margin: 0 auto !important;
-            /* makes it centered */
-            max-width: 580px;
-            padding: 10px;
-            width: 580px;
-        }
-
-        /* This should also be a block element, so that it will fill 100% of the .container */
-        .content {
-            box-sizing: border-box;
-            display: block;
-            margin: 0 auto;
-            max-width: 580px;
-            padding: 10px;
-        }
-
-        /* -------------------------------------
-          HEADER, FOOTER, MAIN
-      ------------------------------------- */
-        .main {
-            background: #ffffff;
-            border-radius: 3px;
-            width: 100%;
-        }
-
-        .wrapper {
-            box-sizing: border-box;
-            padding: 20px;
-        }
-
-        .content-block {
-            padding-bottom: 10px;
-            padding-top: 10px;
-        }
-
-        .footer {
-            clear: both;
-            margin-top: 10px;
-            text-align: center;
-            width: 100%;
-        }
-
-        .footer td,
-        .footer p,
-        .footer span,
-        .footer a {
-            color: #999999;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        /* -------------------------------------
-          TYPOGRAPHY
-      ------------------------------------- */
-        h1,
-        h2,
-        h3,
-        h4 {
-            color: #000000;
-            font-family: sans-serif;
-            font-weight: 600;
-            line-height: 1.4;
-            margin: 0;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            font-size: 35px;
-            font-weight: 300;
-            text-align: center;
-            text-transform: capitalize;
-        }
-
-        p,
-        ul,
-        ol {
-            font-family: sans-serif;
-            font-size: 16px;
-            font-weight: normal;
-            margin: 0;
-            margin-bottom: 15px;
-        }
-
-        p li,
-        ul li,
-        ol li {
-            list-style-position: inside;
-            margin-left: 5px;
-        }
-
-        a {
-            color: #3498db;
-            text-decoration: underline;
-        }
-
-        /* -------------------------------------
-          BUTTONS
-      ------------------------------------- */
-        .btn {
-            box-sizing: border-box;
-            width: 100%;
-        }
-
-        .btn>tbody>tr>td {
-            padding-bottom: 15px;
-        }
-
-        .btn table {
-            width: auto;
-        }
-
-        .btn table td {
-            background-color: #ffffff;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .btn a {
-            background-color: #ffffff;
-            border: solid 1px #3498db;
-            border-radius: 5px;
-            box-sizing: border-box;
-            color: #3498db;
-            cursor: pointer;
-            display: inline-block;
-            font-size: 14px;
-            font-weight: bold;
-            margin: 0;
-            padding: 12px 25px;
-            text-decoration: none;
-            text-transform: capitalize;
-        }
-
-        .btn-primary table td {
-            background-color: #063E85;
-        }
-
-        .btn-primary a {
-            background-color: #063E85;
-            border-color: #063E85;
-            color: #ffffff;
-        }
-
-        /* -------------------------------------
-          OTHER STYLES THAT MIGHT BE USEFUL
-      ------------------------------------- */
-        .last {
-            margin-bottom: 0;
-        }
-
-        .first {
-            margin-top: 0;
-        }
-
-        .align-center {
-            text-align: center;
-        }
-
-        .align-right {
-            text-align: right;
-        }
-
-        .align-left {
-            text-align: left;
-        }
-
-        .clear {
-            clear: both;
-        }
-
-        .mt0 {
-            margin-top: 0;
-        }
-
-        .mb0 {
-            margin-bottom: 0;
-        }
-
-        .preheader {
-            color: transparent;
-            display: none;
-            height: 0;
-            max-height: 0;
-            max-width: 0;
-            opacity: 0;
-            overflow: hidden;
-            mso-hide: all;
-            visibility: hidden;
-            width: 0;
-        }
-
-        .powered-by a {
-            text-decoration: none;
-        }
-
-        hr {
-            border: 0;
-            border-bottom: 1px solid #f6f6f6;
-            margin: 20px 0;
-        }
-
-        /* -------------------------------------
-          RESPONSIVE AND MOBILE FRIENDLY STYLES
-      ------------------------------------- */
-        @media only screen and (max-width: 620px) {
-            table.body h1 {
-                font-size: 28px !important;
-                margin-bottom: 10px !important;
-            }
-
-            table.body p,
-            table.body ul,
-            table.body ol,
-            table.body td,
-            table.body span,
-            table.body a {
-                font-size: 16px !important;
-            }
-
-            table.body .wrapper,
-            table.body .article {
-                padding: 10px !important;
-            }
-
-            table.body .content {
-                padding: 0 !important;
-            }
-
-            table.body .container {
-                padding: 0 !important;
-                width: 100% !important;
-            }
-
-            table.body .main {
-                border-left-width: 0 !important;
-                border-radius: 0 !important;
-                border-right-width: 0 !important;
-            }
-
-            table.body .btn table {
-                width: 100% !important;
-            }
-
-            table.body .btn a {
-                width: 100% !important;
-            }
-
-            table.body .img-responsive {
-                height: auto !important;
-                max-width: 100% !important;
-                width: auto !important;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('form_validation');
+        $this->load->helper('cookie');
+        if ($this->session->userdata('login')) {
+            redirect(base_url());
+        } else {
+            $cookie = get_cookie('e382jxndj');
+            if ($cookie != NULL) {
+                $getCookie = $this->db->get_where('user', ['cookie' => $cookie])->row_array();
+                if ($getCookie) {
+                    $dataCookie = $getCookie;
+                    $dataSession = [
+                        'id' => $dataCookie['id']
+                    ];
+                    $this->session->set_userdata('login', true);
+                    $this->session->set_userdata($dataSession);
+                    redirect(base_url());
+                }
             }
         }
+    }
 
-        /* -------------------------------------
-          PRESERVE THESE STYLES IN THE HEAD
-      ------------------------------------- */
-        @media all {
-            .ExternalClass {
-                width: 100%;
-            }
+    public function register()
+    {
+        $this->form_validation->set_rules('name', 'Name', 'required|max_length[40]', ['required' => 'Name is required', 'max_length' => 'Maximum name length is 40 characters']);
+        $this->form_validation->set_rules('email', 'Email', 'required|max_length[50]|valid_email', ['required' => 'Email is required', 'max_length' => 'Maximum name length is 50 characters', 'valid_email' => 'Email is not valid']);
+        $this->form_validation->set_rules('password', 'Password', 'matches[password1]|required', [
+            'matches' => 'password does not match', 'required' => 'Password is required'
+        ]);
+        $this->form_validation->set_rules('password1', 'Password', 'matches[password]', ['matches' => 'password does not match']);
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Register - ' . $this->Settings_model->general()["app_name"];
+            $data['css'] = 'auth';
+            $this->load->view('templates/header', $data);
+            $this->load->view('auth/register');
+            $this->load->view('templates/footer_notmpl');
+        } else {
+            $this->User_model->register();
+            $this->session->set_flashdata('success', "Registration Successful");
+            redirect(base_url() . 'register');
+        }
+    }
 
-            .ExternalClass,
-            .ExternalClass p,
-            .ExternalClass span,
-            .ExternalClass font,
-            .ExternalClass td,
-            .ExternalClass div {
-                line-height: 100%;
-            }
+    public function login()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required', ['required' => 'Email is required']);
+        $this->form_validation->set_rules('password', 'Password', 'required', [
+            'required' => 'Email is required'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Login - ' . $this->Settings_model->general()["app_name"];
+            $data['css'] = 'auth';
+            $data['redirect'] = $_GET['redirect'];
+            $this->load->view('templates/header', $data);
+            $this->load->view('auth/login', $data);
+            $this->load->view('templates/footer_notmpl');
+        } else {
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $remember = $this->input->post('remember');
+            $user = $this->db->get_where('user', ['email' => $email])->row_array();
+            if ($user) {
+                if (password_verify($password, $user['password'])) {
+                    if ($user['is_activate'] == 0) {
+                        $this->session->set_flashdata('failed', '<div class="alert alert-danger" role="alert">
+                        Sorry, email has not been verified
+                        </div>');
+                        redirect(base_url() . 'login');
+                    } else {
+                        $data = [
+                            'id' => $user['id']
+                        ];
+                        if ($remember != NULL) {
+                            $key = random_string('alnum', 64);
+                            set_cookie('e382jxndj', $key, 3600 * 24 * 30 * 12);
+                            $this->db->set('cookie', $key);
+                            $this->db->where('id', $user['id']);
+                            $this->db->update('user');
+                        }
 
-            .apple-link a {
-                color: inherit !important;
-                font-family: inherit !important;
-                font-size: inherit !important;
-                font-weight: inherit !important;
-                line-height: inherit !important;
-                text-decoration: none !important;
-            }
+                        $this->session->set_userdata('login', true);
+                        $this->session->set_userdata($data);
 
-            #MessageViewBody a {
-                color: inherit;
-                text-decoration: none;
-                font-size: inherit;
-                font-family: inherit;
-                font-weight: inherit;
-                line-height: inherit;
-            }
-
-            .btn-primary table td:hover {
-                background-color: #34495e !important;
-            }
-
-            .btn-primary a:hover {
-                background-color: #34495e !important;
-                border-color: #34495e !important;
+                        redirect(base_url() . $_GET['redirect']);
+                    }
+                } else {
+                    $this->session->set_flashdata('failed', '<div class="alert alert-danger" role="alert">
+                    Password wrong
+                    </div>');
+                    redirect(base_url() . 'login');
+                }
+            } else {
+                $this->session->set_flashdata('failed', '<div class="alert alert-danger" role="alert">
+                Email is not registered
+                </div>');
+                redirect(base_url() . 'login');
             }
         }
-    </style>
-</head>
+    }
 
-<body>
-    <span class="preheader">Berikut kami sampaikan status keanggotaan Anda</span>
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
-        <tr>
-            <td>&nbsp;</td>
-            <td class="container">
-                <div class="content">
+    public function verification()
+    {
+        $email = $_GET['email'];
+        $token = $_GET['token'];
 
-                    <!-- START CENTERED WHITE CONTAINER -->
-                    <table role="presentation" class="main">
+        $check = $this->db->get_where('user', ['email' => $email, 'token' => $token])->row_array();
+        if ($check['is_activate'] == 1) {
+            $this->session->set_flashdata('verification', "<script>
+                swal({
+                text: 'Your account is active'
+                });
+            </script>");
+            redirect(base_url() . 'login');
+        }
+        if ($check) {
+            $this->db->set('is_activate', 0);
+            $this->db->where('id', $check['id']);
+            $this->db->update('user');
+            $this->session->set_flashdata('verification', "<script>
+                swal({
+                text: 'Your account is being verified',
+                icon: 'success'
+                });
+            </script>");
+            redirect(base_url() . 'login');
+        } else {
+            $this->session->set_flashdata('verification', "<script>
+                swal({
+                text: 'Oops, failed account verification. Incorrect token',
+                icon: 'error'
+                });
+            </script>");
+            redirect(base_url() . 'login');
+        }
+    }
 
-                        <!-- START MAIN CONTENT AREA -->
-                        <tr>
-                            <td class="wrapper">
-                                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td>
-                                            <h3>#{{ $data['noAnggota'] }}</h3>
-                                            <p>
-                                                Terimakasih sudah bergabung menjadi bagian dari KOBI.
-                                                Saat ini Anda terdaftar sebagai anggota aktif.
-                                            </p>
-                                            <p>
-                                                No Anggota : <b>{{ $data['noAnggota'] }}</b><br>
-                                                Password : <b>{{ $data['password'] }}</b>
-                                            </p>
-                                            <p>Silahkan login dengan meng-klik tombol dibawah ini</p>
-                                            <table role="presentation" border="0" cellpadding="0" cellspacing="0"
-                                                class="btn btn-primary">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left">
-                                                            <table role="presentation" border="0" cellpadding="0"
-                                                                cellspacing="0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td> <a href="https://kobi-indonesia.id/user/login"
-                                                                                target="_blank">Masuk website</a> </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <p>Catatan: Akun ini digunakan untuk membuka atau mengunduh dokumen KOBI
-                                                yang memerlukan login</p>
-                                            <p>Salam hormat <br>Admin KOBI</p>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                        <!-- END MAIN CONTENT AREA -->
-                    </table>
-                    <!-- END CENTERED WHITE CONTAINER -->
+    public function reset_password()
+    {
+        $this->form_validation->set_rules('email', 'email', 'required', [
+            'required' => 'Field email is required'
+        ]);
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Reset Password - ' . $this->Settings_model->general()["app_name"];
+            $data['css'] = 'auth';
+            $this->load->view('templates/header', $data);
+            $this->load->view('auth/reset', $data);
+            $this->load->view('templates/footer_notmpl');
+        } else {
+            $email = $this->input->post('email');
+            $token = sha1(rand());
+            $user = $this->db->get_where('user', ['email' => $email])->row_array();
+            if ($user) {
+                $this->load->library('email');
+                $config['charset'] = 'utf-8';
+                $config['useragent'] = $this->Settings_model->general()["app_name"];
+                $config['smtp_crypto'] = $this->Settings_model->general()["crypto_smtp"];
+                $config['protocol'] = 'smtp';
+                $config['mailtype'] = 'html';
+                $config['smtp_host'] = $this->Settings_model->general()["host_mail"];
+                $config['smtp_port'] = $this->Settings_model->general()["port_mail"];
+                $config['smtp_timeout'] = '5';
+                $config['smtp_user'] = $this->Settings_model->general()["account_gmail"];
+                $config['smtp_pass'] = $this->Settings_model->general()["pass_gmail"];
+                $config['crlf'] = "\r\n";
+                $config['newline'] = "\r\n";
+                $config['wordwrap'] = TRUE;
 
-                    <!-- START FOOTER -->
-                    <div class="footer">
-                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td class="content-block">
-                                    <span class="apple-link">Copyright © 2022 Konsorsium Biologi Indonesia. All rights
-                                        reserved</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <!-- END FOOTER -->
-                </div>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-    </table>
-</body>
+                $this->email->initialize($config);
+                $this->email->from($this->Settings_model->general()["account_gmail"], $this->Settings_model->general()["app_name"]);
+                $this->email->to($email);
+                $this->email->subject('Confirm Password Reset');
+                $this->email->message(
+                    '<p>We have received your request to reset your password. Please click the link below to reset your password<br/>
+                    <a href="' . base_url() . 'reset?email=' . $email . '&token=' . $token . '">' . base_url() . 'reset?email=' . $email . '&token=' . $token . '</a> <br/>
+                    Best Regard</p>
+                    '
+                );
+                $this->email->send();
+                $this->db->set('token_reset', $token);
+                $this->db->where('email', $email);
+                $this->db->update('user');
+                $this->session->set_flashdata('verification', "<script>
+                    swal({
+                    text: 'Thank you for registering, please wait while we verify your account. You may log in immidiatelty once verified,
+                    icon: 'success'
+                    });
+                </script>");
+                redirect(base_url() . 'login');
+            } else {
+                $this->session->set_flashdata('failed', '<div class="alert alert-danger" role="alert">
+                The user with the email does not exist.
+                </div>');
+                redirect(base_url() . 'reset-password');
+            }
+        }
+    }
 
-</html>
+    public function reset()
+    {
+        $email = $this->input->get('email');
+        $token = $this->input->get('token');
+        $user = $this->db->get_where('user', ['email' => $email, 'token_reset' => $token])->row_array();
+        if ($user) {
+            $data = [
+                'email' => $email
+            ];
+            $this->session->set_userdata($data);
+            $this->session->set_userdata('reset', true);
+            redirect(base_url() . 'new-password');
+        } else {
+            $this->session->set_flashdata('verification', "<script>
+                swal({
+                text: 'Oops. Wrong password reset token',
+                icon: 'error'
+                });
+            </script>");
+            redirect(base_url() . 'login');
+        }
+    }
+
+    public function new_password()
+    {
+        if (!$this->session->userdata('reset')) {
+            redirect(base_url() . 'login');
+        }
+        $this->form_validation->set_rules('password', 'Password', 'matches[password1]|required', [
+            'matches' => 'password does not match', 'required' => 'Password is required'
+        ]);
+        $this->form_validation->set_rules('password1', 'Password', 'matches[password]', ['matches' => 'password does not match']);
+        if ($this->form_validation->run() == false) {
+            $data['title'] = 'Password Baru - ' . $this->Settings_model->general()["app_name"];
+            $data['css'] = 'auth';
+            $this->load->view('templates/header', $data);
+            $this->load->view('auth/new-password', $data);
+            $this->load->view('templates/footer_notmpl');
+        } else {
+            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+            $this->db->set('password', $password);
+            $this->db->where('email', $this->session->userdata('email'));
+            $this->db->update('user');
+            $sess = ['reset', 'email'];
+            $this->session->unset_userdata($sess);
+            $this->session->set_flashdata('verification', "<script>
+                swal({
+                text: 'Password changed successfully. Please login.',
+                icon: 'success'
+                });
+            </script>");
+            redirect(base_url() . 'login');
+        }
+    }
+}
+
+
+if(tired) {
+    sleep()
+}else {
+    code()
+}

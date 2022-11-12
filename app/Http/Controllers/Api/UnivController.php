@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Api as Controller;
-use App\Jobs\KonfirmasistrJob;
-use App\Mail\TolakEmail;
 use App\Models\User;
 
 class UnivController extends Controller
@@ -67,6 +65,7 @@ class UnivController extends Controller
             $year = substr(date('Y'), -2);
 
             $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . 0 . $no_anggota;
+            return $this->sendResponseError(json_encode($user_id), $user_id);
         } else {
             $dataNoAnggota = DB::table('universitas')->where('no_anggota', $request->no_anggota)->first();
             if ($dataNoAnggota == null) {

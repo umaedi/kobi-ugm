@@ -70,6 +70,7 @@
             <a class="collapse-item" href="/admin/str">Pengajuan STR</a>
             <a class="collapse-item" href="{{ route('strVerif') }}">STR Diterima</a>
             <a class="collapse-item" href="{{ route('strReject') }}">STR Ditolak</a>
+            <a class="collapse-item" href="{{ route('admin.struk') }}">Bukti Pembayaran</a>
         </div>
     </div>
 </li>

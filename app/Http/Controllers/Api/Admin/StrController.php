@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Api as Controller;
-
+use App\Models\Struk;
 
 class StrController extends Controller
 {
@@ -59,6 +59,25 @@ class StrController extends Controller
 
             return $this->sendResponseUpdate($data);
         }
+    }
+
+    public function struk()
+    {
+        $struk = Struk::select('id', 'email', 'struk', 'date')->latest()->paginate(10);
+        if ($struk) {
+            return $this->sendResponseOk($struk);
+        }
+    }
+
+    public function strukDestroy($id)
+    {
+        $struk = Struk::findOrfail($id);
+        if ($struk->struk) {
+            Storage::disk('local')->delete('public/strukpembayaran/' . basename($struk->ijazah));
+        }
+
+        $struk->destroy($id);
+        return $this->sendResponseDelete($struk);
     }
 
     public function strDestroy($id)

@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/str/verif', 'strVerif')->name('strVerif');
             Route::get('/str/reject', 'strReject')->name('strReject');
             Route::get('/str/destroy', 'strDestroy');
+            Route::get('/str/bukti-pembayaran', 'struk')->name('admin.struk');
         });
 
         Route::resource('/post', \App\Http\Controllers\Backend\PostController::class);
