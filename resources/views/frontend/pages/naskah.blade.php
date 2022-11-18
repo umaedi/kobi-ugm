@@ -25,7 +25,7 @@
                 <tr>
                   <th class="text-center">No</th>
                   <th class="text-center">Nama Dokumen</th>
-                  <th class="text-center">Tanggl Upload</th>
+                  <th class="text-center">Tanggal Upload</th>
                   <th class="text-center">Aksi</th>
                 </tr>
             </thead>
@@ -56,7 +56,7 @@
     url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/id.json'
     },
     columns: [
-      {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
+      {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1 + '.'; }},
       {data: 'nama_dokumen', name: 'nama_dokumen'},
       {data: 'publish_at', name: 'publish_at'},
       {

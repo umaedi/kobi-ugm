@@ -174,12 +174,13 @@
       cache: false,
       complete: (response) => {
           if(response.status == 201) {
+            sendEmail(response.responseJSON.data);
             $('#btnSend').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
             
               swal({
                   title: "",
-                  text: response.responseJSON.message,
+                  text: "Anggota berhasil di konfirmasi",
                   icon: "success"
                 })
                 .then(() => {
@@ -198,7 +199,7 @@
         url: BaseUrl+'/api/admin/sendmail/verif-user',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: {email: data.email, noAnggota: data.noAnggota, password: data.password},
-        method: 'POST',
+        method: 'post',
         complete: (res) => {
           if(res.status == 200) {
             console.log('Email terkirim ke '+data.email);

@@ -100,6 +100,7 @@
 
         $.ajax({
         url: BaseUrl+'/api/admin/visi-misi/{{ $visi->id }}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: data,
         method: 'POST',
         processData: false,

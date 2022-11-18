@@ -61,7 +61,7 @@
                       </div>
                       <button class="w-btn w-btn-11 w-100 mt-3"> <span></span> {{ __('Masuk') }}</button>
                       <div class="sign__new text-center mt-20">
-                         {{ __('Belum punya akun ?') }} <a href="{{ route('user.register') }}" style="color: blue">{{ __("buat akun") }}</a>
+                         {{ __('Belum punya akun?') }} <a href="{{ route('user.register') }}" style="color: blue">{{ __("buat akun") }}</a>
                       </div>
                    </form>
                 </div>

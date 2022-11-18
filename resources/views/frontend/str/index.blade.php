@@ -10,7 +10,7 @@
 
 @component('components.frontend.page_content')
 @slot('page_content')
-<div class="d-flex align-items-center p-3 my-1 text-white bg-success rounded shadow-sm">
+<div class="d-flex align-items-center p-3 my-1 text-white bg-success rounded shadow-sm" >
     <div class="lh-1">
       <h1 class="h6 mb-0 text-white lh-1">{{ __('Formulir Pengajuan STR') }}</h1>
     </div>
@@ -20,7 +20,7 @@
   </div>
 <div class="my-3 p-3 bg-body rounded shadow-sm">
     <div id="alert"></div>
-    <h6 class="border-bottom pb-2 mb-0">{{ __('Silahkan mengisi formulir di bawah ini :') }}</h6>
+    <h6 class="border-bottom pb-2 mb-0">{{ __('Silakan mengisi formulir di bawah ini:') }}</h6>
     <form id="store">
       @csrf
       <div class="mb-3">

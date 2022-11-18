@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Mail\SendMail;
 use App\Models\Universitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -53,19 +51,22 @@ class UnivController extends Controller
         }
 
         if ($request->no_anggota == "") {
-            // create user_id
-            $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
-            $userId = substr($data->no_anggota, -4);
 
-            $no_anggota = $userId;
-            if ($no_anggota <= $userId) {
-                $no_anggota++;
+            $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
+            if ($data == null) {
+                $no_anggota = 0001;
+            } else {
+                $userId = substr($data->no_anggota, -4);
+
+                $no_anggota = $userId;
+                if ($no_anggota <= $userId) {
+                    $no_anggota++;
+                }
             }
 
             $year = substr(date('Y'), -2);
 
             $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . 0 . $no_anggota;
-            return $this->sendResponseError(json_encode($user_id), $user_id);
         } else {
             $dataNoAnggota = DB::table('universitas')->where('no_anggota', $request->no_anggota)->first();
             if ($dataNoAnggota == null) {
@@ -85,6 +86,7 @@ class UnivController extends Controller
             'nama_univ'     => $request->nama_univ,
             'no_anggota'    => $user_id,
             'nama_fakultas' => $request->nama_fakultas,
+            'jenjang'       => $request->jenjang_studi,
             'thn_anggota'   => date('Y'),
             'user_id'       => $request->user_id,
             'email_user'    => $request->email_user,

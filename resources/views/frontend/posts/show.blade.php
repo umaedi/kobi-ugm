@@ -42,9 +42,11 @@
                              <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="">
                           </div>
                           <div class="postbox__author-content">
-                             <h4>Admin</h4>
-                             <span>Tentang Penulis</span>
-                             <p>Menuntut ilmu adalah taqwa. Menyampaikan ilmu adalah ibadah. Mengulang-ulang ilmu adalah zikir. Mencari ilmu adalah jihad. - Abu Hamid Al Ghazali</p>
+                             <h4>Konsorsium Biologi Indonesia</h4>
+                             <p>Sekretariat Fakultas Biologi, UGM Jalan Teknika Selatan, Sekip Utara, Yogyakarta 55281.</p>
+                             <br>
+                             <a href="mailto:kobi.biologi@gmail.com"><p>Email:  kobi.biologi@gmail.com</p></a>
+                             <a href="https://api.whatsapp.com/send?phone=6282350201515" target="_blank"><p>No HP: +62 823-5020-1515</p></a>
                           </div>
                        </div>
                     </div>

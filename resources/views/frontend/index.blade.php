@@ -140,7 +140,7 @@
                    <div class="row">
                       <div class="col-xxl-8 offset-xxl-2 col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 col-md-10 offset-md-1">
                          <div class="section__title-wrapper section__title-wrapper-5 text-center mb-55 wow fadeInUp" data-wow-delay=".3s">
-                            <h2 class="section__title-5 section__title-5-p mb-15">Baca Berita Atau Artikel KOBI</h2>
+                            <h2 class="section__title-5 section__title-5-p mb-15">Berita</h2>
                             <p>Semua berita atau artikel telah di verifikasi</p>
                          </div>
                       </div>

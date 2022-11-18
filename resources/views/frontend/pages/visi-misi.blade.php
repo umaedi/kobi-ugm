@@ -16,8 +16,8 @@
                  <div class="blog__wrapper">
                     <div class="postbox__item">
                        <div class="postbox__content wow fadeInUp" data-wow-delay=".5s">
-                           <h3 class="postbox__title">Visi Misi</h3>
-                           <p class="body">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                           <h3 class="postbox__title">{{ $visi->title }}</h3>
+                           {!! $visi->body !!}
                        </div>
 
                        <div class="postbox__share d-flex justify-content-between align-items-center mb-75 wow fadeInUp" data-wow-delay=".9s">
@@ -33,10 +33,12 @@
                              <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="">
                           </div>
                           <div class="postbox__author-content">
-                             <h4>Admin</h4>
-                             <span>Tentang Penulis</span>
-                             <p>Menuntut ilmu adalah taqwa. Menyampaikan ilmu adalah ibadah. Mengulang-ulang ilmu adalah zikir. Mencari ilmu adalah jihad. - Abu Hamid Al Ghazali</p>
-                          </div>
+                           <h4>Konsorsium Biologi Indonesia</h4>
+                           <p>Sekretariat Fakultas Biologi, UGM Jalan Teknika Selatan, Sekip Utara, Yogyakarta 55281.</p>
+                           <br>
+                           <a href="mailto:kobi.biologi@gmail.com"><p>Email:  kobi.biologi@gmail.com</p></a>
+                           <a href="https://api.whatsapp.com/send?phone=6282350201515" target="_blank"><p>No HP: +62 823-5020-1515</p></a>
+                        </div>
                        </div>
                     </div>
                  </div>
@@ -47,16 +49,16 @@
     </main>
 @endsection
 @push('js')
-    <script>
+    {{-- <script>
          $.ajax({
             url: BaseUrl+'/api/user/vision-msion',
             complete: (response) => {
                if(response.status == 200) {
-                  let data = response.responseJSON.data.vision;
+                  var data = response.responseJSON.data.vision;
                   $('.postbox__title').html(`${data.title}`);
                   $('.body').html(`${data.body}`);
                }
             }
          })
-    </script>
+    </script> --}}
 @endpush

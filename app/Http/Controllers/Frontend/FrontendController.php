@@ -10,6 +10,7 @@ use App\Models\Gallery;
 use App\Models\Kurikulum;
 use App\Models\Post;
 use App\Models\Province;
+use App\Models\VisiMisi;
 use Illuminate\Support\Facades\Request;
 
 class FrontendController extends Controller
@@ -130,6 +131,7 @@ class FrontendController extends Controller
     {
         return view('frontend.pages.visi-misi', [
             'title'     => 'Visi Misi dan Tujuan',
+            'visi'      => VisiMisi::latest()->first(),
             'events'    => EventCategory::latest()->get()
         ]);
     }

@@ -101,13 +101,12 @@
                 cache: false,
                 complete: (response) => {
                     if(response.status == 200) {
+                    $('#data-struk').html('');
+                    getContent();
                     swal({
                     title: "",
                     text: "Struk berhasil dihapus",
                     icon: "success"
-                    })
-                    .then((value) => {
-                        window.location.replace(BaseUrl+'/admin/str/bukti-pembayaran');
                     });
                     }else {
                         swal("", response.responseJSON.message, "warning");

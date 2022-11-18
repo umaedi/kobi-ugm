@@ -3,7 +3,7 @@
     @component('components.frontend.breadcrumb')
     @slot('breadcrumb')
     <div class="page__title-wrapper text-center">
-    <h3>{{ __('Pendaftaran Anggota Lama') }}</h3>
+    <h3>{{ __('Pendaftaran Anggota Baru') }}</h3>
     </div>
     @endslot
     @endcomponent
@@ -17,7 +17,7 @@
           </div>
         <div>
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h6 class="border-bottom pb-2 mb-3">{{ __('Mohon isi formulir dibawah ini') }}</h6>
+                <h6 class="border-bottom pb-2 mb-3">{{ __('Mohon isi formulir di bawah ini') }}</h6>
                 <form id="store">
                   @csrf
                   <div class="row">

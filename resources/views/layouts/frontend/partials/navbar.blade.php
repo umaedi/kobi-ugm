@@ -5,7 +5,7 @@
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                <div class="header__info text-center text-sm-start">
                   <a href="mailto:kobi.biologi@gmail.com"> <i class="icon_mail"></i> <span >kobi.biologi@gmail.com</span></a>
-                  <a href="https://api.whatsapp.com/send?phone=6285600997890" target="_blank"> <i class="icon_phone w-phone"></i> +6285600997890</a>
+                  <a href="https://api.whatsapp.com/send?phone=6282350201515" target="_blank"> <i class="icon_phone w-phone"></i> +62 823-5020-1515</a>
                </div>
             </div>
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
@@ -46,11 +46,19 @@
                         <li class="has-dropdown">
                            <a href="#">DOKUMEN</a>
                            <ul class="submenu">
+                              @auth
                               <li><a href="{{ route('publikasi') }}">Publikasi</a></li>
                               <li><a href="{{ route('naskah-akademik') }}">Naskah Akademik</a></li>
                               <li><a id="adArt" target="_blank">AD/ART</a></li>
                               <li><a href="{{ route('kurikulum') }}">Kurikulum</a></li>
                               <li><a href="{{ route('laporan') }}">Laporan Kegiatan KOBI</a></li>
+                              @else
+                              <li><a href="{{ route('login') }}">Publikasi</a></li>
+                              <li><a href="{{ route('login') }}">Naskah Akademik</a></li>
+                              <li><a href="{{ route('login') }}">AD/ART</a></li>
+                              <li><a href="{{ route('login') }}">Kurikulum</a></li>
+                              <li><a href="{{ route('login') }}">Laporan Kegiatan KOBI</a></li>
+                              @endauth
                            </ul>
                         </li>
                         <li class="has-dropdown">

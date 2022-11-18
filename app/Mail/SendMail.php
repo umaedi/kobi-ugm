@@ -31,6 +31,6 @@ class SendMail extends Mailable
     {
         return $this->from('kobi.biologi@gmail.com')
             ->subject('Informasi Keanggotaan')
-            ->view('backend.email.email');
+            ->view('backend.email.konfir-user');
     }
 }

@@ -25,9 +25,13 @@
                             <input type="file" name="struk" class="form-control" placeholder="Pilih file" required>
                         </div>
                         <div class="form-group my-3">
-                           <button class="w-btn w-btn" type="submit">Upload</button>
+                           <button id="btnSend" class="w-btn w-btn" type="submit">Upload</button>
                          </div>
                      </form>
+                     <button id="btnSending" class="w-btn w-btn" type="button" disabled style="display: none">Ajukan...
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span class="sr-only">Loading...</span>
+                      </button>
                        <div class="postbox__share d-flex justify-content-between align-items-center mb-75 wow fadeInUp" data-wow-delay=".9s">
                           <h3>Bagikan :</h3>
                           <ul>
@@ -60,6 +64,9 @@
          $('#formUploadStr').submit( function(event){
             event.preventDefault();
 
+            $('#btnSend').attr('style', 'display: none');
+            $('#btnSending').removeAttr('style', 'display: none');
+
             const form = $(this)[0];
             const data = new FormData(form);
 
@@ -72,6 +79,8 @@
             contentType: false,
             cache: false,
             complete: (response) => {
+               $('#btnSend').removeAttr('style', 'display: none');
+               $('#btnSending').attr('style', 'display: none');
                if(response.status == 201) {
                 swal({
                     title: "",
@@ -82,6 +91,8 @@
                     window.location.replace(BaseUrl+'/');
                   });
             }else {
+               $('#btnSend').removeAttr('style', 'display: none');
+               $('#btnSending').attr('style', 'display: none');
                 swal("", response.responseJSON.message, "warning");
             }
             }
