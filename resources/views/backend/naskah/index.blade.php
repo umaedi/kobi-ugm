@@ -172,7 +172,7 @@
                 url: BaseUrl+'/api/admin/naskah/'+id,
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: data,
-                method: 'POST',
+                method: 'post',
                 processData: false,
                 contentType: false,
                 cache: false,
@@ -182,9 +182,10 @@
                             title: "",
                             text: "Naskah berhasil diperbaharui",
                             icon: "success"
-                        });
-                        table.ajax.reload();
-                        $('input').val('');
+                        })
+                        .then() =>{
+                            console.log('ok');
+                        };
                     }else {
                         swal("", response.responseJSON.message, "warning");
                     }

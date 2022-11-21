@@ -12,7 +12,6 @@
     @slot('page_content')
         <div class="col-xxl-12  col-xl-12  col-lg-12 col-md-12 ">
             <div class="section__title-wrapper section__title-wrapper-4 mb-65 wow fadeInUp" data-wow-delay=".3s">
-                <h2 class="text-center" id="aboutTitle"></h2>
                 <p id="aboutBody"></p>
             </div>
         </div>
@@ -34,7 +33,6 @@
             url: BaseUrl+'/api/user/history',
             complete: (response) => {
                const data = response.responseJSON.data.about;
-               $('h2#aboutTitle').html(`${data.title}`);
                $('#aboutBody').html(`${data.body}`);
             }
          });

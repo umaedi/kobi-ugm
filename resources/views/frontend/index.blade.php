@@ -61,7 +61,7 @@
                       <div class="col-xxl-6 offset-xxl-3">
                          <div class="section__title-wrapper section__title-wrapper-5 section__title-wrapper-5-p section__title-white text-center mb-55 wow fadeInUp" data-wow-delay=".3s">
                             <h2 class="section__title-5 mb-25">Layanan Konsorsium Biologi Indonesia</h2>
-                            <p>Silahkan ikuti alur permohonan pendaftaran anggota atau pengajuan STR dibawah ini:</p>
+                            <p>Silakan ikuti alur permohonan pendaftaran anggota atau pengajuan STR di bawah ini:</p>
                          </div>
                       </div>
                    </div>

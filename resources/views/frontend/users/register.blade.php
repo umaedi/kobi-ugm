@@ -174,8 +174,8 @@
             var data = new FormData(form);
         
             $.ajax({
-              url: BaseUrl+'/api/list-anggota',
-              method: 'POST',
+              url: BaseUrl+'/api/user/register/anggota-lama',
+              method: 'post',
               data: data,
               processData: false,
               contentType: false,

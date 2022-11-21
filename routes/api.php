@@ -152,6 +152,8 @@ Route::prefix('user')->group(function () {
         Route::get('/event/list/allcategories/{eventCategory:slug}', 'eventByCategories');
         Route::get('/event/last-event', 'lastEvent');
     });
+
+    Route::post('/register/anggota-lama', [Api\Admin\RegisterAnggotalama::class, 'store']);
 });
 
 
