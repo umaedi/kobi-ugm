@@ -55,8 +55,8 @@
                 <th scope="col">Universitas</th>
                 <th scope="col">Fakultas</th>
                 <th scope="col">Program Studi</th>
-                <th scope="col">Jenjang Studi</th>
-                <th scope="col">Tahun</th>
+                <th scope="col" class="text-center">Jenjang Studi</th>
+                <th scope="col" class="text-center">Tahun</th>
               </tr>
             </thead>
             <tbody id="content-users">
@@ -86,9 +86,6 @@
 <script>
   let data = {
     page: '1',
-    render: $('select[name=render]').val(),
-    year: $('select[name=filter-year]').val(),
-    // search: ''
   };
   function getUsers(data){
     $.ajax({
@@ -104,7 +101,7 @@
             $.each(data, (k, v) => {
               no++;
               content += '<tr>';
-              content += '<th>'+ no +'</th>';
+              content += '<th>'+ no + '.' +'</th>';
               content += '<td>'+ v.nama_univ +'</td>';
               content += '<td>'+ v.nama_fakultas +'</td>';
               content += '<td>'+ v.nama_jurusan +'</td>';
@@ -142,8 +139,6 @@
     var page = parseInt($('#loadMore').data('value')) + 1;
     var data = {
       page: page,
-      year: $('select[name=year]').val(),
-      render: $('select[name=render]').val()
     }
     getUsers(data);
   }

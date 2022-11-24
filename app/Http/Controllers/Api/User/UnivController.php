@@ -10,13 +10,17 @@ class UnivController extends Controller
 {
     public function users(Request $request)
     {
-
-        $render = $request->render;
-        if ($render) {
+        if ($request->render) {
             $limit = $request->render;
         } else {
-            $limit = 10;
-        };
+            $limit = 1;
+        }
+
+        if ($request->year) {
+            $year = $request->year;
+        } else {
+            $year = date('Y');
+        }
 
         if ($request->search) {
             $data     = Universitas::select('nama_univ', 'nama_fakultas', 'jenjang', 'nama_jurusan', 'thn_anggota')->where('no_anggota', 'like', '%' . $request->search . '%')
@@ -26,15 +30,6 @@ class UnivController extends Controller
                 ->latest()->paginate();
             return  $this->sendResponseOk($data);
         };
-
-        $year = $request->year;
-        if ($year) {
-            $year = $request->year;
-        } else {
-            $data = Universitas::select('nama_univ', 'nama_fakultas', 'jenjang', 'nama_jurusan', 'thn_anggota')->where('status', 1)
-                ->orderBy('thn_anggota', 'DESC')->paginate($limit);
-        }
-        return  $this->sendResponseOk($data);
 
         $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('thn_anggota', $year)
             ->orderBy('thn_anggota', 'DESC')->paginate($limit);

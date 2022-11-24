@@ -7,6 +7,10 @@ use App\Mail\TolakEmail;
 use App\Mail\KonfirmasiStr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api;
+use App\Mail\EmailKonfirmasiAnggota;
+use App\Mail\EmailKonfirmasiStr;
+use App\Mail\EmailTolakAnggota;
+use App\Mail\EmailTolakStr;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -87,7 +91,7 @@ Route::middleware('auth:sanctum')->group(function () {
                 'password'    => $request->password
             ];
 
-            Mail::to($request->email)->send(new SendMail($data));
+            Mail::to($request->email)->send(new EmailKonfirmasiAnggota($data));
         });
 
         Route::post('/sendmail/recjct-user', function (Request $request) {
@@ -95,7 +99,7 @@ Route::middleware('auth:sanctum')->group(function () {
                 'message'   => $request->message,
             ];
 
-            Mail::to($request->email)->send(new TolakEmail($data));
+            Mail::to($request->email)->send(new EmailTolakAnggota($data));
         });
 
         //STR
@@ -104,7 +108,7 @@ Route::middleware('auth:sanctum')->group(function () {
                 'name'  => $request->name,
                 'message' => $request->message,
             ];
-            Mail::to($request->email)->send(new KonfirmasiStr($data));
+            Mail::to($request->email)->send(new EmailKonfirmasiStr($data));
         });
 
         Route::post('/sendmail/str/reject', function (Request $request) {
@@ -112,7 +116,13 @@ Route::middleware('auth:sanctum')->group(function () {
                 'name'  => $request->name,
                 'message' => $request->message,
             ];
-            Mail::to($request->email)->send(new TolakStr($data));
+            Mail::to($request->email)->send(new EmailTolakStr($data));
+        });
+
+        //konfirmasi anggota
+        Route::controller(Api\Admin\KonfirmasiAnggotaController::class)->group(function () {
+            Route::post('/konfirmasi/user-baru/{id}', 'konfirmasi_anggota_baru');
+            Route::post('/konfirmasi/user-lama/{id}', 'konfirmasi_anggota_lama');
         });
     });
 });
@@ -153,7 +163,10 @@ Route::prefix('user')->group(function () {
         Route::get('/event/last-event', 'lastEvent');
     });
 
-    Route::post('/register/anggota-lama', [Api\Admin\RegisterAnggotalama::class, 'store']);
+    Route::controller(Api\User\RegisterAnggotaController::class)->group(function () {
+        Route::post('/daftar/anggota-baru', 'store');
+        Route::post('/daftar/anggota-lama', 'update');
+    });
 });
 
 
@@ -187,10 +200,10 @@ Route::prefix('user')->group(function () {
     });
 });
 
-Route::post('/user/str/send-mail', function (Request $request) {
-    $data = [
-        'name'  => $request->name,
-        'email' => $request->email,
-    ];
-    Mail::to($request->email)->send(new EmailStr($data));
-});
+// Route::post('/user/str/send-mail', function (Request $request) {
+//     $data = [
+//         'name'  => $request->name,
+//         'email' => $request->email,
+//     ];
+//     Mail::to($request->email)->send(new EmailStr($data));
+// });

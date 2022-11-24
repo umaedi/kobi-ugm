@@ -17,14 +17,9 @@ class UnivController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $universitas = Universitas::where('status', 1)->latest()->get();
+            $universitas = Universitas::where('status', 0)->latest()->get();
             return DataTables::of($universitas)->make(true);
         }
-    }
-
-    public function create()
-    {
-        //
     }
 
     public function store(Request $request)
@@ -50,34 +45,16 @@ class UnivController extends Controller
             return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
         }
 
-        if ($request->no_anggota == "") {
+        $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
 
-            $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
-            if ($data == null) {
-                $no_anggota = 0001;
-            } else {
-                $userId = substr($data->no_anggota, -4);
-
-                $no_anggota = $userId;
-                if ($no_anggota <= $userId) {
-                    $no_anggota++;
-                }
-            }
-
-            $year = substr(date('Y'), -2);
-
-            $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . 0 . $no_anggota;
-        } else {
-            $dataNoAnggota = DB::table('universitas')->where('no_anggota', $request->no_anggota)->first();
-            if ($dataNoAnggota == null) {
-                return response()->json([
-                    'status'    => false,
-                    'message'   => 'No Anggota tidak ditemukan',
-                ], 404);
-            } else {
-                $user_id = $request->no_anggota;
-            }
+        $no_anggota = substr($data->no_anggota, 11);
+        if ($no_anggota) {
+            intval($no_anggota++);
         }
+
+        $year = substr(date('Y'), -2);
+
+        $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . $no_anggota;
 
         $struk = $request->file('bukti_pembayaran');
         $struk->storeAs('public/strukpembayaran', $struk->hashName());
@@ -103,16 +80,6 @@ class UnivController extends Controller
         ]);
 
         return $this->sendResponseCreate($univ);
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function update(Request $request, $id)

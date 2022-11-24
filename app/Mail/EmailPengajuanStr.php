@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMail extends Mailable
+class EmailPengajuanStr extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -29,8 +29,8 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->from('kobi.biologi@gmail.com')
-            ->subject('Informasi Keanggotaan')
-            ->view('backend.email.konfir-user');
+        return $this->from(env('MAIL_FROM_ADDRESS'))
+            ->subject('Informasi Pengajuan STR')
+            ->view('backend.email.str');
     }
 }

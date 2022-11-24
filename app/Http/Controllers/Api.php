@@ -86,4 +86,17 @@ class Api extends Controller
 
         return response()->json($response, $code);
     }
+
+    public function sendResponseNotFound($result)
+    {
+        $response = [
+            'success' => true,
+            'message' => 'Data tidak ditemukan!',
+        ];
+        if (!empty($result)) {
+            $response['data'] = $result;
+        }
+
+        return response()->json($response, 202);
+    }
 }

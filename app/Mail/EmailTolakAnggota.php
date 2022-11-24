@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class TolakEmail extends Mailable
+class EmailTolakAnggota extends Mailable
 {
     use Queueable, SerializesModels;
     public $data;
@@ -29,7 +29,7 @@ class TolakEmail extends Mailable
      */
     public function build()
     {
-        return $this->from('kobi.biologi@gmail.com')
+        return $this->from(env('MAIL_FROM_ADDRESS'))
             ->subject('Informasi Keanggotaan')
             ->view('backend.email.tolak-user');
     }
