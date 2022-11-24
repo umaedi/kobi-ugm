@@ -13,7 +13,7 @@ class UnivController extends Controller
         if ($request->render) {
             $limit = $request->render;
         } else {
-            $limit = 1;
+            $limit = 10;
         }
 
         if ($request->year) {

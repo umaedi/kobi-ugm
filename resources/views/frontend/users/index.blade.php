@@ -136,9 +136,11 @@
   function loadMore(){
     $('button.btn-send').attr('style', 'display: none');
     $('#btnSending').removeAttr('style', 'display: none');
-    var page = parseInt($('#loadMore').data('value')) + 1;
-    var data = {
+    let page = parseInt($('#loadMore').data('value')) + 1;
+    let year = $('input[name=year]').val();
+    let data = {
       page: page,
+      year: year
     }
     getUsers(data);
   }
@@ -146,7 +148,7 @@
   function filterYear(){
     $('#btnMore').removeClass('d-none');
     $('#content-users').html('');
-    var year = $('select[name=year]').val();
+    let year = $('select[name=year]').val();
     $('#table-head').html('Daftar Anggota Aktif KOBI Tahun ' + year);
     var data = {
       year: year
