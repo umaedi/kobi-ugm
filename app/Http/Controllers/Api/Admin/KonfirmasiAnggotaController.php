@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api\Admin;
 
 use App\Models\Universitas;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api as Controller;
+use App\Models\User;
 
 class KonfirmasiAnggotaController extends Controller
 {
@@ -30,6 +31,28 @@ class KonfirmasiAnggotaController extends Controller
         }
 
         $password = $this->generatePassword();
+        $user = User::where('email', $universitas->email_user)->first();
+        if ($user) {
+            $user->update([
+                'no_anggota'    => $universitas->no_anggota,
+                'name'  => 'anggota',
+                'email' => $universitas->email_user,
+                'password'  => bcrypt($password)
+            ]);
+        } else {
+            $user = User::create([
+                'no_anggota'    => $universitas->no_anggota,
+                'name'  => 'anggota',
+                'email' => $universitas->email_user,
+                'password'  => bcrypt($password)
+            ]);
+        }
+        $data = [
+            'email' => $universitas->email_user,
+            'no_anggota'    => $universitas->no_anggota,
+            'password'      => $password
+        ];
+        return $this->sendResponseUpdate($data);
     }
 
     private function generatePassword()

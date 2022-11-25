@@ -35,10 +35,13 @@ class RegisterAnggotaController extends Controller
 
         $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
 
-        $no_anggota = substr($data->no_anggota, 11);
         $year = substr(date('Y'), -2);
-
-        $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . number_format($no_anggota) + 1;
+        if (!empty($data)) {
+            $no_anggota = substr($data->no_anggota, 11);
+            $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . number_format($no_anggota) + 1;
+        } else {
+            $user_id = 'KOBI-' .  $request->jenjang_studi . '-' . $year . '-' . '0001';
+        }
 
         $struk = $request->file('bukti_pembayaran');
         $struk->storeAs('public/strukpembayaran', $struk->hashName());

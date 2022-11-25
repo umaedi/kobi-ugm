@@ -137,7 +137,7 @@
     $('button.btn-send').attr('style', 'display: none');
     $('#btnSending').removeAttr('style', 'display: none');
     let page = parseInt($('#loadMore').data('value')) + 1;
-    let year = $('input[name=year]').val();
+    let year = $('select[name=year]').val();
     let data = {
       page: page,
       year: year

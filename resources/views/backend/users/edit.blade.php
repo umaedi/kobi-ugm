@@ -92,7 +92,6 @@
                     <hr>
                     <div class="form-group d-flex">
                         <form id="verifStr">
-                          @method('PUT')
                           <input type="hidden" name="status" value="1">
                           <button id="btnSend" type="submit" class="btn btn-success">Verifikasi</button>
                         </form>
@@ -165,10 +164,10 @@
       const data = new FormData(form);
 
       $.ajax({
-      url: BaseUrl+'/api/list-anggota/{{ $anggota->id }}',
+      url: BaseUrl+'/api/admin/konfirmasi/user-baru/{{ $anggota->id }}',
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: data,
-      method: 'POST',
+      method: 'post',
       processData: false,
       contentType: false,
       cache: false,
@@ -198,8 +197,8 @@
       $.ajax({
         url: BaseUrl+'/api/admin/sendmail/verif-user',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data: {email: data.email, noAnggota: data.noAnggota, password: data.password},
-        method: 'POST',
+        data: {email: data.email, no_anggota: data.no_anggota, password: data.password},
+        method: 'post',
         complete: (res) => {
           if(res.status == 200) {
             console.log('Email terkirim ke '+data.email);

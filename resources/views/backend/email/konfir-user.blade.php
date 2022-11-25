@@ -373,13 +373,13 @@
                                 <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                         <td>
-                                            <h3>#{{ $data['noAnggota'] }}</h3>
+                                            <h3>#{{ $data['no_anggota'] }}</h3>
                                             <p>
                                                 Terimakasih sudah bergabung menjadi bagian dari KOBI.
                                                 Saat ini Anda terdaftar sebagai anggota aktif.
                                             </p>
                                             <p>
-                                                No Anggota : <b>{{ $data['noAnggota'] }}</b><br>
+                                                No Anggota : <b>{{ $data['no_anggota'] }}</b><br>
                                                 Password : <b>{{ $data['password'] }}</b>
                                             </p>
                                             <p>Silahkan login dengan meng-klik tombol dibawah ini</p>

@@ -87,7 +87,7 @@ Route::middleware('auth:sanctum')->group(function () {
         //handle sendMail
         Route::post('/sendmail/verif-user', function (Request $request) {
             $data = [
-                'noAnggota'   => $request->noAnggota,
+                'no_anggota'   => $request->no_anggota,
                 'password'    => $request->password
             ];
 
