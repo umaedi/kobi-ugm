@@ -1,10 +1,5 @@
 <?php
 
-use App\Mail\EmailStr;
-use App\Mail\SendMail;
-use App\Mail\TolakStr;
-use App\Mail\TolakEmail;
-use App\Mail\KonfirmasiStr;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api;
 use App\Mail\EmailKonfirmasiAnggota;
@@ -121,8 +116,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
         //konfirmasi anggota
         Route::controller(Api\Admin\KonfirmasiAnggotaController::class)->group(function () {
-            Route::post('/konfirmasi/user-baru/{id}', 'konfirmasi_anggota_baru');
-            Route::post('/konfirmasi/user-lama/{id}', 'konfirmasi_anggota_lama');
+            Route::post('/konfirmasi/anggota/{id}', 'konfirmasi_anggota');
         });
     });
 });

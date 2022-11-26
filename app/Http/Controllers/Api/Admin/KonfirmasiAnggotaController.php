@@ -9,7 +9,7 @@ use App\Models\User;
 
 class KonfirmasiAnggotaController extends Controller
 {
-    public function konfirmasi_anggota_baru(Request $request, $id)
+    public function konfirmasi_anggota(Request $request, $id)
     {
         $universitas = Universitas::findOrfail($id);
         if ($request->pesan == "") {

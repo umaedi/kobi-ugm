@@ -59,7 +59,7 @@
   <div class="sidebar-heading">
       Master Data
   </div>
-  <li class="nav-item">
+  <li class="nav-item {{ Request::is('admin/str/*') ? 'active' : '' }}">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
         aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw  fa-envelope"></i>
@@ -75,7 +75,7 @@
     </div>
 </li>
 
-  <li class="nav-item {{ Request::is('admin/users') ? 'active' : '' }}">
+  <li class="nav-item {{ Request::is('admin/anggota/*') ? 'active' : '' }}">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive"
         aria-expanded="true" aria-controls="collapseFive">
         <i class="fas fa-fw  fa-users"></i>
@@ -91,7 +91,7 @@
   </li>
   <!-- Divider -->
   <hr class="sidebar-divider">
-  <li class="nav-item">
+  <li class="nav-item {{ Request::is('admin/publikasi/*') ? 'active' : '' }}">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThere"
           aria-expanded="true" aria-controls="collapseThere">
           <i class="fas fw fa-file"></i>

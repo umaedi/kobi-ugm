@@ -192,7 +192,7 @@
                     icon: "success"
                   })
                   .then(() => {
-                    window.location.replace('/list-anggota');
+                    window.location.replace('/notifikasi/pendaftaran');
                   });
                 }else {
                   $('#btnSend').removeAttr('style', 'display: none');

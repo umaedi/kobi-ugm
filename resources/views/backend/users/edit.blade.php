@@ -73,10 +73,16 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                   <div class="mb-3">
                     <label for="pos" class="form-label mt-3">{{ __('Kode Pos') }}</label>
                     <input name="kode_pos" type="number" class="form-control" id="pos" value="{{ $anggota->kode_pos }}">
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="mb-3">
+                    <label for="no_anggota" class="form-label mt-3">{{ __('Nomor Anggota') }}</label>
+                    <input name="no_anggota" type="text" class="form-control" id="no_anggota" value="{{ $anggota->no_anggota }}">
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -164,7 +170,7 @@
       const data = new FormData(form);
 
       $.ajax({
-      url: BaseUrl+'/api/admin/konfirmasi/user-baru/{{ $anggota->id }}',
+      url: BaseUrl+'/api/admin/konfirmasi/anggota/{{ $anggota->id }}',
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: data,
       method: 'post',
