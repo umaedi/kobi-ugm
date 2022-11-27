@@ -29,7 +29,7 @@ class EmailNotifSTR extends Mailable
     public function build()
     {
         return $this->from(env('MAIL_FROM_ADDRESS'))
-            ->subject('Informasi Keanggotaan')
+            ->subject('Notifikasi Pengajuan STR')
             ->view('backend.email.notif-pengajuan-str');
     }
 }

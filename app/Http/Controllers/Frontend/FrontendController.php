@@ -54,7 +54,7 @@ class FrontendController extends Controller
     public function persyaratan()
     {
         return view('frontend.pages.persyaratan', [
-            'title' => 'Pendaftaran Anggota Baru',
+            'title' => 'Notifikasi Pengajuan STR',
             'events'    => EventCategory::latest()->get(),
         ]);
     }

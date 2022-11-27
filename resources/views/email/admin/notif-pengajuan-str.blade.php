@@ -375,7 +375,7 @@
                                         <td>
                                             <h3>Hallo Admin</h3>
                                             <p>
-                                                Seseorang baru saja mengajuan STR dan menunngu tindakan dari Anda.
+                                                Seseorang baru saja mengajukan STR dan menunngu tindakan dari Anda.
                                             </p>
                                             <p>Silahkan login untuk melihat detail pengajuan STR</p>
                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0"
@@ -387,7 +387,7 @@
                                                                 cellspacing="0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td> <a href="https://kobi-indonesia.id/user/login"
+                                                                        <td> <a href="https://kobi-indonesia.id/admin/login"
                                                                                 target="_blank">Masuk website</a> </td>
                                                                     </tr>
                                                                 </tbody>
