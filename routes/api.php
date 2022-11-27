@@ -2,10 +2,13 @@
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api;
+use App\Mail\Admin\EmailAdminNotofSTR;
 use App\Mail\EmailKonfirmasiAnggota;
 use App\Mail\EmailKonfirmasiStr;
 use App\Mail\EmailTolakAnggota;
 use App\Mail\EmailTolakStr;
+use App\Mail\User\EmailNotifSTR;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
@@ -161,6 +164,17 @@ Route::prefix('user')->group(function () {
         Route::post('/daftar/anggota-baru', 'store');
         Route::post('/daftar/anggota-lama', 'update');
     });
+
+    //handle email user
+    //STR
+    Route::post('/str/send-mail', function (Request $request) {
+        $data = [
+            'name'  => $request->name,
+            'email' => $request->email,
+        ];
+        Mail::to($request->email)->send(new EmailNotifSTR($data));
+        Mail::to('kobi.biologi@gmail.com')->send(new EmailAdminNotofSTR);
+    });
 });
 
 
@@ -193,11 +207,3 @@ Route::prefix('user')->group(function () {
         Route::get('/relationship', 'getRelationship');
     });
 });
-
-// Route::post('/user/str/send-mail', function (Request $request) {
-//     $data = [
-//         'name'  => $request->name,
-//         'email' => $request->email,
-//     ];
-//     Mail::to($request->email)->send(new EmailStr($data));
-// });

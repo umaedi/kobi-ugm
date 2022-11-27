@@ -32,26 +32,27 @@ class StrController extends Controller
             $ijazah = $request->file('ijazah');
             $ijazah->storeAs('public/docstr', $ijazah->hashName());
         }
+
         if ($request->file('surat_permohonan')) {
             $surat_permohonan = $request->file('surat_permohonan');
             $surat_permohonan->storeAs('public/docstr', $surat_permohonan->hashName());
         }
+
         if ($request->file('surat_pengantar')) {
             $surat_pengantar = $request->file('surat_pengantar');
             $surat_pengantar->storeAs('public/docstr', $surat_pengantar->hashName());
         }
 
         $str = Str::create([
-            'nama'          => $request->nama,
-            'program_studi' => $request->program_studi,
-            'universitas'   => $request->universitas,
-            'no_hp'         => $request->no_hp,
-            'email'         => $request->email,
+            'nama'              => $request->nama,
+            'program_studi'     => $request->program_studi,
+            'universitas'       => $request->universitas,
+            'no_hp'             => $request->no_hp,
+            'email'             => $request->email,
             'nama_perusahaan'   => $request->nama_perusahaan,
-            'ijazah'        => $ijazah->hashName(),
+            'ijazah'            => $ijazah->hashName(),
             'surat_permohonan'  => $surat_permohonan->hashName(),
             'surat_pengantar'   => $surat_pengantar->hashName(),
-            'status'            => '0'
         ]);
 
         $result['str'] = $str;

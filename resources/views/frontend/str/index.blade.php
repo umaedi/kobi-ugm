@@ -103,7 +103,6 @@
             sendMail(data);
             $('#btnSend').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
-            
                 swal({
                     title: "",
                     text: 'Pengajuan STR Anda telah terkirim. Silahkan cek email Anda',
