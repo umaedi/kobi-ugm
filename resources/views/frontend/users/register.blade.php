@@ -17,7 +17,7 @@
           </div>
         <div>
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h6 class="border-bottom pb-2 mb-3">{{ __('Untuk anggota lama silahkan mengisi formulir di bawah ini. Anggota baru klik') }} <a href="{{ route('pendaftaran-anggota-baru') }}" class="btn btn-sm bg-success" style="color: #fff">disini</a></h6>
+                <h6 class="border-bottom pb-2 mb-3">{{ __('Untuk anggota lama silakan mengisi formulir di bawah ini. Anggota baru klik') }} <a href="{{ route('pendaftaran-anggota-baru') }}" class="btn btn-sm bg-success" style="color: #fff">disini</a></h6>
                 <form id="store">
                   @csrf
                   <div class="row">
@@ -94,19 +94,19 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor Telepon Program Studi/Jurusan') }}</label>
-                        <input name="no_tlp" type="number" class="form-control phone-number" required>
+                        <input name="no_tlp" type="tel" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor WhatsApp/Narahubung') }}</label>
-                        <input name="no_wa" type="number" class="form-control phone-number" required>
+                        <input name="no_wa" type="tel" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-2">
                       <div class="mb-3">
                         <label for="pos" class="form-label mt-3">{{ __('Kode Pos') }}</label>
-                        <input name="kode_pos" type="number" class="form-control" id="pos" required>
+                        <input name="kode_pos" type="text" minlength="5" maxlength="5" class="form-control" id="pos" required>
                       </div>
                     </div>
                   </div>

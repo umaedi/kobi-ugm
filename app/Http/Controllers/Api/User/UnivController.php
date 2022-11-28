@@ -8,18 +8,13 @@ use App\Http\Controllers\Api as Controller;
 
 class UnivController extends Controller
 {
+
     public function users(Request $request)
     {
         if ($request->render) {
             $limit = $request->render;
         } else {
             $limit = 10;
-        }
-
-        if ($request->year) {
-            $year = $request->year;
-        } else {
-            $year = date('Y');
         }
 
         if ($request->search) {
@@ -31,7 +26,12 @@ class UnivController extends Controller
             return  $this->sendResponseOk($data);
         };
 
-        $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('thn_anggota', $year)
+        if ($request->year) {
+            $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('thn_anggota', $request->year)
+                ->orderBy('thn_anggota', 'DESC')->paginate($limit);
+        };
+
+        $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('status', 1)
             ->orderBy('thn_anggota', 'DESC')->paginate($limit);
 
         if ((!empty($data)) and ($data->count() != 0)) {

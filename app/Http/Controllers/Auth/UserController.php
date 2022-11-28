@@ -56,7 +56,14 @@ class UserController extends Controller
 
         $active = Universitas::where('no_anggota', $request->no_anggota)->first();
         if ($active == null || $active->status != 1) {
-            return back()->with('active', 'Anda belum terdaftar sebagai anggota aktif !');
+            return back()->with('active', 'Anda belum terdaftar sebagai anggota aktif!');
+        }
+
+        if ($active->thn_anggota !== date('Y')) {
+            $active->update([
+                'status'    => 0
+            ]);
+            return back()->with('active', 'Anda belum memeperbaharui ke-anggotaan Anda, silahkan daftar ulang!');
         }
 
         if (Auth::attempt($credentials)) {

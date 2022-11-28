@@ -94,13 +94,13 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor Telepon Program Studi/Jurusan') }}</label>
-                        <input name="no_tlp" type="number" class="form-control phone-number" required>
+                        <input name="no_tlp" type="tel" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
                             <label for="pos" class="form-label mt-3">{{ __('Kode Pos') }}</label>
-                            <input name="kode_pos" type="number" class="form-control" id="pos" required>
+                            <input name="kode_pos" type="text" minlength="5" maxlength="5" class="form-control" id="pos" required>
                           </div>
                     </div>
                   </div>
@@ -108,7 +108,7 @@
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="name" class="form-label mt-3">{{ __('Nomor WhatsApp/Narahubung') }}</label>
-                        <input name="no_wa" type="number" class="form-control phone-number" required>
+                        <input name="no_wa" type="tel" class="form-control phone-number" required>
                       </div>
                     </div>
                     <div class="col-md-6">
