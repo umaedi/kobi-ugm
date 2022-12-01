@@ -294,6 +294,7 @@
                 cache: false,
                 complete: (response) => {
                     if(response.status == 200) {
+                      table.ajax.reload();
                     }else {
                         console.log('gagal');
                     }
@@ -303,7 +304,7 @@
                 icon: "success",
             })
             .then(() => {
-                window.location.replace(BaseUrl+'/admin/anggota/aktif');
+                window.location.replace(BaseUrl+'/admin/anggota/baru');
             });
         }
     });

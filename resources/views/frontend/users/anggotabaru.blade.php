@@ -176,6 +176,7 @@
               complete: function(response){
                 if(response.status == 201) {
                  
+                  sendMil();
                   $('#btnSend').removeAttr('style', 'display: none');
                   $('#btnSending').attr('style', 'display: none');
 
@@ -198,6 +199,16 @@
                 }
               }
             });
+            function sendMil(){
+              $.ajax({
+                url: BaseUrl+'/api/user/anggota-baru/send-mail',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'post',
+                complete: (response) => {
+                  console.log('Email terkirim');
+                }
+              });
+            };
         });
     </script>
 @endpush

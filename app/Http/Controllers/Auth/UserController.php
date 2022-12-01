@@ -55,13 +55,13 @@ class UserController extends Controller
         ]);
 
         $active = Universitas::where('no_anggota', $request->no_anggota)->first();
-        if ($active == null || $active->status != 1) {
+        if ($active == null || $active->status !== 1) {
             return back()->with('active', 'Anda belum terdaftar sebagai anggota aktif!');
         }
 
         if ($active->thn_anggota !== date('Y')) {
             $active->update([
-                'status'    => 0
+                'status'    => 2
             ]);
             return back()->with('active', 'Anda belum memeperbaharui ke-anggotaan Anda, silahkan daftar ulang!');
         }
@@ -70,7 +70,7 @@ class UserController extends Controller
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
-        return back()->with('active', 'No anggota atau password Anda salah !');
+        return back()->with('active', 'No anggota atau password Anda salah!');
     }
 
     public function destroy(Request $request)

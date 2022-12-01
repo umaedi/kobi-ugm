@@ -11,6 +11,13 @@ class UnivController extends Controller
 
     public function users(Request $request)
     {
+        $user_active = Universitas::select('thn_anggota')->latest()->first();
+        if ($user_active->thn_anggota !== date('Y')) {
+            Universitas::where('status', 1)->update([
+                'status'    => '2'
+            ]);
+        };
+
         if ($request->render) {
             $limit = $request->render;
         } else {

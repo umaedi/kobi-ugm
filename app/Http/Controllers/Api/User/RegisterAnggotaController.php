@@ -26,7 +26,6 @@ class RegisterAnggotaController extends Controller
             'kode_pos'      => 'required',
             'bukti_pembayaran' => 'required|file|max:2048|mimes:jpg,jpeg,png,pdf',
             'status'        => 'required'
-
         ]);
 
         if ($validator->fails()) {

@@ -12,11 +12,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AdArtController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -25,18 +20,6 @@ class AdArtController extends Controller
         }
     }
 
-    public function userIndex()
-    {
-        $adArt = AdArt::latest()->limit(1)->get();
-        $result['adart'] = $adArt;
-        return $this->sendResponseOk($result);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api;
 use App\Mail\Admin\EmailAdminNotofSTR;
+use App\Mail\Admin\RegisterMail;
 use App\Mail\EmailKonfirmasiAnggota;
 use App\Mail\EmailKonfirmasiStr;
 use App\Mail\EmailTolakAnggota;
@@ -136,7 +137,7 @@ Route::prefix('user')->group(function () {
     Route::controller(Api\User\GalleryController::class)->group(function () {
         Route::post('/images', 'index');
         Route::post('/galleries', 'galeri');
-        Route::get('/ad-art', [App\Http\Controllers\Api\AdArtController::class, 'userIndex']);
+        Route::get('/ad-art', [Api\User\AdArtController::class, 'index']);
     });
 
     Route::controller(Api\User\PostController::class)->group(function () {
@@ -174,6 +175,10 @@ Route::prefix('user')->group(function () {
         ];
         Mail::to($request->email)->send(new EmailNotifSTR($data));
         Mail::to('kobi.biologi@gmail.com')->send(new EmailAdminNotofSTR);
+    });
+
+    Route::post('/anggota-baru/send-mail', function (Request $request) {
+        Mail::to('kobi.biologi@gmail.com')->send(new RegisterMail);
     });
 });
 
