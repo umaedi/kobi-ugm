@@ -105,6 +105,7 @@
 @endsection
 @push('js')
     <script>
+      $(() => {
       function getDecisionLatter()
       {
          $.ajax({
@@ -398,5 +399,6 @@
             }
          });
       }
+   })
     </script>
 @endpush

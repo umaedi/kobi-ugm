@@ -72,37 +72,39 @@
 @endsection
 @push('js')
     <script>
-      $.ajax({
-         url: BaseUrl+'/api/user/last-post',
-         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-         method: 'POST',
-         complete: (response) => {
-            if(response.status == 200) {
-               let data = response.responseJSON.data.lastpost;
-               let content = '';
-               $.each(data, (k,v) => {
-                  content += '<div class="sidebar__widget-body">';
-                  content += '<div class="rc__post">';
-                  content += '<ul>';
-                  content += '<li class="d-flex align-items-center mb-30">';
-                  content += ' <div class="rc__thumb mr-30">';
-                  content += '<a href=/'+ v.slug +'><img class="lazyload" data-src="{{ asset('storage/thumb') }}/'+ v.image +'">';
-                  content += '</a>';
-                  content += '</div>';
-                  content += '<div class="rc__content">';
-                  content += '<div class="rc__meta">';
-                  content += '<span>'+ v.created_at +'</span>';
-                  content += ' </div>';
-                  content += '<h3 class="rc__title"><a href=/'+  v.slug +'>'+ v.title +'</a></h3>';
-                  content += '</div>';
-                  content += '</li>';
-                  content += '</ul>';
-                  content +='</div>';
-                  content +='</div>';
-               });
-               $('#lastPost').html(content);
+      $(() => {
+         $.ajax({
+            url: BaseUrl+'/api/user/last-post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            method: 'POST',
+            complete: (response) => {
+               if(response.status == 200) {
+                  let data = response.responseJSON.data.lastpost;
+                  let content = '';
+                  $.each(data, (k,v) => {
+                     content += '<div class="sidebar__widget-body">';
+                     content += '<div class="rc__post">';
+                     content += '<ul>';
+                     content += '<li class="d-flex align-items-center mb-30">';
+                     content += ' <div class="rc__thumb mr-30">';
+                     content += '<a href=/'+ v.slug +'><img class="lazyload" data-src="{{ asset('storage/thumb') }}/'+ v.image +'">';
+                     content += '</a>';
+                     content += '</div>';
+                     content += '<div class="rc__content">';
+                     content += '<div class="rc__meta">';
+                     content += '<span>'+ v.created_at +'</span>';
+                     content += ' </div>';
+                     content += '<h3 class="rc__title"><a href=/'+  v.slug +'>'+ v.title +'</a></h3>';
+                     content += '</div>';
+                     content += '</li>';
+                     content += '</ul>';
+                     content +='</div>';
+                     content +='</div>';
+                  });
+                  $('#lastPost').html(content);
+               }
             }
-         }
-      });
+         });
+      })
     </script>
 @endpush

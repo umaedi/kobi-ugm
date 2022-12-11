@@ -38,6 +38,7 @@
 @endsection
 @push('js')
     <script>
+        $(() => {
         let data = {
             page: '1',
         };
@@ -94,5 +95,6 @@
          }
          getGalleries(data);
       }
+    })
     </script>
 @endpush

@@ -28,6 +28,7 @@
 @endsection
 @push('js')
     <script>
+      $(() => {
       function getAbout() {
          $.ajax({
             url: BaseUrl+'/api/user/history',
@@ -64,5 +65,6 @@
          });
       }
       getFounder();
+   })
     </script>
 @endpush

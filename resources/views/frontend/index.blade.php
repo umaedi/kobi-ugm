@@ -177,73 +177,74 @@
 @endsection
 @push('js')
 <script>
-   function getPost()
-   {
-      $.ajax({
-      url: BaseUrl+'/api/user/post/postindex',
-      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-      method: 'POST',
-      data: '',
-      complete: (response) => {
-         if(response.status == 200) {
-            let data = response.responseJSON.data.posts;
-            let content = '';
-            $.each(data, (k, v) => {
-               content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">';
-               content += '<div class="blog__item-5 mb-30">';
-               content += '<div class="blog__thumb-5 fix w-img">';
-               content += '<a href=/'+ v.slug +'><img class="lazyload" data-src="{{ asset('storage/thumb') }}/'+ v.image +'">';
-               content += '</a>';
-               content += '</div>';
-               content += '<div class="blog__content-5">';
-               content += '<div class="blog__meta-5">';
-               content += '<span class="date">'+ v.created_at +'</span>';
-               content += '<span class="tag"><a href="/posts/category/'+ v.category.slug +'">'+  v.category.name +'</a></span>';
-               content += '</div>';
-               content += ' <h3 class="blog__title-5"><a href="/'+  v.slug +'">'+ v.title +'</a></h3>';
-               content += '</div>';
-               content += '</div>';
-               content += '</div>';
-            });
-            $('#contentPost').html(content);
-         }
-      }
-      });
-   }
-   getPost();
- 
-   function getImage()
-   {
-      $.ajax({
-      url: BaseUrl+'/api/user/images',
-      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-      method: 'POST',
-      data: '',
-      complete: (response) => {
-         if(response.status == 200) {
-            let data = response.responseJSON.data.data;
-            if(data < 6) {
-               $('#btnMore').addClass('d-none');
+   $(() => {
+      function getPost()
+      {
+         $.ajax({
+         url: BaseUrl+'/api/user/post/postindex',
+         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+         method: 'POST',
+         data: '',
+         complete: (response) => {
+            if(response.status == 200) {
+               let data = response.responseJSON.data.posts;
+               let content = '';
+               $.each(data, (k, v) => {
+                  content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">';
+                  content += '<div class="blog__item-5 mb-30">';
+                  content += '<div class="blog__thumb-5 fix w-img">';
+                  content += '<a href=/'+ v.slug +'><img class="lazyload" data-src="{{ asset('storage/thumb') }}/'+ v.image +'">';
+                  content += '</a>';
+                  content += '</div>';
+                  content += '<div class="blog__content-5">';
+                  content += '<div class="blog__meta-5">';
+                  content += '<span class="date">'+ v.created_at +'</span>';
+                  content += '<span class="tag"><a href="/posts/category/'+ v.category.slug +'">'+  v.category.name +'</a></span>';
+                  content += '</div>';
+                  content += ' <h3 class="blog__title-5"><a href="/'+  v.slug +'">'+ v.title +'</a></h3>';
+                  content += '</div>';
+                  content += '</div>';
+                  content += '</div>';
+               });
+               $('#contentPost').html(content);
             }
-            let content = '';
-            $.each(data, (k, v) => {
-               content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4 wow fadeInUp" data-wow-delay=".3s">';
-               content += '<div class="portfolio__item mb-30">';
-               content += '<div class="portfolio__thumb w-img">'; 
-               content += '<img data-src="{{ asset('storage/galeri') }}/'+ v.photo +'" class="lazyload">';   
-               content += '<div class="portfolio__content">';   
-               content += '<span>'+ v.title +'</span>';   
-               content += '</div>';   
-               content += '</div>';   
-               content += '</div>';   
-               content += '</div>'; 
-            });
-            $('#xImages').html(content);
          }
+         });
       }
-      });
-   }
-   getImage();
- 
+      getPost();
+   
+      function getImage()
+      {
+         $.ajax({
+         url: BaseUrl+'/api/user/images',
+         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+         method: 'POST',
+         data: '',
+         complete: (response) => {
+            if(response.status == 200) {
+               let data = response.responseJSON.data.data;
+               if(data < 6) {
+                  $('#btnMore').addClass('d-none');
+               }
+               let content = '';
+               $.each(data, (k, v) => {
+                  content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 grid-item cat1 cat2 cat4 wow fadeInUp" data-wow-delay=".3s">';
+                  content += '<div class="portfolio__item mb-30">';
+                  content += '<div class="portfolio__thumb w-img">'; 
+                  content += '<img data-src="{{ asset('storage/galeri') }}/'+ v.photo +'" class="lazyload">';   
+                  content += '<div class="portfolio__content">';   
+                  content += '<span>'+ v.title +'</span>';   
+                  content += '</div>';   
+                  content += '</div>';   
+                  content += '</div>';   
+                  content += '</div>'; 
+               });
+               $('#xImages').html(content);
+            }
+         }
+         });
+      }
+      getImage();
+   })
 </script> 
 @endpush
