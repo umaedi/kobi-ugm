@@ -41,11 +41,19 @@
                    <div class="footer__widget-content">
                       <div class="footer__link footer__link-3">
                          <ul>
-                            <li><a href="{{ route('publikasi') }}">{{ __('Publikasi') }}</a></li>
-                            <li><a href="{{ route('naskah-akademik') }}">{{ __('Naskah Akademik') }}</a></li>
-                            <li><a href="{{ asset('adart-kobi') }}">{{ __('AD/ART') }}</a></li>
-                            <li><a href="#">{{ __('Kurikulum') }}</a></li>
-                            <li><a href="{{ route('laporan') }}">{{ __('Laporan Kegiatan') }}</a></li>
+                           @auth
+                           <li><a href="{{ route('publikasi') }}">{{ __('Publikasi') }}</a></li>
+                           <li><a href="{{ route('naskah-akademik') }}">{{ __('Naskah Akademik') }}</a></li>
+                           <li><a href="{{ asset('adart-kobi') }}">{{ __('AD/ART') }}</a></li>
+                           <li><a href="#">{{ __('Kurikulum') }}</a></li>
+                           <li><a href="{{ route('laporan') }}">{{ __('Laporan Kegiatan') }}</a></li>
+                           @else
+                           <li><a href="{{ route('login') }}">{{ __('Publikasi') }}</a></li>
+                           <li><a href="{{ route('login') }}">{{ __('Naskah Akademik') }}</a></li>
+                           <li><a href="{{ route('login') }}">{{ __('AD/ART') }}</a></li>
+                           <li><a href="#">{{ __('Kurikulum') }}</a></li>
+                           <li><a href="{{ route('login') }}">{{ __('Laporan Kegiatan') }}</a></li>
+                           @endauth
                          </ul>
                       </div>
                    </div>

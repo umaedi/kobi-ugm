@@ -31,26 +31,26 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/struk', 'struk');
             Route::delete('/struk/destroy/{id}', 'strukDestroy');
         });
-        Route::resource('/posts', App\Http\Controllers\Api\PostController::class);
-        Route::controller(\App\Http\Controllers\Api\CategoryController::class)->group(function () {
+        Route::resource('/posts', Api\PostController::class);
+        Route::controller(Api\CategoryController::class)->group(function () {
             Route::post('/categories', 'index');
             Route::post('/categories/store', 'store');
             Route::post('categories/update', 'update');
         });
 
-        Route::controller(\App\Http\Controllers\Api\Admin\UserController::class)->group(function () {
+        Route::controller(Api\Admin\UserController::class)->group(function () {
             Route::get('/users', 'index')->name('admin.users');
             Route::post('/users/active', 'userActive')->name('admin.userActive');
             Route::get('/users/reject', 'userReject')->name('admin.userReject');
         });
 
-        Route::get('/categories/get', [\App\Http\Controllers\Backend\CategoryController::class, 'index']);
-        Route::get('/posts/draft/{status}', [\App\Http\Controllers\Api\PostController::class, 'getByStatus']);
-        Route::resource('/publikasi', \App\Http\Controllers\Api\PublikasiController::class);
+        Route::get('/categories/get', [Backend\CategoryController::class, 'index']);
+        Route::get('/posts/draft/{status}', [Api\PostController::class, 'getByStatus']);
+        Route::resource('/publikasi', Api\PublikasiController::class);
         Route::post('/doc/publication', [Api\Admin\PublikasiController::class, 'index']);
-        Route::resource('/naskah', \App\Http\Controllers\Api\NaskahController::class);
+        Route::resource('/naskah', Api\NaskahController::class);
         Route::post('/doc/script', [Api\Admin\NaskahController::class, 'index']);
-        Route::resource('/gallery/photo', \App\Http\Controllers\Api\GalleryController::class)->only('store', 'update', 'destroy');
+        Route::resource('/gallery/photo', Api\GalleryController::class)->only('store', 'update', 'destroy');
 
         Route::resource('/founder', Api\Admin\FounderController::class);
         Route::resource('/structure', Api\Admin\StructureController::class);
@@ -65,20 +65,20 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::resource('/declatter', Api\Admin\DecLatterController::class);
         Route::resource('visi-misi', Api\Admin\VisiController::class)->only('update');
 
-        Route::resource('/kurikulum', \App\Http\Controllers\Api\KurikulumController::class);
-        Route::resource('/laporan', \App\Http\Controllers\Api\LaporanController::class);
-        Route::resource('/event', \App\Http\Controllers\Api\EventController::class);
-        Route::controller(\App\Http\Controllers\Api\EventCategoryController::class)->group(function () {
+        Route::resource('/kurikulum', Api\KurikulumController::class);
+        Route::resource('/laporan', Api\LaporanController::class);
+        Route::resource('/event', Api\EventController::class);
+        Route::controller(Api\EventCategoryController::class)->group(function () {
             Route::post('/event/categories/evx', 'index');
             Route::post('/event/categories/store', 'store');
             Route::post('/event/categories/update', 'update');
         });
 
-        Route::resource('/ad-art', \App\Http\Controllers\Api\AdArtController::class);
+        Route::resource('/ad-art', Api\AdArtController::class);
 
-        Route::post('/send/email', [\App\Http\Controllers\Api\EmailController::class, 'index']);
+        Route::post('/send/email', [Api\EmailController::class, 'index']);
 
-        Route::controller(\App\Http\Controllers\Api\Admin\AboutController::class)->group(function () {
+        Route::controller(Api\Admin\AboutController::class)->group(function () {
             Route::post('/sejarah/{id}', 'update');
         });
         Route::resource('/admin/media', App\Http\Controllers\Backend\MediaController::class);
@@ -184,12 +184,12 @@ Route::prefix('user')->group(function () {
 
 
 
-Route::resource('/list-anggota', \App\Http\Controllers\Api\UnivController::class);
+Route::resource('/list-anggota', Api\UnivController::class);
 
 Route::get('/dokumen/{category_id}', [Api\User\DocumentController::class, 'getByCategory']);
 
 Route::get('/getRegencies/{id}', [Api\User\IndoregionController::class, 'kabupaten']);
-Route::get('/user/event/categories', [\App\Http\Controllers\Api\User\EventCategoryController::class, 'index']);
+Route::get('/user/event/categories', [Api\User\EventCategoryController::class, 'index']);
 
 
 //users method post

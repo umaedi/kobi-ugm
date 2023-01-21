@@ -121,7 +121,8 @@
 <script>
     $.ajax({
         url: BaseUrl+'/api/admin/categories',
-        method: 'GET',
+        method: 'POST',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         processData: false,
         contentType: false,
         cache: false,

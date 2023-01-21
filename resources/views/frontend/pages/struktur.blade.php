@@ -105,7 +105,6 @@
 @endsection
 @push('js')
     <script>
-      $(() => {
       function getDecisionLatter()
       {
          $.ajax({
@@ -202,7 +201,6 @@
             complete: (response) => {
                if(response.status == 200) {
                   let data = response.responseJSON.data.chairman;
-                  console.log(data);
                   let content = '';
                   $.each(data, (k, v) => {
                      content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay=".1s">';
@@ -238,7 +236,6 @@
             complete: (response) => {
                if(response.status == 200) {
                   let data = response.responseJSON.data.secretaries;
-                  console.log(data);
                   let content = '';
                   $.each(data, (k, v) => {
                      content += '<div class="col-xxl-4 col-xl-4 col-lg-4 col-md-6 wow fadeInUp"  data-wow-delay=".1s">';
@@ -399,6 +396,5 @@
             }
          });
       }
-   })
     </script>
 @endpush

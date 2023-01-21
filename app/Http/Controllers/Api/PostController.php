@@ -50,7 +50,7 @@ class PostController extends Controller
             'title'         => 'required',
             'category_id'   => 'required',
             'body'          => 'required',
-            'image'         => 'image|file|max:4096',
+            'image'         => 'required|image|file|max:4096',
             'status'        => 'required',
             'publish_at'    => 'required'
         ]);
@@ -110,7 +110,7 @@ class PostController extends Controller
                 'category_id'   => $request->category_id,
                 'body'          => $request->body,
                 'image'         => $post->image,
-                'publish_at'    => $request->publish_at ? $request->publish_at : $post->publish_at,
+                'created_at'    => $request->publish_at ? $request->publish_at : $post->publish_at,
                 'status'        => $request->status
             ]);
             return $this->sendResponseUpdate($post);
@@ -125,7 +125,7 @@ class PostController extends Controller
                 'category_id'   => $request->category_id,
                 'body'          => $request->body,
                 'image'         => $thumb->hashName(),
-                'publish_at'    => $request->publish_at ? $request->publish_at : $post->publish_at,
+                'created_at'    => $request->publish_at ? $request->publish_at : $post->publish_at,
                 'status'        => $request->status
             ]);
             return $this->sendResponseUpdate($post);

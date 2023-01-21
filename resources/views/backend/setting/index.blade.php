@@ -11,64 +11,54 @@
                     </div>
                     <div class="card-body">
                         <form action="/admin/profile/{{ auth()->user()->id }}" method="POST" enctype="multipart/form-data">
-                            @csrf
                             <div class="row">
-                                <div class="col-md-2">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="pass">Logo</label>
                                         <img src="{{ asset('storage/user/' . auth()->user()->image) }}" class="img-preview rounded img-fluid mb-3 d-block" id="imgP">
                                         <input class="form-control" type="file" id="image" name="image" onchange="previewImg()">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     @if (session()->has('msg'))
                                     <div class="alert alert-success">{!! session('msg') !!}</div>
                                     @endif
                                     <div class="form-group">
                                         <label for="nama">Nama website</label>
                                         <input type="text" class="form-control @error('name') ? is-invalid @enderror" id="nama" value="{{ auth()->user()->name }}" name="name">
-                                        @error('name')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
                                     </div>
                                     <div class="form-group">
-                                        <label for="email">Visi Misi</label>
-                                        <textarea name="visi-misi" id="" cols="30" rows="10"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Update Profil</button>
-                                </div>
-                            </form>
-                            <form action="/admin/password/{{ auth()->user()->id }}" method="POST">
-                                @csrf
-                                <div class="col-md-12 ml-5">
-                                    @if (session()->has('warning'))
-                                    <div class="alert alert-danger">{!! session('warning') !!}</div>
-                                    @endif
-                                    @if (session()->has('success'))
-                                    <div class="alert alert-success">{!! session('success') !!}</div>
-                                    @endif
-                                    <div class="form-group">
-                                        <label for="oldPassword">Password saat ini</label>
-                                        <input type="password" class="form-control @error('oldPassword') ? is-invalid @enderror"  name="currentPassword" autocomplete="off">
-                                        @error('oldPassword')
-                                            {{ $message }}
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="password">Password baru</label>
-                                        <input type="password" class="form-control @error('password') ? is-invalid @enderror"  name="password" autocomplete="off">
-                                        @error('password')
-                                            {{ $message }}
-                                        @enderror
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Ganti Password</button>
+                                        <label for="nama">Tentang KOBI</label>
+                                        <textarea type="text" class="form-control" id="nama"  name="name" rows="7"></textarea>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
+            </div>
+                <div class="card shadow mb-4">
+                    <div class="card-header">
+                        <div class="d-sm-flex align-items-center justify-content-between">
+                            <h1 class="h5 mb-0 text-gray-800">Kontak dan Sosial Media</h1>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form action="/admin/profile/{{ auth()->user()->id }}" method="POST" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="#">Email</label>
+                                        <input type="email" class="form-control" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="#">No Tlp</label>
+                                        <input type="number" class="form-control" name="no_tlp">
+                                    </div>
+                                </div>
+                        </form>
+                    </div>
             </div>
         </div>
     </div>
