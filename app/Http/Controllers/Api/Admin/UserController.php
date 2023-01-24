@@ -33,4 +33,12 @@ class UserController extends Controller
             return DataTables::of($users)->make(true);
         }
     }
+
+    public function nonAktif(Request $request)
+    {
+        if ($request->ajax()) {
+            $users = Universitas::where('status', 3)->latest()->get();
+            return DataTables::of($users)->make(true);
+        }
+    }
 }

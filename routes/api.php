@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::get('/users', 'index')->name('admin.users');
             Route::post('/users/active', 'userActive')->name('admin.userActive');
             Route::get('/users/reject', 'userReject')->name('admin.userReject');
+            Route::get('/users/nonaktif', 'nonAktif')->name('admin.userReject');
         });
 
         Route::get('/categories/get', [Backend\CategoryController::class, 'index']);

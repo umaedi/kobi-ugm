@@ -85,6 +85,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('admin.users') }}">Anggota Baru</a>
             <a class="collapse-item" href="{{ route('admin.users-active') }}">List Anggota Aktif</a>
+            <a class="collapse-item" href="{{ route('admin.users-non-active') }}">List Anggota Non Aktif</a>
             <a class="collapse-item" href="{{ route('admin.users-reject') }}">List Anggota Ditolak</a>
         </div>
     </div>

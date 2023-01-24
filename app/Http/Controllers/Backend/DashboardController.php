@@ -60,6 +60,11 @@ class DashboardController extends Controller
         return view('backend.users.active');
     }
 
+    public function nonAktif()
+    {
+        return view('backend.users.nonaktif');
+    }
+
     public function usersNonActive()
     {
         return view('backend.users.nonActive');

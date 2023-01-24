@@ -12,6 +12,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/anggota/baru/detail/{id}', 'newUserDetail')->name('admin.user.detail');
             Route::get('/anggota/aktif/detail/{id}', 'userEdit');
             Route::get('/anggota/aktif', 'usersActive')->name('admin.users-active');
+            Route::get('/anggota/nonaktif', 'nonAktif')->name('admin.users-non-active');
             Route::get('/anggota/ditolak', 'usersNonActive')->name('admin.users-reject');
             Route::get('/anggota/ditolak/detail/{id}', 'usersNonActiveEdit')->name('admin.users-reject.edit');
             Route::get('/categories', 'categories')->name('categories');

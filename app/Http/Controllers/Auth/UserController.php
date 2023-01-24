@@ -61,7 +61,7 @@ class UserController extends Controller
 
         if ($active->thn_anggota !== date('Y')) {
             $active->update([
-                'status'    => 2
+                'status'    => 3
             ]);
             return back()->with('active', 'Anda belum memeperbaharui ke-anggotaan Anda, silahkan daftar ulang!');
         }
