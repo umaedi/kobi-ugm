@@ -48,13 +48,13 @@
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="provinsi" class="form-label mt-3">{{ __('Provinsi') }}</label>
-                    <input name="provinsi" type="email" class="form-control" id="email" value="{{ $anggota->province->name }}">
+                    <input name="provinsi" type="email" class="form-control" id="email" value="@isset($anggota->province->name) @endisset">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="kota" class="form-label mt-3">{{ __('Kabupaten/Kota') }}</label>
-                    <input name="kabupaten" type="email" class="form-control" id="email" value="{{ $anggota->regency->name }}">
+                    <input name="kabupaten" type="email" class="form-control" id="email" value="@isset($anggota->regency->name) @endisset">
                   </div>
                 </div>
               </div>

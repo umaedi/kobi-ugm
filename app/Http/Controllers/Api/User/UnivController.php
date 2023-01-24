@@ -13,7 +13,7 @@ class UnivController extends Controller
     {
         $user_active = Universitas::select('thn_anggota')->latest()->first();
         if ($user_active->thn_anggota !== date('Y')) {
-            Universitas::where('status', 2)->update([
+            Universitas::where('status', 1)->update([
                 'status'    => '3'
             ]);
         };
