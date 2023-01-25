@@ -61,7 +61,7 @@ class RegisterAnggotaController extends Controller
             'no_wa'         => $request->no_wa,
             'kode_pos'      => $request->kode_pos,
             'bukti_pembayaran' => $struk->hashName(),
-            'status'        => '0'
+            'status'        => '4'
         ]);
 
         return $this->sendResponseCreate($user);

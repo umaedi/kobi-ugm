@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::controller(Api\Admin\UserController::class)->group(function () {
             Route::get('/users', 'index')->name('admin.users');
+            Route::get('/anggota-lama', 'anggotaLama')->name('anggota.lama');
             Route::post('/users/active', 'userActive')->name('admin.userActive');
             Route::get('/users/reject', 'userReject')->name('admin.userReject');
             Route::get('/users/nonaktif', 'nonAktif')->name('admin.userReject');

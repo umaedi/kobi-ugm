@@ -126,9 +126,11 @@
     $('#btnSending').removeAttr('style', 'display: none');
     let page = parseInt($('#loadMore').data('value')) + 1;
     let year = $('select[name=year]').val();
+    let render = $('select[name=render]').val();
     let data = {
       page: page,
-      year: year
+      year: year,
+      render: render,
     }
     getUsers(data);
   }
@@ -136,11 +138,13 @@
   function filterYear(){
     $('#btnMore').removeClass('d-none');
     $('#content-users').html('');
+    let render = $('select[name=render]').val();
     let year = $('select[name=year]').val();
     $('#table-head').html('Daftar Anggota Aktif KOBI Tahun ' + year);
     var data = {
       year: year,
       page: '1',
+      render: render
     }
     getUsers(data);
   }

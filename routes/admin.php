@@ -10,6 +10,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::get('/dashboard', 'index');
             Route::get('/anggota/baru', 'users')->name('admin.users');
             Route::get('/anggota/baru/detail/{id}', 'newUserDetail')->name('admin.user.detail');
+            Route::get('/anggota/lama', 'anggotaLama')->name('anggota.lama');
             Route::get('/anggota/aktif/detail/{id}', 'userEdit');
             Route::get('/anggota/aktif', 'usersActive')->name('admin.users-active');
             Route::get('/anggota/nonaktif', 'nonAktif')->name('admin.users-non-active');

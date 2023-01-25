@@ -18,6 +18,14 @@ class UserController extends Controller
         }
     }
 
+    public function anggotaLama(Request $request)
+    {
+        if ($request->ajax()) {
+            $users = Universitas::where('status', 4)->latest()->get();
+            return DataTables::of($users)->make(true);
+        }
+    }
+
     public function userActive(Request $request)
     {
         if ($request->ajax()) {

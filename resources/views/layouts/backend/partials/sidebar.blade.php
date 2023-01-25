@@ -83,10 +83,11 @@
     </a>
     <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="{{ route('admin.users') }}">Anggota Baru</a>
-            <a class="collapse-item" href="{{ route('admin.users-active') }}">List Anggota Aktif</a>
-            <a class="collapse-item" href="{{ route('admin.users-non-active') }}">List Anggota Non Aktif</a>
-            <a class="collapse-item" href="{{ route('admin.users-reject') }}">List Anggota Ditolak</a>
+            <a class="collapse-item" href="{{ route('admin.users') }}">Pengajuan Anggota Baru</a>
+            <a class="collapse-item" href="{{ route('anggota.lama') }}">Pengajuan Anggota Lama</a>
+            <a class="collapse-item" href="{{ route('admin.users-active') }}">List Anggota Aktif {{ date('Y') }}</a>
+            <a class="collapse-item" href="{{ route('admin.users-non-active') }}">List Data Anggota</a>
+            {{-- <a class="collapse-item" href="{{ route('admin.users-reject') }}">List Anggota Ditolak</a> --}}
         </div>
     </div>
   </li>

@@ -39,6 +39,11 @@ class DashboardController extends Controller
         return view('backend.users.index');
     }
 
+    public function anggotaLama()
+    {
+        return view('backend.users.lama');
+    }
+
     public function newUserDetail($id)
     {
         $anggota = Universitas::findOrfail($id);
