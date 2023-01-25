@@ -54,7 +54,7 @@
 </div>
   @component('components.backend.card-table')
     @slot('header')
-      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">List Anggota Aktif</h3>
+      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">List Anggota Non Aktif</h3>
     @endslot
     @slot('dropdown')
       <div class="dropdown-header">Dropdown Header:</div>

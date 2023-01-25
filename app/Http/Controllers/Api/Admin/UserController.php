@@ -34,7 +34,11 @@ class UserController extends Controller
     public function userReject(Request $request)
     {
         if ($request->ajax()) {
-            $users = Universitas::where('status', 2)->latest()->get();
+            if ($request->tahun) {
+                $users = Universitas::where('thn_anggota', $request->tahun)->where('status', $request->status)->latest()->get();
+                return DataTables::of($users)->make(true);
+            }
+            $users = Universitas::where('status', $request->status)->latest()->get();
             return DataTables::of($users)->make(true);
         }
     }
