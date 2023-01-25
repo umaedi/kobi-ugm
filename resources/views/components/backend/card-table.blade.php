@@ -22,7 +22,7 @@
                 <thead>
                     {{ $thead }}
                 </thead>
-                <tbody>
+                <tbody class="text-uppercase">
                     {{ $tbody }}
                 </tbody>
             </table>

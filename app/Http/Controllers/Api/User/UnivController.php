@@ -34,8 +34,8 @@ class UnivController extends Controller
         };
 
         if ($request->year) {
-            $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('thn_anggota', $request->year)
-                ->orderBy('thn_anggota', 'DESC')->paginate($limit);
+            $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('thn_anggota', $request->year)->paginate($limit);
+            return  $this->sendResponseOk($data);
         };
 
         $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('status', 1)
