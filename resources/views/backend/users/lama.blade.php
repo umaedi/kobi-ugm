@@ -7,7 +7,7 @@
 
   @component('components.backend.card-table')
     @slot('header')
-      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Pengajuan Anggota Lama</h3>
+      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Registrasi Anggota Lama</h3>
     @endslot
     @slot('dropdown')
       <div class="dropdown-header">Dropdown Header:</div>

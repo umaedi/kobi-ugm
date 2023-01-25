@@ -75,11 +75,11 @@ class StrController extends Controller
             $struk->storeAs('public/strukpembayaran', $struk->hashName());
         }
 
-        $time = time();
+        $time = date('H:i:s');
         $struk = Struk::create([
             'email'     => $request->email,
             'struk'     => $struk->hashName(),
-            'date'      => date("Y-m-d H:i:s O", $time)
+            'date'      => date("Y-m-d", $time)
         ]);
 
         $result['struk'] = $struk;
