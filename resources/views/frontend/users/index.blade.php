@@ -115,18 +115,6 @@
             $('#loadMore').data('value', response.responseJSON.data.current_page);
             $('#loadMore').removeAttr('style', 'display: none');
             $('#btnSending').attr('style', 'display: none');
-          }else {
-            $('#content-users').attr('style', 'display: none');
-            $('#btnMore').html(`
-            <div class="container mt-3">
-              <div class="row justify-content-center">
-                <div class="col text-center">
-                  <h6>Semua data sudah ditampilkan</h6>
-                  <button class="w-btn w-btn mt-2" onclick="reloadPage()">Refresh Halaman</button>
-                </div>
-              </div>
-            </div>
-            `);
           }
         }
     });
@@ -151,7 +139,8 @@
     let year = $('select[name=year]').val();
     $('#table-head').html('Daftar Anggota Aktif KOBI Tahun ' + year);
     var data = {
-      year: year
+      year: year,
+      page: '1',
     }
     getUsers(data);
   }
