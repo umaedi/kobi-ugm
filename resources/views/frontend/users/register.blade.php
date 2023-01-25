@@ -21,7 +21,7 @@
                 <form id="store">
                   @csrf
                   <div class="row">
-                    <input type="hidden" name="status" value="1">
+                    <input type="hidden" name="status" value="4">
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="univ" class="form-label mt-3">{{ __('Nama Universitas') }}</label>
@@ -182,7 +182,7 @@
               cache: false,
               complete: function(response){
                 if(response.status == 201) {
-                 
+                  sendMil();
                   $('#btnSend').removeAttr('style', 'display: none');
                   $('#btnSending').attr('style', 'display: none');
 
@@ -205,6 +205,17 @@
                 }
               }
             });
+            
+            function sendMil(){
+              $.ajax({
+                url: BaseUrl+'/api/user/anggota-baru/send-mail',
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                method: 'post',
+                complete: (response) => {
+                  console.log('Email terkirim');
+                }
+              });
+            };
         });
     </script>
 @endpush

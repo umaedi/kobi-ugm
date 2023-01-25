@@ -199,6 +199,7 @@
                 }
               }
             });
+            
             function sendMil(){
               $.ajax({
                 url: BaseUrl+'/api/user/anggota-baru/send-mail',

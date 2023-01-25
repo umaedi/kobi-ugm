@@ -37,7 +37,7 @@ class RegisterAnggotaController extends Controller
         $year = substr(date('Y'), -2);
         if (!empty($data)) {
             $no_anggota = substr($data->no_anggota, 11);
-            $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . number_format($no_anggota) + 1;
+            $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . strval($no_anggota) + 1;
         } else {
             $user_id = 'KOBI-' .  $request->jenjang_studi . '-' . $year . '-' . '0001';
         }
@@ -61,7 +61,7 @@ class RegisterAnggotaController extends Controller
             'no_wa'         => $request->no_wa,
             'kode_pos'      => $request->kode_pos,
             'bukti_pembayaran' => $struk->hashName(),
-            'status'        => '4'
+            'status'        => $request->status
         ]);
 
         return $this->sendResponseCreate($user);
@@ -98,16 +98,27 @@ class RegisterAnggotaController extends Controller
             return $this->sendResponseNotFound($user);
         }
 
+        $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
+
+        $year = substr(date('Y'), -2);
+        if (!empty($data)) {
+            $no_anggota = substr($data->no_anggota, 11);
+            $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . strval($no_anggota) + 1;
+        } else {
+            $user_id = 'KOBI-' .  $request->jenjang_studi . '-' . $year . '-' . '0001';
+        }
+
         $struk = $request->file('bukti_pembayaran');
         $struk->storeAs('public/strukpembayaran', $struk->hashName());
 
-        $user->update([
-            'no_anggota'    => $request->no_anggota,
+        $user = Universitas::create([
             'nama_univ'     => $request->nama_univ,
+            'no_anggota'    => $user_id,
             'nama_fakultas' => $request->nama_fakultas,
+            'jenjang'       => $request->jenjang_studi,
+            'thn_anggota'   => date('Y'),
             'email_user'    => $request->email_user,
             'nama_jurusan'  => $request->nama_jurusan,
-            'jenjang'       => $request->jenjang_studi,
             'email_kaprodi' => $request->email_kaprodi,
             'alamat'        => $request->alamat,
             'province_id'   => $request->province_id,
@@ -116,9 +127,9 @@ class RegisterAnggotaController extends Controller
             'no_wa'         => $request->no_wa,
             'kode_pos'      => $request->kode_pos,
             'bukti_pembayaran' => $struk->hashName(),
-            'status'        => '0'
+            'status'        => $request->status,
         ]);
 
-        return $this->sendResponseUpdate($user);
+        return $this->sendResponseCreate($user);
     }
 }
