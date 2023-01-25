@@ -20,10 +20,15 @@ class UserController extends Controller
 
     public function userActive(Request $request)
     {
-        if ($request->tahun) {
-            $data     = Universitas::where('thn_anggota', $request->tahun)->where('status', 1)->get();
+        if ($request->ajax()) {
+            if ($request->tahun) {
+                $data     = Universitas::where('thn_anggota', $request->tahun)->where('status', $request->status)->get();
+                return DataTables::of($data)->make();
+            }
+
+            $users = Universitas::where('status', $request->status)->latest()->get();
+            return DataTables::of($users)->make(true);
         }
-        return DataTables::of($data)->make();
     }
 
     public function userReject(Request $request)
@@ -37,7 +42,12 @@ class UserController extends Controller
     public function nonAktif(Request $request)
     {
         if ($request->ajax()) {
-            $users = Universitas::where('status', 3)->latest()->get();
+            if ($request->tahun) {
+                $data     = Universitas::where('thn_anggota', $request->tahun)->where('status', $request->status)->get();
+                return DataTables::of($data)->make();
+            }
+
+            $users = Universitas::where('status', $request->status)->latest()->get();
             return DataTables::of($users)->make(true);
         }
     }

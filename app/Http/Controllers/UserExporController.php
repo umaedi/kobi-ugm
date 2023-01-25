@@ -11,7 +11,12 @@ class UserExporController extends Controller
 {
     public function exportUser(Request $request)
     {
-        return Excel::download(new UserExport($request->year), 'Data anggota aktif tahun ' . $request->year . '.xlsx');
+        if ($request->year) {
+            $year = $request->year;
+        } else {
+            $year = "";
+        }
+        return Excel::download(new UserExport($year, $request->status), 'Data Anggota KOBI' . '.xlsx');
     }
 
     public function dataStr(Request $request)

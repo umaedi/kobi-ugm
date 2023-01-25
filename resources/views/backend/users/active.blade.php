@@ -32,6 +32,7 @@
               @csrf
                   <div class="form-group">
                       <label for="exampleFormControlSelect1">Export data</label>
+                      <input type="hidden" name="status" value="1">
                       <select class="form-control" id="exampleFormControlSelect1" name="year">
                         <option value="{{ date('Y') }}">--Pilih tahun--</option>
                         <?php $start = date('Y'); $end = 2016 ?>
@@ -91,6 +92,7 @@
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: (data) => {
         data.tahun = $('select[name=filter-data]').val();
+        data.status = $('input[name=status]').val();
       }
     }, 
     columns: [

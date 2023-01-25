@@ -5,9 +5,56 @@
 @section('content')
 <div class="container-fluid">
 
+  <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <div class="col-sm-12">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <h3 class="h5 mb-0 text-gray-800 d-inline">Filter dan Export data</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="show-data-by-year">Tampilkan berdasarkan tahun</label>
+                    <select class="form-control" id="show-data-by-year" name="filter-data" onchange="filterData()">
+                      <option value="">--Pilih tahun--</option>
+                        <?php $start = date('Y'); $end = 2016 ?>
+                        <?php for($i = $end; $i <= $start; $i++) { ?> 
+                          <option value="{{ $i }}">{{ $i }}</option>
+                        <?php } ?>
+                    </select>
+                  </div>
+            </div>
+            <div class="col-md-4">
+            <form action="{{ route('export.excel') }}" method="POST">
+              @csrf
+                  <div class="form-group">
+                      <label for="exampleFormControlSelect1">Export data</label>
+                      <input type="hidden" name="status" value="3">
+                      <select class="form-control" id="exampleFormControlSelect1" name="year">
+                        <option value="">--Pilih tahun--</option>
+                        <?php $start = date('Y'); $end = 2016 ?>
+                        <?php for($i = $end; $i <= $start; $i++) { ?> 
+                          <option value="{{ $i }}">{{ $i }}</option>
+                        <?php } ?>
+                      </select>
+                    </div>
+              </div>
+              <div class="col-md-2">
+                  <div class="form-group">
+                      <label for="">Aksi</label>
+                      <button type="submit" class="btn btn-primary form-control">Export</button>
+                  </div>
+            </form>
+              </div>
+        </div>
+    </div>
+</div>
   @component('components.backend.card-table')
     @slot('header')
-      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">List Anggota Non  Aktif</h3>
+      <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">List Anggota Aktif</h3>
     @endslot
     @slot('dropdown')
       <div class="dropdown-header">Dropdown Header:</div>
@@ -17,9 +64,10 @@
     @slot('thead')
       <tr>
         <th>No</th>
-        <th>Nama Univ</th>
-        <th>Nama Jurusan</th>
-        <th>Email Kaprodi</th>
+        <th>Nomor Anggota</th>
+        <th>Universitas</th>
+        <th>Fakultas</th>
+        <th>Jurusan</th>
         <th>Action</th>
       </tr>
     @endslot
@@ -35,61 +83,36 @@
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-  let table = $("#dataTable").DataTable({
+    let table = $("#dataTable").DataTable({
     processing: true,
     serverSide: true,
-    ajax: BaseUrl+'/api/admin/users/nonaktif',
+    ajax: {
+      url: BaseUrl+'/api/admin/users/nonaktif',
+      method: 'GET',
+      headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+      data: (data) => {
+        data.tahun = $('select[name=filter-data]').val();
+        data.status = $('input[name=status]').val();
+      }
+    }, 
     columns: [
       {data: null, render: function (data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }},
+      {data: 'no_anggota', name: 'no_anggota'},
       {data: 'nama_univ', name: 'nama_univ'},
+      {data: 'nama_fakultas', name: 'nama_fakultas'},
       {data: 'nama_jurusan', name: 'nama_jurusan'},
-      {data: 'email_kaprodi', name: 'email_kaprodi'},
       {
         "render": function ( data, type, row ) {
         return `
-        <a href="/admin/anggota/ditolak/detail/`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
+        <a href="/admin/anggota/aktif/detail/`+ row.id +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
         ` }
       }
     ]
-  });
-  $('#dataTable tbody').on('click', '#delete', function(){
-    let id = $(this).data('id');
-    remove(id);
-  }); 
-  function remove(id) {
-    swal({
-        title: "",
-        text: "Hapus Anggota ?",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-        })
-        .then((willDelete) => {
-        if (willDelete) {
-            $.ajax({
-                url: BaseUrl+'/api/lis-anggota/'+id,
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                method: 'DELETE',
-                processData: false,
-                contentType: false,
-                cache: false,
-                complete: (response) => {
-                    if(response.status == 200) {
-                        table.ajax.reload();
-                    }else {
-                        console.log('gagal');
-                    }
-                }
-                });
-                swal("Anggota berhasil dihapus", {
-                icon: "success",
-            });
-        }
     });
-  }
+  
 
-  function reloadDataTable(){
-    table.ajax.reload();
+  function filterData(){
+    table.ajax.reload(false, null);
   }
 
   setInterval(() => {
