@@ -79,7 +79,7 @@ class StrController extends Controller
         $struk = Struk::create([
             'email'     => $request->email,
             'struk'     => $struk->hashName(),
-            'date'      => date("Y-m-d", $time)
+            'date'      => date("Y-m-d " . $time)
         ]);
 
         $result['struk'] = $struk;
