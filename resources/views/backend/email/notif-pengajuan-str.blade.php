@@ -380,10 +380,11 @@
                                                 verifikasi biasanya membutuhkan waktu 1-3 hari pada hari kerja.
 
                                             </p>
-                                            <p>Apabila lolos verifikasi akan diajukan ke Ketua Kobi. Apabila Ketua KOBI
+                                            <p>Apabila lolos verifikasi akan diajukan ke Ketua KOBI. Apabila Ketua KOBI
                                                 menyetujui, maka pengajuan diteruskan kepada Sekretaris KOBI untuk
                                                 pembuatan STR. <a href="https://kobi-indonesia.id/persyaratan">Lihat
                                                     persyaratan pengajuan STR</a></p>
+                                            <p>Semua informasi mengenai pengajuan STR Anda akan dikirimkan lewat email ini</p>
                                             <p>Salam hormat <br>Admin KOBI</p>
                                         </td>
                                     </tr>
