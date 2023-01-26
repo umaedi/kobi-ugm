@@ -130,6 +130,11 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 
+    const auth_token = "{{ request('token') }}";
+    if(localStorage.getItem('auth_token') == null) {
+        localStorage.setItem('auth_token', auth_token)
+    }
+
   let table = $("#dataTable").DataTable({
     processing: true,
     serverSide: true,

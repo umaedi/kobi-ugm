@@ -21,9 +21,18 @@ class AuthController extends Controller
             'password'  => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if ($request->remember) {
+            $remember = $request->remember;
+        } else {
+            $remember = "";
+        }
+
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/admin/dashboard');
+
+            $user = User::where('email', $request->email)->firstOrFail();
+            $token = $user->createToken('auth_token')->plainTextToken;
+            return redirect()->intended('/admin/dashboard?token=' . $token);
         }
         return back()->with('msg', 'Login gagal !');
     }

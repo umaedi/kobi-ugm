@@ -7,9 +7,6 @@
   <title>KOBI | Konsorium Biologi Indonesia</title>
   <link href="{{ asset('backend') }}/css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('backend') }}/css/style.css">
-  <script>
-    let BaseUrl = "{{ url('/') }}"
-  </script>
 </head>
 
 <body>
@@ -21,36 +18,30 @@
             <img src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="logo" width="80" class="shadow-light mb-5 mt-2">
             <h4 class="text-dark font-weight-normal">{{ __('Silahkan login') }}</h4>
             <p class="text-muted">{{ __('Login dengan email dan password Anda') }}</p>
-            <div id="faildLogin"></div>
-            <form id="formSubmit" action="{{ route('admin.login') }}" method="POST">
-              @csrf
-              <input type="hidden" name="email" id="emailWeb">
-              <input type="hidden" name="password" id="passwordWeb">
-            </form>
-            <form id="formAdminLogin">
+            @if (session()->has('msg'))
+            <div class="alert alert-danger">{!! session('msg') !!}</div>
+            @endif
+            <form action="{{ route('admin.login') }}" method="POST">
               @csrf
               <div class="form-group">
-                @if (session()->has('msg'))
-                <div class="alert alert-danger">{!! session('msg') !!}</div>
-                @endif
                 <label for="email">{{ __('Email') }}</label>
                 <input id="email" type="email" class="form-control api-email" name="email" required autocomplete="email" autofocus>
               </div>
-
               <div class="form-group">
                 <div class="d-block">
                   <label for="password" class="control-label">{{ __('Password') }}</label>
                 </div>
                 <input id="password" type="password" class="form-control api-password" name="password" required autocomplete="current-password">
               </div>
+              <div class="form-group">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" name="remember" class="custom-control-input" tabindex="3" id="remember-me">
+                  <label class="custom-control-label" for="remember-me">{{ __('Remember Me') }}</label>
+                </div>
+              </div>
               <div class="form-group btn-login">
                 <button type="submit" class="btn btn-primary">{{ __('Login') }}</button>
               </div>
-              <button class="btn btn-primary btn-spinner" type="button" disabled style="display: none">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                <span class="sr-only">Loading...</span>
-                Login...</button>
-            </form>
           </div>
         </div>
         <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="{{ asset('backend') }}/img/kobi-login.jpg">
@@ -69,43 +60,5 @@
   <script src="{{ asset('backend') }}/vendor/jquery/jquery.min.js"></script>
   <script src="{{ asset('backend') }}/js/scripts.js"></script>
   <script src="{{ asset('backend') }}/js/stisla.js"></script>
-  <script>
-    $('#formAdminLogin').submit(function(event) {
-
-      $('.btn-login').attr('style', 'display: none');
-      $('button.btn-spinner').removeAttr('style', 'display: none');
-
-      event.preventDefault();
-      let form = $(this)[0];
-      let data = new FormData(form);
-
-      $.ajax({
-        url: BaseUrl+'/api/admin/auth/login',
-        data: data,
-        method: 'POST',
-        processData: false,
-        contentType: false,
-        cache: false,
-        complete: (response) => {
-          if (response.status == 200) {
-            loginWeb(data);
-          } else {
-            $('#faildLogin').html(`<div class="alert alert-danger">Login Gagal !</div>`)
-          }
-        }
-      });
-
-      function loginWeb(data) {
-        let email = $('input.api-email').val();
-        let password = $('input.api-password').val();
-
-        document.getElementById('emailWeb').value = email;
-        document.getElementById('passwordWeb').value = password;
-        document.getElementById('formSubmit').submit();
-      }
-    });
-    
-  </script>
 </body>
-
 </html>
