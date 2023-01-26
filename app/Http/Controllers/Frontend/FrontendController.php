@@ -234,4 +234,12 @@ class FrontendController extends Controller
             'events'    => EventCategory::latest()->get(),
         ]);
     }
+
+    public function pembayaranStr()
+    {
+        return view('frontend.pages.pembayaran-str', [
+            'title'     => 'Notifikasi Pembayaran STR',
+            'events'    => EventCategory::latest()->get(),
+        ]);
+    }
 }

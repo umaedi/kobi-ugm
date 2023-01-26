@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="add-category card shadow mb-4">
         <div class="card-header py-3">
-            <h3 class="h5 mb-0 text-gray-800 d-inline mr-5" id="x-title">Struk Bukti Pembayaran</h3>
+            <h3 class="h5 mb-0 text-gray-800 d-inline mr-5" id="x-title">Struk Bukti Pembayaran STR</h3>
         </div>
         <div class="card-body">
             <form id="formSubmit">

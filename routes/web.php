@@ -31,6 +31,7 @@ Route::controller(\App\Http\Controllers\Frontend\FrontendController::class)->gro
     Route::get('/ad-art', 'adArt')->name('ad-art')->name('adart');
     Route::get('/galeri/kegiatan', 'galeri')->name('galeri');
     Route::get('/notifikasi/{slug}', 'notifikasi')->name('notifikasi');
+    Route::get('pembayaran-str/berhasil', 'pembayaranStr');
 });
 
 Route::controller(\App\Http\Controllers\Auth\AuthController::class)->group(function () {

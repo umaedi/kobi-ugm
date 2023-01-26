@@ -4,7 +4,7 @@
         @component('components.frontend.breadcrumb')
         @slot('breadcrumb')
         <div class="page__title-wrapper text-center">
-         <h3>Upload File Bukti STR</h3>
+         <h3>Upload Struk Bukti Pembayaran STR</h3>
       </div>
       @endslot
     @endcomponent
@@ -88,7 +88,7 @@
                     icon: "success"
                   })
                   .then(() => {
-                    window.location.replace(BaseUrl+'/');
+                    window.location.replace(BaseUrl+'/pembayaran-str/berhasil');
                   });
             }else {
                $('#btnSend').removeAttr('style', 'display: none');
