@@ -47,7 +47,7 @@
       {
         "render": function ( data, type, row ) {
         return `
-        <a href="/admin/str/show/` + row.id  +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
+        <a href="/admin/str/ditolak/show/` + row.id  +`" type="button" class="btn btn-sm btn-warning"><i class="far fa-edit"></i></a>
         <button id="delete" data-id="`+ row.id +`" type="button" class="btn btn-sm btn-danger"><i class="far fa-trash-alt"></i></button>
         ` }
       }

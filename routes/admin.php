@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
         Route::controller(\App\Http\Controllers\Backend\StrController::class)->group(function () {
             Route::get('/str', 'index');
             Route::get('/str/show/{id}', 'strShow');
+            Route::get('/str/ditolak/show/{id}', 'strDitolak');
             Route::get('/str/verif', 'strVerif')->name('strVerif');
             Route::get('/str/reject', 'strReject')->name('strReject');
             Route::get('/str/destroy', 'strDestroy');

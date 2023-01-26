@@ -26,6 +26,14 @@ class StrController extends Controller
         ]);
     }
 
+    public function strDitolak($id)
+    {
+        $str = Str::findOrfail($id);
+        return view('backend.str.detail', [
+            'str'   => $str
+        ]);
+    }
+
     public function strVerif()
     {
         return view('backend.str.verif');
