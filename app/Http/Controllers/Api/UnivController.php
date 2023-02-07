@@ -45,23 +45,11 @@ class UnivController extends Controller
             return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
         }
 
-        $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
-
-        $no_anggota = substr($data->no_anggota, 11);
-        if ($no_anggota) {
-            intval($no_anggota++);
-        }
-
-        $year = substr(date('Y'), -2);
-
-        $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . $no_anggota;
-
         $struk = $request->file('bukti_pembayaran');
         $struk->storeAs('public/strukpembayaran', $struk->hashName());
 
         $univ = Universitas::create([
             'nama_univ'     => $request->nama_univ,
-            'no_anggota'    => $user_id,
             'nama_fakultas' => $request->nama_fakultas,
             'jenjang'       => $request->jenjang_studi,
             'thn_anggota'   => date('Y'),

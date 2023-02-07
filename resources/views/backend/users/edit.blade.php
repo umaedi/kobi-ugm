@@ -82,10 +82,16 @@
                 <div class="col-md-3">
                   <div class="mb-3">
                     <label for="no_anggota" class="form-label mt-3">{{ __('Nomor Anggota') }}</label>
-                    <input name="no_anggota" type="text" class="form-control" id="no_anggota" value="{{ $anggota->no_anggota }}">
+                    <input name="no_anggota" type="text" class="form-control" id="no_anggota" placeholder="Masukan nomor anggota" required>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+                  <div class="mt-3">
+                    <label for="no_anggota" class="form-label">{{ __('Tanggal daftar') }}</label>
+                    <input name="no_anggota" type="text" class="form-control" id="no_anggota" value="{{ $anggota->created_at }}">
+                  </div>
+                </div>
+                <div class="col-md-3">
                   <div class="mt-3">
                     <label for="formFile" class="form-label">{{ __('Lihat Bukti Pembayaran') }}</label>
                     <a href="{{ asset('storage/strukpembayaran/' . $anggota->bukti_pembayaran) }}" class="btn btn-sm btn-success form-control my-colorpicker1" target="_blank">lihat</a>
@@ -166,17 +172,17 @@
       $('#btnSend').attr('style', 'display: none');
       $('#btnSending').removeAttr('style', 'display: none');
 
-      const form = $(this)[0];
-      const data = new FormData(form);
+      let data = {
+          status: 1,
+          no_anggota: $('input[name=no_anggota]').val(),
+      };
+         
 
       $.ajax({
       url: BaseUrl+'/api/admin/konfirmasi/anggota/{{ $anggota->id }}',
       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
       data: data,
       method: 'post',
-      processData: false,
-      contentType: false,
-      cache: false,
       complete: (response) => {
           if(response.status == 201) {
             sendEmail(response.responseJSON.data);
@@ -200,6 +206,7 @@
     });
 
     function sendEmail(data) {
+      console.log(data);
       $.ajax({
         url: BaseUrl+'/api/admin/sendmail/verif-user',
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},

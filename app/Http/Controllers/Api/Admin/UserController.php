@@ -34,7 +34,7 @@ class UserController extends Controller
                 return DataTables::of($data)->make();
             }
 
-            $users = Universitas::where('status', $request->status)->latest()->get();
+            $users = Universitas::where('thn_anggota', $request->tahun)->where('status', $request->status)->latest()->get();
             return DataTables::of($users)->make(true);
         }
     }

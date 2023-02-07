@@ -32,22 +32,11 @@ class RegisterAnggotaController extends Controller
             return $this->sendResponseError(json_encode($validator->errors()), $validator->errors());
         }
 
-        $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
-
-        $year = substr(date('Y'), -2);
-        if (!empty($data)) {
-            $no_anggota = substr($data->no_anggota, 11);
-            $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . strval($no_anggota) + 1;
-        } else {
-            $user_id = 'KOBI-' .  $request->jenjang_studi . '-' . $year . '-' . '0001';
-        }
-
         $struk = $request->file('bukti_pembayaran');
         $struk->storeAs('public/strukpembayaran', $struk->hashName());
 
         $user = Universitas::create([
             'nama_univ'     => $request->nama_univ,
-            'no_anggota'    => $user_id,
             'nama_fakultas' => $request->nama_fakultas,
             'jenjang'       => $request->jenjang_studi,
             'thn_anggota'   => date('Y'),
@@ -98,22 +87,11 @@ class RegisterAnggotaController extends Controller
             return $this->sendResponseNotFound($user);
         }
 
-        $data = DB::table('universitas')->select('no_anggota')->orderBy('created_at', 'DESC')->first();
-
-        $year = substr(date('Y'), -2);
-        if (!empty($data)) {
-            $no_anggota = substr($data->no_anggota, 11);
-            $user_id = 'KOBI-' . $request->jenjang_studi . '-' . $year . '-' . strval($no_anggota) + 1;
-        } else {
-            $user_id = 'KOBI-' .  $request->jenjang_studi . '-' . $year . '-' . '0001';
-        }
-
         $struk = $request->file('bukti_pembayaran');
         $struk->storeAs('public/strukpembayaran', $struk->hashName());
 
         $user = Universitas::create([
             'nama_univ'     => $request->nama_univ,
-            'no_anggota'    => $user_id,
             'nama_fakultas' => $request->nama_fakultas,
             'jenjang'       => $request->jenjang_studi,
             'thn_anggota'   => date('Y'),

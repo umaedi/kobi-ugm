@@ -25,21 +25,37 @@ class UnivController extends Controller
         }
 
         if ($request->search) {
-            $data     = Universitas::select('nama_univ', 'nama_fakultas', 'jenjang', 'nama_jurusan', 'thn_anggota')->where('no_anggota', 'like', '%' . $request->search . '%')
-                ->orWhere('nama_univ', 'like', '%' . $request->search . '%')
-                ->orWhere('nama_fakultas', 'like', '%' . $request->search . '%')
-                ->orWhere('nama_jurusan', 'like', '%' . $request->search . '%')
-                ->latest()->paginate();
-            return  $this->sendResponseOk($data);
+            if ($request->thn_anggota == date('Y')) {
+                $data     = Universitas::select('nama_univ', 'nama_fakultas', 'jenjang', 'nama_jurusan', 'thn_anggota')->where('status', 1)
+                    ->where('no_anggota', 'like', '%' . $request->search . '%')
+                    ->here('nama_univ', 'like', '%' . $request->search . '%')
+                    ->here('nama_fakultas', 'like', '%' . $request->search . '%')
+                    ->here('nama_jurusan', 'like', '%' . $request->search . '%')
+                    ->latest()->paginate();
+                return  $this->sendResponseOk($data);
+            } else {
+                $data     = Universitas::select('nama_univ', 'nama_fakultas', 'jenjang', 'nama_jurusan', 'thn_anggota')
+                    ->where('no_anggota', 'like', '%' . $request->search . '%')
+                    ->orWhere('nama_univ', 'like', '%' . $request->search . '%')
+                    ->orWhere('nama_fakultas', 'like', '%' . $request->search . '%')
+                    ->orWhere('nama_jurusan', 'like', '%' . $request->search . '%')
+                    ->latest()->paginate();
+                return  $this->sendResponseOk($data);
+            }
         };
 
-        if ($request->year) {
-            $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('thn_anggota', $request->year)->paginate($limit);
+        if ($request->year == date('Y')) {
+            $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')
+                ->where('status', 1)
+                ->where('thn_anggota', $request->year)->paginate($limit);
             return  $this->sendResponseOk($data);
-        };
+        } else {
+            $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')
+                ->where('thn_anggota', $request->year)->paginate($limit);
+            return  $this->sendResponseOk($data);
+        }
 
-        $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('status', 1)
-            ->orderBy('thn_anggota', 'DESC')->paginate($limit);
+        $data = Universitas::select('nama_univ', 'jenjang', 'nama_fakultas', 'nama_jurusan', 'thn_anggota')->where('status', 1)->latest()->paginate($limit);
 
         if ((!empty($data)) and ($data->count() != 0)) {
             $result = $data;

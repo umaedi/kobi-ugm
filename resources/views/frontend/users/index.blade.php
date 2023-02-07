@@ -163,10 +163,12 @@
 
   function searchData(){
     let keyword = $('input[name=search]').val();
+    let thn_anggota = $('select[name=year]').val();
     $('#content-users').html('');
     $('#btnMore').addClass('d-none');
     var data = {
       search: keyword,
+      thn_anggota: thn_anggota
     }
     getUsers(data);
   }
