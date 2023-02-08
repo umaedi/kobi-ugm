@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="nama_pendaftar" class="form-label mt-3">{{ __('Nama pendaftar Pendaftar') }}</label>
+                        <label for="nama_pendaftar" class="form-label mt-3">{{ __('Nama Pendaftar') }}</label>
                         <input name="nama_pendaftar" type="text" class="form-control" id="nama_pendaftar" required>
                       </div>
                     </div>
