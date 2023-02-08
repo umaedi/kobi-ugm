@@ -52,9 +52,15 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="mb-3">
-                        <label for="email" class="form-label mt-3">{{ __('Email Ketua Program Studi/Jurusan') }}</label>
+                        <label for="nama" class="form-label mt-3">{{ __('Nama Kaprodi/Jurusan') }}</label>
+                        <input name="nama_kaprodi" type="nama" class="form-control" id="nama" required>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="mb-3">
+                        <label for="email" class="form-label mt-3">{{ __('Email Kaprodi/Jurusan') }}</label>
                         <input name="email_kaprodi" type="email" class="form-control" id="email" required>
                       </div>
                     </div>

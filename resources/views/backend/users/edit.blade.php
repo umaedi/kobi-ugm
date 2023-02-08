@@ -27,7 +27,13 @@
                     <input name="nama_jurusan" type="text" class="form-control" id="jurusan" value="{{ $anggota->nama_jurusan }}">
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
+                  <div class="mb-3">
+                    <label for="nama" class="form-label mt-3">{{ __('Nama Kaprodi/Jurusan') }}</label>
+                    <input name="nama_kaprodi" type="nama" class="form-control" id="nama" value="{{ $anggota->nama_kaprodi }}">
+                  </div>
+                </div>
+                <div class="col-md-2">
                   <div class="mb-3">
                     <label for="email" class="form-label mt-3">{{ __('Email Kaprodi/Jurusan') }}</label>
                     <input name="email_kaprodi" type="email" class="form-control" id="email" value="{{ $anggota->email_kaprodi }}">
@@ -99,7 +105,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="mt-3">
-                    <label for="formFile" class="form-label">{{ __('Bulti Pembayaran Uang Pangkal') }}</label>
+                    <label for="formFile" class="form-label">{{ __('Bukti Pembayaran Uang Pangkal') }}</label>
                     <a href="{{ asset('storage/strukpembayaran/' . $anggota->uang_pangkal) }}" class="btn btn-sm btn-success form-control my-colorpicker1" target="_blank">lihat</a>
                   </div>
                 </div>
