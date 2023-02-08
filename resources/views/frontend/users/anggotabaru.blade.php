@@ -52,13 +52,19 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                       <div class="mb-3">
                         <label for="email" class="form-label mt-3">{{ __('Email Ketua Program Studi/Jurusan') }}</label>
                         <input name="email_kaprodi" type="email" class="form-control" id="email" required>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="nama" class="form-label mt-3">{{ __('Nama Pendaftar') }}</label>
+                        <input name="nama_pendaftar" type="text" class="form-control" id="email" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
                       <div class="mb-3">
                         <label for="email" class="form-label mt-3">{{ __('Email Pendaftar') }}</label>
                         <input name="email_user" type="email" class="form-control" id="email" required>
@@ -111,10 +117,19 @@
                         <input name="no_wa" type="tel" class="form-control phone-number" required>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                       <div class="mb-3">
-                        <label for="formFile" class="form-label">{{ __('Unggah Bukti Pembayaran') }}</label>
+                        <label for="formFile" class="form-label">{{ __('Bukti Pembayaran Iuran Anggota') }}</label>
                         <input name="bukti_pembayaran" class="form-control" type="file" id="formFile" required>
+                        <small id="passwordHelpBlock" class="form-text">
+                          <span><a href="{{ route('persyaratan') }}">Lihat no rekening dibagian persyaratan</a></span> 
+                        </small>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <div class="mb-3">
+                        <label for="formFile" class="form-label">{{ __('Bukti Pembayaran Uang Pangkal') }}</label>
+                        <input name="uang_pangkal" class="form-control" type="file" id="formFile" required>
                         <small id="passwordHelpBlock" class="form-text">
                           <span><a href="{{ route('persyaratan') }}">Lihat no rekening dibagian persyaratan</a></span> 
                         </small>

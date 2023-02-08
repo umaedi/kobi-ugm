@@ -27,13 +27,19 @@
                     <input name="nama_jurusan" type="text" class="form-control" id="jurusan" value="{{ $anggota->nama_jurusan }}">
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="mb-3">
                     <label for="email" class="form-label mt-3">{{ __('Email Kaprodi/Jurusan') }}</label>
                     <input name="email_kaprodi" type="email" class="form-control" id="email" value="{{ $anggota->email_kaprodi }}">
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label for="nama_pendaftar" class="form-label mt-3">{{ __('Nama Pendaftar') }}</label>
+                    <input name="nama_pendaftar" type="text" class="form-control" id="nama_pendaftar" value="{{ $anggota->nama_pendaftar }}">
+                  </div>
+                </div>
+                <div class="col-md-6">
                   <div class="mb-3">
                     <label for="email" class="form-label mt-3">{{ __('Email Pendaftar') }}</label>
                     <input name="email_user" type="email" class="form-control" id="email" value="{{ $anggota->email_user }}">
@@ -85,15 +91,21 @@
                     <input name="no_anggota" type="text" class="form-control" id="no_anggota" placeholder="Masukan nomor anggota" required>
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="mt-3">
                     <label for="no_anggota" class="form-label">{{ __('Tanggal daftar') }}</label>
                     <input name="no_anggota" type="text" class="form-control" id="no_anggota" value="{{ $anggota->created_at }}">
                   </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="mt-3">
-                    <label for="formFile" class="form-label">{{ __('Lihat Bukti Pembayaran') }}</label>
+                    <label for="formFile" class="form-label">{{ __('Bulti Pembayaran Uang Pangkal') }}</label>
+                    <a href="{{ asset('storage/strukpembayaran/' . $anggota->uang_pangkal) }}" class="btn btn-sm btn-success form-control my-colorpicker1" target="_blank">lihat</a>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mt-3">
+                    <label for="formFile" class="form-label">{{ __('Bulti Pembayaran Iuran Anggota') }}</label>
                     <a href="{{ asset('storage/strukpembayaran/' . $anggota->bukti_pembayaran) }}" class="btn btn-sm btn-success form-control my-colorpicker1" target="_blank">lihat</a>
                   </div>
                 </div>

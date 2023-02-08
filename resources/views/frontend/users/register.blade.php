@@ -52,13 +52,19 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                       <div class="mb-3">
                         <label for="email" class="form-label mt-3">{{ __('Email Ketua Program Studi/Jurusan') }}</label>
                         <input name="email_kaprodi" type="email" class="form-control" id="email" required>
                       </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="nama_pendaftar" class="form-label mt-3">{{ __('Nama pendaftar Pendaftar') }}</label>
+                        <input name="nama_pendaftar" type="text" class="form-control" id="nama_pendaftar" required>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
                       <div class="mb-3">
                         <label for="email" class="form-label mt-3">{{ __('Email Pendaftar') }}</label>
                         <input name="email_user" type="email" class="form-control" id="email" required>
