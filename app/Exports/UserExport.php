@@ -24,7 +24,7 @@ class UserExport implements FromQuery, WithHeadings
                 ->where('thn_anggota', $this->thn_anggota)
                 ->where('status', $this->status);
         }
-        return Universitas::query()->select('no_anggota', 'nama_univ', 'nama_fakultas', 'nama_jurusan', 'jenjang', 'email_kaprodi', 'email_user', 'alamat', 'no_tlp', 'no_wa', 'thn_anggota')
+        return Universitas::query()->select('no_anggota', 'nama_univ', 'nama_fakultas', 'nama_jurusan', 'jenjang', 'nama_kaprodi', 'email_kaprodi', 'email_user', 'alamat', 'no_tlp', 'no_wa', 'thn_anggota', 'created_at')
             ->where('status', $this->status);
     }
 
@@ -42,6 +42,7 @@ class UserExport implements FromQuery, WithHeadings
             'NO TLEPON',
             'NO WA',
             'TAHUN KE ANGGOTAAN',
+            'TAHUN PENDAFTARAN'
         ];
     }
 }

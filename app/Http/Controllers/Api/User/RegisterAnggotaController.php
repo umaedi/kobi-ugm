@@ -68,6 +68,7 @@ class RegisterAnggotaController extends Controller
     public function update(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'nama_pendaftar'     => 'required',
             'no_anggota'    => 'required',
             'nama_univ'     => 'required',
             'nama_fakultas' => 'required',
@@ -100,6 +101,7 @@ class RegisterAnggotaController extends Controller
         $struk->storeAs('public/strukpembayaran', $struk->hashName());
 
         $user = Universitas::create([
+            'nama_pendaftar'    => $request->nama_pendaftar,
             'nama_univ'     => $request->nama_univ,
             'nama_fakultas' => $request->nama_fakultas,
             'jenjang'       => $request->jenjang_studi,

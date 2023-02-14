@@ -20,26 +20,39 @@
                 <h6 class="border-bottom pb-2 mb-3">{{ __('Mohon isi formulir di bawah ini') }}</h6>
                 <form id="store">
                   @csrf
+                  @csrf
                   <div class="row">
-                    <input type="hidden" name="status" value="0">
+                    <input type="hidden" name="status" value="4">
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="univ" class="form-label mt-3">{{ __('Nama Universitas') }}</label>
                         <input name="nama_univ" type="text" class="form-control" id="univ" required>
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                       <div class="mb-3">
                         <label for="kaprodi" class="form-label mt-3">{{ __('Nama Fakultas') }}</label>
                         <input name="nama_fakultas" type="text" class="form-control" id="kaprodi" required>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="mb-3">
                         <label for="jurusan" class="form-label mt-3">{{ __('Nama Program Studi/Jurusan') }}</label>
                         <input name="nama_jurusan" type="text" class="form-control" id="jurusan" required>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="mb-3">
+                        <label for="nama" class="form-label mt-3">{{ __('Nama Kaprodi/Jurusan') }}</label>
+                        <input name="nama_kaprodi" type="nama" class="form-control" id="nama" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="mb-3">
+                        <label for="email" class="form-label mt-3">{{ __('Email Kaprodi/Jurusan') }}</label>
+                        <input name="email_kaprodi" type="email" class="form-control" id="email" required>
                       </div>
                     </div>
                     <div class="col-md-2">
@@ -52,22 +65,10 @@
                         </select>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div class="mb-3">
-                        <label for="nama" class="form-label mt-3">{{ __('Nama Kaprodi/Jurusan') }}</label>
-                        <input name="nama_kaprodi" type="nama" class="form-control" id="nama" required>
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="mb-3">
-                        <label for="email" class="form-label mt-3">{{ __('Email Kaprodi/Jurusan') }}</label>
-                        <input name="email_kaprodi" type="email" class="form-control" id="email" required>
-                      </div>
-                    </div>
                     <div class="col-md-6">
                       <div class="mb-3">
-                        <label for="nama" class="form-label mt-3">{{ __('Nama Pendaftar') }}</label>
-                        <input name="nama_pendaftar" type="text" class="form-control" id="email" required>
+                        <label for="nama_pendaftar" class="form-label mt-3">{{ __('Nama Pendaftar') }}</label>
+                        <input name="nama_pendaftar" type="text" class="form-control" id="nama_pendaftar" required>
                       </div>
                     </div>
                     <div class="col-md-6">
