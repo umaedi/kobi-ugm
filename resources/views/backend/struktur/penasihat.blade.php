@@ -159,6 +159,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/advisor',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'POST',
             data: data,
             processData: false,
@@ -208,6 +209,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/advisor/'+id,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: data,
             method: 'POST',
             processData: false,
@@ -242,6 +244,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/advisor/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,

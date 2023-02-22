@@ -65,6 +65,7 @@
 
         $.ajax({
         url: BaseUrl+'/api/admin/declatter/{{ $decLatter->id }}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: data,
         method: 'POST',
         processData: false,

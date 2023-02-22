@@ -679,6 +679,7 @@
 
         $.ajax({
         url: BaseUrl+'/api/admin/declatter/{{ $decLatter->id }}',
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: data,
         method: 'POST',
         processData: false,
@@ -710,6 +711,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/structure',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'POST',
             data: data,
             processData: false,
@@ -741,6 +743,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/coordinator',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'POST',
             data: data,
             processData: false,
@@ -772,6 +775,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/curriculum-coordinator',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'POST',
             data: data,
             processData: false,
@@ -822,6 +826,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/coordinator/'+id,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: data,
             method: 'POST',
             processData: false,
@@ -855,6 +860,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/curriculum-coordinator/'+id,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: data,
             method: 'POST',
             processData: false,
@@ -887,6 +893,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/structure/'+id,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: data,
             method: 'POST',
             processData: false,
@@ -923,6 +930,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/structure/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
@@ -958,6 +966,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/coordinator/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,
@@ -993,6 +1002,7 @@
         if (willDelete) {
             $.ajax({
                 url: BaseUrl+'/api/admin/curriculum-coordinator/'+id,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 method: 'DELETE',
                 processData: false,
                 contentType: false,

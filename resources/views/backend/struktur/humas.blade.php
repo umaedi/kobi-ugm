@@ -159,6 +159,7 @@
 
         $.ajax({
             url: BaseUrl+'/api/admin/relationship',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             method: 'POST',
             data: data,
             processData: false,
