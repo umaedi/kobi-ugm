@@ -109,6 +109,7 @@ class RegisterAnggotaController extends Controller
             'email_user'    => $request->email_user,
             'nama_jurusan'  => $request->nama_jurusan,
             'email_kaprodi' => $request->email_kaprodi,
+            'nama_kaprodi' => $request->nama_kaprodi,
             'alamat'        => $request->alamat,
             'province_id'   => $request->province_id,
             'regency_id'    => $request->regency_id,
