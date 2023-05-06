@@ -124,6 +124,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::controller(Api\Admin\KonfirmasiAnggotaController::class)->group(function () {
             Route::post('/konfirmasi/anggota/{id}', 'konfirmasi_anggota');
         });
+
+        Route::get('/visitor', [Api\Admin\VisitorController::class, 'index']);
     });
 });
 

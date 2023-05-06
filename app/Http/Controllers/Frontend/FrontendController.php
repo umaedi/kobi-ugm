@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\EventCategory;
 use App\Models\Gallery;
 use App\Models\Kurikulum;
+use App\Models\Pengunjung;
 use App\Models\Post;
 use App\Models\Province;
 use App\Models\VisiMisi;
@@ -95,7 +96,27 @@ class FrontendController extends Controller
 
     public function show(Post $post)
     {
-        $post->increment('viewer');
+        $pengunjung = Pengunjung::query();
+
+        $visitor = $pengunjung->where('post_id', $post->id)->first();
+        if ($visitor == null) {
+            $pengunjung->create([
+                'post_id'   => $post->id,
+            ]);
+        };
+
+        $month = date('m');
+
+        $visitor = $pengunjung->where('post_id', $post->id)->first();
+
+        if ($visitor->$month == 0) {
+            $visitor->update([$month => 1]);
+            $visitor->increment('total_pengunjung');
+        } else {
+            $visitor->increment($month);
+            $visitor->increment('total_pengunjung');
+        }
+
         return view('frontend.posts.show', [
             'title' => $post->title,
             'post'  => $post,

@@ -146,6 +146,11 @@
         </div>
     </div>
 </li>
+<li class="nav-item {{ Request::is('admin/pengunjung') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.pengunjung') }}">
+        <i class="fas fa-fw fa-list"></i>
+        <span>Statistik Pengunjung</span></a>
+  </li>
   <hr class="sidebar-divider">
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFor"

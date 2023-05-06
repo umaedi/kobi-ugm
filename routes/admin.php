@@ -70,5 +70,7 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
             Route::post('/password/{id}', 'password');
             Route::get('/web/settings', 'settings')->name('settings');
         });
+
+        Route::get('/pengunjung', [App\Http\Controllers\Backend\PengunjungController::class, 'index'])->name('admin.pengunjung');
     });
 });

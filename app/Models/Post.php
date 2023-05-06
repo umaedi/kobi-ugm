@@ -24,6 +24,11 @@ class Post extends Model implements HasMedia
         return $this->belongsTo(User::class);
     }
 
+    public function pengunjung()
+    {
+        return $this->hasMany(Pengunjung::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';
