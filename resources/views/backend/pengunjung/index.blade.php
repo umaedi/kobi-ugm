@@ -46,12 +46,14 @@
                         <th scope="col">Hari ini</th>
                         <th scope="col">Kemarin</th>
                         <th scope="col">Bulan ini</th>
+                        <th scope="col">Tahun ini</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th>{{ $hari_ini }}</th>
                         <td>{{ $kemaren }}</td>
+                        <td>{{ $bulan_ini }}</td>
                         <td>{{ $bulan_ini }}</td>
                       </tr>
                     </tbody>
@@ -70,7 +72,18 @@
             </div>
         </div>
     </div>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h3 class="h5 mb-0 text-gray-800 d-inline mr-5">Chart</h3>
+        </div>
+            <div class="card-body">
+                        {!! $visitorChart->container() !!}
+            </div>
+    </div>
 </div>
+<script src="{{ $visitorChart->cdn() }}"></script>
+
+{{ $visitorChart->script() }}
 @endsection
 @push('js')
     <script type="text/javascript">
