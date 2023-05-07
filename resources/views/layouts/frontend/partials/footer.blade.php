@@ -8,12 +8,12 @@
                    <div class="footer__widget-title mb-25">
                       <div class="footer__logo">
                          <a href="#">
-                            <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/kobi-logi-footer.png" alt="logo" width="70">
+                            <img class="lazyload" data-src="{{ \Illuminate\Support\Facades\Storage::url($settings->logo) }}" alt="logo" width="70">
                          </a>
                       </div>
                    </div>
                    <div class="footer__widget-content footer__widget-content-3">
-                      <p>{{ __('Organisasi pengembangan pendidikan tinggi program studi biologi di Indonesia') }}</p>
+                      <p>{{ $settings['text_footer'] }}</p>
                    </div>
                 </div>
              </div>

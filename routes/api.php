@@ -126,6 +126,7 @@ Route::middleware('auth:sanctum')->group(function () {
         });
 
         Route::get('/visitor', [Api\Admin\VisitorController::class, 'index']);
+        Route::post('/websetting', [Api\Admin\WebsettingController::class, 'store']);
     });
 });
 

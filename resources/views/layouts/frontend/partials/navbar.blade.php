@@ -4,8 +4,8 @@
          <div class="row">
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                <div class="header__info text-center text-sm-start">
-                  <a href="mailto:kobi.biologi@gmail.com"> <i class="icon_mail"></i> <span >kobi.biologi@gmail.com</span></a>
-                  <a href="https://api.whatsapp.com/send?phone=6282350201515" target="_blank"> <i class="icon_phone w-phone"></i> +62 823-5020-1515</a>
+                  <a href="mailto:"{{ $settings['email'] }}> <i class="icon_mail"></i> <span >{{ $settings['email'] }}</span></a>
+                  <a href="https://api.whatsapp.com/send?phone={{ $settings['no_tlp'] }}" target="_blank"> <i class="icon_phone w-phone"></i> +{{ $settings['no_tlp'] }}</a>
                </div>
             </div>
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
@@ -27,7 +27,7 @@
             <div class="col-xxl-1 col-xl-2 col-lg-2 col-md-6 col-6">
                <div class="logo">
                   <a href="{{ url('/') }}">
-                     <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="logo" width="70px">
+                     <img class="lazyload" data-src="{{ \Illuminate\Support\Facades\Storage::url($settings->logo) }}" alt="logo" width="70px">
                   </a>
                </div>
             </div>

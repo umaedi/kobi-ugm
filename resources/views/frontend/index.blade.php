@@ -11,8 +11,8 @@
                    <div class="row align-items-center">
                       <div class="col-xxl-6 col-xl-6 col-lg-6">
                          <div class="hero__content-5">
-                            <h3 class="hero__title-5 wow fadeInUp" data-wow-delay=".3s">Konsorsium Biologi Indonesia</h3>
-                            <p class="wow fadeInUp" data-wow-delay=".5s">Organisasi pengembangan pendidikan tinggi program studi biologi di Indonesia </p>
+                            <h3 class="hero__title-5 wow fadeInUp" data-wow-delay=".3s">{{ $settings['nama_web'] }}</h3>
+                            <p class="wow fadeInUp" data-wow-delay=".5s">{{ $settings['tentang_web'] }}</p>
     
                             <div class="hero__btn d-sm-flex align-items-center">
                                <a href="{{ route('about') }}" class="w-btn w-btn-6 w-btn-white w-btn-white-4 mr-30 wow fadeInUp" data-wow-delay=".7s">Tentang Kami</a>
@@ -39,14 +39,14 @@
                             <div class="section__title-wrapper section__title-wrapper-5 mb-25 wow fadeInUp" data-wow-delay=".3s">
                                <h2 class="section__title-5 mb-25 wow fadeInUp" data-wow-delay=".3s">Tentang Kami</h2>
                             </div>
-                            <p class="promotion__sub wow fadeInUp" data-wow-delay=".5s">Konsorsium Biologi Indonesia</p>
-                            <p class=" wow fadeInUp" data-wow-delay=".7s">KOBI merupakan organisasi yang berperan aktif dalam pengembangan pendidikan tinggi biologi dalam penguasaan keanekaragaman hayati dan pemanfaatan sumber daya alam hayati (bioresources) secara optimal dan berkelanjutan bagi kesejahteraan umat manusia.</p>
+                            <p class="promotion__sub wow fadeInUp" data-wow-delay=".5s">{{ $settings['nama_web'] }}</p>
+                            <p class=" wow fadeInUp" data-wow-delay=".7s">{{ $settings['tentang_web'] }}</p>
                             <a href="{{ route('about') }}" class="w-btn w-btn w-btn-6 w-btn-14 w-btn-1-5 wow fadeInUp" data-wow-delay=".9s">Selengkapnya</a>
                          </div>
                       </div>
                       <div class="col-xxl-5 col-xl-5 col-lg-6 col-md-6">
                          <div class=" promotion__thumb w-img wow fadeInRight" data-wow-delay="1.2s">
-                            <img class="lazyload" data-src="{{ asset('frontend') }}/img/promotion/home-5/ketua-umum-kobi.jpeg" alt="">
+                            <img class="lazyload" data-src="{{ \Illuminate\Support\Facades\Storage::url($settings['photo_ketua']) }}" alt="">
                          </div>
                       </div>
                    </div>

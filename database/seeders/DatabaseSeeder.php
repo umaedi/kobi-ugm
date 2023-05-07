@@ -26,5 +26,15 @@ class DatabaseSeeder extends Seeder
         // \App\Models\Laporan::factory(100)->create();
         // \App\Models\Publikasi::factory(100)->create();
         // \App\Models\Naskah::factory(100)->create();
+
+        \App\Models\Setting::create([
+            'logo'          => 'logo.png',
+            'nama_web'      => 'Konsorsium Biologi Indonesia',
+            'tentang_web'   => 'Belum ada informasi',
+            'photo_ketua'   => 'photo_ketua.png',
+            'text_footer'   => 'Belum ada informasi',
+            'no_tlp'        => '62 823-5020-1515',
+            'email'         => 'kobi.biologi@gmail.com',
+        ]);
     }
 }

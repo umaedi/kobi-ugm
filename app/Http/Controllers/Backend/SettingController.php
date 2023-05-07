@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -62,6 +63,7 @@ class SettingController extends Controller
 
     public function settings()
     {
-        return view('backend.setting.index');
+        $data['settings'] = Setting::first();
+        return view('backend.setting.index', $data);
     }
 }

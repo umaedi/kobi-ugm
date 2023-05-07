@@ -161,7 +161,7 @@
         <div id="collapseFor" class="collapse" aria-labelledby="headingFor" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Pengaturan</h6>
-                <a class="collapse-item" href="{{ route('profile') }}">Profil</a>
+                <a class="collapse-item" href="{{ route('profile') }}">Profil Admin</a>
                 <a class="collapse-item" href="{{ route('settings') }}">Pengaturan Web</a>
             </div>
         </div>
