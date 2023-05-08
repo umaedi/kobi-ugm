@@ -37,18 +37,18 @@
                              <li><a href="https://api.whatsapp.com/send?phone=&amp;text={{ url('/'.$post->slug) }}"><i class="fab fa-whatsapp"></i></a></li>
                           </ul>
                        </div>
-                       <div class="postbox__author grey-bg-13 d-sm-flex mb-65 wow fadeInUp" data-wow-delay="1.2s">
-                          <div class="postbox__author-thumb mr-20">
-                             <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="">
-                          </div>
-                          <div class="postbox__author-content">
-                             <h4>Konsorsium Biologi Indonesia</h4>
-                             <p>Sekretariat Fakultas Biologi, UGM Jalan Teknika Selatan, Sekip Utara, Yogyakarta 55281.</p>
-                             <br>
-                             <a href="mailto:kobi.biologi@gmail.com"><p>Email:  kobi.biologi@gmail.com</p></a>
-                             <a href="https://api.whatsapp.com/send?phone=6282350201515" target="_blank"><p>No HP: +62 823-5020-1515</p></a>
-                          </div>
+                       <div class="postbox__author grey-bg-13 d-sm-flex mt-50 wow fadeInUp" data-wow-delay="1.2s">
+                        <div class="postbox__author-thumb mr-20">
+                           <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="">
+                        </div>
+                        <div class="postbox__author-content">
+                          <h4>{{ $settings['nama_web'] }}</h4>
+                          <p>{{ $settings['alamat'] }}</p>
+                          <br>
+                          <a href="mailto:{{ $settings['email'] }}"><p>Email: {{ $settings['email'] }}</p></a>
+                          <a href="https://api.whatsapp.com/send?phone={{ $settings['no_tlp'] }}" target="_blank"><p>No HP: +{{ $settings['no_tlp'] }}</p></a>
                        </div>
+                     </div>
                     </div>
                  </div>
               </div>

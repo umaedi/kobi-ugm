@@ -68,11 +68,11 @@
                          <img class="lazyload" data-src="{{ asset('frontend') }}/img/logo/logo-kobi.png" alt="">
                       </div>
                       <div class="postbox__author-content">
-                        <h4>Konsorsium Biologi Indonesia</h4>
-                        <p>Sekretariat Fakultas Biologi, UGM Jalan Teknika Selatan, Sekip Utara, Yogyakarta 55281.</p>
+                        <h4>{{ $settings['nama_web'] }}</h4>
+                        <p>{{ $settings['alamat'] }}</p>
                         <br>
-                        <a href="mailto:kobi.biologi@gmail.com"><p>Email:  kobi.biologi@gmail.com</p></a>
-                        <a href="https://api.whatsapp.com/send?phone=6282350201515" target="_blank"><p>No HP: +62 823-5020-1515</p></a>
+                        <a href="mailto:{{ $settings['email'] }}"><p>Email: {{ $settings['email'] }}</p></a>
+                        <a href="https://api.whatsapp.com/send?phone={{ $settings['no_tlp'] }}" target="_blank"><p>No HP: +{{ $settings['no_tlp'] }}</p></a>
                      </div>
                    </div>
                     </div>

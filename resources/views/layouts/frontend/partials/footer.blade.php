@@ -84,9 +84,9 @@
                    <div class="footer__widget-content">
                       <div class="footer__social footer__social-5">
                          <ul>
-                           <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                           <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                           <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                           <li><a href="{{ $settings['tweeter'] }}"><i class="fab fa-twitter"></i></a></li>
+                           <li><a href="{{ $settings['facebook'] }}"><i class="fab fa-facebook-f"></i></a></li>
+                           <li><a href="{{ $settings['instagram'] }}"><i class="fab fa-instagram"></i></a></li>
                          </ul>
                       </div>
                    </div>
@@ -101,7 +101,7 @@
              <div class="row">
                 <div class="col-xxl-12 wow fadeInUp" data-wow-delay=".5s">
                    <div class="footer__copyright-wrapper footer__copyright-wrapper-3 text-center">
-                      <p>{{ __('Copyright © 2022 Konsorsium Biologi Indonesia. All rights reserved') }}</p>
+                      <p>Copyright © <script>document.write(new Date().getFullYear());</script> Konsorsium Biologi Indonesia. All rights reserved</p>
                    </div>
                 </div>
              </div>

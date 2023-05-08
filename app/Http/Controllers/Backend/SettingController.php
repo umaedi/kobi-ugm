@@ -63,7 +63,6 @@ class SettingController extends Controller
 
     public function settings()
     {
-        $data['settings'] = Setting::first();
-        return view('backend.setting.index', $data);
+        return view('backend.setting.index');
     }
 }

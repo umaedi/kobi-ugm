@@ -3,20 +3,20 @@
     <div class="footer__top pb-65">
        <div class="container">
           <div class="row x-footer">
-             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
-                <div class="footer__widget mb-50">
-                   <div class="footer__widget-title mb-25">
-                      <div class="footer__logo">
-                         <a href="#">
-                            <img src="{{ asset('frontend') }}/img/logo/kobi-logi-footer.png" alt="logo" width="70">
-                         </a>
-                      </div>
-                   </div>
-                   <div class="footer__widget-content footer__widget-content-3">
-                      <p>{{ __('Organisasi pengembangan pendidikan tinggi program studi biologi di Indonesia') }}</p>
-                   </div>
-                </div>
-             </div>
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".3s">
+               <div class="footer__widget mb-50">
+                  <div class="footer__widget-title mb-25">
+                     <div class="footer__logo">
+                        <a href="#">
+                           <img class="lazyload" data-src="{{ \Illuminate\Support\Facades\Storage::url($settings->logo) }}" alt="logo" width="70">
+                        </a>
+                     </div>
+                  </div>
+                  <div class="footer__widget-content footer__widget-content-3">
+                     <p>{{ $settings['text_footer'] }}</p>
+                  </div>
+               </div>
+            </div>
              <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay=".5s">
                 <div class="footer__widget mb-50">
                    <div class="footer__widget-title footer__widget-title-3 mb-25">
@@ -75,10 +75,10 @@
                    </div>
                    <div class="footer__widget-content">
                       <div class="footer__social footer__social-5">
-                         <ul>
-                           <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                           <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                           <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        <ul>
+                           <li><a href="{{ $settings['tweeter'] }}"><i class="fab fa-twitter"></i></a></li>
+                           <li><a href="{{ $settings['facebook'] }}"><i class="fab fa-facebook-f"></i></a></li>
+                           <li><a href="{{ $settings['instagram'] }}"><i class="fab fa-instagram"></i></a></li>
                          </ul>
                       </div>
                    </div>
@@ -93,7 +93,7 @@
              <div class="row">
                 <div class="col-xxl-12 wow fadeInUp" data-wow-delay=".5s">
                    <div class="footer__copyright-wrapper footer__copyright-wrapper-3 text-center">
-                      <p>{{ __('Copyright © 2022 Konsorsium Biologi Indonesia. All rights reserved') }}</p>
+                      <p>Copyright © <script>document.write(new Date().getFullYear());</script> Konsorsium Biologi Indonesia. All rights reserved</p>
                    </div>
                 </div>
              </div>

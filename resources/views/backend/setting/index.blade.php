@@ -26,6 +26,10 @@
                             <label for="nama-website">Tentang Website</label>
                             <textarea name="tentang_web" id="" class="form-control" cols="10" rows="5">{{ $settings->tentang_web }}</textarea>
                         </div>
+                        <div class="form-group">
+                            <label for="nama-website">Alamat</label>
+                            <textarea name="tentang_web" id="" class="form-control" cols="10" rows="3">{{ $settings->alamat }}</textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="card shadow mb-4">
@@ -65,6 +69,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Sosial Media</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="ig">Instagram</label>
+                            <input type="text" class="form-control" name="instagram" value="{{ $settings->instagram }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="tw">Tweeter</label>
+                            <input type="text" class="form-control" name="tweeter" value="{{ $settings->tweeter }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="fb">Facebook</label>
+                            <input type="text" class="form-control" name="facebook" value="{{ $settings->facebook }}">
+                        </div>
+                    </div>
+                </div>
                 @include('components._loading_submit')
                 <button id="btn_submit" type="submit" class="btn btn-primary btn-block">SIMPAN</button>
             </div>
@@ -94,10 +117,8 @@
 
                 loadingsubmit(true);
                 await transAjax(param).then((res) => {
-                    swal({text: res.message, icon: 'success', timer: 3000,}).then(() => {
-                        loadingsubmit(false);
-                        window.location.href = '/admin/web/settings';
-                    });
+                    swal({text: res.message, icon: 'success'});
+                    loadingsubmit(false);
                 }).catch((err) => {
                     loadingsubmit(false);
                     swal({text: err.responseJSON.message, icon: 'error', timer: 3000,}).then(() => {

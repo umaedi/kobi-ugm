@@ -26,15 +26,12 @@ class WebsettingController extends Controller
             $photo_ketua = $setting->photo_ketua;
         }
 
-        $setting->update([
-            'logo'          => $logo,
-            'nama_web'      => $request->nama_web,
-            'tentang_web'   => $request->tentang_web,
-            'photo_ketua'   => $photo_ketua,
-            'text_footer'   => $request->text_footer,
-            'no_tlp'        => $request->no_tlp,
-            'email'         => $request->email,
-        ]);
+        $data = $request->except('_token');
+        $data['logo'] = $logo;
+        $data['photo_ketua'] = $photo_ketua;
+
+
+        $setting->update($data);
         return $this->sendResponseUpdate($setting);
     }
 }
