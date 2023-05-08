@@ -89,20 +89,12 @@
                            <li><a href="{{ $settings['instagram'] }}"><i class="fab fa-instagram"></i></a></li>
                          </ul>
                       </div>
+                      <div class="mt-3">
+                        <a href="https://info.flagcounter.com/8BKD"><img src="https://s11.flagcounter.com/count2/8BKD/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+                      </div>
                    </div>
                 </div>
              </div>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-xxl-2 col-xl-2 col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="1.2s">
-               <div class="footer__widget mb-50 float-md-end fix">
-                  <div class="footer__widget-content">
-                     <div class="footer__social footer__social-5">
-                       <a href="https://info.flagcounter.com/8BKD"><img src="https://s11.flagcounter.com/count2/8BKD/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
-                     </div>
-                  </div>
-               </div>
-            </div>
           </div>
        </div>
     </div>
