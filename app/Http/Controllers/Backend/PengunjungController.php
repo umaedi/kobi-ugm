@@ -23,7 +23,7 @@ class PengunjungController extends Controller
         if (\request()->ajax()) {
 
             $visitor = Pengunjung::query();
-            $data['table'] = $visitor->orderBy('total_pengunjung', 'DESC')->paginate(10);
+            $data['table'] = $visitor->orderBy('total_pengunjung', 'DESC')->limit(12)->get();
             $data['total_pengunjung'] = $visitor->sum('total_pengunjung');
             return view('backend.pengunjung._data_table', $data);
         }

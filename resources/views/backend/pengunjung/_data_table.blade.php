@@ -9,9 +9,10 @@
     </tr>
     </thead>
     <tbody>
-        @forelse ($table as $key => $tb)
+        <?php $i = 1 ?>
+        @forelse ($table as  $tb)
         <tr>
-            <th>{{ $table->firstItem() + $key }}</th>
+            <th>{{ $i++ }}</th>
             <td><a href="/{{ $tb->post->slug }}" target="_blank">{{ $tb->post->title }}</a></td>
             <td class="text-center">{{ $tb->total_pengunjung }}</td>
             <td>{{ date('d-m-Y', strtotime($tb->created_at)) }}</td>
@@ -43,8 +44,3 @@
         @endforelse
     </tbody>
 </table>
-<div class="container">
-    <div class="row justify-content-center">
-        {{ $table->links('backend.pagination.index') }}
-    </div>
-</div>
