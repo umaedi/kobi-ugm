@@ -15,7 +15,7 @@
                             <p class="wow fadeInUp" data-wow-delay=".5s">{{ $settings['tentang_web'] }}</p>
     
                             <div class="hero__btn d-sm-flex align-items-center">
-                               <a href="{{ route('about') }}" class="w-btn w-btn-6 w-btn-white w-btn-white-4 mr-30 wow fadeInUp" data-wow-delay=".7s">Tentang Kami</a>
+                               <a href="{{ route('about') }}" class="w-btn w-btn-6 w-btn-white w-btn-white-4 mr-30 wow fadeInUp" data-wow-delay=".7s">Tentang Kamii</a>
                             </div>
                          </div>
                       </div>

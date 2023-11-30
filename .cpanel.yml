@@ -1,5 +1,0 @@
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/u1684977/kobi_ugm/
-    - /bin/cp -R * $DEPLOYPATH
