@@ -30,7 +30,7 @@ class UserController extends Controller
     {
         if ($request->ajax()) {
             if ($request->tahun) {
-                $data     = Universitas::where('thn_anggota', $request->tahun)->where('status', $request->status)->get();
+                $data     = Universitas::where('thn_anggota', $request->tahun)->where('status', $request->status)->latest()->get();
                 return DataTables::of($data)->make();
             }
 

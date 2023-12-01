@@ -22,7 +22,7 @@
                   @csrf
                   @csrf
                   <div class="row">
-                    <input type="hidden" name="status" value="4">
+                    <input type="hidden" name="status" value="0">
                     <div class="col-md-6">
                       <div class="mb-3">
                         <label for="univ" class="form-label mt-3">{{ __('Nama Universitas') }}</label>

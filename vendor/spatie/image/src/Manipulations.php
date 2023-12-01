@@ -193,7 +193,7 @@ class Manipulations
     /**
      * @throws InvalidManipulation
      */
-    public function fit(string $fitMethod, ?int $width = null, ?int $height = null): static
+    public function fit(string $fitMethod, int $width, int $height): static
     {
         if (! $this->validateManipulation($fitMethod, 'fit')) {
             throw InvalidManipulation::invalidParameter(
@@ -203,17 +203,8 @@ class Manipulations
             );
         }
 
-        if ($width === null && $height === null) {
-            throw new InvalidManipulation('Width or height or both must be provided');
-        }
-
-        if ($width !== null) {
-            $this->width($width);
-        }
-
-        if ($height !== null) {
-            $this->height($height);
-        }
+        $this->width($width);
+        $this->height($height);
 
         return $this->addManipulation('fit', $fitMethod);
     }
