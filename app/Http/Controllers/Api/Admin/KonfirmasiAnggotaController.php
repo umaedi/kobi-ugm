@@ -25,6 +25,7 @@ class KonfirmasiAnggotaController extends Controller
             $universitas->where('id', $id)->update([
                 'status'        => $request->status,
                 'no_anggota'    => $request->no_anggota,
+                'status'        => 1,
             ]);
         } else {
             $universitas->where('id', $id)->update([

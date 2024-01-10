@@ -20,6 +20,7 @@
         <th>Nama Universitas</th>
         <th>Nama Jurusan</th>
         <th>Email Kaprodi</th>
+        <th>Tahun Registrasi</th>
         <th>Action</th>
       </tr>
     @endslot
@@ -45,6 +46,7 @@
       {data: 'nama_univ', name: 'nama_univ'},
       {data: 'nama_jurusan', name: 'nama_jurusan'},
       {data: 'email_kaprodi', name: 'email_kaprodi'},
+      {data: 'thn_anggota', name: 'thn_anggota'},
       {
         "render": function ( data, type, row ) {
         return `

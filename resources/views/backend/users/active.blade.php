@@ -68,6 +68,7 @@
         <th>Universitas</th>
         <th>Fakultas</th>
         <th>Jurusan</th>
+        <th>Tahun Registrasi</th>
         <th>Action</th>
       </tr>
     @endslot
@@ -101,6 +102,7 @@
       {data: 'nama_univ', name: 'nama_univ'},
       {data: 'nama_fakultas', name: 'nama_fakultas'},
       {data: 'nama_jurusan', name: 'nama_jurusan'},
+      {data: 'thn_anggota', name: 'thn_anggota'},
       {
         "render": function ( data, type, row ) {
         return `
