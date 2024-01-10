@@ -13,7 +13,7 @@ class KonfirmasiAnggotaController extends Controller
     public function konfirmasi_anggota(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'no_anggota'    => 'required|unique:universitas',
+            'no_anggota'    => 'required|unique:universitas, no_anggota,' . $request->no_anggota,
         ]);
 
         if ($validator->fails()) {
