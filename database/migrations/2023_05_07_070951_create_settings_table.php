@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('logo')->default('logo.png');
             $table->string('nama_web')->default('Konsorsium Biologi Indonesia');
-            $table->text('tentang_web')->default('Belum ada informasi');
-            $table->text('alamat')->default('Belum ada informasi');
+            $table->text('tentang_web')->nullable();
+            $table->text('alamat')->nullable();
             $table->string('photo_ketua')->default('photo_ketua.png');
             $table->string('text_footer')->default('Belum ada informasi');
             $table->string('no_tlp')->nullable();

@@ -109,7 +109,7 @@ class FrontendController extends Controller
 
         $visitor = $pengunjung->where('post_id', $post->id)->first();
 
-        if ($visitor->$month == 0) {
+        if ($visitor->$month == null) {
             $visitor->update([$month => 1]);
             $visitor->increment('total_pengunjung');
         } else {
