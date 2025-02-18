@@ -5,7 +5,7 @@
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                <div class="header__info text-center text-sm-start">
                   <a href="mailto:"{{ $settings['email'] }}> <i class="icon_mail"></i> <span >{{ $settings['email'] }}</span></a>
-                  <a href="https://api.whatsapp.com/send?phone={{ $settings['no_tlp'] }}" target="_blank"> <i class="icon_phone w-phone"></i> +{{ $settings['no_tlp'] }}</a>
+                  <a href="https://api.whatsapp.com/send?phone=6282133331084" target="_blank"> <i class="icon_phone w-phone"></i> +6282133331084</a>
                </div>
             </div>
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
